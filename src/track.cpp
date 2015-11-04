@@ -13,7 +13,7 @@ Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
     int nChannels = decoder->getChannels();
 //    onset.threshold = 0.5;
     std::vector<float> samples(decoder->getRawSamples());
-    
+//    cout << ofSystem("../../../../sox") << endl;
     onset.setup();
     pitch.setup();
     beat.setup();
@@ -29,9 +29,9 @@ Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
         
     }
     
-    for (Data &d : frameData) {
-        cout << d.onBeat << " : " << d.bpm << " : " << d.isOnset << " : " << d.pitch << " : " << d.pitchConfidence << endl;
-    }
+//    for (Data &d : frameData) {
+//        cout << d.onBeat << " : " << d.bpm << " : " << d.isOnset << " : " << d.pitch << " : " << d.pitchConfidence << endl;
+//    }
 }
 
 void Track::addData(bool onBeat, float bpm, bool isOnset, float pitch, float pitchConfidence) {
