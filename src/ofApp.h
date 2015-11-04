@@ -4,6 +4,7 @@
 #include "ofxAubio.h"
 #include "ofxGui.h"
 #include "ofxAudioDecoder.h"
+#include "track.h"
 
 class ofApp : public ofBaseApp{
 
@@ -30,8 +31,8 @@ class ofApp : public ofBaseApp{
     private:
         int tick;
         bool useMic = false;
-    float onsetDecay = 0;
-    float beatDecay = 0;
+        float onsetDecay = 0;
+        float beatDecay = 0;
         ofxAudioDecoder musicDecoder;
 
         ofxAubioOnset onset;

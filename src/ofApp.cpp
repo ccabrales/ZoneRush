@@ -6,6 +6,7 @@ void ofApp::setup(){
     ofSetWindowShape(750, 250);
     
     musicDecoder.load("music.mp3");
+    Track testTrack = Track(&musicDecoder);
 
     int nOutputs = 2;
     int nInputs = 0;
