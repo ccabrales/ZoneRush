@@ -31,6 +31,8 @@ class ofApp : public ofBaseApp{
     private:
         int tick;
         bool useMic = false;
+    
+        Track* currentTrack;
         float onsetDecay = 0;
         float beatDecay = 0;
         ofxAudioDecoder musicDecoder;
@@ -40,19 +42,19 @@ class ofApp : public ofBaseApp{
         ofxAubioBeat beat;
         ofxAubioMelBands bands;
 
-        ofxPanel pitchGui;
-        ofxFloatSlider midiPitch;
-        ofxFloatSlider pitchConfidence;
+//        ofxPanel pitchGui;
+//        ofxFloatSlider midiPitch;
+//        ofxFloatSlider pitchConfidence;
+//
+//        ofxPanel beatGui;
+//        ofxFloatSlider bpm;
 
-        ofxPanel beatGui;
-        ofxFloatSlider bpm;
+//        ofxPanel onsetGui;
+//        ofxFloatSlider gotOnset;
+//        ofxFloatSlider onsetThreshold;
+//        ofxFloatSlider onsetNovelty;
+//        ofxFloatSlider onsetThresholdedNovelty;
 
-        ofxPanel onsetGui;
-        ofxFloatSlider gotOnset;
-        ofxFloatSlider onsetThreshold;
-        ofxFloatSlider onsetNovelty;
-        ofxFloatSlider onsetThresholdedNovelty;
-
-        ofxPanel bandsGui;
+//        ofxPanel bandsGui;
         ofPolyline bandPlot;
 };

@@ -25,7 +25,6 @@
 		C60077973A257D8F44947E2E /* ofxAubioBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 737C0C27DB7B0C9484DCEBAE /* ofxAubioBlock.cpp */; };
 		C93656581BE9CF9D00BCC866 /* track.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C93656571BE9CF9D00BCC866 /* track.cpp */; };
 		C936565C1BE9EBAF00BCC866 /* sox in CopyFiles */ = {isa = PBXBuildFile; fileRef = C93656591BE9EB8700BCC866 /* sox */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		C93656611BE9EDC900BCC866 /* ofxMacFileDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C936565F1BE9EDC900BCC866 /* ofxMacFileDialog.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
 		E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */; };
@@ -48,6 +47,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		ABF66CF61BE9F22000D5CEE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ABF66CDC1BE98F8500D5CEE8;
+			remoteInfo = "openFrameworks x64";
+		};
 		E4328147138ABC890047C5CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */;
@@ -126,8 +132,6 @@
 		C93656561BE9CF9200BCC866 /* track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = track.h; sourceTree = "<group>"; };
 		C93656571BE9CF9D00BCC866 /* track.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = track.cpp; sourceTree = "<group>"; };
 		C93656591BE9EB8700BCC866 /* sox */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = sox; sourceTree = "<group>"; };
-		C936565F1BE9EDC900BCC866 /* ofxMacFileDialog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMacFileDialog.cpp; sourceTree = "<group>"; };
-		C93656601BE9EDC900BCC866 /* ofxMacFileDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxMacFileDialog.h; sourceTree = "<group>"; };
 		E112B3AEBEA2C091BF2B40AE /* ofxPanel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxPanel.cpp; path = ../../../addons/ofxGui/src/ofxPanel.cpp; sourceTree = SOURCE_ROOT; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
@@ -304,7 +308,6 @@
 				480A780D8D0308AE4A368801 /* ofxGui */,
 				93621CC75EED5D310C6ADC19 /* ofxAubio */,
 				ABF66CE41BE9AE2500D5CEE8 /* ofxAudioDecoder */,
-				C936565D1BE9EDC900BCC866 /* ofxMacFileDialog */,
 			);
 			name = addons;
 			sourceTree = "<group>";
@@ -339,28 +342,11 @@
 			name = "3rd party frameworks";
 			sourceTree = "<group>";
 		};
-		C936565D1BE9EDC900BCC866 /* ofxMacFileDialog */ = {
-			isa = PBXGroup;
-			children = (
-				C936565E1BE9EDC900BCC866 /* src */,
-			);
-			name = ofxMacFileDialog;
-			sourceTree = "<group>";
-		};
-		C936565E1BE9EDC900BCC866 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				C936565F1BE9EDC900BCC866 /* ofxMacFileDialog.cpp */,
-				C93656601BE9EDC900BCC866 /* ofxMacFileDialog.h */,
-			);
-			name = src;
-			path = ../../../addons/ofxMacFileDialog/src;
-			sourceTree = "<group>";
-		};
 		E4328144138ABC890047C5CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				E4328148138ABC890047C5CB /* openFrameworksDebug.a */,
+				ABF66CF71BE9F22000D5CEE8 /* openFrameworks x64.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -467,6 +453,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		ABF66CF71BE9F22000D5CEE8 /* openFrameworks x64.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "openFrameworks x64.a";
+			remoteRef = ABF66CF61BE9F22000D5CEE8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		E4328148138ABC890047C5CB /* openFrameworksDebug.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -511,7 +504,6 @@
 				1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */,
 				479DCA850DD8BB469A777AD4 /* ofxAubioBeat.cpp in Sources */,
 				C60077973A257D8F44947E2E /* ofxAubioBlock.cpp in Sources */,
-				C93656611BE9EDC900BCC866 /* ofxMacFileDialog.cpp in Sources */,
 				67383740F5CC47ED5F955A76 /* ofxAubioMelBands.cpp in Sources */,
 				9C7B8B4D99CDFC508E76CC3A /* ofxAubioOnset.cpp in Sources */,
 				101D2DB773940813A5C898CD /* ofxAubioPitch.cpp in Sources */,
