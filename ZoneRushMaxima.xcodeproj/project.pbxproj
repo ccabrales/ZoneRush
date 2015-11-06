@@ -26,10 +26,6 @@
 		C60077973A257D8F44947E2E /* ofxAubioBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 737C0C27DB7B0C9484DCEBAE /* ofxAubioBlock.cpp */; };
 		C93656581BE9CF9D00BCC866 /* track.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C93656571BE9CF9D00BCC866 /* track.cpp */; };
 		C936565C1BE9EBAF00BCC866 /* sox in CopyFiles */ = {isa = PBXBuildFile; fileRef = C93656591BE9EB8700BCC866 /* sox */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		C981D4771BEC3E15006CB9BA /* CurlNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D46F1BEC3E15006CB9BA /* CurlNoise.cpp */; };
-		C981D4781BEC3E15006CB9BA /* ofxCurlNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D4711BEC3E15006CB9BA /* ofxCurlNoise.cpp */; };
-		C981D4791BEC3E15006CB9BA /* ParticleEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D4731BEC3E15006CB9BA /* ParticleEmitter.cpp */; };
-		C981D47A1BEC3E15006CB9BA /* ParticleManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D4751BEC3E15006CB9BA /* ParticleManager.cpp */; };
 		C981D4811BEC3E22006CB9BA /* ofxFatLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D47D1BEC3E22006CB9BA /* ofxFatLine.cpp */; };
 		C981D4821BEC3E22006CB9BA /* sincosineLut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D47F1BEC3E22006CB9BA /* sincosineLut.cpp */; };
 		C981D48B1BEC3E34006CB9BA /* ofxGifDecoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D4851BEC3E34006CB9BA /* ofxGifDecoder.cpp */; };
@@ -135,6 +131,14 @@
 		A96B8F6D2ECF14F9304EBD6C /* ofxAubioBeat.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAubioBeat.cpp; path = ../../../addons/ofxAubio/src/ofxAubioBeat.cpp; sourceTree = SOURCE_ROOT; };
 		AB6950DE1BECA0A000DB820E /* medianfilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = medianfilter.cpp; sourceTree = "<group>"; };
 		AB6950DF1BECA0A000DB820E /* medianfilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = medianfilter.h; sourceTree = "<group>"; };
+		AB6950E41BECD14400DB820E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		AB6950E51BECD14400DB820E /* addons.make */ = {isa = PBXFileReference; lastKnownFileType = text; path = addons.make; sourceTree = "<group>"; };
+		AB6950E81BECD14400DB820E /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		AB6950E91BECD14400DB820E /* config.make */ = {isa = PBXFileReference; lastKnownFileType = text; path = config.make; sourceTree = "<group>"; };
+		AB6950EA1BECD14400DB820E /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		AB6950EC1BECD14400DB820E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		AB6950ED1BECD14400DB820E /* ofApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofApp.cpp; sourceTree = "<group>"; };
+		AB6950EE1BECD14400DB820E /* ofApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofApp.h; sourceTree = "<group>"; };
 		ABF66CDE1BE9ABF200D5CEE8 /* aubio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = aubio.framework; path = "aubio-0.4.2.darwin_framework/aubio.framework"; sourceTree = "<group>"; };
 		ABF66CE61BE9AE2500D5CEE8 /* ofxAudioDecoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxAudioDecoder.h; sourceTree = "<group>"; };
 		ABF66CEA1BE9AE2500D5CEE8 /* CADebugMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CADebugMacros.h; sourceTree = "<group>"; };
@@ -151,14 +155,6 @@
 		C93656561BE9CF9200BCC866 /* track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = track.h; sourceTree = "<group>"; };
 		C93656571BE9CF9D00BCC866 /* track.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = track.cpp; sourceTree = "<group>"; };
 		C93656591BE9EB8700BCC866 /* sox */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = sox; sourceTree = "<group>"; };
-		C981D46F1BEC3E15006CB9BA /* CurlNoise.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CurlNoise.cpp; sourceTree = "<group>"; };
-		C981D4701BEC3E15006CB9BA /* CurlNoise.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurlNoise.h; sourceTree = "<group>"; };
-		C981D4711BEC3E15006CB9BA /* ofxCurlNoise.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxCurlNoise.cpp; sourceTree = "<group>"; };
-		C981D4721BEC3E15006CB9BA /* ofxCurlNoise.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxCurlNoise.h; sourceTree = "<group>"; };
-		C981D4731BEC3E15006CB9BA /* ParticleEmitter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleEmitter.cpp; sourceTree = "<group>"; };
-		C981D4741BEC3E15006CB9BA /* ParticleEmitter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParticleEmitter.h; sourceTree = "<group>"; };
-		C981D4751BEC3E15006CB9BA /* ParticleManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleManager.cpp; sourceTree = "<group>"; };
-		C981D4761BEC3E15006CB9BA /* ParticleManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParticleManager.h; sourceTree = "<group>"; };
 		C981D47D1BEC3E22006CB9BA /* ofxFatLine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxFatLine.cpp; sourceTree = "<group>"; };
 		C981D47E1BEC3E22006CB9BA /* ofxFatLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxFatLine.h; sourceTree = "<group>"; };
 		C981D47F1BEC3E22006CB9BA /* sincosineLut.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sincosineLut.cpp; sourceTree = "<group>"; };
@@ -321,6 +317,54 @@
 			name = utils;
 			sourceTree = "<group>";
 		};
+		AB6950E21BECD13000DB820E /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				AB6950E31BECD14400DB820E /* example-curl_noise */,
+			);
+			name = Examples;
+			sourceTree = "<group>";
+		};
+		AB6950E31BECD14400DB820E /* example-curl_noise */ = {
+			isa = PBXGroup;
+			children = (
+				AB6950E41BECD14400DB820E /* .gitignore */,
+				AB6950E51BECD14400DB820E /* addons.make */,
+				AB6950E61BECD14400DB820E /* bin */,
+				AB6950E91BECD14400DB820E /* config.make */,
+				AB6950EA1BECD14400DB820E /* Makefile */,
+				AB6950EB1BECD14400DB820E /* src */,
+			);
+			name = "example-curl_noise";
+			path = "addons/ofxCurlNoise/example-curl_noise";
+			sourceTree = "<group>";
+		};
+		AB6950E61BECD14400DB820E /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				AB6950E71BECD14400DB820E /* data */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		AB6950E71BECD14400DB820E /* data */ = {
+			isa = PBXGroup;
+			children = (
+				AB6950E81BECD14400DB820E /* .gitkeep */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		AB6950EB1BECD14400DB820E /* src */ = {
+			isa = PBXGroup;
+			children = (
+				AB6950EC1BECD14400DB820E /* main.cpp */,
+				AB6950ED1BECD14400DB820E /* ofApp.cpp */,
+				AB6950EE1BECD14400DB820E /* ofApp.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		ABF66CE41BE9AE2500D5CEE8 /* ofxAudioDecoder */ = {
 			isa = PBXGroup;
 			children = (
@@ -384,7 +428,6 @@
 				480A780D8D0308AE4A368801 /* ofxGui */,
 				93621CC75EED5D310C6ADC19 /* ofxAubio */,
 				ABF66CE41BE9AE2500D5CEE8 /* ofxAudioDecoder */,
-				C981D46D1BEC3E15006CB9BA /* ofxCurlNoise */,
 				C981D47B1BEC3E22006CB9BA /* ofxFatLines */,
 				C981D4831BEC3E34006CB9BA /* ofxGifDecoder */,
 				C981D48E1BEC3E45006CB9BA /* ofxMSA */,
@@ -422,30 +465,6 @@
 				BBAB23BE13894E4700AA2426 /* GLUT.framework */,
 			);
 			name = "3rd party frameworks";
-			sourceTree = "<group>";
-		};
-		C981D46D1BEC3E15006CB9BA /* ofxCurlNoise */ = {
-			isa = PBXGroup;
-			children = (
-				C981D46E1BEC3E15006CB9BA /* src */,
-			);
-			name = ofxCurlNoise;
-			sourceTree = "<group>";
-		};
-		C981D46E1BEC3E15006CB9BA /* src */ = {
-			isa = PBXGroup;
-			children = (
-				C981D46F1BEC3E15006CB9BA /* CurlNoise.cpp */,
-				C981D4701BEC3E15006CB9BA /* CurlNoise.h */,
-				C981D4711BEC3E15006CB9BA /* ofxCurlNoise.cpp */,
-				C981D4721BEC3E15006CB9BA /* ofxCurlNoise.h */,
-				C981D4731BEC3E15006CB9BA /* ParticleEmitter.cpp */,
-				C981D4741BEC3E15006CB9BA /* ParticleEmitter.h */,
-				C981D4751BEC3E15006CB9BA /* ParticleManager.cpp */,
-				C981D4761BEC3E15006CB9BA /* ParticleManager.h */,
-			);
-			name = src;
-			path = ../../../addons/ofxCurlNoise/src;
 			sourceTree = "<group>";
 		};
 		C981D47B1BEC3E22006CB9BA /* ofxFatLines */ = {
@@ -587,6 +606,7 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
+				AB6950E21BECD13000DB820E /* Examples */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
@@ -728,13 +748,10 @@
 				C981D48B1BEC3E34006CB9BA /* ofxGifDecoder.cpp in Sources */,
 				C981D4B51BEC3E4B006CB9BA /* ofxEasingBounce.cpp in Sources */,
 				C981D48D1BEC3E34006CB9BA /* ofxGifFrame.cpp in Sources */,
-				C981D4771BEC3E15006CB9BA /* CurlNoise.cpp in Sources */,
-				C981D4781BEC3E15006CB9BA /* ofxCurlNoise.cpp in Sources */,
 				C981D4BD1BEC3E4B006CB9BA /* ofxEasingQuint.cpp in Sources */,
 				ABF66CF21BE9AE2500D5CEE8 /* audiodecoderbase.cpp in Sources */,
 				B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */,
 				C981D4BB1BEC3E4B006CB9BA /* ofxEasingQuad.cpp in Sources */,
-				C981D4791BEC3E15006CB9BA /* ParticleEmitter.cpp in Sources */,
 				C981D4B41BEC3E4B006CB9BA /* ofxEasingBack.cpp in Sources */,
 				1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */,
 				C981D4B71BEC3E4B006CB9BA /* ofxEasingCubic.cpp in Sources */,
@@ -746,7 +763,6 @@
 				C60077973A257D8F44947E2E /* ofxAubioBlock.cpp in Sources */,
 				67383740F5CC47ED5F955A76 /* ofxAubioMelBands.cpp in Sources */,
 				9C7B8B4D99CDFC508E76CC3A /* ofxAubioOnset.cpp in Sources */,
-				C981D47A1BEC3E15006CB9BA /* ParticleManager.cpp in Sources */,
 				C981D4BE1BEC3E4B006CB9BA /* ofxEasingSine.cpp in Sources */,
 				101D2DB773940813A5C898CD /* ofxAubioPitch.cpp in Sources */,
 				C93656581BE9CF9D00BCC866 /* track.cpp in Sources */,
@@ -846,6 +862,7 @@
 		E4B69B600A3A1757003C02F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_CXX_LIBRARY = "libc++";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -927,6 +944,7 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_52)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)Debug";
 				USER_HEADER_SEARCH_PATHS = ../../../addons/ofxAudioDecoder/lib/include/;
 				WRAPPER_EXTENSION = app;
@@ -936,6 +954,7 @@
 		E4B69B610A3A1757003C02F2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_CXX_LIBRARY = "libc++";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
@@ -1016,6 +1035,7 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_51)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = ../../../addons/ofxAudioDecoder/lib/include/;
 				WRAPPER_EXTENSION = app;
