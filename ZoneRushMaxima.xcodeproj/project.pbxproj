@@ -16,7 +16,7 @@
 		837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15F2C6477A769C03A56D1401 /* ofxSlider.cpp */; };
 		856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9604B925D32EE39065747725 /* ofxBaseGui.cpp */; };
 		9C7B8B4D99CDFC508E76CC3A /* ofxAubioOnset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A90A4B17BBB4CB627CA22C4 /* ofxAubioOnset.cpp */; };
-		AB6950E01BECA0A000DB820E /* medianfilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB6950DE1BECA0A000DB820E /* medianfilter.cpp */; settings = {ASSET_TAGS = (); }; };
+		AB6950E01BECA0A000DB820E /* medianfilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB6950DE1BECA0A000DB820E /* medianfilter.cpp */; };
 		ABF66CDF1BE9ABF200D5CEE8 /* aubio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF66CDE1BE9ABF200D5CEE8 /* aubio.framework */; };
 		ABF66CF21BE9AE2500D5CEE8 /* audiodecoderbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF66CF01BE9AE2500D5CEE8 /* audiodecoderbase.cpp */; };
 		ABF66CF31BE9AE2500D5CEE8 /* audiodecodercoreaudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF66CF11BE9AE2500D5CEE8 /* audiodecodercoreaudio.cpp */; };
@@ -26,6 +26,7 @@
 		C60077973A257D8F44947E2E /* ofxAubioBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 737C0C27DB7B0C9484DCEBAE /* ofxAubioBlock.cpp */; };
 		C93656581BE9CF9D00BCC866 /* track.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C93656571BE9CF9D00BCC866 /* track.cpp */; };
 		C936565C1BE9EBAF00BCC866 /* sox in CopyFiles */ = {isa = PBXBuildFile; fileRef = C93656591BE9EB8700BCC866 /* sox */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		C966CB771BED4F7000856879 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C966CB761BED4F7000856879 /* player.cpp */; };
 		C981D4811BEC3E22006CB9BA /* ofxFatLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D47D1BEC3E22006CB9BA /* ofxFatLine.cpp */; };
 		C981D4821BEC3E22006CB9BA /* sincosineLut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D47F1BEC3E22006CB9BA /* sincosineLut.cpp */; };
 		C981D48B1BEC3E34006CB9BA /* ofxGifDecoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D4851BEC3E34006CB9BA /* ofxGifDecoder.cpp */; };
@@ -155,6 +156,8 @@
 		C93656561BE9CF9200BCC866 /* track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = track.h; sourceTree = "<group>"; };
 		C93656571BE9CF9D00BCC866 /* track.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = track.cpp; sourceTree = "<group>"; };
 		C93656591BE9EB8700BCC866 /* sox */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = sox; sourceTree = "<group>"; };
+		C966CB751BED4F6200856879 /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = player.h; sourceTree = "<group>"; };
+		C966CB761BED4F7000856879 /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
 		C981D47D1BEC3E22006CB9BA /* ofxFatLine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxFatLine.cpp; sourceTree = "<group>"; };
 		C981D47E1BEC3E22006CB9BA /* ofxFatLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxFatLine.h; sourceTree = "<group>"; };
 		C981D47F1BEC3E22006CB9BA /* sincosineLut.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sincosineLut.cpp; sourceTree = "<group>"; };
@@ -627,6 +630,8 @@
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				C93656561BE9CF9200BCC866 /* track.h */,
 				C93656571BE9CF9D00BCC866 /* track.cpp */,
+				C966CB751BED4F6200856879 /* player.h */,
+				C966CB761BED4F7000856879 /* player.cpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -736,6 +741,7 @@
 				AB6950E01BECA0A000DB820E /* medianfilter.cpp in Sources */,
 				856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */,
 				5CBB2AB3A60F65431D7B555D /* ofxButton.cpp in Sources */,
+				C966CB771BED4F7000856879 /* player.cpp in Sources */,
 				B266578FC55D23BFEBC042E7 /* ofxGuiGroup.cpp in Sources */,
 				C981D4BC1BEC3E4B006CB9BA /* ofxEasingQuart.cpp in Sources */,
 				C981D4B61BEC3E4B006CB9BA /* ofxEasingCirc.cpp in Sources */,
@@ -810,6 +816,7 @@
 					../../../addons/ofxAudioDecoder/src,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CPLUSPLUSFLAGS = (
 					"-D__MACOSX_CORE__",
 					"-lpthread",
@@ -850,6 +857,7 @@
 					../../../addons/ofxAudioDecoder/src,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CPLUSPLUSFLAGS = (
 					"-D__MACOSX_CORE__",
 					"-lpthread",
@@ -862,7 +870,7 @@
 		E4B69B600A3A1757003C02F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				CLANG_CXX_LIBRARY = "libc++";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -954,7 +962,7 @@
 		E4B69B610A3A1757003C02F2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				CLANG_CXX_LIBRARY = "libc++";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
