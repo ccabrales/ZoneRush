@@ -26,13 +26,13 @@ Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
     ofxAubioBeat beat;
 
 //    cout << ofSystem("../../../../sox") << endl;
-    onset1.setup();
-    onset1.setThreshold(0.2);
+    onset1.setup("hfc", 512, 256, 44100);
+    onset1.setThreshold(0.1);
     
-    onset2.setup();
-    onset2.setThreshold(0.09);
+    onset2.setup("complex", 512, 256, 44100);
+    onset2.setThreshold(0.02);
     
-    onset3.setup();
+    onset3.setup("kl", 512, 256, 44100);
     onset3.setThreshold(0.02);
     
     pitch.setup();

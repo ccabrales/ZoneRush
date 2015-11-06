@@ -62,7 +62,9 @@ void ofApp::audioIn(float* input, int bufferSize, int nChannels)
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    onsetDecay *= 0.8;
+    onsetDecay[0] *= 0.8;
+    onsetDecay[1] *= 0.8;
+    onsetDecay[2] *= 0.8;
     beatDecay *= 0.9;
 }
 
@@ -88,20 +90,21 @@ void ofApp::draw(){
     }
     
     ofSetColor(ofColor::black);
-    ofDrawBitmapString("onset", ofPoint(360,150));
+    ofDrawBitmapString("onset. #3, #2, #1", ofPoint(270,150));
 
     // update onset info
-    if ((d.onsets) > 0) {
-        ofSetColor(ofColor::red);
-        ofRect(250 + 90,150,50 * onsetDecay + 10,50);
-        onsetDecay = ((float)d.onsets) / 7.0;
-//        gotOnset = 1;
-    } else {
-        ofSetColor(255,0,0,onsetDecay*255);
-        ofRect(250 + 90,150,50,50);
-
-//        gotOnset = 0;
+    for(int i = 0; i < 3; i++){
+        if ((d.onsets & (1<<i)) > 0) {
+            ofSetColor(ofColor::red);
+            onsetDecay[i] = ((float)(d.onsets & (1<<i)));
+            ofRect(270 + i*90,150,50,50);
+        } else {
+            ofSetColor(255,0,0,onsetDecay[i]*255);
+            ofRect(270 + i*90,150,50,50);
+        }
     }
+    ofSetColor(ofColor::blue);
+    ofRect(330, 110, 20.0*(onsetDecay[0]+onsetDecay[1]+onsetDecay[2]), 10);
 
     ofSetColor(ofColor::orange);
     ofSetLineWidth(3.);

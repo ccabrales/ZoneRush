@@ -33,7 +33,7 @@ class ofApp : public ofBaseApp{
         bool useMic = false;
     
         Track* currentTrack;
-        float onsetDecay = 0;
+        float onsetDecay[3];
         float beatDecay = 0;
         ofxAudioDecoder musicDecoder;
 
