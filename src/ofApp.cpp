@@ -25,6 +25,7 @@ void ofApp::setup(){
     // setup beat object
 //    beat.setup();
     //beat.setup("default", 2 * bufferSize, bufferSize, samplerate);
+    //
 
     // setup mel bands object
     bands.setup();
