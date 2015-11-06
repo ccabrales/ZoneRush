@@ -70,7 +70,7 @@ void ofApp::update(){
 void ofApp::draw(){
     
     
-    Track::Data &d = currentTrack->frameData[tick];
+    Track::Data d = currentTrack->readData(tick);
     
     // update beat info
     ofSetColor(ofColor::black);
@@ -91,10 +91,10 @@ void ofApp::draw(){
     ofDrawBitmapString("onset", ofPoint(360,150));
 
     // update onset info
-    if (d.isOnset) {
+    if ((d.onsets) > 0) {
         ofSetColor(ofColor::red);
-        ofRect(250 + 90,150,50,50);
-        onsetDecay = 1.0;
+        ofRect(250 + 90,150,50 * onsetDecay + 10,50);
+        onsetDecay = ((float)d.onsets) / 7.0;
 //        gotOnset = 1;
     } else {
         ofSetColor(255,0,0,onsetDecay*255);

@@ -8,33 +8,70 @@
 
 #include <stdio.h>
 #include "track.h"
+#include "medianfilter.h"
+
+#define GAUSSIAN_SIZE 3 //[][][][X][][][]
+const float gaussian[] = {0.004, 0.054, 0.242, 0.399, 0.242, 0.054, 0.004};
 
 Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
     int nChannels = decoder->getChannels();
 //    onset.threshold = 0.5;
     std::vector<float> samples(decoder->getRawSamples());
     
-    ofxAubioOnset onset;
+    ofxAubioOnset onset1;
+    ofxAubioOnset onset2;
+    ofxAubioOnset onset3;
+    
     ofxAubioPitch pitch;
     ofxAubioBeat beat;
 
 //    cout << ofSystem("../../../../sox") << endl;
-    onset.setup();
-    onset.setThreshold(0.1);
+    onset1.setup();
+    onset1.setThreshold(0.2);
+    
+    onset2.setup();
+    onset2.setThreshold(0.09);
+    
+    onset3.setup();
+    onset3.setThreshold(0.02);
+    
     pitch.setup();
     beat.setup();
     
     for (int i = 0; (i * BUFFERSIZE * nChannels) < decoder->getNumSamples(); i++) {
         float* sample = &(samples[i * BUFFERSIZE * nChannels]);
         
-        onset.audioIn(sample, BUFFERSIZE, nChannels);
+        onset1.audioIn(sample, BUFFERSIZE, nChannels);
+        onset2.audioIn(sample, BUFFERSIZE, nChannels);
+        onset3.audioIn(sample, BUFFERSIZE, nChannels);
         pitch.audioIn(sample, BUFFERSIZE, nChannels);
         beat.audioIn(sample, BUFFERSIZE, nChannels);
 
-        addData(beat.received(), beat.bpm, onset.received(), pitch.latestPitch, pitch.pitchConfidence, onset.novelty, onset.thresholdedNovelty);
-        
+        frameData.push_back({
+            beat.received(),
+            beat.bpm,
+            (onset1.received() << 2) | (onset2.received() << 1) | (onset3.received()),
+                //^ 0 to 7. [000] - [111]
+            onset1.novelty, onset1.thresholdedNovelty, //thresholded stuff.
+            pitch.latestPitch,
+            pitch.pitchConfidence
+        });
     }
+//    
+//    std::vector<int> f(frameData.size());
+//    
+//    for(int i = 0; i < frameData.size(); i++){
+//        f.push_back((int)(frameData[i].pitch));
+//    }
+//    
+//    int fOut[frameData.size()+4];
+//    medianfilter(&f[0], &fOut[0], frameData.size());
+//    
+//    for(int i = 2; i < frameData.size()+2; i++){
+//        frameData[i].pitch = fOut[i];
+//    }
     
+        
 //    for (Data &d : frameData) {
 //        cout << d.onBeat << " : " << d.bpm << " : " << d.isOnset << " : " << d.pitch << " : " << d.pitchConfidence << endl;
 //    }
@@ -42,19 +79,16 @@ Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
 
 string Track::toString(Track::Data &d){
     stringstream s;
-    s << d.onBeat << " : " << d.bpm << " : " << d.isOnset << " : " << d.pitch << " : " << d.pitchConfidence << " : " << d.onsetNovelty << " : " << d.onsetThresholdedNovelty;
+    s << d.onBeat << "\t" << d.bpm << "\t" << d.onsets << "\t" << d.pitch << "\t" << d.pitchConfidence << "\t" << d.onsetNovelty << "\t" << d.onsetThresholdedNovelty;
     return s.str();
 }
 
-void Track::addData(bool onBeat, float bpm, bool isOnset, float pitch, float pitchConfidence, float onsetNovelty, float onsetThresholdNovelty) {
-    Data d;
-    d.onBeat = onBeat;
-    d.bpm = bpm;
-    d.isOnset = isOnset;
-    d.pitch = pitch;
-    d.pitchConfidence = pitchConfidence;
-    d.onsetNovelty = onsetNovelty;
-    d.onsetThresholdedNovelty = onsetThresholdNovelty;
-    
-    frameData.push_back(d);
+Track::Data Track::readData(int frame){
+    Data out = frameData[frame];
+    for(int i=lastFrameRead+1; i <= frame; i++){
+        out.onBeat |= frameData[frame].onBeat;
+        out.onsets = (out.onsets | frameData[frame].onsets);
+    }
+    lastFrameRead = frame;
+    return out;
 }
