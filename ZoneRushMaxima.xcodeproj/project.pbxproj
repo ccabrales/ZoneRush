@@ -16,7 +16,7 @@
 		837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15F2C6477A769C03A56D1401 /* ofxSlider.cpp */; };
 		856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9604B925D32EE39065747725 /* ofxBaseGui.cpp */; };
 		9C7B8B4D99CDFC508E76CC3A /* ofxAubioOnset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A90A4B17BBB4CB627CA22C4 /* ofxAubioOnset.cpp */; };
-		AB6950E01BECA0A000DB820E /* medianfilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB6950DE1BECA0A000DB820E /* medianfilter.cpp */; settings = {ASSET_TAGS = (); }; };
+		AB6951001BED55BC00DB820E /* filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB6950FE1BED55BC00DB820E /* filter.cpp */; settings = {ASSET_TAGS = (); }; };
 		ABF66CDF1BE9ABF200D5CEE8 /* aubio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF66CDE1BE9ABF200D5CEE8 /* aubio.framework */; };
 		ABF66CF21BE9AE2500D5CEE8 /* audiodecoderbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF66CF01BE9AE2500D5CEE8 /* audiodecoderbase.cpp */; };
 		ABF66CF31BE9AE2500D5CEE8 /* audiodecodercoreaudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF66CF11BE9AE2500D5CEE8 /* audiodecodercoreaudio.cpp */; };
@@ -129,8 +129,6 @@
 		9604B925D32EE39065747725 /* ofxBaseGui.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxBaseGui.cpp; path = ../../../addons/ofxGui/src/ofxBaseGui.cpp; sourceTree = SOURCE_ROOT; };
 		9D2C29B96659EBB7A0C5672F /* ofxAubioPitch.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAubioPitch.h; path = ../../../addons/ofxAubio/src/ofxAubioPitch.h; sourceTree = SOURCE_ROOT; };
 		A96B8F6D2ECF14F9304EBD6C /* ofxAubioBeat.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAubioBeat.cpp; path = ../../../addons/ofxAubio/src/ofxAubioBeat.cpp; sourceTree = SOURCE_ROOT; };
-		AB6950DE1BECA0A000DB820E /* medianfilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = medianfilter.cpp; sourceTree = "<group>"; };
-		AB6950DF1BECA0A000DB820E /* medianfilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = medianfilter.h; sourceTree = "<group>"; };
 		AB6950E41BECD14400DB820E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		AB6950E51BECD14400DB820E /* addons.make */ = {isa = PBXFileReference; lastKnownFileType = text; path = addons.make; sourceTree = "<group>"; };
 		AB6950E81BECD14400DB820E /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
@@ -139,6 +137,8 @@
 		AB6950EC1BECD14400DB820E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		AB6950ED1BECD14400DB820E /* ofApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofApp.cpp; sourceTree = "<group>"; };
 		AB6950EE1BECD14400DB820E /* ofApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofApp.h; sourceTree = "<group>"; };
+		AB6950FE1BED55BC00DB820E /* filter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filter.cpp; sourceTree = "<group>"; };
+		AB6951011BED581800DB820E /* filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filter.h; sourceTree = "<group>"; };
 		ABF66CDE1BE9ABF200D5CEE8 /* aubio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = aubio.framework; path = "aubio-0.4.2.darwin_framework/aubio.framework"; sourceTree = "<group>"; };
 		ABF66CE61BE9AE2500D5CEE8 /* ofxAudioDecoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxAudioDecoder.h; sourceTree = "<group>"; };
 		ABF66CEA1BE9AE2500D5CEE8 /* CADebugMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CADebugMacros.h; sourceTree = "<group>"; };
@@ -311,8 +311,8 @@
 		AB6950E11BECA0A500DB820E /* utils */ = {
 			isa = PBXGroup;
 			children = (
-				AB6950DE1BECA0A000DB820E /* medianfilter.cpp */,
-				AB6950DF1BECA0A000DB820E /* medianfilter.h */,
+				AB6950FE1BED55BC00DB820E /* filter.cpp */,
+				AB6951011BED581800DB820E /* filter.h */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -729,11 +729,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C981D48C1BEC3E34006CB9BA /* ofxGifFile.cpp in Sources */,
+				AB6951001BED55BC00DB820E /* filter.cpp in Sources */,
 				C981D4B91BEC3E4B006CB9BA /* ofxEasingExpo.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				C981D4941BEC3E48006CB9BA /* ofxSceneManager.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
-				AB6950E01BECA0A000DB820E /* medianfilter.cpp in Sources */,
 				856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */,
 				5CBB2AB3A60F65431D7B555D /* ofxButton.cpp in Sources */,
 				B266578FC55D23BFEBC042E7 /* ofxGuiGroup.cpp in Sources */,

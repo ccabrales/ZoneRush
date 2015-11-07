@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 #include "track.h"
-#include "medianfilter.h"
+#include "filter.h"
 
 #define GAUSSIAN_SIZE 3 //[][][][X][][][]
 const float gaussian[] = {0.004, 0.054, 0.242, 0.399, 0.242, 0.054, 0.004};
@@ -57,19 +57,23 @@ Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
             pitch.pitchConfidence
         });
     }
-//    
-//    std::vector<int> f(frameData.size());
-//    
-//    for(int i = 0; i < frameData.size(); i++){
-//        f.push_back((int)(frameData[i].pitch));
-//    }
-//    
-//    int fOut[frameData.size()+4];
-//    medianfilter(&f[0], &fOut[0], frameData.size());
-//    
-//    for(int i = 2; i < frameData.size()+2; i++){
-//        frameData[i].pitch = fOut[i];
-//    }
+    
+    std::vector<int> f(frameData.size());
+    
+    for(int i = 0; i < frameData.size(); i++){
+        f[i] = ((int)(frameData[i].pitch));
+    }
+    
+    std::cout << f[412] << std::endl;
+    
+    int fOut[frameData.size()];
+//    medianfilter(fOut, &f[0], frameData.size());
+    median_filter_impl_1d(frameData.size(), 5, 14, &f[0], &fOut[0]);
+    
+
+    for(int i = 2; i < frameData.size()+2; i++){
+        frameData[i].pitch = fOut[i];
+    }
     
         
 //    for (Data &d : frameData) {

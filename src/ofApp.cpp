@@ -35,6 +35,10 @@ void ofApp::setup(){
     for (int i = 0; i < 40; i++) {
         bandPlot.addVertex( 50 + i * 650 / 40., 240 - 100 * bands.energies[i]);
     }
+    
+    for(int i = 0; i< 30; i++){
+        pitchPlot.addVertex( 50 + i * 650 / 40., 50 - 100 * bands.energies[i]);
+    }
 }
 
 void ofApp::exit(){
@@ -112,7 +116,14 @@ void ofApp::draw(){
     for (int i = 0; i < bandPlot.size(); i++) {
         bandPlot[i].y = 240 - 100 * bands.energies[i];
     }
+    
+    for (int i = 0; i < 30 && tick-10+i > 0 && tick-10+i < currentTrack->frameData.size(); i++){
+        pitchPlot[i].y = 150 - (2 * currentTrack->frameData[tick-10+i].pitch);
+    }
     bandPlot.draw();
+    pitchPlot.draw();
+    
+    
     
     ofSetColor(ofColor::black);
     ofDrawBitmapString(Track::toString(d), ofPoint(20,20));

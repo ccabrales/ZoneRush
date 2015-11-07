@@ -57,4 +57,6 @@ class ofApp : public ofBaseApp{
 
 //        ofxPanel bandsGui;
         ofPolyline bandPlot;
+        ofPolyline pitchPlot;
+
 };
