@@ -24,6 +24,7 @@ void ofApp::setup(){
     
     for(int i = 0; i< 90; i++){
         pitchPlot.addVertex( 50 + i * 2, 50 - 100 * bands.energies[i]);
+        intensityPlot.addVertex( 50 + i * 2, 50 - 100 * bands.energies[i]);
     }
 }
 
@@ -105,8 +106,10 @@ void ofApp::draw(){
     
     for (int i = 0; i < 90 && tick-10+i > 0 && tick-10+i < currentTrack->frameData.size(); i++){
         Track::Data& dp = currentTrack->frameData[tick-10+i];
-        pitchPlot[i].y = 190 - (2 * currentTrack->frameData[tick-10+i].pitch);
         
+        pitchPlot[i].y = 190 - (2 * dp.pitch);
+        
+        intensityPlot[i].y = 100 - (140*dp.intensity);
         if(dp.onBeat)
             ofCircle(50 + i * 2, 120, 4);
         if(dp.onsets > 0)
@@ -120,6 +123,7 @@ void ofApp::draw(){
     ofLine(50+20, 0, 50+20, 140);
     
     ofSetColor(ofColor::black);
+    intensityPlot.draw();
     ofDrawBitmapString(Track::toString(d), ofPoint(20,20));
 }
 

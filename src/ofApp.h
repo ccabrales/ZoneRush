@@ -36,10 +36,10 @@ class ofApp : public ofBaseApp{
         float onsetDecay[3];
         float beatDecay = 0;
         ofxAudioDecoder musicDecoder;
-
-        ofxAubioOnset onset;
-        ofxAubioPitch pitch;
-        ofxAubioBeat beat;
+//
+//        ofxAubioOnset onset;
+//        ofxAubioPitch pitch;
+//        ofxAubioBeat beat;
         ofxAubioMelBands bands;
 
 //        ofxPanel pitchGui;
@@ -58,5 +58,6 @@ class ofApp : public ofBaseApp{
 //        ofxPanel bandsGui;
         ofPolyline bandPlot;
         ofPolyline pitchPlot;
+    ofPolyline intensityPlot;
 
 };

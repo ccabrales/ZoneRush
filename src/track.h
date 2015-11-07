@@ -15,6 +15,7 @@ public:
         float onsetThresholdedNovelty;
         float pitch;
         float pitchConfidence;
+        float intensity;
     };
     
     Track(ofxAudioDecoder * decoder);

@@ -16,6 +16,7 @@ Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
     
     ofxAubioPitch pitch;
     ofxAubioBeat beat;
+    ofxAubioMelBands bands;
 
 //    cout << ofSystem("../../../../sox") << endl;
     onset1.setup("hfc", 512, 256, 44100);
@@ -29,6 +30,8 @@ Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
     
     pitch.setup();
     beat.setup();
+    bands.setup();
+    //bands have 40 energies counts.
     
     for (int i = 0; (i * BUFFERSIZE * nChannels) < decoder->getNumSamples(); i++) {
         float* sample = &(samples[i * BUFFERSIZE * nChannels]);
@@ -38,7 +41,26 @@ Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
         onset3.audioIn(sample, BUFFERSIZE, nChannels);
         pitch.audioIn(sample, BUFFERSIZE, nChannels);
         beat.audioIn(sample, BUFFERSIZE, nChannels);
-
+        bands.audioIn(sample, BUFFERSIZE, nChannels);
+        
+        //---------------------------------------
+        float numerator = 1;
+        float denom = 0;
+        for(int m = 0; m < 40; m++){
+            numerator *= pow(bands.energies[m], 1.0/40.0);
+            denom += bands.energies[m] / 40.0;
+        }
+        float sfmIntensity = log(numerator) - log(denom);
+        //Measuring the ‘complexity’ of sound. (Singh 2011)
+        //---------------------------------------
+        
+        //-----Running average of SFM Complexity:
+        float avgIntensity = 0;
+        if(i>0)
+            avgIntensity = sfmIntensity * 0.08 + frameData[i-1].intensity*0.92;
+        else
+            avgIntensity = sfmIntensity;
+        //---------------------------------------
         frameData.push_back({
             beat.received(),
             beat.bpm,
@@ -46,7 +68,8 @@ Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
                 //^ 0 to 7. [000] - [111]
             onset1.novelty, onset1.thresholdedNovelty, //thresholded stuff.
             pitch.latestPitch,
-            pitch.pitchConfidence
+            pitch.pitchConfidence,
+            isnan(avgIntensity)?-1:avgIntensity
         });
     }
     
@@ -56,13 +79,10 @@ Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
         f[i] = ((int)(round(frameData[i].pitch)));
     }
     
-    std::cout << f[412] << std::endl;
-    
     int fOut[frameData.size()];
 //    medianfilter(fOut, &f[0], frameData.size());
     median_filter_impl_1d(frameData.size(), 31, 70, &f[0], &fOut[0]);
     
-
     for(int i = 0; i < frameData.size(); i++){
         frameData[i].pitch = fOut[i];
     }
@@ -75,7 +95,7 @@ Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
 
 string Track::toString(Track::Data &d){
     stringstream s;
-    s << d.onBeat << "\t" << d.bpm << "\t" << d.onsets << "\t" << d.pitch << "\t" << d.pitchConfidence << "\t" << d.onsetNovelty << "\t" << d.onsetThresholdedNovelty;
+    s << d.onBeat << "\t" << d.bpm << "\t" << d.onsets << "\t" << d.pitch << "\t" << d.pitchConfidence << "\t" << d.onsetNovelty << "\t" << d.onsetThresholdedNovelty << "\t" << d.intensity;
     return s.str();
 }
 
