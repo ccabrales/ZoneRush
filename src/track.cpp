@@ -1,11 +1,3 @@
-//
-//  track.cpp
-//  ZoneRushMaxima
-//
-//  Created by Casey Cabrales on 11/3/15.
-//
-//
-
 #include <stdio.h>
 #include "track.h"
 #include "filter.h"
