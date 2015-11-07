@@ -17,6 +17,7 @@
 		856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9604B925D32EE39065747725 /* ofxBaseGui.cpp */; };
 		9C7B8B4D99CDFC508E76CC3A /* ofxAubioOnset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A90A4B17BBB4CB627CA22C4 /* ofxAubioOnset.cpp */; };
 		AB6951001BED55BC00DB820E /* filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB6950FE1BED55BC00DB820E /* filter.cpp */; settings = {ASSET_TAGS = (); }; };
+		ABED9FB01BEE238400F11CCC /* ofxMSAInteractiveObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABED9FAE1BEE238400F11CCC /* ofxMSAInteractiveObject.cpp */; settings = {ASSET_TAGS = (); }; };
 		ABF66CDF1BE9ABF200D5CEE8 /* aubio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF66CDE1BE9ABF200D5CEE8 /* aubio.framework */; };
 		ABF66CF21BE9AE2500D5CEE8 /* audiodecoderbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF66CF01BE9AE2500D5CEE8 /* audiodecoderbase.cpp */; };
 		ABF66CF31BE9AE2500D5CEE8 /* audiodecodercoreaudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF66CF11BE9AE2500D5CEE8 /* audiodecodercoreaudio.cpp */; };
@@ -140,6 +141,8 @@
 		AB6950EE1BECD14400DB820E /* ofApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofApp.h; sourceTree = "<group>"; };
 		AB6950FE1BED55BC00DB820E /* filter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filter.cpp; sourceTree = "<group>"; };
 		AB6951011BED581800DB820E /* filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filter.h; sourceTree = "<group>"; };
+		ABED9FAE1BEE238400F11CCC /* ofxMSAInteractiveObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMSAInteractiveObject.cpp; sourceTree = "<group>"; };
+		ABED9FAF1BEE238400F11CCC /* ofxMSAInteractiveObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxMSAInteractiveObject.h; sourceTree = "<group>"; };
 		ABF66CDE1BE9ABF200D5CEE8 /* aubio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = aubio.framework; path = "aubio-0.4.2.darwin_framework/aubio.framework"; sourceTree = "<group>"; };
 		ABF66CE61BE9AE2500D5CEE8 /* ofxAudioDecoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxAudioDecoder.h; sourceTree = "<group>"; };
 		ABF66CEA1BE9AE2500D5CEE8 /* CADebugMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CADebugMacros.h; sourceTree = "<group>"; };
@@ -368,6 +371,33 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		ABED9FAA1BEE222700F11CCC /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				C966CB751BED4F6200856879 /* player.h */,
+				C966CB761BED4F7000856879 /* player.cpp */,
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
+		ABED9FAC1BEE238400F11CCC /* ofxMSAInteractiveObject */ = {
+			isa = PBXGroup;
+			children = (
+				ABED9FAD1BEE238400F11CCC /* src */,
+			);
+			name = ofxMSAInteractiveObject;
+			sourceTree = "<group>";
+		};
+		ABED9FAD1BEE238400F11CCC /* src */ = {
+			isa = PBXGroup;
+			children = (
+				ABED9FAE1BEE238400F11CCC /* ofxMSAInteractiveObject.cpp */,
+				ABED9FAF1BEE238400F11CCC /* ofxMSAInteractiveObject.h */,
+			);
+			name = src;
+			path = ../../../addons/ofxMSAInteractiveObject/src;
+			sourceTree = "<group>";
+		};
 		ABF66CE41BE9AE2500D5CEE8 /* ofxAudioDecoder */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,9 +463,9 @@
 				ABF66CE41BE9AE2500D5CEE8 /* ofxAudioDecoder */,
 				C981D47B1BEC3E22006CB9BA /* ofxFatLines */,
 				C981D4831BEC3E34006CB9BA /* ofxGifDecoder */,
-				C981D48E1BEC3E45006CB9BA /* ofxMSA */,
 				C981D48F1BEC3E48006CB9BA /* ofxSceneManager */,
 				C981D4951BEC3E4B006CB9BA /* ofxTween */,
+				ABED9FAC1BEE238400F11CCC /* ofxMSAInteractiveObject */,
 			);
 			name = addons;
 			sourceTree = "<group>";
@@ -510,13 +540,6 @@
 			);
 			name = src;
 			path = ../../../addons/ofxGifDecoder/src;
-			sourceTree = "<group>";
-		};
-		C981D48E1BEC3E45006CB9BA /* ofxMSA */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = ofxMSA;
 			sourceTree = "<group>";
 		};
 		C981D48F1BEC3E48006CB9BA /* ofxSceneManager */ = {
@@ -630,8 +653,7 @@
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				C93656561BE9CF9200BCC866 /* track.h */,
 				C93656571BE9CF9D00BCC866 /* track.cpp */,
-				C966CB751BED4F6200856879 /* player.h */,
-				C966CB761BED4F7000856879 /* player.cpp */,
+				ABED9FAA1BEE222700F11CCC /* Game */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -764,6 +786,7 @@
 				C981D4B81BEC3E4B006CB9BA /* ofxEasingElastic.cpp in Sources */,
 				C981D4BF1BEC3E4B006CB9BA /* ofxTween.cpp in Sources */,
 				479DCA850DD8BB469A777AD4 /* ofxAubioBeat.cpp in Sources */,
+				ABED9FB01BEE238400F11CCC /* ofxMSAInteractiveObject.cpp in Sources */,
 				C981D4B31BEC3E4B006CB9BA /* ofxEasing.cpp in Sources */,
 				C981D4821BEC3E22006CB9BA /* sincosineLut.cpp in Sources */,
 				C60077973A257D8F44947E2E /* ofxAubioBlock.cpp in Sources */,
