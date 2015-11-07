@@ -19,13 +19,13 @@ Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
 
 //    cout << ofSystem("../../../../sox") << endl;
     onset1.setup("hfc", 512, 256, 44100);
-    onset1.setThreshold(0.1);
+    onset1.setThreshold(0.4);
     
-    onset2.setup("complex", 512, 256, 44100);
-    onset2.setThreshold(0.02);
+    onset2.setup("specflux", 512, 256, 44100);
+    onset2.setThreshold(0.3);
     
-    onset3.setup("kl", 512, 256, 44100);
-    onset3.setThreshold(0.02);
+    onset3.setup("complex", 512, 256, 44100);
+    onset3.setThreshold(0.2);
     
     pitch.setup();
     beat.setup();
@@ -53,17 +53,17 @@ Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
     std::vector<int> f(frameData.size());
     
     for(int i = 0; i < frameData.size(); i++){
-        f[i] = ((int)(frameData[i].pitch));
+        f[i] = ((int)(round(frameData[i].pitch)));
     }
     
     std::cout << f[412] << std::endl;
     
     int fOut[frameData.size()];
 //    medianfilter(fOut, &f[0], frameData.size());
-    median_filter_impl_1d(frameData.size(), 5, 14, &f[0], &fOut[0]);
+    median_filter_impl_1d(frameData.size(), 31, 70, &f[0], &fOut[0]);
     
 
-    for(int i = 2; i < frameData.size()+2; i++){
+    for(int i = 0; i < frameData.size(); i++){
         frameData[i].pitch = fOut[i];
     }
     
@@ -82,8 +82,8 @@ string Track::toString(Track::Data &d){
 Track::Data Track::readData(int frame){
     Data out = frameData[frame];
     for(int i=lastFrameRead+1; i <= frame; i++){
-        out.onBeat |= frameData[frame].onBeat;
-        out.onsets = (out.onsets | frameData[frame].onsets);
+        out.onBeat |= frameData[i].onBeat;
+        out.onsets = (out.onsets | frameData[i].onsets);
     }
     lastFrameRead = frame;
     return out;

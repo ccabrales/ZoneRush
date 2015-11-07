@@ -14,20 +14,6 @@ void ofApp::setup(){
     //int bufferSize = 256;
     //int nBuffers = 4;
 
-    // setup onset object
-//    onset.setup();
-    //onset.setup("mkl", 2 * bufferSize, bufferSize, sampleRate);
-
-    // setup pitch object
-//    pitch.setup();
-    //pitch.setup("yinfft", 8 * bufferSize, bufferSize, sampleRate);
-
-    // setup beat object
-//    beat.setup();
-    //beat.setup("default", 2 * bufferSize, bufferSize, samplerate);
-    //
-
-    // setup mel bands object
     bands.setup();
 
     ofSoundStreamSetup(nOutputs, nInputs, this);
@@ -36,8 +22,8 @@ void ofApp::setup(){
         bandPlot.addVertex( 50 + i * 650 / 40., 240 - 100 * bands.energies[i]);
     }
     
-    for(int i = 0; i< 30; i++){
-        pitchPlot.addVertex( 50 + i * 650 / 40., 50 - 100 * bands.energies[i]);
+    for(int i = 0; i< 90; i++){
+        pitchPlot.addVertex( 50 + i * 2, 50 - 100 * bands.energies[i]);
     }
 }
 
@@ -117,13 +103,21 @@ void ofApp::draw(){
         bandPlot[i].y = 240 - 100 * bands.energies[i];
     }
     
-    for (int i = 0; i < 30 && tick-10+i > 0 && tick-10+i < currentTrack->frameData.size(); i++){
-        pitchPlot[i].y = 150 - (2 * currentTrack->frameData[tick-10+i].pitch);
+    for (int i = 0; i < 90 && tick-10+i > 0 && tick-10+i < currentTrack->frameData.size(); i++){
+        Track::Data& dp = currentTrack->frameData[tick-10+i];
+        pitchPlot[i].y = 190 - (2 * currentTrack->frameData[tick-10+i].pitch);
+        
+        if(dp.onBeat)
+            ofCircle(50 + i * 2, 120, 4);
+        if(dp.onsets > 0)
+            ofCircle(50 + i * 2, 130, 4);
+        
     }
     bandPlot.draw();
     pitchPlot.draw();
     
-    
+    ofSetColor(ofColor::black);
+    ofLine(50+20, 0, 50+20, 140);
     
     ofSetColor(ofColor::black);
     ofDrawBitmapString(Track::toString(d), ofPoint(20,20));
