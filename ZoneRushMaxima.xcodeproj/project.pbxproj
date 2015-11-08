@@ -49,6 +49,7 @@
 		C981D4BD1BEC3E4B006CB9BA /* ofxEasingQuint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D4AD1BEC3E4B006CB9BA /* ofxEasingQuint.cpp */; };
 		C981D4BE1BEC3E4B006CB9BA /* ofxEasingSine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D4AF1BEC3E4B006CB9BA /* ofxEasingSine.cpp */; };
 		C981D4BF1BEC3E4B006CB9BA /* ofxTween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D4B11BEC3E4B006CB9BA /* ofxTween.cpp */; };
+		C99529541BEFF639005415D5 /* enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C99529521BEFF639005415D5 /* enemy.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
 		E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */; };
@@ -207,6 +208,8 @@
 		C981D4B01BEC3E4B006CB9BA /* ofxEasingSine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxEasingSine.h; sourceTree = "<group>"; };
 		C981D4B11BEC3E4B006CB9BA /* ofxTween.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTween.cpp; sourceTree = "<group>"; };
 		C981D4B21BEC3E4B006CB9BA /* ofxTween.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxTween.h; sourceTree = "<group>"; };
+		C99529521BEFF639005415D5 /* enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = enemy.cpp; sourceTree = "<group>"; };
+		C99529531BEFF639005415D5 /* enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enemy.h; sourceTree = "<group>"; };
 		E112B3AEBEA2C091BF2B40AE /* ofxPanel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxPanel.cpp; path = ../../../addons/ofxGui/src/ofxPanel.cpp; sourceTree = SOURCE_ROOT; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
@@ -386,6 +389,8 @@
 				AB99A8F51BEF75DB00D7F38E /* Bullet.h */,
 				AB99A8F71BEF761500D7F38E /* BulletType.cpp */,
 				AB99A8F81BEF761500D7F38E /* BulletType.h */,
+				C99529521BEFF639005415D5 /* enemy.cpp */,
+				C99529531BEFF639005415D5 /* enemy.h */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -790,6 +795,7 @@
 				C981D48D1BEC3E34006CB9BA /* ofxGifFrame.cpp in Sources */,
 				C981D4BD1BEC3E4B006CB9BA /* ofxEasingQuint.cpp in Sources */,
 				ABF66CF21BE9AE2500D5CEE8 /* audiodecoderbase.cpp in Sources */,
+				C99529541BEFF639005415D5 /* enemy.cpp in Sources */,
 				B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */,
 				C981D4BB1BEC3E4B006CB9BA /* ofxEasingQuad.cpp in Sources */,
 				C981D4B41BEC3E4B006CB9BA /* ofxEasingBack.cpp in Sources */,

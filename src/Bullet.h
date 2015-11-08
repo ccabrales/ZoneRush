@@ -1,13 +1,4 @@
-//
-//  Bullet.hpp
-//  ZoneRushMaxima
-//
-//  Created by Xiaonan Tong on 11/8/15.
-//
-//
-
-#ifndef Bullet_hpp
-#define Bullet_hpp
+#pragma once
 
 #include <stdio.h>
 #include "BulletType.h"
@@ -19,5 +10,3 @@ class Bullet {
 public:
     
 };
-
-#endif /* Bullet_hpp */
