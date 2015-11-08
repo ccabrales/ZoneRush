@@ -16,10 +16,10 @@
 		837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15F2C6477A769C03A56D1401 /* ofxSlider.cpp */; };
 		856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9604B925D32EE39065747725 /* ofxBaseGui.cpp */; };
 		9C7B8B4D99CDFC508E76CC3A /* ofxAubioOnset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A90A4B17BBB4CB627CA22C4 /* ofxAubioOnset.cpp */; };
-		AB6951001BED55BC00DB820E /* filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB6950FE1BED55BC00DB820E /* filter.cpp */; settings = {ASSET_TAGS = (); }; };
-		AB99A8F61BEF75DB00D7F38E /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A8F41BEF75DB00D7F38E /* Bullet.cpp */; settings = {ASSET_TAGS = (); }; };
-		AB99A8F91BEF761500D7F38E /* BulletType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A8F71BEF761500D7F38E /* BulletType.cpp */; settings = {ASSET_TAGS = (); }; };
-		ABED9FB01BEE238400F11CCC /* ofxMSAInteractiveObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABED9FAE1BEE238400F11CCC /* ofxMSAInteractiveObject.cpp */; settings = {ASSET_TAGS = (); }; };
+		AB6951001BED55BC00DB820E /* filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB6950FE1BED55BC00DB820E /* filter.cpp */; };
+		AB99A8F61BEF75DB00D7F38E /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A8F41BEF75DB00D7F38E /* Bullet.cpp */; };
+		AB99A8F91BEF761500D7F38E /* BulletType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A8F71BEF761500D7F38E /* BulletType.cpp */; };
+		ABED9FB01BEE238400F11CCC /* ofxMSAInteractiveObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABED9FAE1BEE238400F11CCC /* ofxMSAInteractiveObject.cpp */; };
 		ABF66CDF1BE9ABF200D5CEE8 /* aubio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF66CDE1BE9ABF200D5CEE8 /* aubio.framework */; };
 		ABF66CF21BE9AE2500D5CEE8 /* audiodecoderbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF66CF01BE9AE2500D5CEE8 /* audiodecoderbase.cpp */; };
 		ABF66CF31BE9AE2500D5CEE8 /* audiodecodercoreaudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF66CF11BE9AE2500D5CEE8 /* audiodecodercoreaudio.cpp */; };
@@ -144,9 +144,9 @@
 		AB6950FE1BED55BC00DB820E /* filter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filter.cpp; sourceTree = "<group>"; };
 		AB6951011BED581800DB820E /* filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filter.h; sourceTree = "<group>"; };
 		AB99A8F41BEF75DB00D7F38E /* Bullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bullet.cpp; sourceTree = "<group>"; };
-		AB99A8F51BEF75DB00D7F38E /* Bullet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Bullet.hpp; sourceTree = "<group>"; };
+		AB99A8F51BEF75DB00D7F38E /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
 		AB99A8F71BEF761500D7F38E /* BulletType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BulletType.cpp; sourceTree = "<group>"; };
-		AB99A8F81BEF761500D7F38E /* BulletType.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BulletType.hpp; sourceTree = "<group>"; };
+		AB99A8F81BEF761500D7F38E /* BulletType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletType.h; sourceTree = "<group>"; };
 		ABED9FAE1BEE238400F11CCC /* ofxMSAInteractiveObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMSAInteractiveObject.cpp; sourceTree = "<group>"; };
 		ABED9FAF1BEE238400F11CCC /* ofxMSAInteractiveObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxMSAInteractiveObject.h; sourceTree = "<group>"; };
 		ABF66CDE1BE9ABF200D5CEE8 /* aubio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = aubio.framework; path = "aubio-0.4.2.darwin_framework/aubio.framework"; sourceTree = "<group>"; };
@@ -383,9 +383,9 @@
 				C966CB751BED4F6200856879 /* player.h */,
 				C966CB761BED4F7000856879 /* player.cpp */,
 				AB99A8F41BEF75DB00D7F38E /* Bullet.cpp */,
-				AB99A8F51BEF75DB00D7F38E /* Bullet.hpp */,
+				AB99A8F51BEF75DB00D7F38E /* Bullet.h */,
 				AB99A8F71BEF761500D7F38E /* BulletType.cpp */,
-				AB99A8F81BEF761500D7F38E /* BulletType.hpp */,
+				AB99A8F81BEF761500D7F38E /* BulletType.h */,
 			);
 			name = Game;
 			sourceTree = "<group>";

@@ -2,6 +2,7 @@
 #include "ofxAudioDecoder.h"
 #include "ofxAubio.h"
 #include <vector>
+#include "ofMain.h"
 
 #define BUFFERSIZE 256
 

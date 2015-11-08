@@ -10,7 +10,8 @@
 #define Bullet_hpp
 
 #include <stdio.h>
-#include "BulletType.hpp"
+#include "BulletType.h"
+#include "ofMain.h"
 
 class Bullet {
     BulletType id;

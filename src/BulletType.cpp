@@ -6,4 +6,4 @@
 //
 //
 
-#include "BulletType.hpp"
+#include "BulletType.h"
