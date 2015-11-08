@@ -20,7 +20,7 @@ struct BulletType {
 
 class BulletLibrary{
 public:
-    static BulletType
+    static BulletType b;
 };
 
 #endif /* BulletType_hpp */
