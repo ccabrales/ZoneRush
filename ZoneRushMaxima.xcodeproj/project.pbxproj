@@ -17,6 +17,8 @@
 		856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9604B925D32EE39065747725 /* ofxBaseGui.cpp */; };
 		9C7B8B4D99CDFC508E76CC3A /* ofxAubioOnset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A90A4B17BBB4CB627CA22C4 /* ofxAubioOnset.cpp */; };
 		AB6951001BED55BC00DB820E /* filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB6950FE1BED55BC00DB820E /* filter.cpp */; settings = {ASSET_TAGS = (); }; };
+		AB99A8F61BEF75DB00D7F38E /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A8F41BEF75DB00D7F38E /* Bullet.cpp */; settings = {ASSET_TAGS = (); }; };
+		AB99A8F91BEF761500D7F38E /* BulletType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A8F71BEF761500D7F38E /* BulletType.cpp */; settings = {ASSET_TAGS = (); }; };
 		ABED9FB01BEE238400F11CCC /* ofxMSAInteractiveObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABED9FAE1BEE238400F11CCC /* ofxMSAInteractiveObject.cpp */; settings = {ASSET_TAGS = (); }; };
 		ABF66CDF1BE9ABF200D5CEE8 /* aubio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF66CDE1BE9ABF200D5CEE8 /* aubio.framework */; };
 		ABF66CF21BE9AE2500D5CEE8 /* audiodecoderbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF66CF01BE9AE2500D5CEE8 /* audiodecoderbase.cpp */; };
@@ -141,6 +143,10 @@
 		AB6950EE1BECD14400DB820E /* ofApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofApp.h; sourceTree = "<group>"; };
 		AB6950FE1BED55BC00DB820E /* filter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filter.cpp; sourceTree = "<group>"; };
 		AB6951011BED581800DB820E /* filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filter.h; sourceTree = "<group>"; };
+		AB99A8F41BEF75DB00D7F38E /* Bullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bullet.cpp; sourceTree = "<group>"; };
+		AB99A8F51BEF75DB00D7F38E /* Bullet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Bullet.hpp; sourceTree = "<group>"; };
+		AB99A8F71BEF761500D7F38E /* BulletType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BulletType.cpp; sourceTree = "<group>"; };
+		AB99A8F81BEF761500D7F38E /* BulletType.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BulletType.hpp; sourceTree = "<group>"; };
 		ABED9FAE1BEE238400F11CCC /* ofxMSAInteractiveObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMSAInteractiveObject.cpp; sourceTree = "<group>"; };
 		ABED9FAF1BEE238400F11CCC /* ofxMSAInteractiveObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxMSAInteractiveObject.h; sourceTree = "<group>"; };
 		ABF66CDE1BE9ABF200D5CEE8 /* aubio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = aubio.framework; path = "aubio-0.4.2.darwin_framework/aubio.framework"; sourceTree = "<group>"; };
@@ -376,6 +382,10 @@
 			children = (
 				C966CB751BED4F6200856879 /* player.h */,
 				C966CB761BED4F7000856879 /* player.cpp */,
+				AB99A8F41BEF75DB00D7F38E /* Bullet.cpp */,
+				AB99A8F51BEF75DB00D7F38E /* Bullet.hpp */,
+				AB99A8F71BEF761500D7F38E /* BulletType.cpp */,
+				AB99A8F81BEF761500D7F38E /* BulletType.hpp */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -816,6 +826,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB6951001BED55BC00DB820E /* filter.cpp in Sources */,
+<<<<<<< HEAD
 				C966CBFD1BEE9BAE00856879 /* ofxEasingExpo.cpp in Sources */,
 				C966CBCA1BEE9B9E00856879 /* ofxPanel.cpp in Sources */,
 				C966CBD81BEE9BA800856879 /* ofxSceneManager.cpp in Sources */,
@@ -827,10 +838,15 @@
 				C966CB8C1BEE9B9000856879 /* ofxAubioBlock.cpp in Sources */,
 				C966CB9E1BEE9B9200856879 /* audiodecoderbase.cpp in Sources */,
 				C966CBFE1BEE9BAE00856879 /* ofxEasingLinear.cpp in Sources */,
+=======
+				AB99A8F61BEF75DB00D7F38E /* Bullet.cpp in Sources */,
+				C981D4B91BEC3E4B006CB9BA /* ofxEasingExpo.cpp in Sources */,
+>>>>>>> 7e0c7981f3e6d059af475b28b9864e024479db6e
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				C966CBC91BEE9B9E00856879 /* ofxLabel.cpp in Sources */,
 				C966CB771BED4F7000856879 /* player.cpp in Sources */,
+<<<<<<< HEAD
 				C966CBF91BEE9BAE00856879 /* ofxEasingBounce.cpp in Sources */,
 				C966CBCD1BEE9B9E00856879 /* ofxToggle.cpp in Sources */,
 				C966CB7D1BEE9B8100856879 /* ofxMSAInteractiveObject.cpp in Sources */,
@@ -849,6 +865,39 @@
 				C966CBF71BEE9BAE00856879 /* ofxEasing.cpp in Sources */,
 				C966CBB01BEE9B9C00856879 /* ofxGifDecoder.cpp in Sources */,
 				C966CBA61BEE9B9900856879 /* ofxFatLine.cpp in Sources */,
+=======
+				B266578FC55D23BFEBC042E7 /* ofxGuiGroup.cpp in Sources */,
+				C981D4BC1BEC3E4B006CB9BA /* ofxEasingQuart.cpp in Sources */,
+				C981D4B61BEC3E4B006CB9BA /* ofxEasingCirc.cpp in Sources */,
+				483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */,
+				F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */,
+				C981D4BA1BEC3E4B006CB9BA /* ofxEasingLinear.cpp in Sources */,
+				C981D4811BEC3E22006CB9BA /* ofxFatLine.cpp in Sources */,
+				ABF66CF31BE9AE2500D5CEE8 /* audiodecodercoreaudio.cpp in Sources */,
+				837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */,
+				C981D48B1BEC3E34006CB9BA /* ofxGifDecoder.cpp in Sources */,
+				C981D4B51BEC3E4B006CB9BA /* ofxEasingBounce.cpp in Sources */,
+				AB99A8F91BEF761500D7F38E /* BulletType.cpp in Sources */,
+				C981D48D1BEC3E34006CB9BA /* ofxGifFrame.cpp in Sources */,
+				C981D4BD1BEC3E4B006CB9BA /* ofxEasingQuint.cpp in Sources */,
+				ABF66CF21BE9AE2500D5CEE8 /* audiodecoderbase.cpp in Sources */,
+				B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */,
+				C981D4BB1BEC3E4B006CB9BA /* ofxEasingQuad.cpp in Sources */,
+				C981D4B41BEC3E4B006CB9BA /* ofxEasingBack.cpp in Sources */,
+				1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */,
+				C981D4B71BEC3E4B006CB9BA /* ofxEasingCubic.cpp in Sources */,
+				C981D4B81BEC3E4B006CB9BA /* ofxEasingElastic.cpp in Sources */,
+				C981D4BF1BEC3E4B006CB9BA /* ofxTween.cpp in Sources */,
+				479DCA850DD8BB469A777AD4 /* ofxAubioBeat.cpp in Sources */,
+				ABED9FB01BEE238400F11CCC /* ofxMSAInteractiveObject.cpp in Sources */,
+				C981D4B31BEC3E4B006CB9BA /* ofxEasing.cpp in Sources */,
+				C981D4821BEC3E22006CB9BA /* sincosineLut.cpp in Sources */,
+				C60077973A257D8F44947E2E /* ofxAubioBlock.cpp in Sources */,
+				67383740F5CC47ED5F955A76 /* ofxAubioMelBands.cpp in Sources */,
+				9C7B8B4D99CDFC508E76CC3A /* ofxAubioOnset.cpp in Sources */,
+				C981D4BE1BEC3E4B006CB9BA /* ofxEasingSine.cpp in Sources */,
+				101D2DB773940813A5C898CD /* ofxAubioPitch.cpp in Sources */,
+>>>>>>> 7e0c7981f3e6d059af475b28b9864e024479db6e
 				C93656581BE9CF9D00BCC866 /* track.cpp in Sources */,
 				C966CB9F1BEE9B9200856879 /* audiodecodercoreaudio.cpp in Sources */,
 				C966CBA71BEE9B9900856879 /* sincosineLut.cpp in Sources */,
