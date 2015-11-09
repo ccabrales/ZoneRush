@@ -50,6 +50,7 @@
 		C981D4BE1BEC3E4B006CB9BA /* ofxEasingSine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D4AF1BEC3E4B006CB9BA /* ofxEasingSine.cpp */; };
 		C981D4BF1BEC3E4B006CB9BA /* ofxTween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D4B11BEC3E4B006CB9BA /* ofxTween.cpp */; };
 		C99529541BEFF639005415D5 /* enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C99529521BEFF639005415D5 /* enemy.cpp */; };
+		C99529571BF0259F005415D5 /* weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C99529551BF0259F005415D5 /* weapon.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
 		E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */; };
@@ -210,6 +211,8 @@
 		C981D4B21BEC3E4B006CB9BA /* ofxTween.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxTween.h; sourceTree = "<group>"; };
 		C99529521BEFF639005415D5 /* enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = enemy.cpp; sourceTree = "<group>"; };
 		C99529531BEFF639005415D5 /* enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enemy.h; sourceTree = "<group>"; };
+		C99529551BF0259F005415D5 /* weapon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = weapon.cpp; sourceTree = "<group>"; };
+		C99529561BF0259F005415D5 /* weapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = weapon.h; sourceTree = "<group>"; };
 		E112B3AEBEA2C091BF2B40AE /* ofxPanel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxPanel.cpp; path = ../../../addons/ofxGui/src/ofxPanel.cpp; sourceTree = SOURCE_ROOT; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
@@ -391,6 +394,8 @@
 				AB99A8F81BEF761500D7F38E /* BulletType.h */,
 				C99529521BEFF639005415D5 /* enemy.cpp */,
 				C99529531BEFF639005415D5 /* enemy.h */,
+				C99529551BF0259F005415D5 /* weapon.cpp */,
+				C99529561BF0259F005415D5 /* weapon.h */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -787,6 +792,7 @@
 				F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */,
 				C981D4BA1BEC3E4B006CB9BA /* ofxEasingLinear.cpp in Sources */,
 				C981D4811BEC3E22006CB9BA /* ofxFatLine.cpp in Sources */,
+				C99529571BF0259F005415D5 /* weapon.cpp in Sources */,
 				ABF66CF31BE9AE2500D5CEE8 /* audiodecodercoreaudio.cpp in Sources */,
 				837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */,
 				C981D48B1BEC3E34006CB9BA /* ofxGifDecoder.cpp in Sources */,
