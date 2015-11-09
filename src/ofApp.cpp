@@ -19,12 +19,12 @@ void ofApp::setup(){
     ofSoundStreamSetup(nOutputs, nInputs, this);
 
     for (int i = 0; i < 40; i++) {
-        bandPlot.addVertex( 50 + i * 650 / 40., 240 - 100 * bands.energies[i]);
+        bandPlot.addVertex( 0 + i * 2, 240 - 100 * bands.energies[i]);
     }
     
     for(int i = 0; i< 90; i++){
-        pitchPlot.addVertex( 50 + i * 2, 50 - 100 * bands.energies[i]);
-        intensityPlot.addVertex( 50 + i * 2, 50 - 100 * bands.energies[i]);
+        pitchPlot.addVertex(0, 90 - i );
+        intensityPlot.addVertex(0, 90-i);
     }
 }
 
@@ -61,70 +61,74 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    
+    int wh = ofGetHeight();
     
     Track::Data d = currentTrack->readData(tick);
     
     // update beat info
     ofSetColor(ofColor::black);
-    ofDrawBitmapString("beat", ofPoint(90,150));
+    ofDrawBitmapString("Beat", ofPoint(10,10));
 
     if (d.onBeat) {
         ofSetColor(ofColor::green);
-        ofRect(90,150,50,50);
-        
         beatDecay = 1.0;
     }else{
         ofSetColor(0,255,0,beatDecay*255);
-        ofRect(90,150,50,50);
-
     }
-    
-    ofSetColor(ofColor::black);
-    ofDrawBitmapString("onset. #3, #2, #1", ofPoint(270,150));
+    ofRect(10,10,30,13);
 
+    
     // update onset info
     for(int i = 0; i < 3; i++){
         if ((d.onsets & (1<<i)) > 0) {
             ofSetColor(ofColor::red);
             onsetDecay[i] = ((float)(d.onsets & (1<<i)));
-            ofRect(270 + i*90,150,50,50);
         } else {
             ofSetColor(255,0,0,onsetDecay[i]*255);
-            ofRect(270 + i*90,150,50,50);
         }
+        ofRect(10,35+13*i,30,10);
     }
-    ofSetColor(ofColor::blue);
-    ofRect(330, 110, 20.0*(onsetDecay[0]+onsetDecay[1]+onsetDecay[2]), 10);
+    ofSetColor(ofColor::black);
 
-    ofSetColor(ofColor::orange);
-    ofSetLineWidth(3.);
+    ofDrawBitmapString("onset.\n#3\n#2\n#1", ofPoint(10,30));
+
+    ofSetColor(ofColor::blue);
+    ofRect(10, 80, 10, 10.0*(onsetDecay[0]+onsetDecay[1]+onsetDecay[2]));
+
+    ofSetLineWidth(2.);
     //bandPlot.clear();
     for (int i = 0; i < bandPlot.size(); i++) {
-        bandPlot[i].y = 240 - 100 * bands.energies[i];
+        bandPlot[i].y = wh - 100 * bands.energies[i];
     }
     
     for (int i = 0; i < 90 && tick-10+i > 0 && tick-10+i < currentTrack->frameData.size(); i++){
         Track::Data& dp = currentTrack->frameData[tick-10+i];
         
-        pitchPlot[i].y = 190 - (2 * dp.pitch);
-        
-        intensityPlot[i].y = 100 - (140*dp.intensity);
+        pitchPlot[i].x = -20 + (2 * dp.pitch);
+        intensityPlot[i].x = (30.*(1.0-dp.intensity));
         if(dp.onBeat)
-            ofCircle(50 + i * 2, 120, 4);
+//            ofSetColor(ofColor::black);
+            ofLine(intensityPlot[i].x-7, intensityPlot[i].y, intensityPlot[i].x+7, intensityPlot[i].y);
         if(dp.onsets > 0)
-            ofCircle(50 + i * 2, 130, 4);
+//            ofSetColor(ofColor::indianRed);
+            ofCircle(pitchPlot[i].x, 90 - i, 3);
         
     }
+    ofSetColor(ofColor::orange);
     bandPlot.draw();
-    pitchPlot.draw();
     
-    ofSetColor(ofColor::black);
-    ofLine(50+20, 0, 50+20, 140);
-    
-    ofSetColor(ofColor::black);
+    ofSetColor(ofColor::indianRed);
+//    pitchPlot.draw();
+    ofDrawBitmapString("pitch", ofPoint(pitchPlot[10]));
+
+    ofSetColor(ofColor::orchid);
     intensityPlot.draw();
-    ofDrawBitmapString(Track::toString(d), ofPoint(20,20));
+    ofDrawBitmapString("power", ofPoint(intensityPlot[10]));
+
+    ofSetColor(ofColor::black);
+    ofLine(10, 80, 140, 80);
+    
+    ofDrawBitmapString(Track::toString(d), ofPoint(10,wh-2));
 }
 
 //--------------------------------------------------------------

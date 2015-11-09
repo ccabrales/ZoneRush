@@ -20,7 +20,7 @@ public:
     };
     
     Track(ofxAudioDecoder * decoder);
-    static string toString(Track::Data& d);
+    static string toString(const Track::Data& d);
     
     Data readData(int frame);
     

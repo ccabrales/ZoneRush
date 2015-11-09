@@ -93,7 +93,7 @@ Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
 //    }
 }
 
-string Track::toString(Track::Data &d){
+string Track::toString(const Track::Data &d){
     stringstream s;
     s << d.onBeat << "\t" << d.bpm << "\t" << d.onsets << "\t" << d.pitch << "\t" << d.pitchConfidence << "\t" << d.onsetNovelty << "\t" << d.onsetThresholdedNovelty << "\t" << d.intensity;
     return s.str();
