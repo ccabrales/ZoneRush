@@ -35,6 +35,8 @@ class ofApp : public ofBaseApp{
         int tick;
         bool useMic = false;
     
+        
+    
         Track* currentTrack;
         float onsetDecay[3];
         float beatDecay = 0;
