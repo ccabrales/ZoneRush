@@ -5,6 +5,7 @@
 #include "ofxGui.h"
 #include "ofxAudioDecoder.h"
 #include "track.h"
+#include "player.h"
 
 class ofApp : public ofBaseApp{
 
@@ -29,6 +30,8 @@ class ofApp : public ofBaseApp{
         void audioIn(float * input, int bufferSize, int nChannels);
 
     private:
+        enum GameState { START, GAME, END };
+    
         int tick;
         bool useMic = false;
     
@@ -41,5 +44,8 @@ class ofApp : public ofBaseApp{
         ofPolyline bandPlot;
         ofPolyline pitchPlot;
         ofPolyline intensityPlot;
+    
+        Player player;
+        GameState game_state;
 
 };

@@ -5,6 +5,8 @@ void ofApp::setup(){
     // set the size of the window
     ofSetWindowShape(750, 250);
     
+    game_state = START;
+    
     musicDecoder.load("music.mp3");
     currentTrack = new Track(&musicDecoder);
 
@@ -133,12 +135,46 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+    if (game_state == GAME) {
+        if (key == OF_KEY_LEFT) {
+            player.is_left_pressed = true;
+        }
+        
+        if (key == OF_KEY_RIGHT) {
+            player.is_right_pressed = true;
+        }
+        
+        if (key == OF_KEY_UP) {
+            player.is_up_pressed = true;
+        }
+        
+        if (key == OF_KEY_DOWN) {
+            player.is_down_pressed = true;
+        }
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+    if (game_state == START) {
+        game_state = GAME;
+    } else if (game_state == GAME) {
+        if (key == OF_KEY_LEFT) {
+            player.is_left_pressed = false;
+        }
+        
+        if (key == OF_KEY_RIGHT) {
+            player.is_right_pressed = false;
+        }
+        
+        if (key == OF_KEY_UP) {
+            player.is_up_pressed = false;
+        }
+        
+        if (key == OF_KEY_DOWN) {
+            player.is_down_pressed = false;
+        }
+    }
 }
 
 //--------------------------------------------------------------

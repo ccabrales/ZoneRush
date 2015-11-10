@@ -21,5 +21,5 @@ public:
     bool check_can_shoot();
     
     ofImage * img;
-    
+        
 };
