@@ -13,13 +13,9 @@ void ofApp::setup(){
     currentTrack = new Track(&musicDecoder);
     tv.setup(currentTrack);
     
-    int nOutputs = 2;
-    int nInputs = 0;
-    //int sampleRate = 44100;
-    //int bufferSize = 256;
-    //int nBuffers = 4;
-
-    ofSoundStreamSetup(nOutputs, nInputs, this);
+    //int sampleRate = 44100; int bufferSize = 256; int nBuffers = 4;
+    
+    ofSoundStreamSetup(2, 0, this);
 }
 
 void ofApp::exit(){
@@ -36,10 +32,7 @@ void ofApp::audioOut(float * input, int bufferSize, int nChannels){
     tv.updateAudio(input, bufferSize, nChannels);
 }
 
-void ofApp::audioIn(float* input, int bufferSize, int nChannels)
-{
-    
-}
+void ofApp::audioIn(float* input, int bufferSize, int nChannels){}
 
 //--------------------------------------------------------------
 void ofApp::update(){
@@ -84,17 +77,13 @@ void ofApp::keyPressed(int key){
     if (game_state == GAME) {
         switch (key) {
             case OF_KEY_LEFT:
-                player.is_left_pressed = true;
-                break;
+                player.is_left_pressed = true;  break;
             case OF_KEY_RIGHT:
-                player.is_right_pressed = true;
-                break;
+                player.is_right_pressed = true; break;
             case OF_KEY_UP:
-                player.is_up_pressed = true;
-                break;
+                player.is_up_pressed = true;    break;
             case OF_KEY_DOWN:
-                player.is_down_pressed = true;
-                break;
+                player.is_down_pressed = true;  break;
             default:
                 break;
         }
@@ -108,17 +97,13 @@ void ofApp::keyReleased(int key){
     } else if (game_state == GAME) {
         switch (key) {
             case OF_KEY_LEFT:
-                player.is_left_pressed = false;
-                break;
+                player.is_left_pressed = false;     break;
             case OF_KEY_RIGHT:
-                player.is_right_pressed = false;
-                break;
+                player.is_right_pressed = false;    break;
             case OF_KEY_UP:
-                player.is_up_pressed = false;
-                break;
+                player.is_up_pressed = false;       break;
             case OF_KEY_DOWN:
-                player.is_down_pressed = false;
-                break;
+                player.is_down_pressed = false;     break;
             default:
                 break;
         }
