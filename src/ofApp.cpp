@@ -38,7 +38,6 @@ void ofApp::exit(){
 }
 
 void ofApp::audioOut(float * input, int bufferSize, int nChannels){
-    
     copy(musicDecoder.getRawSamples().begin()+tick*bufferSize*nChannels, musicDecoder.getRawSamples().begin()+tick*bufferSize*nChannels+bufferSize*nChannels, input);
     tick ++;
     if(tick*nChannels*bufferSize > musicDecoder.getNumSamples()){
@@ -52,7 +51,6 @@ void ofApp::audioIn(float* input, int bufferSize, int nChannels)
 {
     
 }
-
 
 //--------------------------------------------------------------
 void ofApp::update(){

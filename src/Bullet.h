@@ -5,7 +5,7 @@
 #include "ofMain.h"
 
 class Bullet {
-    BulletType id;
+    BulletType* id = BulletLibrary::getInstance().StraightShot;
     
 public:
     
