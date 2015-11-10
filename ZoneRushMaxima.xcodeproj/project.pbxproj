@@ -20,6 +20,7 @@
 		AB99A8F61BEF75DB00D7F38E /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A8F41BEF75DB00D7F38E /* Bullet.cpp */; };
 		AB99A8F91BEF761500D7F38E /* BulletType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A8F71BEF761500D7F38E /* BulletType.cpp */; };
 		AB99A8FE1BF0B96600D7F38E /* TitleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A8FC1BF0B96600D7F38E /* TitleScene.cpp */; };
+		AB99A9031BF1F9E800D7F38E /* TrackViewUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A9011BF1F9E800D7F38E /* TrackViewUtil.cpp */; settings = {ASSET_TAGS = (); }; };
 		ABED9FB01BEE238400F11CCC /* ofxMSAInteractiveObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABED9FAE1BEE238400F11CCC /* ofxMSAInteractiveObject.cpp */; };
 		ABF66CDF1BE9ABF200D5CEE8 /* aubio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF66CDE1BE9ABF200D5CEE8 /* aubio.framework */; };
 		ABF66CF21BE9AE2500D5CEE8 /* audiodecoderbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF66CF01BE9AE2500D5CEE8 /* audiodecoderbase.cpp */; };
@@ -152,6 +153,8 @@
 		AB99A8F81BEF761500D7F38E /* BulletType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletType.h; sourceTree = "<group>"; };
 		AB99A8FC1BF0B96600D7F38E /* TitleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TitleScene.cpp; sourceTree = "<group>"; };
 		AB99A8FD1BF0B96600D7F38E /* TitleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleScene.h; sourceTree = "<group>"; };
+		AB99A9011BF1F9E800D7F38E /* TrackViewUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TrackViewUtil.cpp; sourceTree = "<group>"; };
+		AB99A9021BF1F9E800D7F38E /* TrackViewUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackViewUtil.h; sourceTree = "<group>"; };
 		ABED9FAE1BEE238400F11CCC /* ofxMSAInteractiveObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMSAInteractiveObject.cpp; sourceTree = "<group>"; };
 		ABED9FAF1BEE238400F11CCC /* ofxMSAInteractiveObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxMSAInteractiveObject.h; sourceTree = "<group>"; };
 		ABF66CDE1BE9ABF200D5CEE8 /* aubio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = aubio.framework; path = "aubio-0.4.2.darwin_framework/aubio.framework"; sourceTree = "<group>"; };
@@ -332,6 +335,8 @@
 		AB6950E11BECA0A500DB820E /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				AB99A9011BF1F9E800D7F38E /* TrackViewUtil.cpp */,
+				AB99A9021BF1F9E800D7F38E /* TrackViewUtil.h */,
 				AB6950FE1BED55BC00DB820E /* filter.cpp */,
 				AB6951011BED581800DB820E /* filter.h */,
 			);
@@ -804,6 +809,7 @@
 				483908258D00B98B4BE69F07 /* ofxLabel.cpp in Sources */,
 				F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */,
 				C981D4BA1BEC3E4B006CB9BA /* ofxEasingLinear.cpp in Sources */,
+				AB99A9031BF1F9E800D7F38E /* TrackViewUtil.cpp in Sources */,
 				C981D4811BEC3E22006CB9BA /* ofxFatLine.cpp in Sources */,
 				C99529571BF0259F005415D5 /* weapon.cpp in Sources */,
 				ABF66CF31BE9AE2500D5CEE8 /* audiodecodercoreaudio.cpp in Sources */,
