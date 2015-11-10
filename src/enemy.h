@@ -5,19 +5,61 @@
 #include "BulletType.h"
 
 struct EnemyType {
-    bool isBoss;
-//    TODO: firepattern goes here
-    BulletType bulletType;
+    int minHP;
+    int maxHP;
+    const BulletType* bulletType;
+    ofImage* img;
+};
+
+class Enemy {
+public:
+    int tick;
     
-    ofImage img;
+    ofPoint pos;
+    int hp;
+    
+    EnemyType* type;
+    
+    void setup();
+    void update();
+    void draw();
+    void shoot();
+    
+    
+    void calculate_movement();
+    
+    //    bool check_can_shoot();
+private:
 };
 
 
-class Enemy {
-    
+class EnemyFactory
+{
 public:
+    static Enemy make(int type){
+        static EnemyFactory inst;
+        Enemy e = Enemy();
+        e.type = &(inst.e_types[type]);
+        e.setup();
+        return e;
+    };
     
     
 private:
-    
+    vector<EnemyType> e_types;
+
+    EnemyFactory(){
+        e_types.push_back(EnemyType {
+            4, 5, BulletLibrary::getWeaponInfo(0), new ofImage()
+        });
+        e_types.push_back(EnemyType {
+            4, 7, BulletLibrary::getWeaponInfo(0), new ofImage()
+        });
+
+    };
 };
+
+
+
+
+

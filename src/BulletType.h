@@ -14,7 +14,6 @@ struct BulletType {
 class BulletLibrary
 {
 public:
-    
     static const BulletType* getWeaponInfo(int grade){
         static BulletLibrary inst;
         return &(inst.bullets[grade]);
