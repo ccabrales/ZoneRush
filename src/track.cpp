@@ -20,7 +20,7 @@ Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
 
 //    cout << ofSystem("../../../../sox") << endl;
     onset1.setup("hfc", 512, 256, 44100);
-    onset1.setThreshold(0.4);
+    onset1.setThreshold(0.3);
     
     onset2.setup("specflux", 512, 256, 44100);
     onset2.setThreshold(0.3);
@@ -61,6 +61,7 @@ Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
         else
             avgIntensity = sfmIntensity;
         //---------------------------------------
+        
         frameData.push_back({
             beat.received(),
             beat.bpm,
@@ -75,8 +76,14 @@ Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
     
     std::vector<int> f(frameData.size());
     
-    for(int i = 0; i < frameData.size(); i++){
+    int numFrames = frameData.size();
+    
+    for(int i = 0; i < numFrames; i++){
         f[i] = ((int)(round(frameData[i].pitch)));
+        if(i>3 && frameData[i-1].onsets + frameData[i-2].onsets + frameData[i-3].onsets > 0){
+            frameData[i].onsets = 0;
+            //remove onset information if it occurs already.
+        }
     }
     
     int fOut[frameData.size()];

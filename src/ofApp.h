@@ -6,7 +6,10 @@
 #include "ofxAudioDecoder.h"
 #include "track.h"
 #include "player.h"
+#include "enemy.h"
 #include "TrackViewUtil.h"
+#include "GameEvent.h"
+
 
 class ofApp : public ofBaseApp{
     
@@ -43,5 +46,7 @@ private:
     GameState game_state;
     
     ofImage player_image;
-    
+
+    std::list<Enemy *> enemyList;
+    //Events:
 };

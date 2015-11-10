@@ -14,7 +14,6 @@ void ofApp::setup(){
     tv.setup(currentTrack);
     
     //int sampleRate = 44100; int bufferSize = 256; int nBuffers = 4;
-    
     ofSoundStreamSetup(2, 0, this);
 }
 

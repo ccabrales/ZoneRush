@@ -21,6 +21,7 @@
 		AB99A8F91BEF761500D7F38E /* BulletType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A8F71BEF761500D7F38E /* BulletType.cpp */; };
 		AB99A8FE1BF0B96600D7F38E /* TitleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A8FC1BF0B96600D7F38E /* TitleScene.cpp */; };
 		AB99A9031BF1F9E800D7F38E /* TrackViewUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A9011BF1F9E800D7F38E /* TrackViewUtil.cpp */; settings = {ASSET_TAGS = (); }; };
+		AB99A9091BF20E3500D7F38E /* GameEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A9081BF20E3500D7F38E /* GameEvent.cpp */; settings = {ASSET_TAGS = (); }; };
 		ABED9FB01BEE238400F11CCC /* ofxMSAInteractiveObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABED9FAE1BEE238400F11CCC /* ofxMSAInteractiveObject.cpp */; };
 		ABF66CDF1BE9ABF200D5CEE8 /* aubio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF66CDE1BE9ABF200D5CEE8 /* aubio.framework */; };
 		ABF66CF21BE9AE2500D5CEE8 /* audiodecoderbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF66CF01BE9AE2500D5CEE8 /* audiodecoderbase.cpp */; };
@@ -155,6 +156,8 @@
 		AB99A8FD1BF0B96600D7F38E /* TitleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleScene.h; sourceTree = "<group>"; };
 		AB99A9011BF1F9E800D7F38E /* TrackViewUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TrackViewUtil.cpp; sourceTree = "<group>"; };
 		AB99A9021BF1F9E800D7F38E /* TrackViewUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackViewUtil.h; sourceTree = "<group>"; };
+		AB99A9071BF20E3500D7F38E /* GameEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEvent.h; sourceTree = "<group>"; };
+		AB99A9081BF20E3500D7F38E /* GameEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameEvent.cpp; sourceTree = "<group>"; };
 		ABED9FAE1BEE238400F11CCC /* ofxMSAInteractiveObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMSAInteractiveObject.cpp; sourceTree = "<group>"; };
 		ABED9FAF1BEE238400F11CCC /* ofxMSAInteractiveObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxMSAInteractiveObject.h; sourceTree = "<group>"; };
 		ABF66CDE1BE9ABF200D5CEE8 /* aubio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = aubio.framework; path = "aubio-0.4.2.darwin_framework/aubio.framework"; sourceTree = "<group>"; };
@@ -403,6 +406,8 @@
 		ABED9FAA1BEE222700F11CCC /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				AB99A9071BF20E3500D7F38E /* GameEvent.h */,
+				AB99A9081BF20E3500D7F38E /* GameEvent.cpp */,
 				C966CB751BED4F6200856879 /* player.h */,
 				C966CB761BED4F7000856879 /* player.cpp */,
 				AB99A8F41BEF75DB00D7F38E /* Bullet.cpp */,
@@ -684,6 +689,7 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				ABED9FAA1BEE222700F11CCC /* Game */,
 				AB99A8FF1BF0B97500D7F38E /* Scenes */,
 				AB6950E11BECA0A500DB820E /* utils */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
@@ -691,7 +697,6 @@
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				C93656561BE9CF9200BCC866 /* track.h */,
 				C93656571BE9CF9D00BCC866 /* track.cpp */,
-				ABED9FAA1BEE222700F11CCC /* Game */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -818,6 +823,7 @@
 				C981D4B51BEC3E4B006CB9BA /* ofxEasingBounce.cpp in Sources */,
 				AB99A8F91BEF761500D7F38E /* BulletType.cpp in Sources */,
 				C981D48D1BEC3E34006CB9BA /* ofxGifFrame.cpp in Sources */,
+				AB99A9091BF20E3500D7F38E /* GameEvent.cpp in Sources */,
 				C981D4BD1BEC3E4B006CB9BA /* ofxEasingQuint.cpp in Sources */,
 				ABF66CF21BE9AE2500D5CEE8 /* audiodecoderbase.cpp in Sources */,
 				C99529541BEFF639005415D5 /* enemy.cpp in Sources */,
@@ -951,6 +957,16 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = NONE;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(OF_CORE_HEADERS)",
+					../../../addons/ofxGui/libs,
+					../../../addons/ofxGui/src,
+					../../../addons/ofxAubio/libs,
+					../../../addons/ofxAubio/src,
+					../../../addons/ofxAudioDecoder/libs,
+					../../../addons/ofxAudioDecoder/src,
+					/usr/local/Cellar/boost/1.58.0/include,
+				);
 				ICON = "$(ICON_NAME_DEBUG)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
@@ -1043,6 +1059,16 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = NONE;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(OF_CORE_HEADERS)",
+					../../../addons/ofxGui/libs,
+					../../../addons/ofxGui/src,
+					../../../addons/ofxAubio/libs,
+					../../../addons/ofxAubio/src,
+					../../../addons/ofxAudioDecoder/libs,
+					../../../addons/ofxAudioDecoder/src,
+					/usr/local/Cellar/boost/1.58.0/include,
+				);
 				ICON = "$(ICON_NAME_RELEASE)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
 				INFOPLIST_FILE = "openFrameworks-Info.plist";

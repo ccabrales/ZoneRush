@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "ofMain.h"
 #include "BulletType.h"
+#include "track.h"
 
 struct EnemyType {
     int minHP;
@@ -11,12 +12,17 @@ struct EnemyType {
     ofImage* img;
 };
 
+enum EnemyState {
+    HEALTHY, DYING, DEAD
+};
+
 class Enemy {
 public:
     int tick;
     
     ofPoint pos;
     int hp;
+    int cd;
     
     EnemyType* type;
     
@@ -25,6 +31,7 @@ public:
     void draw();
     void shoot();
     
+    void onsetHandler(Track::Data& frame);
     
     void calculate_movement();
     
