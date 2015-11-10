@@ -18,7 +18,7 @@ public:
     
     void calculate_movement();
     
-    bool check_can_shoot();
+//    bool check_can_shoot();
     
     ofImage * img;
         

@@ -5,9 +5,9 @@ void ofApp::setup(){
     // set the size of the window
     ofSetWindowShape(750, 250);
     
-    game_state = START;
-//    player_image.load("ship.png");
-//    player.setup(&player_image);
+    game_state = GAME; //TODO: CHANGE ME BACK TO START
+    player_image.load("ship.png");
+    player.setup(&player_image);
     
     musicDecoder.load("music.mp3");
     currentTrack = new Track(&musicDecoder);
@@ -66,12 +66,8 @@ void ofApp::update(){
     
     for(int i = 0; i < 3; i++){
         if ((d.onsets & (1<<i)) > 0) {
-            ofSetColor(ofColor::red);
             onsetDecay[i] = ((float)(d.onsets & (1<<i)));
-        } else {
-            ofSetColor(255,0,0,onsetDecay[i]*255);
         }
-        ofRect(10,35+13*i,30,10);
     }
 
     // ofDrawBitmapString(Track::toString(d), ofPoint(10,ofGetHeight()-2));
@@ -92,6 +88,7 @@ void ofApp::draw(){
     int wh = ofGetHeight();
         
     // update beat info
+    ofPushStyle();
     ofSetColor(ofColor::black);
     ofDrawBitmapString("Beat", ofPoint(10,10));
 
@@ -140,8 +137,9 @@ void ofApp::draw(){
 
     ofSetColor(ofColor::black);
     ofLine(10, 80, 140, 80);
+    ofPopStyle();
     
-    
+    ofPushStyle();
     switch (game_state) {
         case START:
             break;
@@ -153,6 +151,7 @@ void ofApp::draw(){
         default:
             break;
     }
+    ofPopStyle();
     
 }
 
