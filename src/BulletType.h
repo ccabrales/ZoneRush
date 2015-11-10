@@ -4,46 +4,37 @@
 #include "ofMain.h"
 
 struct BulletType {
-    ofVec2f aim;
-    float angle; //radians or degrees tbd.
-    ofImage* img;
+    float speed;//speed in pixels per tick of the missile.
+    float arc;  //angle in degrees to fire in. e.g. 10 = -5 to +5 deg.
+    float num;  //number of bullets into this arc. 2 = line of two shots.
+    ofImage* texture;
 };
 
 
 class BulletLibrary
 {
 public:
-    static BulletLibrary& getInstance( ){
+    
+    static const BulletType* getWeaponInfo(int grade){
         static BulletLibrary inst;
-        return inst;
+        return &(inst.bullets[grade]);
     };
     
-    BulletType StraightShot[1] = {BulletType{ ofVec2f(-1.0, 0.0), 0, new ofImage() }};
-    BulletType ClusterShot[3] = {
-        BulletType{ofVec2f(-0.4, 0.4), 45, new ofImage() },
-        BulletType{ofVec2f(-0.5656, 0), 0, new ofImage() },
-        BulletType{ofVec2f(-0.4, -0.4), -45, new ofImage() }
-    };
-    
+    vector<BulletType> bullets;
 
 private:
-    BulletLibrary();
+    BulletLibrary(){
+        bullets.push_back( BulletType {
+            1.2, 0, 1., new ofImage()
+        });
+        bullets.push_back( BulletType {
+            1.4, 10., 3., new ofImage()
+        });
+        bullets.push_back( BulletType {
+            0.8, 7., 2., new ofImage()
+        });
+    };
     
     static BulletLibrary* instance;
-    
 };
 
-
-class Logger{
-public:
-    static Logger* Instance();
-    bool openLogFile(std::string logFile);
-    void writeToLogFile();
-    bool closeLogFile();
-    
-private:
-    Logger(){};  // Private so that it can  not be called
-    Logger(Logger const&){};             // copy constructor is private
-    Logger& operator=(Logger const&){};  // assignment operator is private
-    static Logger* m_pInstance;
-};
