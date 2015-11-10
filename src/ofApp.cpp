@@ -6,6 +6,8 @@ void ofApp::setup(){
     ofSetWindowShape(750, 250);
     
     game_state = START;
+//    player_image.load("ship.png");
+//    player.setup(&player_image);
     
     musicDecoder.load("music.mp3");
     currentTrack = new Track(&musicDecoder);
@@ -75,6 +77,16 @@ void ofApp::update(){
     }
 
     // ofDrawBitmapString(Track::toString(d), ofPoint(10,ofGetHeight()-2));
+    
+    switch (game_state) {
+        case START:
+            break;
+        case GAME:
+            player.update();
+            break;
+        default:
+            break;
+    }
 }
 
 //--------------------------------------------------------------
@@ -131,48 +143,63 @@ void ofApp::draw(){
     ofSetColor(ofColor::black);
     ofLine(10, 80, 140, 80);
     
+    
+    switch (game_state) {
+        case START:
+            break;
+        case GAME:
+            player.draw();
+            break;
+        case END:
+            break;
+        default:
+            break;
+    }
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     if (game_state == GAME) {
-        if (key == OF_KEY_LEFT) {
-            player.is_left_pressed = true;
-        }
-        
-        if (key == OF_KEY_RIGHT) {
-            player.is_right_pressed = true;
-        }
-        
-        if (key == OF_KEY_UP) {
-            player.is_up_pressed = true;
-        }
-        
-        if (key == OF_KEY_DOWN) {
-            player.is_down_pressed = true;
+        switch (key) {
+            case OF_KEY_LEFT:
+                player.is_left_pressed = true;
+                break;
+            case OF_KEY_RIGHT:
+                player.is_right_pressed = true;
+                break;
+            case OF_KEY_UP:
+                player.is_up_pressed = true;
+                break;
+            case OF_KEY_DOWN:
+                player.is_down_pressed = true;
+                break;
+            default:
+                break;
         }
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-    if (game_state == START) {
+    if (game_state == START) { //TODO: Change this to only change the game state when we want it to --> selecting "play" from the menu
         game_state = GAME;
     } else if (game_state == GAME) {
-        if (key == OF_KEY_LEFT) {
-            player.is_left_pressed = false;
-        }
-        
-        if (key == OF_KEY_RIGHT) {
-            player.is_right_pressed = false;
-        }
-        
-        if (key == OF_KEY_UP) {
-            player.is_up_pressed = false;
-        }
-        
-        if (key == OF_KEY_DOWN) {
-            player.is_down_pressed = false;
+        switch (key) {
+            case OF_KEY_LEFT:
+                player.is_left_pressed = false;
+                break;
+            case OF_KEY_RIGHT:
+                player.is_right_pressed = false;
+                break;
+            case OF_KEY_UP:
+                player.is_up_pressed = false;
+                break;
+            case OF_KEY_DOWN:
+                player.is_down_pressed = false;
+                break;
+            default:
+                break;
         }
     }
 }

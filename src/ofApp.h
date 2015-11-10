@@ -35,8 +35,6 @@ class ofApp : public ofBaseApp{
         int tick;
         bool useMic = false;
     
-        
-    
         Track* currentTrack;
         float onsetDecay[3];
         float beatDecay = 0;
@@ -49,5 +47,7 @@ class ofApp : public ofBaseApp{
     
         Player player;
         GameState game_state;
+    
+        ofImage player_image;
 
 };
