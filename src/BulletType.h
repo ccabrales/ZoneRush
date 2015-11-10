@@ -6,10 +6,11 @@
 struct BulletType {
     ofVec2f aim;
     float angle; //radians or degrees tbd.
-    ofImage img;
+    ofImage* img;
 };
 
-class BulletLibrary{
-public:
-    static BulletType b;
+static struct BulletLibrary {
+    static BulletType StraightShot = (BulletType){ ofVec2f(-1.0, 0.0), 0, new ofImage() };
+//    static BulletType 
+    
 };
