@@ -1,13 +1,4 @@
-//
-//  TrackViewUtil.hpp
-//  ZoneRushMaxima
-//
-//  Created by Xiaonan Tong on 11/10/15.
-//
-//
-
-#ifndef TrackViewUtil_hpp
-#define TrackViewUtil_hpp
+#pragma once
 
 #include <stdio.h>
 #include <ofMain.h>
@@ -29,5 +20,3 @@ private:
     ofPolyline intensityPlot;
 
 };
-
-#endif /* TrackViewUtil_hpp */

@@ -1,11 +1,3 @@
-//
-//  TrackViewUtil.cpp
-//  ZoneRushMaxima
-//
-//  Created by Xiaonan Tong on 11/10/15.
-//
-//
-
 #include "TrackViewUtil.h"
 
 void TrackView::setup(Track* track){

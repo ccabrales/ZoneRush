@@ -1,13 +1,4 @@
-//
-//  EnemyPath.hpp
-//  ZoneRushMaxima
-//
-//  Created by Xiaonan Tong on 11/10/15.
-//
-//
-
-#ifndef EnemyPath_hpp
-#define EnemyPath_hpp
+#pragma once
 
 #include <stdio.h>
 #include <ofMain.h>
@@ -24,6 +15,3 @@ public:
 private:
     PathLibrary();
 };
-
-
-#endif /* EnemyPath_hpp */
