@@ -5,14 +5,9 @@
 class GameEvent : public ofEventArgs {
     
 public:
-
-    
-    GameEvent() {
-        
-    }
+    GameEvent();
     
     static ofFastEvent<Track::Data&> onset;
     static ofFastEvent<Track::Data&> beat;
-
 };
 

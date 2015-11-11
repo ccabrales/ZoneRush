@@ -20,7 +20,7 @@ Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
 
 //    cout << ofSystem("../../../../sox") << endl;
     onset1.setup("hfc", 512, 256, 44100);
-    onset1.setThreshold(0.3);
+    onset1.setThreshold(0.4);
     
     onset2.setup("specflux", 512, 256, 44100);
     onset2.setThreshold(0.3);
@@ -80,6 +80,10 @@ Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
     
     for(int i = 0; i < numFrames; i++){
         f[i] = ((int)(round(frameData[i].pitch)));
+        if(i < numFrames - 3 && frameData[i].onsets > 0){
+            frameData[i].onsets = frameData[i].onsets | frameData[i+1].onsets | frameData[i+2].onsets | frameData[i+1].onsets;
+            //collapse multiple onsets into the first one.
+        }
         if(i>3 && frameData[i-1].onsets + frameData[i-2].onsets + frameData[i-3].onsets > 0){
             frameData[i].onsets = 0;
             //remove onset information if it occurs already.

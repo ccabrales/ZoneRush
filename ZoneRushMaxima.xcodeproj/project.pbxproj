@@ -22,6 +22,7 @@
 		AB99A8FE1BF0B96600D7F38E /* TitleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A8FC1BF0B96600D7F38E /* TitleScene.cpp */; };
 		AB99A9031BF1F9E800D7F38E /* TrackViewUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A9011BF1F9E800D7F38E /* TrackViewUtil.cpp */; settings = {ASSET_TAGS = (); }; };
 		AB99A9091BF20E3500D7F38E /* GameEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A9081BF20E3500D7F38E /* GameEvent.cpp */; settings = {ASSET_TAGS = (); }; };
+		AB99A90C1BF28C5500D7F38E /* EnemyPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A90A1BF28C5500D7F38E /* EnemyPath.cpp */; settings = {ASSET_TAGS = (); }; };
 		ABED9FB01BEE238400F11CCC /* ofxMSAInteractiveObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABED9FAE1BEE238400F11CCC /* ofxMSAInteractiveObject.cpp */; };
 		ABF66CDF1BE9ABF200D5CEE8 /* aubio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF66CDE1BE9ABF200D5CEE8 /* aubio.framework */; };
 		ABF66CF21BE9AE2500D5CEE8 /* audiodecoderbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF66CF01BE9AE2500D5CEE8 /* audiodecoderbase.cpp */; };
@@ -158,6 +159,8 @@
 		AB99A9021BF1F9E800D7F38E /* TrackViewUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackViewUtil.h; sourceTree = "<group>"; };
 		AB99A9071BF20E3500D7F38E /* GameEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEvent.h; sourceTree = "<group>"; };
 		AB99A9081BF20E3500D7F38E /* GameEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameEvent.cpp; sourceTree = "<group>"; };
+		AB99A90A1BF28C5500D7F38E /* EnemyPath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnemyPath.cpp; sourceTree = "<group>"; };
+		AB99A90B1BF28C5500D7F38E /* EnemyPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyPath.h; sourceTree = "<group>"; };
 		ABED9FAE1BEE238400F11CCC /* ofxMSAInteractiveObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMSAInteractiveObject.cpp; sourceTree = "<group>"; };
 		ABED9FAF1BEE238400F11CCC /* ofxMSAInteractiveObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxMSAInteractiveObject.h; sourceTree = "<group>"; };
 		ABF66CDE1BE9ABF200D5CEE8 /* aubio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = aubio.framework; path = "aubio-0.4.2.darwin_framework/aubio.framework"; sourceTree = "<group>"; };
@@ -418,6 +421,8 @@
 				C99529531BEFF639005415D5 /* enemy.h */,
 				C99529551BF0259F005415D5 /* weapon.cpp */,
 				C99529561BF0259F005415D5 /* weapon.h */,
+				AB99A90A1BF28C5500D7F38E /* EnemyPath.cpp */,
+				AB99A90B1BF28C5500D7F38E /* EnemyPath.h */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -823,6 +828,7 @@
 				C981D4B51BEC3E4B006CB9BA /* ofxEasingBounce.cpp in Sources */,
 				AB99A8F91BEF761500D7F38E /* BulletType.cpp in Sources */,
 				C981D48D1BEC3E34006CB9BA /* ofxGifFrame.cpp in Sources */,
+				AB99A90C1BF28C5500D7F38E /* EnemyPath.cpp in Sources */,
 				AB99A9091BF20E3500D7F38E /* GameEvent.cpp in Sources */,
 				C981D4BD1BEC3E4B006CB9BA /* ofxEasingQuint.cpp in Sources */,
 				ABF66CF21BE9AE2500D5CEE8 /* audiodecoderbase.cpp in Sources */,

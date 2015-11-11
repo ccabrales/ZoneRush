@@ -8,5 +8,9 @@
 
 #include "GameEvent.h"
 
+GameEvent::GameEvent(){
+    //doesn't do anything
+}
+
 ofFastEvent<Track::Data&> GameEvent::onset;
 ofFastEvent<Track::Data&> GameEvent::beat;

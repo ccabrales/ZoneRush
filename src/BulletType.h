@@ -14,26 +14,10 @@ struct BulletType {
 class BulletLibrary
 {
 public:
-    static const BulletType* getWeaponInfo(int grade){
-        static BulletLibrary inst;
-        return &(inst.bullets[grade]);
-    };
+    static const BulletType* getWeaponInfo(int grade);
     
     vector<BulletType> bullets;
 
 private:
-    BulletLibrary(){
-        bullets.push_back( BulletType {
-            1.2, 0, 1., new ofImage()
-        });
-        bullets.push_back( BulletType {
-            1.4, 10., 3., new ofImage()
-        });
-        bullets.push_back( BulletType {
-            0.8, 7., 2., new ofImage()
-        });
-    };
-    
-    static BulletLibrary* instance;
+    BulletLibrary();
 };
-
