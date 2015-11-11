@@ -5,6 +5,7 @@
 #include "BulletType.h"
 #include "track.h"
 #include "EnemyPath.h"
+#include "globals.h"
 
 
 struct EnemyType {

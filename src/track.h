@@ -3,6 +3,7 @@
 #include "ofxAubio.h"
 #include <vector>
 #include "ofMain.h"
+#include "globals.h"
 
 #define BUFFERSIZE 256
 

@@ -1,10 +1,13 @@
 #include "ofApp.h"
 
+int tick = 0;
+Track* currentTrack = NULL;
+
 //--------------------------------------------------------------
 void ofApp::setup(){
     // set the size of the window
     ofSetWindowShape(750, 250);
-    
+        
     game_state = GAME; //TODO: CHANGE ME BACK TO START
     player_image.load("ship.png");
     player.setup(&player_image);

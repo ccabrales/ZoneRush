@@ -9,6 +9,7 @@
 #include "enemy.h"
 #include "TrackViewUtil.h"
 #include "GameEvent.h"
+#include "globals.h"
 
 
 class ofApp : public ofBaseApp{
@@ -36,9 +37,6 @@ public:
 private:
     enum GameState { START, GAME, END };
     
-    int tick;
-    
-    Track* currentTrack;
     TrackView tv;
     ofxAudioDecoder musicDecoder;
     
