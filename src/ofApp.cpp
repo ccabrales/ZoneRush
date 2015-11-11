@@ -7,7 +7,8 @@ Track* currentTrack = NULL;
 void ofApp::setup(){
     // set the size of the window
     ofSetWindowShape(750, 250);
-        
+//    ofSetFullscreen(true);
+    
     game_state = GAME; //TODO: CHANGE ME BACK TO START
     player_image.load("ship.png");
     player.setup(&player_image);
@@ -50,6 +51,17 @@ void ofApp::update(){
         default:
             break;
     }
+    //TEMPORARY ENEMY SPAWNER LOL
+    if(d.onBeat){
+        vector<EnemyPtr>* newEnemies = EnemyFactory::makeGroup(1, 2, 0);
+        for(int i = 0; i < newEnemies->size(); i++){
+            enemyList.push_back((*newEnemies)[i]);
+        }
+        delete newEnemies;
+    }
+    for(int i=0; i < enemyList.size(); i++){
+        enemyList[i]->update();
+    }
 }
 
 //--------------------------------------------------------------
@@ -71,6 +83,11 @@ void ofApp::draw(){
             break;
     }
     ofPopStyle();
+    
+    for(int i=0; i < enemyList.size(); i++){
+        enemyList[i]->draw();
+    }
+
     
 }
 

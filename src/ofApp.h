@@ -10,7 +10,7 @@
 #include "TrackViewUtil.h"
 #include "GameEvent.h"
 #include "globals.h"
-
+#include "enemy.h"
 
 class ofApp : public ofBaseApp{
     
@@ -45,6 +45,6 @@ private:
     
     ofImage player_image;
 
-    std::list<Enemy *> enemyList;
+    vector<EnemyPtr> enemyList;
     //Events:
 };

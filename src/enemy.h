@@ -12,6 +12,7 @@ struct EnemyType {
     int minHP;
     int maxHP;
     const BulletType* bulletType;
+    int speed;
     ofImage* img;
 };
 
@@ -21,7 +22,7 @@ enum EnemyState {
 
 class Enemy {
 public:
-    int tick;
+    int spawnTime;
     
     ofPoint pos;
     int hp;
