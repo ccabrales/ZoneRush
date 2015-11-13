@@ -1,14 +1,20 @@
-//
-//  GameScene.hpp
-//  ZoneRushMaxima
-//
-//  Created by Xiaonan Tong on 11/12/15.
-//
-//
 
-#ifndef GameScene_hpp
-#define GameScene_hpp
+
+#pragma once
 
 #include <stdio.h>
+#include "ofMain.h"
+#include "ofxScene.h"
 
-#endif /* GameScene_hpp */
+class GameScene: public ofxScene{
+public:
+    void setup();
+    void update();
+    void draw();
+    
+    //event handling implementations.
+    //    void willFadeIn();
+    //    void willDraw();
+    void willFadeOut();
+    void willExit();
+};

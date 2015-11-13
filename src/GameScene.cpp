@@ -1,9 +1,17 @@
-//
-//  GameScene.cpp
-//  ZoneRushMaxima
-//
-//  Created by Xiaonan Tong on 11/12/15.
-//
-//
+#include "GameScene.h"
 
-#include "GameScene.hpp"
+void GameScene::setup(){
+    
+}
+
+void GameScene::update(){
+    
+}
+
+void GameScene::draw(){
+    
+}
+
+void GameScene::willExit(){
+    
+}
