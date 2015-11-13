@@ -11,6 +11,9 @@
 #include "GameEvent.h"
 #include "globals.h"
 #include "enemy.h"
+#include "ofxSceneManager.h"
+#include "TitleScene.h"
+#include "GameScene.h"
 
 class ofApp : public ofBaseApp{
     
@@ -46,5 +49,7 @@ private:
     ofImage player_image;
 
     vector<EnemyPtr> enemyList;
+    
+    ofxSceneManager sceneManager;
     //Events:
 };

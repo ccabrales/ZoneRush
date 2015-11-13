@@ -10,7 +10,12 @@ void ofApp::setup(){
     ofSetEscapeQuitsApp(false);
 //    ofSetFullscreen(true);
     
+    //Set up scenes here
+    TitleScene* titleScene = new TitleScene;
+    titleScene->setSceneDuration(0.5, 0.5);
+    
     game_state = GAME; //TODO: CHANGE ME BACK TO START
+    
     player_image.load("ship.png");
     player.setup(&player_image);
     
