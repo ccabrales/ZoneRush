@@ -16,8 +16,8 @@
 		837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15F2C6477A769C03A56D1401 /* ofxSlider.cpp */; };
 		856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9604B925D32EE39065747725 /* ofxBaseGui.cpp */; };
 		9C7B8B4D99CDFC508E76CC3A /* ofxAubioOnset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A90A4B17BBB4CB627CA22C4 /* ofxAubioOnset.cpp */; };
-		AB0E6D8F1BF4B46600018CD3 /* SpawnerLogistics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB0E6D8D1BF4B46600018CD3 /* SpawnerLogistics.cpp */; settings = {ASSET_TAGS = (); }; };
-		AB0E6D961BF566E400018CD3 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB0E6D941BF566E400018CD3 /* GameScene.cpp */; settings = {ASSET_TAGS = (); }; };
+		AB0E6D8F1BF4B46600018CD3 /* SpawnerLogistics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB0E6D8D1BF4B46600018CD3 /* SpawnerLogistics.cpp */; };
+		AB0E6D961BF566E400018CD3 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB0E6D941BF566E400018CD3 /* GameScene.cpp */; };
 		AB6951001BED55BC00DB820E /* filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB6950FE1BED55BC00DB820E /* filter.cpp */; };
 		AB99A8F61BEF75DB00D7F38E /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A8F41BEF75DB00D7F38E /* Bullet.cpp */; };
 		AB99A8F91BEF761500D7F38E /* BulletType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A8F71BEF761500D7F38E /* BulletType.cpp */; };
@@ -57,6 +57,7 @@
 		C981D4BF1BEC3E4B006CB9BA /* ofxTween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D4B11BEC3E4B006CB9BA /* ofxTween.cpp */; };
 		C99529541BEFF639005415D5 /* enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C99529521BEFF639005415D5 /* enemy.cpp */; };
 		C99529571BF0259F005415D5 /* weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C99529551BF0259F005415D5 /* weapon.cpp */; };
+		C9F760741BF66DF90045D640 /* TitleButtons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F760721BF66DF90045D640 /* TitleButtons.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
 		E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */; };
@@ -232,6 +233,8 @@
 		C99529531BEFF639005415D5 /* enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enemy.h; sourceTree = "<group>"; };
 		C99529551BF0259F005415D5 /* weapon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = weapon.cpp; sourceTree = "<group>"; };
 		C99529561BF0259F005415D5 /* weapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = weapon.h; sourceTree = "<group>"; };
+		C9F760721BF66DF90045D640 /* TitleButtons.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TitleButtons.cpp; sourceTree = "<group>"; };
+		C9F760731BF66DF90045D640 /* TitleButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleButtons.h; sourceTree = "<group>"; };
 		E112B3AEBEA2C091BF2B40AE /* ofxPanel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxPanel.cpp; path = ../../../addons/ofxGui/src/ofxPanel.cpp; sourceTree = SOURCE_ROOT; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
@@ -411,6 +414,8 @@
 				AB99A8FD1BF0B96600D7F38E /* TitleScene.h */,
 				AB0E6D941BF566E400018CD3 /* GameScene.cpp */,
 				AB0E6D951BF566E400018CD3 /* GameScene.h */,
+				C9F760721BF66DF90045D640 /* TitleButtons.cpp */,
+				C9F760731BF66DF90045D640 /* TitleButtons.h */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -863,6 +868,7 @@
 				67383740F5CC47ED5F955A76 /* ofxAubioMelBands.cpp in Sources */,
 				9C7B8B4D99CDFC508E76CC3A /* ofxAubioOnset.cpp in Sources */,
 				C981D4BE1BEC3E4B006CB9BA /* ofxEasingSine.cpp in Sources */,
+				C9F760741BF66DF90045D640 /* TitleButtons.cpp in Sources */,
 				101D2DB773940813A5C898CD /* ofxAubioPitch.cpp in Sources */,
 				C93656581BE9CF9D00BCC866 /* track.cpp in Sources */,
 			);

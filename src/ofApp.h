@@ -11,7 +11,6 @@
 #include "GameEvent.h"
 #include "globals.h"
 #include "enemy.h"
-#include "ofxSceneManager.h"
 #include "TitleScene.h"
 #include "GameScene.h"
 
@@ -50,6 +49,8 @@ private:
 
     vector<EnemyPtr> enemyList;
     
-    ofxSceneManager sceneManager;
+    TitleScene * titleScene;
+    GameScene * gameScene;
+    
     //Events:
 };

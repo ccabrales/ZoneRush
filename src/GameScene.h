@@ -4,9 +4,8 @@
 
 #include <stdio.h>
 #include "ofMain.h"
-#include "ofxScene.h"
 
-class GameScene: public ofxScene{
+class GameScene {
 public:
     void setup();
     void update();

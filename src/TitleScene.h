@@ -2,10 +2,10 @@
 
 #include <stdio.h>
 #include "ofMain.h"
-#include "ofxScene.h"
+#include "TitleButtons.h"
 
 
-class TitleScene: public ofxScene{
+class TitleScene {
 public:
     void setup();
     void update();
@@ -16,4 +16,10 @@ public:
 //    void willDraw();
     void willFadeOut();
     void willExit();
+    void windowResized(int w, int h);
+    
+private:
+    ofImage title;
+    ofPoint titlePos;
+    PlayButton play;
 };

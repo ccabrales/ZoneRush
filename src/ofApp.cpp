@@ -11,10 +11,11 @@ void ofApp::setup(){
 //    ofSetFullscreen(true);
     
     //Set up scenes here
-    TitleScene* titleScene = new TitleScene;
-    titleScene->setSceneDuration(0.5, 0.5);
+    titleScene = new TitleScene;
+    titleScene->setup();
+    gameScene = new GameScene;
     
-    game_state = GAME; //TODO: CHANGE ME BACK TO START
+    game_state = START; //TODO: CHANGE ME BACK TO START
     
     player_image.load("ship.png");
     player.setup(&player_image);
@@ -81,9 +82,11 @@ void ofApp::draw(){
     ofPushStyle();
     switch (game_state) {
         case START:
+            titleScene->draw();
             break;
         case GAME:
-            player.draw();
+//            player.draw();
+            gameScene->draw();
             break;
         case END:
             break;
@@ -101,7 +104,9 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    if (game_state == GAME) {
+    if (game_state == START) { //Check for hitting "play" then change scene
+        
+    } else if (game_state == GAME) {
         switch (key) {
             case OF_KEY_LEFT:
                 player.is_left_pressed = true;  break;
@@ -115,12 +120,13 @@ void ofApp::keyPressed(int key){
                 break;
         }
     }
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
     if (game_state == START) { //TODO: Change this to only change the game state when we want it to --> selecting "play" from the menu
-        game_state = GAME;
+//        game_state = GAME;
     } else if (game_state == GAME) {
         switch (key) {
             case OF_KEY_LEFT:

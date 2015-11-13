@@ -12,6 +12,10 @@ void GameScene::draw(){
     
 }
 
+void GameScene::willFadeOut() {
+    
+}
+
 void GameScene::willExit(){
     
 }
