@@ -16,6 +16,8 @@
 		837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15F2C6477A769C03A56D1401 /* ofxSlider.cpp */; };
 		856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9604B925D32EE39065747725 /* ofxBaseGui.cpp */; };
 		9C7B8B4D99CDFC508E76CC3A /* ofxAubioOnset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A90A4B17BBB4CB627CA22C4 /* ofxAubioOnset.cpp */; };
+		AB0E6D8F1BF4B46600018CD3 /* SpawnerLogistics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB0E6D8D1BF4B46600018CD3 /* SpawnerLogistics.cpp */; settings = {ASSET_TAGS = (); }; };
+		AB0E6D961BF566E400018CD3 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB0E6D941BF566E400018CD3 /* GameScene.cpp */; settings = {ASSET_TAGS = (); }; };
 		AB6951001BED55BC00DB820E /* filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB6950FE1BED55BC00DB820E /* filter.cpp */; };
 		AB99A8F61BEF75DB00D7F38E /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A8F41BEF75DB00D7F38E /* Bullet.cpp */; };
 		AB99A8F91BEF761500D7F38E /* BulletType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A8F71BEF761500D7F38E /* BulletType.cpp */; };
@@ -139,6 +141,10 @@
 		9604B925D32EE39065747725 /* ofxBaseGui.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxBaseGui.cpp; path = ../../../addons/ofxGui/src/ofxBaseGui.cpp; sourceTree = SOURCE_ROOT; };
 		9D2C29B96659EBB7A0C5672F /* ofxAubioPitch.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxAubioPitch.h; path = ../../../addons/ofxAubio/src/ofxAubioPitch.h; sourceTree = SOURCE_ROOT; };
 		A96B8F6D2ECF14F9304EBD6C /* ofxAubioBeat.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxAubioBeat.cpp; path = ../../../addons/ofxAubio/src/ofxAubioBeat.cpp; sourceTree = SOURCE_ROOT; };
+		AB0E6D8D1BF4B46600018CD3 /* SpawnerLogistics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpawnerLogistics.cpp; sourceTree = "<group>"; };
+		AB0E6D8E1BF4B46600018CD3 /* SpawnerLogistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpawnerLogistics.h; sourceTree = "<group>"; };
+		AB0E6D941BF566E400018CD3 /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameScene.cpp; sourceTree = "<group>"; };
+		AB0E6D951BF566E400018CD3 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		AB6950E41BECD14400DB820E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		AB6950E51BECD14400DB820E /* addons.make */ = {isa = PBXFileReference; lastKnownFileType = text; path = addons.make; sourceTree = "<group>"; };
 		AB6950E81BECD14400DB820E /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
@@ -403,6 +409,8 @@
 			children = (
 				AB99A8FC1BF0B96600D7F38E /* TitleScene.cpp */,
 				AB99A8FD1BF0B96600D7F38E /* TitleScene.h */,
+				AB0E6D941BF566E400018CD3 /* GameScene.cpp */,
+				AB0E6D951BF566E400018CD3 /* GameScene.h */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -424,6 +432,8 @@
 				C99529561BF0259F005415D5 /* weapon.h */,
 				AB99A90A1BF28C5500D7F38E /* EnemyPath.cpp */,
 				AB99A90B1BF28C5500D7F38E /* EnemyPath.h */,
+				AB0E6D8D1BF4B46600018CD3 /* SpawnerLogistics.cpp */,
+				AB0E6D8E1BF4B46600018CD3 /* SpawnerLogistics.h */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -825,6 +835,7 @@
 				C981D4811BEC3E22006CB9BA /* ofxFatLine.cpp in Sources */,
 				C99529571BF0259F005415D5 /* weapon.cpp in Sources */,
 				ABF66CF31BE9AE2500D5CEE8 /* audiodecodercoreaudio.cpp in Sources */,
+				AB0E6D8F1BF4B46600018CD3 /* SpawnerLogistics.cpp in Sources */,
 				837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */,
 				C981D48B1BEC3E34006CB9BA /* ofxGifDecoder.cpp in Sources */,
 				C981D4B51BEC3E4B006CB9BA /* ofxEasingBounce.cpp in Sources */,
@@ -844,6 +855,7 @@
 				C981D4BF1BEC3E4B006CB9BA /* ofxTween.cpp in Sources */,
 				479DCA850DD8BB469A777AD4 /* ofxAubioBeat.cpp in Sources */,
 				ABED9FB01BEE238400F11CCC /* ofxMSAInteractiveObject.cpp in Sources */,
+				AB0E6D961BF566E400018CD3 /* GameScene.cpp in Sources */,
 				C981D4B31BEC3E4B006CB9BA /* ofxEasing.cpp in Sources */,
 				C981D4821BEC3E22006CB9BA /* sincosineLut.cpp in Sources */,
 				AB99A8FE1BF0B96600D7F38E /* TitleScene.cpp in Sources */,
