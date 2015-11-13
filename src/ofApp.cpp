@@ -39,7 +39,7 @@ void ofApp::audioIn(float* input, int bufferSize, int nChannels){}
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    Track::Data d = currentTrack->readData(tick);
+    Track::Data* d = currentTrack->readData(tick);
     tv.update(d);
     
     switch (game_state) {
@@ -52,7 +52,7 @@ void ofApp::update(){
             break;
     }
     //TEMPORARY ENEMY SPAWNER LOL
-    if(d.onBeat){
+    if(d->onBeat){
         vector<EnemyPtr>* newEnemies = EnemyFactory::makeGroup(1, 2, 0);
         for(int i = 0; i < newEnemies->size(); i++){
             enemyList.push_back((*newEnemies)[i]);
@@ -62,6 +62,8 @@ void ofApp::update(){
     for(int i=0; i < enemyList.size(); i++){
         enemyList[i]->update();
     }
+    
+    delete d;
 }
 
 //--------------------------------------------------------------

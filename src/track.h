@@ -23,12 +23,13 @@ public:
     Track(ofxAudioDecoder * decoder);
     static string toString(const Track::Data& d);
     
-    Data readData(int frame);
+    Data* readData(int frame);
     
-    std::vector<Data> frameData;
+    vector<Data> frameData;
     
 private:
     int lastFrameRead = 0;
     void addData(bool onBeat, float bpm, bool isOnset, float pitch, float pitchConfidence, float onsetNovelty, float onsetThresholdNovelty);
 //    ofxAubioMelBands bands;
 };
+

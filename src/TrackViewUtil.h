@@ -6,7 +6,7 @@
 class TrackView {
 public:
     void setup(Track* track);
-    void update(const Track::Data& data);
+    void update(const Track::Data* data);
     void updateAudio(float * input, int bufferSize, int nChannels);
     void draw(int currentAudioTick);
 private:

@@ -18,19 +18,19 @@ void TrackView::updateAudio(float* input, int bufSize, int nC){
     bands.audioIn(input, bufSize, nC);
 }
 
-void TrackView::update(const Track::Data& d){
+void TrackView::update(const Track::Data* d){
     onsetDecay[0] *= 0.8;
     onsetDecay[1] *= 0.8;
     onsetDecay[2] *= 0.8;
     beatDecay *= 0.9;
 
-    if (d.onBeat) {
+    if (d->onBeat) {
         beatDecay = 1.0;
     }
     
     for(int i = 0; i < 3; i++){
-        if ((d.onsets & (1<<i)) > 0) {
-            onsetDecay[i] = ((float)(d.onsets & (1<<i)));
+        if ((d->onsets & (1<<i)) > 0) {
+            onsetDecay[i] = ((float)(d->onsets & (1<<i)));
         }
     }
 }

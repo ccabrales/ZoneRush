@@ -5,9 +5,12 @@
 #define GAUSSIAN_SIZE 3 //[][][][X][][][]
 const float gaussian[] = {0.004, 0.054, 0.242, 0.399, 0.242, 0.054, 0.004};
 
-Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
+/**
+ Given a decoder that has loaded an audio file, parse the audio content and store it within the class for later access.
+ @param decoder - AudioDecoder with loaded mp3 file.
+ */
+Track::Track(ofxAudioDecoder * decoder) {
     int nChannels = decoder->getChannels();
-//    onset.threshold = 0.5;
     std::vector<float> samples(decoder->getRawSamples());
     
     ofxAubioOnset onset1;
@@ -18,7 +21,7 @@ Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
     ofxAubioBeat beat;
     ofxAubioMelBands bands;
 
-//    cout << ofSystem("../../../../sox") << endl;
+    //cout << ofSystem("../../../../sox") << endl;
     onset1.setup("hfc", 512, 256, 44100);
     onset1.setThreshold(0.4);
     
@@ -33,6 +36,8 @@ Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
     bands.setup();
     //bands have 40 energies counts.
     
+    //Audio Analysis
+    //==============
     for (int i = 0; (i * BUFFERSIZE * nChannels) < decoder->getNumSamples(); i++) {
         float* sample = &(samples[i * BUFFERSIZE * nChannels]);
         
@@ -74,6 +79,9 @@ Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
         });
     }
     
+    
+    //Pitch Smoothing.
+    //================
     std::vector<int> f(frameData.size());
     
     int numFrames = frameData.size();
@@ -91,30 +99,41 @@ Track::Track(ofxAudioDecoder * decoder) { //Get information from the entire file
     }
     
     int fOut[frameData.size()];
-//    medianfilter(fOut, &f[0], frameData.size());
     median_filter_impl_1d(frameData.size(), 31, 70, &f[0], &fOut[0]);
     
     for(int i = 0; i < frameData.size(); i++){
         frameData[i].pitch = fOut[i];
     }
     
-        
-//    for (Data &d : frameData) {
-//        cout << d.onBeat << " : " << d.bpm << " : " << d.isOnset << " : " << d.pitch << " : " << d.pitchConfidence << endl;
-//    }
+    //Spawn Point Analysis.
+    //???????????
+    
+    
+    
 }
 
-string Track::toString(const Track::Data &d){
+/**
+ Converts the Track Data frame to its string representation. Expensive operation, debug purpose only.
+ @param track
+ @returns string output
+ */
+string Track::toString(const Track::Data &track){
     stringstream s;
-    s << d.onBeat << "\t" << d.bpm << "\t" << d.onsets << "\t" << d.pitch << "\t" << d.pitchConfidence << "\t" << d.onsetNovelty << "\t" << d.onsetThresholdedNovelty << "\t" << d.intensity;
+    s << track.onBeat << "\t" << track.bpm << "\t" << track.onsets << "\t" << track.pitch << "\t" << track.pitchConfidence << "\t" << track.onsetNovelty << "\t" << track.onsetThresholdedNovelty << "\t" << track.intensity;
     return s.str();
 }
 
-Track::Data Track::readData(int frame){
-    Data out = frameData[frame];
+
+/**
+ Reads the Data at the given frame, cumulatively from the last frame we called readData on.
+ @param frame the frameID to read up to.
+ @returns returns a Data pointer.
+ */
+Track::Data* Track::readData(int frame){
+    Data* out = new Data(frameData[frame]);
     for(int i=lastFrameRead+1; i <= frame; i++){
-        out.onBeat |= frameData[i].onBeat;
-        out.onsets = (out.onsets | frameData[i].onsets);
+        out->onBeat |= frameData[i].onBeat;
+        out->onsets = (out->onsets | frameData[i].onsets);
     }
     lastFrameRead = frame;
     return out;
