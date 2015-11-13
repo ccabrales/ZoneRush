@@ -19,3 +19,7 @@ void GameScene::willFadeOut() {
 void GameScene::willExit(){
     
 }
+
+void GameScene::windowResized(int w, int h) {
+    
+}

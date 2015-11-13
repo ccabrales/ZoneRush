@@ -17,9 +17,17 @@ public:
     void willFadeOut();
     void willExit();
     void windowResized(int w, int h);
+    bool isPlaySelected();
     
 private:
     ofImage title;
     ofPoint titlePos;
-    PlayButton play;
+    
+    ofImage playButton;
+    ofPoint playPos;
+    
+    ofImage exitButton;
+    ofPoint exitPos;
+    
+    int selectedIndex; //Keeps track of which button is currently selected
 };

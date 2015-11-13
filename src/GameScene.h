@@ -16,4 +16,5 @@ public:
     //    void willDraw();
     void willFadeOut();
     void willExit();
+    void windowResized(int w, int h);
 };
