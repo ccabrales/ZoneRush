@@ -14,4 +14,5 @@ public:
     
 private:
     PathLibrary();
+    ofPolyline makePolyline(const vector<ofPoint>& pts);
 };

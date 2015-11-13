@@ -1,14 +1,20 @@
-//
-//  SpawnerLogistics.hpp
-//  ZoneRushMaxima
-//
-//  Created by Xiaonan Tong on 11/12/15.
-//
-//
-
-#ifndef SpawnerLogistics_hpp
-#define SpawnerLogistics_hpp
+#pragma once
 
 #include <stdio.h>
+#include "globals.h"
+#include "enemy.h"
 
-#endif /* SpawnerLogistics_hpp */
+class SpawnController
+{
+public:
+    
+    static bool shouldSpawn();
+    static bool spawnEnemyCluster(vector<EnemyPtr> * currentEnemies);
+    
+private:
+    static float relativeLikeliness;
+    //declares a relative likeliness value of a next spawn.
+    static const int lookaheadFrames = 1;
+    //dynamic adjustment frame for lookahead.
+    SpawnController();
+};

@@ -12,7 +12,7 @@ struct EnemyType {
     int minHP;
     int maxHP;
     const BulletType* bulletType;
-    int speed;
+    float speed;
     ofImage* img;
 };
 

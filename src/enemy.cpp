@@ -2,10 +2,10 @@
 
 EnemyFactory::EnemyFactory(){
     e_types.push_back(EnemyType {
-        4, 5, BulletLibrary::getWeaponInfo(0), 3, NULL
+        4, 5, BulletLibrary::getWeaponInfo(0), 0.7, NULL
     });
     e_types.push_back(EnemyType {
-        4, 7, BulletLibrary::getWeaponInfo(0), 5, NULL
+        4, 7, BulletLibrary::getWeaponInfo(0), 0.9, NULL
     });
 }
 
@@ -46,6 +46,8 @@ void Enemy::update(){
 
 void Enemy::draw(){
     ofPushStyle();
+    ofSetColor(3,3,3,100);
+    path.draw(); //TODO REMOVE DEBUG.
     ofSetColor(255,0,0);
     ofCircle(pos, 6);
     ofPopStyle();

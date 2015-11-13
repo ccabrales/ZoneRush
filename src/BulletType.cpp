@@ -15,4 +15,8 @@ BulletLibrary::BulletLibrary(){
     bullets.push_back( BulletType {
         0.8, 7., 2., new ofImage()
     });
+    
+    bullets.push_back(BulletType{
+       0.3, 180, 60, NULL
+    });
 };

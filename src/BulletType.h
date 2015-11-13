@@ -10,6 +10,9 @@ struct BulletType {
     ofImage* texture;
 };
 
+enum FirePattern{
+    STRAIGHT, THREESHOT, TWOSHOT, CLOUD
+};
 
 class BulletLibrary
 {
