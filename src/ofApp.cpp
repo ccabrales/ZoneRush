@@ -7,6 +7,7 @@ Track* currentTrack = NULL;
 void ofApp::setup(){
     // set the size of the window
     ofSetWindowShape(750, 250);
+    ofSetEscapeQuitsApp(false);
 //    ofSetFullscreen(true);
     
     game_state = GAME; //TODO: CHANGE ME BACK TO START
