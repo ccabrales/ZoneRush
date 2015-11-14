@@ -2,13 +2,9 @@
 
 void TitleScene::setup(){
     title.load("ZoneRush2.png");
-    titlePos = ofPoint((ofGetWidth() / 2.0) - (title.getWidth() / 2.0), ofGetHeight() / 5.0);
-    
     playButton.load("PlaySelected.png");
-    playPos = ofPoint((ofGetWidth() / 2.0) - (playButton.getWidth() / 2.0), 3 * ofGetHeight() / 5.0);
-    
     exitButton.load("Exit.png");
-    exitPos = ofPoint((ofGetWidth() / 2.0) - (exitButton.getWidth() / 2.0), playPos.y+playButton.getHeight() + 10.0);
+    resetPosition();
     
     selectedIndex = 0;
     
@@ -16,13 +12,33 @@ void TitleScene::setup(){
     rightEmitter.setVelocity(ofVec3f(-310,0.0));
     rightEmitter.posSpread = ofVec3f(0,ofGetHeight());
     rightEmitter.velSpread = ofVec3f(120,20);
-    rightEmitter.life = 50;
+    rightEmitter.life = 40;
     rightEmitter.lifeSpread = 10;
     rightEmitter.numPars = 3;
     rightEmitter.size = 12;
     rightEmitter.color = ofColor(100,100,200);
     rightEmitter.colorSpread = ofColor(70,70,70);
     
+    logoEmitter.setPosition(ofVec3f(ofGetWidth()-1, titlePos.y + 50));
+    logoEmitter.posSpread = ofVec3f(0, -60);
+    logoEmitter.setVelocity(ofVec3f(-810,0.0));
+
+    logoEmitter.velSpread = ofVec3f(320,20);
+    logoEmitter.life = 10;
+    logoEmitter.lifeSpread = 3;
+    logoEmitter.numPars = 2;
+//    logoEmitter.size = 12;
+    logoEmitter.color = ofColor(140,140,220);
+    logoEmitter.colorSpread = ofColor(70,70,70);
+
+    
+}
+
+
+void TitleScene::resetPosition(){
+    playPos = ofPoint((ofGetWidth() / 2.0) - (playButton.getWidth() / 2.0), 3 * ofGetHeight() / 5.0);
+    exitPos = ofPoint((ofGetWidth() / 2.0) - (exitButton.getWidth() / 2.0), playPos.y+playButton.getHeight() + 10.0);
+    titlePos = ofPoint((ofGetWidth() / 2.0) - (title.getWidth() / 2.0), ofGetHeight() / 5.0);
 }
 
 void TitleScene::update(){
@@ -45,10 +61,10 @@ void TitleScene::update(){
 void TitleScene::backgroundUpdate(const Track::Data* data){
     particleSystem.update(min(ofGetLastFrameTime(), 1.0/10.0), 1);
     
-    rightEmitter.numPars = max((int)(-data->intensity) + (data->onBeat?12:0), 2);
+    rightEmitter.numPars = max((int)(-data->intensity+1) + (data->onBeat?12:0), 2);
     rightEmitter.setVelocity(data->onBeat?ofVec3f(-510,0.0):ofVec3f(-310,0.0));
 
-    
+    particleSystem.addParticles(logoEmitter);
     particleSystem.addParticles(rightEmitter);
     
     cout << particleSystem.getNumParticles() << endl;
@@ -65,14 +81,7 @@ void TitleScene::draw(){
     title.draw(titlePos);
     playButton.draw(playPos);
     exitButton.draw(exitPos);
-
-    ofNoFill();
-    ofSetCircleResolution(180);
-    ofSetColor(255, 0, 0, 50);
-//    ofCircle(ofGetWidth()/2, ofGetHeight()/2, sqrt(gravAcc));
-    ofSetColor(0, 0, 255, 50);
-//    ofCircle(ofGetWidth()/2, ofGetHeight()/2, sqrt(rotAcc));
-
+    
     ofPopStyle();
 }
 
@@ -85,7 +94,7 @@ void TitleScene::willExit(){
 }
 
 void TitleScene::windowResized(int w, int h) {
-    titlePos = ofPoint((w / 2.0) - (title.getWidth() / 2.0), h / 5.0);
+    resetPosition();
 }
 
 bool TitleScene::isPlaySelected() {

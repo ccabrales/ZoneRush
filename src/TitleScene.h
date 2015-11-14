@@ -37,6 +37,7 @@ private:
     int selectedIndex; //Keeps track of which button is currently selected
     
     ofxParticleSystem particleSystem;
-    ofxParticleEmitter leftEmitter, rightEmitter;
+    ofxParticleEmitter logoEmitter, rightEmitter;
     
+    void resetPosition();
 };
