@@ -21,7 +21,6 @@ Track::Track(ofxAudioDecoder * decoder) {
     ofxAubioBeat beat;
     ofxAubioMelBands bands;
 
-    //cout << ofSystem("../../../../sox") << endl;
     onset1.setup("hfc", 512, 256, 44100);
     onset1.setThreshold(0.4);
     

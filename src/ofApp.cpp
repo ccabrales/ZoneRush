@@ -10,6 +10,7 @@ void ofApp::setup(){
     ofSetEscapeQuitsApp(false);
 //    ofSetFullscreen(true);
     ofHideCursor();
+
     
     //Set up scenes here
     titleScene = new TitleScene;
@@ -175,20 +176,24 @@ bool ofApp::checkFileExtension(ofFileDialogResult res){
     string fileName = res.getPath();
     string filePath = res.getPath();
     string ext = ofFilePath::getFileExt(filePath);
+    game_state = LOADING;
     if (ext == "") {
         return false;
     }
     
     //Acceptable format, move along
-    if (std::find(acceptableFileExts.begin(), acceptableFileExts.end(), ext) != acceptableFileExts.end()) {
-        musicDecoder.load("music.mp3");
+    if (std::find(acceptableFileExts.begin(), acceptableFileExts.end(), ext)
+            != acceptableFileExts.end()) {
+        musicDecoder.load(filePath);
         if (musicDecoder.getChannels() != 2 || musicDecoder.getSampleRate() != 44100) {
             convertFileAndReload(filePath);
         }
-    } else if (std::find(convertFileExts.begin(), convertFileExts.end(), ext) != convertFileExts.end()) {
+    } else if (std::find(convertFileExts.begin(), convertFileExts.end(), ext)
+                    != convertFileExts.end()) {
         convertFileAndReload(filePath);
     } else {
-        ofSystemAlertDialog("Unsupported file type chosen. Please select from the following: mp3, m4a, wav, aiff, aif, flac");
+        ofSystemAlertDialog("Unsupported file type chosen. Please select from the following: mp3, m4a, wav, aiff, aif, flac, ogg");
+        game_state = START;
         return false;
     }
     
@@ -200,6 +205,11 @@ bool ofApp::checkFileExtension(ofFileDialogResult res){
 //--------------------------------------------------------------
 void ofApp::convertFileAndReload(string filePath) {
     
+    string output = ofSystem("../../../sox "+filePath+" -c 2 -r 44100 -t wav ../../../data/temp.wav");
+    cout << output << endl;
+    //sort of wants to busywait here. Hmm.
+    
+
 }
 
 //--------------------------------------------------------------

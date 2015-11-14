@@ -59,6 +59,6 @@ private:
     ofxPostProcessing post;
     
     vector<string> acceptableFileExts {"mp3", "m4a", "wav"};
-    vector<string> convertFileExts {"aiff", "aif", "flac"};
+    vector<string> convertFileExts {"aiff", "aif", "flac", "ogg"};
     //Events:
 };
