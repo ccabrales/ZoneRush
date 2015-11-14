@@ -12,6 +12,20 @@ void TitleScene::setup(){
     exitPos = ofPoint((ofGetWidth() / 2.0) - (exitButton.getWidth() / 2.0), playPos.y+playButton.getHeight() + 10.0);
     
     selectedIndex = 0;
+    
+    rightEmitter.setPosition(ofVec3f(ofGetWidth()-1,ofGetHeight()/2.0));
+    rightEmitter.setVelocity(ofVec3f(-310,0.0));
+    
+    rightEmitter.posSpread = ofVec3f(0,ofGetHeight());
+    rightEmitter.velSpread = ofVec3f(120,20);
+    rightEmitter.life = 50;
+    rightEmitter.lifeSpread = 10;
+    rightEmitter.numPars = 3;
+    rightEmitter.size = 12;
+    rightEmitter.color = ofColor(100,100,200);
+    rightEmitter.colorSpread = ofColor(50,50,50);
+    
+
 }
 
 void TitleScene::update(){
@@ -28,14 +42,37 @@ void TitleScene::update(){
         default:
             break;
     }
+    
+}
+
+void TitleScene::backgroundUpdate(){
+    particleSystem.update(min(ofGetLastFrameTime(), 1.0/10.0), 1);
+    particleSystem.addParticles(rightEmitter);
+    
+    particleSystem.addParticles(rightEmitter);
+    
+    cout << particleSystem.getNumParticles() << endl;
 }
 
 void TitleScene::draw(){
     ofPushStyle();
     ofBackground(0, 0, 0);
+    ofPushStyle();
+    ofSetLineWidth(3.0);
+    particleSystem.draw();
+    ofPopStyle();
+
     title.draw(titlePos);
     playButton.draw(playPos);
     exitButton.draw(exitPos);
+
+    ofNoFill();
+    ofSetCircleResolution(180);
+    ofSetColor(255, 0, 0, 50);
+//    ofCircle(ofGetWidth()/2, ofGetHeight()/2, sqrt(gravAcc));
+    ofSetColor(0, 0, 255, 50);
+//    ofCircle(ofGetWidth()/2, ofGetHeight()/2, sqrt(rotAcc));
+
     ofPopStyle();
 }
 

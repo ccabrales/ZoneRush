@@ -4,11 +4,14 @@
 #include "ofMain.h"
 #include "TitleButtons.h"
 
+#include "ofxParticles.h"
+
 
 class TitleScene {
 public:
     void setup();
     void update();
+    void backgroundUpdate();
     void draw();
     
     //event handling implementations.
@@ -30,4 +33,8 @@ private:
     ofPoint exitPos;
     
     int selectedIndex; //Keeps track of which button is currently selected
+    
+    ofxParticleSystem particleSystem;
+    ofxParticleEmitter leftEmitter, rightEmitter;
+    
 };

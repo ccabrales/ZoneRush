@@ -6,9 +6,9 @@ Track* currentTrack = NULL;
 //--------------------------------------------------------------
 void ofApp::setup(){
     // set the size of the window
-    ofSetWindowShape(750, 250);
+    //ofSetWindowShape(750, 250);
     ofSetEscapeQuitsApp(false);
-    ofSetFullscreen(true);
+//    ofSetFullscreen(true);
     ofHideCursor();
     
     //Set up scenes here
@@ -27,6 +27,9 @@ void ofApp::setup(){
     
     //int sampleRate = 44100; int bufferSize = 256; int nBuffers = 4;
     ofSoundStreamSetup(2, 0, this);
+    
+    
+    
 }
 
 void ofApp::exit(){
@@ -50,9 +53,10 @@ void ofApp::update(){
     Track::Data* d = currentTrack->readData(tick);
     tv.update(d);
     
+    
     switch (game_state) {
         case START:
-            break;
+            titleScene->backgroundUpdate();
         case GAME:
             player.update();
             break;

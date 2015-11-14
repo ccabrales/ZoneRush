@@ -146,6 +146,7 @@
 		AB0E6D8E1BF4B46600018CD3 /* SpawnerLogistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpawnerLogistics.h; sourceTree = "<group>"; };
 		AB0E6D941BF566E400018CD3 /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameScene.cpp; sourceTree = "<group>"; };
 		AB0E6D951BF566E400018CD3 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		AB1677181BF6BD330003DD0B /* ofxParticles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxParticles.h; sourceTree = "<group>"; };
 		AB6950E41BECD14400DB820E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		AB6950E51BECD14400DB820E /* addons.make */ = {isa = PBXFileReference; lastKnownFileType = text; path = addons.make; sourceTree = "<group>"; };
 		AB6950E81BECD14400DB820E /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
@@ -348,6 +349,23 @@
 			name = src;
 			sourceTree = "<group>";
 		};
+		AB1677161BF6BD330003DD0B /* ofxParticles */ = {
+			isa = PBXGroup;
+			children = (
+				AB1677171BF6BD330003DD0B /* src */,
+			);
+			name = ofxParticles;
+			sourceTree = "<group>";
+		};
+		AB1677171BF6BD330003DD0B /* src */ = {
+			isa = PBXGroup;
+			children = (
+				AB1677181BF6BD330003DD0B /* ofxParticles.h */,
+			);
+			name = src;
+			path = ../../../addons/ofxParticles/src;
+			sourceTree = "<group>";
+		};
 		AB6950E11BECA0A500DB820E /* utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -529,6 +547,7 @@
 				C981D48F1BEC3E48006CB9BA /* ofxSceneManager */,
 				C981D4951BEC3E4B006CB9BA /* ofxTween */,
 				ABED9FAC1BEE238400F11CCC /* ofxMSAInteractiveObject */,
+				AB1677161BF6BD330003DD0B /* ofxParticles */,
 			);
 			name = addons;
 			sourceTree = "<group>";
