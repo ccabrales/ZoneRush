@@ -52,15 +52,17 @@ void ofApp::audioIn(float* input, int bufferSize, int nChannels){}
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    Track::Data* d = currentTrack->readData(tick);
-    tv.update(d);
     
     
+    Track::Data* d;
     switch (game_state) {
         case START:
             titleScene->backgroundUpdate(d);
+            break;
         case GAME:
             player.update();
+            d = currentTrack->readData(tick);
+            tv.update(d);
             break;
         default:
             break;
@@ -123,7 +125,10 @@ void ofApp::keyPressed(int key){
                 break;
             case OF_KEY_RETURN:
                 if (titleScene->isPlaySelected()) {
-                    game_state = GAME;
+                    ofFileDialogResult res = ofSystemLoadDialog();
+                    if (checkFileExtension(res)) { //only move forward if we have a good file
+                        game_state = GAME;
+                    }
                 } else {
                     std::exit(0);
                 }
@@ -163,6 +168,38 @@ void ofApp::keyReleased(int key){
                 break;
         }
     }
+}
+
+//--------------------------------------------------------------
+bool ofApp::checkFileExtension(ofFileDialogResult res){
+    string fileName = res.getPath();
+    string filePath = res.getPath();
+    string ext = ofFilePath::getFileExt(filePath);
+    if (ext == "") {
+        return false;
+    }
+    
+    //Acceptable format, move along
+    if (std::find(acceptableFileExts.begin(), acceptableFileExts.end(), ext) != acceptableFileExts.end()) {
+        musicDecoder.load("music.mp3");
+        if (musicDecoder.getChannels() != 2 || musicDecoder.getSampleRate() != 44100) {
+            convertFileAndReload(filePath);
+        }
+    } else if (std::find(convertFileExts.begin(), convertFileExts.end(), ext) != convertFileExts.end()) {
+        convertFileAndReload(filePath);
+    } else {
+        ofSystemAlertDialog("Unsupported file type chosen. Please select from the following: mp3, m4a, wav, aiff, aif, flac");
+        return false;
+    }
+    
+    currentTrack = new Track(&musicDecoder);
+    tv.setup(currentTrack);
+    return true;
+}
+
+//--------------------------------------------------------------
+void ofApp::convertFileAndReload(string filePath) {
+    
 }
 
 //--------------------------------------------------------------
