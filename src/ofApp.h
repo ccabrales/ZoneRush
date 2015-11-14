@@ -39,7 +39,10 @@ public:
     void audioIn(float * input, int bufferSize, int nChannels);
     
 private:
-    enum GameState { START, GAME, END };
+    bool checkFileExtension(ofFileDialogResult res);
+    void convertFileAndReload(string filePath);
+    
+    enum GameState { START, LOADING, GAME, END };
     
     TrackView tv;
     ofxAudioDecoder musicDecoder;
@@ -56,5 +59,7 @@ private:
     
     ofxPostProcessing post;
     
+    vector<string> acceptableFileExts {"mp3", "m4a", "wav"};
+    vector<string> convertFileExts {"aiff", "aif", "flac"};
     //Events:
 };

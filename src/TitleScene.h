@@ -36,5 +36,4 @@ private:
     
     ofxParticleSystem particleSystem;
     ofxParticleEmitter leftEmitter, rightEmitter;
-    
 };

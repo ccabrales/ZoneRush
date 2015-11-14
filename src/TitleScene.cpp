@@ -51,7 +51,7 @@ void TitleScene::backgroundUpdate(){
     
     particleSystem.addParticles(rightEmitter);
     
-    cout << particleSystem.getNumParticles() << endl;
+//    cout << particleSystem.getNumParticles() << endl;
 }
 
 void TitleScene::draw(){
