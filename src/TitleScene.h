@@ -5,13 +5,15 @@
 #include "TitleButtons.h"
 
 #include "ofxParticles.h"
+#include "track.h"
+#include "globals.h"
 
 
 class TitleScene {
 public:
     void setup();
     void update();
-    void backgroundUpdate();
+    void backgroundUpdate(const Track::Data* data);
     void draw();
     
     //event handling implementations.
@@ -35,5 +37,7 @@ private:
     int selectedIndex; //Keeps track of which button is currently selected
     
     ofxParticleSystem particleSystem;
-    ofxParticleEmitter leftEmitter, rightEmitter;
+    ofxParticleEmitter logoEmitter, rightEmitter;
+    
+    void resetPosition();
 };

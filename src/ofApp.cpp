@@ -21,9 +21,9 @@ void ofApp::setup(){
     player_image.load("ship.png");
     player.setup(&player_image);
     
-//    musicDecoder.load("music.mp3");
-//    currentTrack = new Track(&musicDecoder);
-//    tv.setup(currentTrack);
+    musicDecoder.load("music.mp3");
+    currentTrack = new Track(&musicDecoder);
+    tv.setup(currentTrack);
     
     //int sampleRate = 44100; int bufferSize = 256; int nBuffers = 4;
     ofSoundStreamSetup(2, 0, this);
@@ -40,31 +40,27 @@ void ofApp::exit(){
 }
 
 void ofApp::audioOut(float * input, int bufferSize, int nChannels){
-    if (game_state == GAME) {
-        copy(musicDecoder.getRawSamples().begin()+tick*bufferSize*nChannels, musicDecoder.getRawSamples().begin()+tick*bufferSize*nChannels+bufferSize*nChannels, input);
-        tick ++;
-        if(tick*nChannels*bufferSize > musicDecoder.getNumSamples()){
-            tick = 0;
-        }
-        tv.updateAudio(input, bufferSize, nChannels);
+    copy(musicDecoder.getRawSamples().begin()+tick*bufferSize*nChannels, musicDecoder.getRawSamples().begin()+tick*bufferSize*nChannels+bufferSize*nChannels, input);
+    tick ++;
+    if(tick*nChannels*bufferSize > musicDecoder.getNumSamples()){
+        tick = 0;
     }
+    tv.updateAudio(input, bufferSize, nChannels);
 }
 
 void ofApp::audioIn(float* input, int bufferSize, int nChannels){}
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    Track::Data* d = currentTrack->readData(tick);
+    tv.update(d);
     
     
-    Track::Data* d;
     switch (game_state) {
         case START:
-            titleScene->backgroundUpdate();
-            break;
+            titleScene->backgroundUpdate(d);
         case GAME:
             player.update();
-            d = currentTrack->readData(tick);
-            tv.update(d);
             break;
         default:
             break;
@@ -127,10 +123,7 @@ void ofApp::keyPressed(int key){
                 break;
             case OF_KEY_RETURN:
                 if (titleScene->isPlaySelected()) {
-                    ofFileDialogResult res = ofSystemLoadDialog();
-                    if (checkFileExtension(res)) { //only move forward if we have a good file
-                        game_state = GAME;
-                    }
+                    game_state = GAME;
                 } else {
                     std::exit(0);
                 }
@@ -170,38 +163,6 @@ void ofApp::keyReleased(int key){
                 break;
         }
     }
-}
-
-//--------------------------------------------------------------
-bool ofApp::checkFileExtension(ofFileDialogResult res){
-    string fileName = res.getPath();
-    string filePath = res.getPath();
-    string ext = ofFilePath::getFileExt(filePath);
-    if (ext == "") {
-        return false;
-    }
-    
-    //Acceptable format, move along
-    if (std::find(acceptableFileExts.begin(), acceptableFileExts.end(), ext) != acceptableFileExts.end()) {
-        musicDecoder.load("music.mp3");
-        if (musicDecoder.getChannels() != 2 || musicDecoder.getSampleRate() != 44100) {
-            convertFileAndReload(filePath);
-        }
-    } else if (std::find(convertFileExts.begin(), convertFileExts.end(), ext) != convertFileExts.end()) {
-        convertFileAndReload(filePath);
-    } else {
-        ofSystemAlertDialog("Unsupported file type chosen. Please select from the following: mp3, m4a, wav, aiff, aif, flac");
-        return false;
-    }
-    
-    currentTrack = new Track(&musicDecoder);
-    tv.setup(currentTrack);
-    return true;
-}
-
-//--------------------------------------------------------------
-void ofApp::convertFileAndReload(string filePath) {
-    
 }
 
 //--------------------------------------------------------------

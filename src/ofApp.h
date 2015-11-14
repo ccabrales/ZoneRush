@@ -13,7 +13,6 @@
 #include "enemy.h"
 #include "TitleScene.h"
 #include "GameScene.h"
-#include "PostProcessing.h"
 #include "ofxPostProcessing.h"
 
 class ofApp : public ofBaseApp{
