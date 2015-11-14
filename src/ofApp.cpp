@@ -28,8 +28,10 @@ void ofApp::setup(){
     //int sampleRate = 44100; int bufferSize = 256; int nBuffers = 4;
     ofSoundStreamSetup(2, 0, this);
     
-    
-    
+    post.init(ofGetWidth(), ofGetHeight());
+    post.createPass<BloomPass>();
+//    post.createPass<ZoomBlurPass>();
+//    bp->enable();
 }
 
 void ofApp::exit(){
@@ -81,7 +83,7 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     // update beat info
-    tv.draw(tick);
+    post.begin();
 
     
     ofPushStyle();
@@ -91,6 +93,8 @@ void ofApp::draw(){
             break;
         case GAME:
 //            player.draw();
+            tv.draw(tick);
+
             gameScene->draw();
             break;
         case END:
@@ -103,6 +107,8 @@ void ofApp::draw(){
     for(int i=0; i < enemyList.size(); i++){
         enemyList[i]->draw();
     }
+    
+    post.end(true);
 
     
 }
@@ -181,7 +187,7 @@ void ofApp::mouseReleased(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
-
+    post.init(w,h);
 }
 
 //--------------------------------------------------------------
