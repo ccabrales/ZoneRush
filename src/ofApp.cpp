@@ -185,6 +185,8 @@ bool ofApp::checkFileExtension(ofFileDialogResult res){
     if (std::find(acceptableFileExts.begin(), acceptableFileExts.end(), ext)
             != acceptableFileExts.end()) {
         musicDecoder.load(filePath);
+        //TODO: do not use Music Decoder here since it's just a test.
+        
         if (musicDecoder.getChannels() != 2 || musicDecoder.getSampleRate() != 44100) {
             convertFileAndReload(filePath);
         }
@@ -198,6 +200,7 @@ bool ofApp::checkFileExtension(ofFileDialogResult res){
     }
     
     currentTrack = new Track(&musicDecoder);
+    //TODO: similarly don't use music decoder here.
     tv.setup(currentTrack);
     return true;
 }
@@ -206,10 +209,20 @@ bool ofApp::checkFileExtension(ofFileDialogResult res){
 void ofApp::convertFileAndReload(string filePath) {
     
     string output = ofSystem("../../../sox "+filePath+" -c 2 -r 44100 -t wav ../../../data/temp.wav");
+    //this file will be overwritten every time.
     cout << output << endl;
     //sort of wants to busywait here. Hmm.
     
-
+    //now do something with the file.
+    
+    /*sample success: 
+        ../../../sox WARN rate: rate clipped 432 samples; decrease volume?
+        ../../../sox WARN dither: dither clipped 816 samples; decrease volume?
+     */
+    
+    //it's actually really difficult to tell if it succeeded or not. My best bet is do something afterwards. like "sox stuff && echo \"yay\" " so you can check it for 'yay'. I'm sure if it fails it'll not print echo.
+    
+    
 }
 
 //--------------------------------------------------------------
