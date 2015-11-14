@@ -47,40 +47,11 @@ namespace itg
         void end(bool autoDraw = true);
         
         // float rather than int and not const to override ofBaseDraws
-        void draw(float x = 0.f, float y = 0.f) ;
-        void draw(float x, float y, float w, float h) ;
-        void draw(const ofPoint & point) {
-            
-            draw(point.x, point.y);
-            
-        }
+        void draw(float x = 0.f, float y = 0.f) const;
+        void draw(float x, float y, float w, float h) const;
+        float getWidth() const { return width; }
+        float getHeight() const { return height; }
         
-        void draw(const ofRectangle & rect) {
-            
-            draw(rect.x, rect.y, rect.width, rect.height);
-            
-        }
-        
-        void draw(const ofPoint & point, float w, float h) {
-            
-            draw(point.x, point.y, w, h);
-            
-        }
-        
-        
-        float getWidth() { return width; }
-        float getHeight()  { return height; }
-        void setAnchorPercent(float xPct, float yPct){
-            return;
-        };
-        
-        void setAnchorPoint(float x, float y){
-            return;
-        };
-        
-        void resetAnchor(){
-            return;
-        };
         void debugDraw();
         
         template<class T>
