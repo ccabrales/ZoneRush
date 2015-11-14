@@ -58,7 +58,7 @@ void ofApp::update(){
     
     switch (game_state) {
         case START:
-            titleScene->backgroundUpdate();
+            titleScene->backgroundUpdate(d);
         case GAME:
             player.update();
             break;

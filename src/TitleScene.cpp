@@ -1,6 +1,5 @@
 #include "TitleScene.h"
 
-
 void TitleScene::setup(){
     title.load("ZoneRush2.png");
     titlePos = ofPoint((ofGetWidth() / 2.0) - (title.getWidth() / 2.0), ofGetHeight() / 5.0);
@@ -15,7 +14,6 @@ void TitleScene::setup(){
     
     rightEmitter.setPosition(ofVec3f(ofGetWidth()-1,ofGetHeight()/2.0));
     rightEmitter.setVelocity(ofVec3f(-310,0.0));
-    
     rightEmitter.posSpread = ofVec3f(0,ofGetHeight());
     rightEmitter.velSpread = ofVec3f(120,20);
     rightEmitter.life = 50;
@@ -23,9 +21,8 @@ void TitleScene::setup(){
     rightEmitter.numPars = 3;
     rightEmitter.size = 12;
     rightEmitter.color = ofColor(100,100,200);
-    rightEmitter.colorSpread = ofColor(50,50,50);
+    rightEmitter.colorSpread = ofColor(70,70,70);
     
-
 }
 
 void TitleScene::update(){
@@ -45,9 +42,12 @@ void TitleScene::update(){
     
 }
 
-void TitleScene::backgroundUpdate(){
+void TitleScene::backgroundUpdate(const Track::Data* data){
     particleSystem.update(min(ofGetLastFrameTime(), 1.0/10.0), 1);
-    particleSystem.addParticles(rightEmitter);
+    
+    rightEmitter.numPars = max((int)(-data->intensity) + (data->onBeat?12:0), 2);
+    rightEmitter.setVelocity(data->onBeat?ofVec3f(-510,0.0):ofVec3f(-310,0.0));
+
     
     particleSystem.addParticles(rightEmitter);
     
