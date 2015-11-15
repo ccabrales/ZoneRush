@@ -1,8 +1,8 @@
 #include "ofApp.h"
 
 int tick = 0;
-Track* currentTrack = NULL;
-ofxAudioDecoder* globalDecoder = NULL;
+unique_ptr<Track> currentTrack = NULL;
+unique_ptr<ofxAudioDecoder> globalDecoder = NULL;
 
 
 
@@ -27,12 +27,11 @@ void ofApp::setup(){
     player_image.load("ship.png");
     player.setup(&player_image);
     
-    if(globalDecoder != NULL) delete globalDecoder;
-    globalDecoder = new ofxAudioDecoder();
+    globalDecoder = unique_ptr<ofxAudioDecoder>(new ofxAudioDecoder());
     
     globalDecoder->load("music.mp3");
-    currentTrack = new Track(globalDecoder);
-    tv.setup(currentTrack);
+    currentTrack = unique_ptr<Track>(new Track(globalDecoder.get()));
+    tv.setup(currentTrack.get());
     
     //int sampleRate = 44100; int bufferSize = 256; int nBuffers = 4;
     ofSoundStreamSetup(2, 0, this);

@@ -1,8 +1,11 @@
 #pragma once
 
+#include "ofMain.h"
 
 extern int tick;
 class Track;
-extern Track * currentTrack;
+
+
+extern unique_ptr<Track> currentTrack;
 class ofxAudioDecoder;
-extern ofxAudioDecoder* globalDecoder;
+extern unique_ptr<ofxAudioDecoder> globalDecoder;

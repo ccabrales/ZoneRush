@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdio.h>
+#include "ofMain.h"
 #include "globals.h"
 #include "enemy.h"
 
