@@ -21,10 +21,10 @@ void TitleScene::setup(){
     
     logoEmitter.setPosition(ofVec3f(ofGetWidth()-1, titlePos.y + 50));
     logoEmitter.posSpread = ofVec3f(0, -60);
-    logoEmitter.setVelocity(ofVec3f(-810,0.0));
+    logoEmitter.setVelocity(ofVec3f(-1810,0.0));
 
     logoEmitter.velSpread = ofVec3f(320,20);
-    logoEmitter.life = 10;
+    logoEmitter.life = 4;
     logoEmitter.lifeSpread = 3;
     logoEmitter.numPars = 2;
 //    logoEmitter.size = 12;

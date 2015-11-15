@@ -3,17 +3,19 @@
 #include "ofMain.h"
 #include "ofxAubio.h"
 #include "ofxGui.h"
+#include "globals.h"
 #include "ofxAudioDecoder.h"
 #include "track.h"
 #include "player.h"
 #include "enemy.h"
 #include "TrackViewUtil.h"
 #include "GameEvent.h"
-#include "globals.h"
 #include "enemy.h"
 #include "TitleScene.h"
 #include "GameScene.h"
 #include "ofxPostProcessing.h"
+#include "AudioLoader.h"
+
 
 class ofApp : public ofBaseApp{
     
@@ -38,13 +40,9 @@ public:
     void audioIn(float * input, int bufferSize, int nChannels);
     
 private:
-    bool checkFileExtension(ofFileDialogResult res);
-    void convertFileAndReload(string filePath);
-    
-    enum GameState { START, LOADING, GAME, END };
+    enum GameState { START, LOAD, GAME, END };
     
     TrackView tv;
-    ofxAudioDecoder musicDecoder;
     
     Player player;
     GameState game_state;
@@ -58,7 +56,6 @@ private:
     
     ofxPostProcessing post;
     
-    vector<string> acceptableFileExts {"mp3", "m4a", "wav"};
-    vector<string> convertFileExts {"aiff", "aif", "flac", "ogg"};
+    unique_ptr<AudioLoader> audioLoader;
     //Events:
 };

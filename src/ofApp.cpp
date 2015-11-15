@@ -2,14 +2,19 @@
 
 int tick = 0;
 Track* currentTrack = NULL;
+ofxAudioDecoder* globalDecoder = NULL;
+
+
 
 //--------------------------------------------------------------
 void ofApp::setup(){
     // set the size of the window
-    //ofSetWindowShape(750, 250);
+//    ofSetWindowShape(2560, 1600);
     ofSetEscapeQuitsApp(false);
 //    ofSetFullscreen(true);
     ofHideCursor();
+    
+    
 
     
     //Set up scenes here
@@ -22,17 +27,18 @@ void ofApp::setup(){
     player_image.load("ship.png");
     player.setup(&player_image);
     
-    musicDecoder.load("music.mp3");
-    currentTrack = new Track(&musicDecoder);
+    if(globalDecoder != NULL) delete globalDecoder;
+    globalDecoder = new ofxAudioDecoder();
+    
+    globalDecoder->load("music.mp3");
+    currentTrack = new Track(globalDecoder);
     tv.setup(currentTrack);
     
     //int sampleRate = 44100; int bufferSize = 256; int nBuffers = 4;
     ofSoundStreamSetup(2, 0, this);
-    
     post.init(ofGetWidth(), ofGetHeight());
     post.createPass<BloomPass>();
-//    post.createPass<ZoomBlurPass>();
-//    bp->enable();
+    
 }
 
 void ofApp::exit(){
@@ -41,9 +47,11 @@ void ofApp::exit(){
 }
 
 void ofApp::audioOut(float * input, int bufferSize, int nChannels){
-    copy(musicDecoder.getRawSamples().begin()+tick*bufferSize*nChannels, musicDecoder.getRawSamples().begin()+tick*bufferSize*nChannels+bufferSize*nChannels, input);
+    if(globalDecoder == NULL) return;
+    
+    copy(globalDecoder->getRawSamples().begin()+tick*bufferSize*nChannels, globalDecoder->getRawSamples().begin()+tick*bufferSize*nChannels+bufferSize*nChannels, input);
     tick ++;
-    if(tick*nChannels*bufferSize > musicDecoder.getNumSamples()){
+    if(tick*nChannels*bufferSize > globalDecoder->getNumSamples()){
         tick = 0;
     }
     tv.updateAudio(input, bufferSize, nChannels);
@@ -94,6 +102,9 @@ void ofApp::draw(){
         case START:
             titleScene->draw();
             break;
+        case LOAD:
+            
+            break;
         case GAME:
 //            player.draw();
             tv.draw(tick);
@@ -126,10 +137,10 @@ void ofApp::keyPressed(int key){
                 break;
             case OF_KEY_RETURN:
                 if (titleScene->isPlaySelected()) {
-                    ofFileDialogResult res = ofSystemLoadDialog();
-                    if (checkFileExtension(res)) { //only move forward if we have a good file
-                        game_state = GAME;
-                    }
+                    audioLoader = unique_ptr<AudioLoader>(new AudioLoader());
+                    audioLoader->startThread();
+                    game_state = LOAD;
+                    
                 } else {
                     std::exit(0);
                 }
@@ -169,60 +180,6 @@ void ofApp::keyReleased(int key){
                 break;
         }
     }
-}
-
-//--------------------------------------------------------------
-bool ofApp::checkFileExtension(ofFileDialogResult res){
-    string fileName = res.getPath();
-    string filePath = res.getPath();
-    string ext = ofFilePath::getFileExt(filePath);
-    game_state = LOADING;
-    if (ext == "") {
-        return false;
-    }
-    
-    //Acceptable format, move along
-    if (std::find(acceptableFileExts.begin(), acceptableFileExts.end(), ext)
-            != acceptableFileExts.end()) {
-        musicDecoder.load(filePath);
-        //TODO: do not use Music Decoder here since it's just a test.
-        
-        if (musicDecoder.getChannels() != 2 || musicDecoder.getSampleRate() != 44100) {
-            convertFileAndReload(filePath);
-        }
-    } else if (std::find(convertFileExts.begin(), convertFileExts.end(), ext)
-                    != convertFileExts.end()) {
-        convertFileAndReload(filePath);
-    } else {
-        ofSystemAlertDialog("Unsupported file type chosen. Please select from the following: mp3, m4a, wav, aiff, aif, flac, ogg");
-        game_state = START;
-        return false;
-    }
-    
-    currentTrack = new Track(&musicDecoder);
-    //TODO: similarly don't use music decoder here.
-    tv.setup(currentTrack);
-    return true;
-}
-
-//--------------------------------------------------------------
-void ofApp::convertFileAndReload(string filePath) {
-    
-    string output = ofSystem("../../../sox "+filePath+" -c 2 -r 44100 -t wav ../../../data/temp.wav");
-    //this file will be overwritten every time.
-    cout << output << endl;
-    //sort of wants to busywait here. Hmm.
-    
-    //now do something with the file.
-    
-    /*sample success: 
-        ../../../sox WARN rate: rate clipped 432 samples; decrease volume?
-        ../../../sox WARN dither: dither clipped 816 samples; decrease volume?
-     */
-    
-    //it's actually really difficult to tell if it succeeded or not. My best bet is do something afterwards. like "sox stuff && echo \"yay\" " so you can check it for 'yay'. I'm sure if it fails it'll not print echo.
-    
-    
 }
 
 //--------------------------------------------------------------
