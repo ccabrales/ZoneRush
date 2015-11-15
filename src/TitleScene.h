@@ -11,6 +11,7 @@
 
 class TitleScene {
 public:
+    enum LoadState { TITLE, TRANSITION, LOAD, TOGAME, END };
     void setup();
     void update();
     void backgroundUpdate(const Track::Data* data);
@@ -23,7 +24,7 @@ public:
     void willExit();
     void windowResized(int w, int h);
     bool isPlaySelected();
-    void setLoading();
+    void setLoading(LoadState state);
     
 private:
     ofImage title;
@@ -35,12 +36,17 @@ private:
     ofImage exitButton;
     ofPoint exitPos;
     
+    ofImage loadingImage;
+    ofPoint loadingPos;
+    
     int selectedIndex; //Keeps track of which button is currently selected
     
     ofxParticleSystem particleSystem;
     ofxParticleEmitter logoEmitter, rightEmitter;
     
-    bool isLoading;
+    float imageDx; //Used in transitions for moving text
+    
+    LoadState loadState;
     
     void resetPosition();
 };

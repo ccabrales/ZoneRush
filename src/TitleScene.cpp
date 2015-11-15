@@ -4,10 +4,12 @@ void TitleScene::setup(){
     title.load("ZoneRush2.png");
     playButton.load("PlaySelected.png");
     exitButton.load("Exit.png");
+    loadingImage.load("Loading.png");
     resetPosition();
     
     selectedIndex = 0;
-    isLoading = false;
+    loadState = TITLE;
+    imageDx = -20.0;
     
     rightEmitter.setPosition(ofVec3f(ofGetWidth()-1,ofGetHeight()/2.0));
     rightEmitter.setVelocity(ofVec3f(-310,0.0));
@@ -40,6 +42,7 @@ void TitleScene::resetPosition(){
     playPos = ofPoint((ofGetWidth() / 2.0) - (playButton.getWidth() / 2.0), 3 * ofGetHeight() / 5.0);
     exitPos = ofPoint((ofGetWidth() / 2.0) - (exitButton.getWidth() / 2.0), playPos.y+playButton.getHeight() + 10.0);
     titlePos = ofPoint((ofGetWidth() / 2.0) - (title.getWidth() / 2.0), ofGetHeight() / 5.0);
+    loadingPos = ofPoint(ofGetWidth(), (ofGetHeight() / 2.0) - loadingImage.getHeight());
 }
 
 void TitleScene::update(){
@@ -60,6 +63,20 @@ void TitleScene::update(){
 }
 
 void TitleScene::backgroundUpdate(const Track::Data* data){
+    if (loadState == TRANSITION) { //update
+        titlePos.x += imageDx;
+        playPos.x += imageDx;
+        exitPos.x += imageDx;
+        loadingPos.x += imageDx;
+        
+        if (loadingPos.x <= ((ofGetWidth() / 2.0) - (loadingImage.getWidth() / 2.0)) ) {
+            loadState = LOAD; //finished transition
+        }
+    } else if (loadState == TOGAME) {
+        loadingPos.x += imageDx;
+        if (loadingPos.x <= (-loadingImage.getWidth())) loadState == END;
+    }
+    
     particleSystem.update(min(ofGetLastFrameTime(), 1.0/10.0), 1);
     
     rightEmitter.numPars = max((int)(-data->intensity+1) + (data->onBeat?12:0), 2);
@@ -78,12 +95,15 @@ void TitleScene::draw(){
     ofSetLineWidth(3.0);
     particleSystem.draw();
     ofPopStyle();
-
-    if (!isLoading) {
+    
+    if (loadState == TITLE || loadState == TRANSITION) {
         title.draw(titlePos);
         playButton.draw(playPos);
         exitButton.draw(exitPos);
     }
+    
+    if (loadState != TITLE || loadState != END) loadingImage.draw(loadingPos);
+    
     
     ofPopStyle();
 }
@@ -105,6 +125,11 @@ bool TitleScene::isPlaySelected() {
 }
 
 //Toggle the variable flag
-void TitleScene::setLoading() {
-    isLoading = !isLoading;
+void TitleScene::setLoading(LoadState state) {
+    loadState = state;
+    if (loadState == TITLE) resetPosition();
 }
+
+
+
+

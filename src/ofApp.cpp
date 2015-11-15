@@ -78,7 +78,8 @@ void ofApp::update(){
                 //Change game state to GAME
                 //Make sure music doesn't start playing until the game is totally loaded, and transition is finished
                 game_state = GAME;
-                titleScene->setLoading();
+//                titleScene->setLoading();
+                titleScene->setLoading(titleScene->TITLE);
             }
             break;
         case GAME:
@@ -152,7 +153,7 @@ void ofApp::keyPressed(int key){
                     audioLoader = unique_ptr<AudioLoader>(new AudioLoader());
                     audioLoader->start(res);
                     game_state = LOAD;
-                    titleScene->setLoading();
+                    titleScene->setLoading(titleScene->TRANSITION);
                 } else {
                     std::exit(0);
                 }
