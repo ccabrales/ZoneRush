@@ -62,11 +62,23 @@ void ofApp::audioIn(float* input, int bufferSize, int nChannels){}
 //--------------------------------------------------------------
 void ofApp::update(){
     
-    
     Track::Data* d;
     switch (game_state) {
         case START:
             titleScene->backgroundUpdate(d);
+            break;
+        case LOAD:
+            titleScene->backgroundUpdate(d);
+            //Check for when the thread is done
+            if (audioLoader->isDone) {
+                //clean up thread info?
+                //Check the audioLoader error information to see if should go back to title scene and display error
+                //Set the new music decoder and necessary information
+                //Do transition from loading screen to game state --> probably if statement?
+                //Change game state to GAME
+                //Make sure music doesn't start playing until the game is totally loaded, and transition is finished
+                game_state = GAME;
+            }
             break;
         case GAME:
             player.update();
@@ -100,10 +112,8 @@ void ofApp::draw(){
     ofPushStyle();
     switch (game_state) {
         case START:
-            titleScene->draw();
-            break;
         case LOAD:
-            
+            titleScene->draw();
             break;
         case GAME:
 //            player.draw();
@@ -137,10 +147,11 @@ void ofApp::keyPressed(int key){
                 break;
             case OF_KEY_RETURN:
                 if (titleScene->isPlaySelected()) {
+                    ofFileDialogResult res = ofSystemLoadDialog();
                     audioLoader = unique_ptr<AudioLoader>(new AudioLoader());
-                    audioLoader->startThread();
+                    audioLoader->start(res);
                     game_state = LOAD;
-                    
+                    titleScene->setLoading();
                 } else {
                     std::exit(0);
                 }

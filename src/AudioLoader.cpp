@@ -4,9 +4,14 @@ vector<string> acceptableFileExts {"mp3", "m4a", "wav"};
 vector<string> convertFileExts {"aiff", "aif", "flac", "ogg"};
 
 
+void AudioLoader::start(ofFileDialogResult res) {
+    result = res;
+    startThread();
+}
+
 void AudioLoader::threadedFunction(){
-    ofFileDialogResult res = ofSystemLoadDialog();
-    string filePath = res.getPath();
+//    ofFileDialogResult res = ofSystemLoadDialog();
+    string filePath = result.getPath();
     string ext = ofFilePath::getFileExt(filePath);
     if (ext == "") {
         createError("The selected music piece does not seem to have an extension and thus cannot be read.");
@@ -18,7 +23,6 @@ void AudioLoader::threadedFunction(){
     //Acceptable format, move along
     if (std::find(acceptableFileExts.begin(), acceptableFileExts.end(), ext)
         != acceptableFileExts.end()) {
-        
         musicDecoder->load(filePath);
         if (musicDecoder->getChannels() != 2 || musicDecoder->getSampleRate() != 44100) {
             if(!convertFile(filePath)){

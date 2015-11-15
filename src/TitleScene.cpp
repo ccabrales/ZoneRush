@@ -7,6 +7,7 @@ void TitleScene::setup(){
     resetPosition();
     
     selectedIndex = 0;
+    isLoading = false;
     
     rightEmitter.setPosition(ofVec3f(ofGetWidth()-1,ofGetHeight()/2.0));
     rightEmitter.setVelocity(ofVec3f(-310,0.0));
@@ -78,9 +79,11 @@ void TitleScene::draw(){
     particleSystem.draw();
     ofPopStyle();
 
-    title.draw(titlePos);
-    playButton.draw(playPos);
-    exitButton.draw(exitPos);
+    if (!isLoading) {
+        title.draw(titlePos);
+        playButton.draw(playPos);
+        exitButton.draw(exitPos);
+    }
     
     ofPopStyle();
 }
@@ -99,4 +102,9 @@ void TitleScene::windowResized(int w, int h) {
 
 bool TitleScene::isPlaySelected() {
     return selectedIndex == 0;
+}
+
+//Toggle the variable flag
+void TitleScene::setLoading() {
+    isLoading = !isLoading;
 }

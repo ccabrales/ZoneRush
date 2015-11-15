@@ -23,6 +23,7 @@ public:
     void willExit();
     void windowResized(int w, int h);
     bool isPlaySelected();
+    void setLoading();
     
 private:
     ofImage title;
@@ -38,6 +39,8 @@ private:
     
     ofxParticleSystem particleSystem;
     ofxParticleEmitter logoEmitter, rightEmitter;
+    
+    bool isLoading;
     
     void resetPosition();
 };
