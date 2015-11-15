@@ -78,6 +78,7 @@ void ofApp::update(){
                 //Change game state to GAME
                 //Make sure music doesn't start playing until the game is totally loaded, and transition is finished
                 game_state = GAME;
+                titleScene->setLoading();
             }
             break;
         case GAME:
