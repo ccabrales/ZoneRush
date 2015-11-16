@@ -15,8 +15,8 @@ void TitleScene::setup(){
     rightEmitter.setVelocity(ofVec3f(-310,0.0));
     rightEmitter.posSpread = ofVec3f(0,ofGetHeight());
     rightEmitter.velSpread = ofVec3f(120,20);
-    rightEmitter.life = 40;
-    rightEmitter.lifeSpread = 10;
+    rightEmitter.life = 13;
+    rightEmitter.lifeSpread = 0;
     rightEmitter.numPars = 3;
     rightEmitter.size = 12;
     rightEmitter.color = ofColor(100,100,200);
@@ -24,9 +24,9 @@ void TitleScene::setup(){
     
     logoEmitter.setPosition(ofVec3f(ofGetWidth()-1, titlePos.y + 50));
     logoEmitter.posSpread = ofVec3f(0, -60);
-    logoEmitter.setVelocity(ofVec3f(-1810,0.0));
+    logoEmitter.setVelocity(ofVec3f(-2810,0.0));
 
-    logoEmitter.velSpread = ofVec3f(320,20);
+    logoEmitter.velSpread = ofVec3f(520,20);
     logoEmitter.life = 4;
     logoEmitter.lifeSpread = 3;
     logoEmitter.numPars = 2;
