@@ -16,6 +16,10 @@
 #include "ofxPostProcessing.h"
 #include "AudioLoader.h"
 
+class GreedyParticleSystem: public ofxParticleSystem{
+public:
+    int update(float timeStep, float drag);
+};
 
 class ofApp : public ofBaseApp{
     
@@ -59,7 +63,7 @@ private:
     
     unique_ptr<AudioLoader> audioLoader;
     
-    ofxParticleSystem backgroundParticles;
+    GreedyParticleSystem backgroundParticles;
 
     //Events:
 };
