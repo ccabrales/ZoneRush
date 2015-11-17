@@ -70,17 +70,7 @@ void ofApp::update(){
         case LOAD:
             titleScene->backgroundUpdate(d);
             //Check for when the thread is done
-            if (audioLoader->isDone) {
-                //clean up thread info?
-                //Check the audioLoader error information to see if should go back to title scene and display error
-                //Set the new music decoder and necessary information
-                //Do transition from loading screen to game state --> probably if statement?
-                //Change game state to GAME
-                //Make sure music doesn't start playing until the game is totally loaded, and transition is finished
-                game_state = GAME;
-//                titleScene->setLoading();
-                titleScene->setLoading(titleScene->TITLE);
-            }
+            checkLoadUpdate();
             break;
         case GAME:
             player.update();
@@ -150,10 +140,12 @@ void ofApp::keyPressed(int key){
             case OF_KEY_RETURN:
                 if (titleScene->isPlaySelected()) {
                     ofFileDialogResult res = ofSystemLoadDialog();
-                    audioLoader = unique_ptr<AudioLoader>(new AudioLoader());
-                    audioLoader->start(res);
-                    game_state = LOAD;
-                    titleScene->setLoading(titleScene->TRANSITION);
+                    if (res.bSuccess) {
+                        audioLoader = unique_ptr<AudioLoader>(new AudioLoader());
+                        audioLoader->start(res);
+                        game_state = LOAD;
+                        titleScene->setLoading(titleScene->TRANSITION);
+                    }
                 } else {
                     std::exit(0);
                 }
@@ -193,6 +185,40 @@ void ofApp::keyReleased(int key){
                 break;
         }
     }
+}
+
+void ofApp::checkLoadUpdate() {
+    if (audioLoader->isDone) {
+        if (titleScene->getCurrentState() == titleScene->LOAD) { //Trigger
+            if (audioLoader->hasError) { //Something went wrong :( or user hit cancel
+                string errorMsg = audioLoader->errorMsg;
+                ofSystemAlertDialog(errorMsg);
+                titleScene->setLoading(titleScene->TITLE);
+                game_state = START;
+            } else { //Loaded successfully! :) so start transition to game
+                titleScene->setLoading(titleScene->TOGAME);
+            }
+        } else if (titleScene->getCurrentState() == titleScene->END) { //Can move on
+            game_state = GAME;
+            titleScene->setLoading(titleScene->TITLE);
+            tick = 0;
+            globalDecoder.release();
+//            currentTrack.release();
+            globalDecoder = unique_ptr<ofxAudioDecoder>(audioLoader->tempDecoder.get());
+            currentTrack = unique_ptr<Track>(audioLoader->loadedTrack.get());
+            tv.setup(currentTrack);
+        }
+        
+        
+        //clean up thread info?
+        //Check the audioLoader error information to see if should go back to title scene and display error
+        //Set the new music decoder and necessary information
+        //Reset global tick
+        //Do transition from loading screen to game state --> probably if statement?
+        //Change game state to GAME
+        //Make sure music doesn't start playing until the game is totally loaded, and transition is finished
+    }
+
 }
 
 //--------------------------------------------------------------

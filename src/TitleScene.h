@@ -25,6 +25,7 @@ public:
     void windowResized(int w, int h);
     bool isPlaySelected();
     void setLoading(LoadState state);
+    LoadState getCurrentState();
     
 private:
     ofImage title;

@@ -13,6 +13,12 @@ void AudioLoader::threadedFunction(){
 //    ofFileDialogResult res = ofSystemLoadDialog();
     string filePath = result.getPath();
     string ext = ofFilePath::getFileExt(filePath);
+    
+    if (!result.bSuccess) { //user clicked cancel
+        createError("");
+        return;
+    }
+    
     if (ext == "") {
         createError("The selected music piece does not seem to have an extension and thus cannot be read.");
         return;

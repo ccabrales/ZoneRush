@@ -74,7 +74,7 @@ void TitleScene::backgroundUpdate(const Track::Data* data){
         }
     } else if (loadState == TOGAME) {
         loadingPos.x += imageDx;
-        if (loadingPos.x <= (-loadingImage.getWidth())) loadState == END;
+        if (loadingPos.x <= (-loadingImage.getWidth())) loadState = END;
     }
     
     particleSystem.update(min(ofGetLastFrameTime(), 1.0/10.0), 1);
@@ -128,6 +128,10 @@ bool TitleScene::isPlaySelected() {
 void TitleScene::setLoading(LoadState state) {
     loadState = state;
     if (loadState == TITLE) resetPosition();
+}
+
+TitleScene::LoadState TitleScene::getCurrentState() {
+    return loadState;
 }
 
 
