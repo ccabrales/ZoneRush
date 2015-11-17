@@ -188,6 +188,7 @@ void ofApp::keyReleased(int key){
 }
 
 void ofApp::checkLoadUpdate() {
+    audioLoader->lock();
     if (audioLoader->isDone) {
         if (titleScene->getCurrentState() == titleScene->LOAD) { //Trigger
             if (audioLoader->hasError) { //Something went wrong :( or user hit cancel
@@ -209,6 +210,7 @@ void ofApp::checkLoadUpdate() {
             game_state = GAME;
         }
     }
+    audioLoader->unlock();
 
 }
 

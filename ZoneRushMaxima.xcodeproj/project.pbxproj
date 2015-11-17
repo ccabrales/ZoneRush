@@ -18,7 +18,7 @@
 		9C7B8B4D99CDFC508E76CC3A /* ofxAubioOnset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A90A4B17BBB4CB627CA22C4 /* ofxAubioOnset.cpp */; };
 		AB0E6D8F1BF4B46600018CD3 /* SpawnerLogistics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB0E6D8D1BF4B46600018CD3 /* SpawnerLogistics.cpp */; };
 		AB0E6D961BF566E400018CD3 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB0E6D941BF566E400018CD3 /* GameScene.cpp */; };
-		AB1BDC931BF9D1C800D25CD8 /* ofxAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB1BDC911BF9D1C800D25CD8 /* ofxAssets.cpp */; settings = {ASSET_TAGS = (); }; };
+		AB1BDC931BF9D1C800D25CD8 /* ofxAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB1BDC911BF9D1C800D25CD8 /* ofxAssets.cpp */; };
 		AB61120F1BF7FF8F008B0522 /* AudioLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB61120D1BF7FF8F008B0522 /* AudioLoader.cpp */; };
 		AB6951001BED55BC00DB820E /* filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB6950FE1BED55BC00DB820E /* filter.cpp */; };
 		AB916EEF1BF74CDF00727BA1 /* BleachBypassPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB916EBC1BF74CDF00727BA1 /* BleachBypassPass.cpp */; };
@@ -52,7 +52,7 @@
 		AB99A9031BF1F9E800D7F38E /* TrackViewUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A9011BF1F9E800D7F38E /* TrackViewUtil.cpp */; };
 		AB99A9091BF20E3500D7F38E /* GameEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A9081BF20E3500D7F38E /* GameEvent.cpp */; };
 		AB99A90C1BF28C5500D7F38E /* EnemyPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB99A90A1BF28C5500D7F38E /* EnemyPath.cpp */; };
-		ABD838361BF96B2C00EA1E37 /* ImageLibrary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABD838341BF96B2C00EA1E37 /* ImageLibrary.cpp */; settings = {ASSET_TAGS = (); }; };
+		ABD838361BF96B2C00EA1E37 /* ImageLibrary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABD838341BF96B2C00EA1E37 /* ImageLibrary.cpp */; };
 		ABED9FB01BEE238400F11CCC /* ofxMSAInteractiveObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABED9FAE1BEE238400F11CCC /* ofxMSAInteractiveObject.cpp */; };
 		ABF66CDF1BE9ABF200D5CEE8 /* aubio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF66CDE1BE9ABF200D5CEE8 /* aubio.framework */; };
 		ABF66CF21BE9AE2500D5CEE8 /* audiodecoderbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF66CF01BE9AE2500D5CEE8 /* audiodecoderbase.cpp */; };
