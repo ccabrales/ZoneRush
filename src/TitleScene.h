@@ -14,7 +14,7 @@ public:
     enum LoadState { TITLE, TRANSITION, LOAD, TOGAME, END };
     void setup();
     void update();
-    void backgroundUpdate(const Track::Data* data);
+    void backgroundUpdate(const Track::Data* data,     ofxParticleSystem* particleSystem);
     void draw();
     
     //event handling implementations.
@@ -42,7 +42,6 @@ private:
     
     int selectedIndex; //Keeps track of which button is currently selected
     
-    ofxParticleSystem particleSystem;
     ofxParticleEmitter logoEmitter, rightEmitter;
     
     float imageDx; //Used in transitions for moving text

@@ -62,44 +62,50 @@ void ofApp::audioIn(float* input, int bufferSize, int nChannels){}
 //--------------------------------------------------------------
 void ofApp::update(){
     
-    Track::Data* d;
+    Track::Data* d = currentTrack->readData(tick);
+    tv.update(d);
+    
+    backgroundParticles.update(min(ofGetLastFrameTime(), 1.0/10.0), 1);
+
     switch (game_state) {
         case START:
-            titleScene->backgroundUpdate(d);
+            titleScene->backgroundUpdate(d, &backgroundParticles);
             break;
         case LOAD:
-            titleScene->backgroundUpdate(d);
+            titleScene->backgroundUpdate(d, &backgroundParticles);
             //Check for when the thread is done
             checkLoadUpdate();
             break;
         case GAME:
             player.update();
-            d = currentTrack->readData(tick);
-            tv.update(d);
             break;
         default:
             break;
     }
     //TEMPORARY ENEMY SPAWNER LOL
-//    if(d->onBeat){
-//        vector<EnemyPtr>* newEnemies = EnemyFactory::makeGroup(1, 2, 0);
-//        for(int i = 0; i < newEnemies->size(); i++){
-//            enemyList.push_back((*newEnemies)[i]);
-//        }
-//        delete newEnemies;
-//    }
-//    for(int i=0; i < enemyList.size(); i++){
-//        enemyList[i]->update();
-//    }
-//    
-//    delete d;
+    //    if(d->onBeat){
+    //        vector<EnemyPtr>* newEnemies = EnemyFactory::makeGroup(1, 2, 0);
+    //        for(int i = 0; i < newEnemies->size(); i++){
+    //            enemyList.push_back((*newEnemies)[i]);
+    //        }
+    //        delete newEnemies;
+    //    }
+    //    for(int i=0; i < enemyList.size(); i++){
+    //        enemyList[i]->update();
+    //    }
+    //    
+    //    delete d;
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     // update beat info
     post.begin();
-
+    ofBackground(10, 10, 42);
+    ofPushStyle();
+    ofSetLineWidth(4);
+    backgroundParticles.draw();
+    ofPopStyle();
     
     ofPushStyle();
     switch (game_state) {
@@ -109,9 +115,9 @@ void ofApp::draw(){
             break;
         case GAME:
 //            player.draw();
-            tv.draw(tick);
 
             gameScene->draw();
+
             break;
         case END:
             break;
@@ -125,8 +131,8 @@ void ofApp::draw(){
     }
     
     post.end(true);
+    tv.draw(tick);
 
-    
 }
 
 //--------------------------------------------------------------

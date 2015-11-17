@@ -58,5 +58,8 @@ private:
     ofxPostProcessing post;
     
     unique_ptr<AudioLoader> audioLoader;
+    
+    ofxParticleSystem backgroundParticles;
+
     //Events:
 };

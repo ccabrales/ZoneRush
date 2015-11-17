@@ -36,13 +36,14 @@ void TrackView::update(const Track::Data* d){
 }
 
 void TrackView::draw(int tick){
-    int wh = ofGetHeight();
+    ofPushMatrix();
     ofPushStyle();
+    int wh = ofGetHeight();
 
     ofSetColor(255,255,0,beatDecay*255);
     ofRect(10,10,30,13);
     
-    ofSetColor(ofColor::black);
+    ofSetColor(ofColor::white);
     ofDrawBitmapString("BPM", ofPoint(10,10));
     ofDrawBitmapString(ofToString(round(track->frameData[tick].bpm)), ofPoint(10, 22));
     
@@ -52,7 +53,7 @@ void TrackView::draw(int tick){
         ofRect(10,39+13*i,30,10);
     }
     
-    ofSetColor(ofColor::black);
+    ofSetColor(ofColor::white);
     
     ofDrawBitmapString("ONSET\n#3\n#2\n#1", ofPoint(10,36));
     
@@ -64,8 +65,8 @@ void TrackView::draw(int tick){
         bandPlot[i].y = wh - 100 * bands.energies[i];
     }
     
-    for (int i = 0; i < 90 && tick-10+i > 0 && tick-10+i < track->frameData.size(); i++){
-        Track::Data& dp = track->frameData[tick-10+i];
+    for (int i = 0; i < 90 && tick+i > 0 && tick+i < track->frameData.size(); i++){
+        Track::Data& dp = track->frameData[tick+i];
         
         pitchPlot[i].x = -20 + (2 * dp.pitch);
         intensityPlot[i].x = (30.*(1.0-dp.intensity));
@@ -88,5 +89,7 @@ void TrackView::draw(int tick){
     
     ofSetColor(ofColor::black);
     ofLine(10, 80, 140, 80);
+    
     ofPopStyle();
+    ofPopMatrix();
 }

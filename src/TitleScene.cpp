@@ -62,7 +62,7 @@ void TitleScene::update(){
     
 }
 
-void TitleScene::backgroundUpdate(const Track::Data* data){
+void TitleScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* particleSystem){
     if (loadState == TRANSITION) { //update
         titlePos.x += imageDx;
         playPos.x += imageDx;
@@ -77,24 +77,15 @@ void TitleScene::backgroundUpdate(const Track::Data* data){
         if (loadingPos.x <= (-loadingImage.getWidth())) loadState = END;
     }
     
-    particleSystem.update(min(ofGetLastFrameTime(), 1.0/10.0), 1);
-    
     rightEmitter.numPars = max((int)(-data->intensity+1) + (data->onBeat?12:0), 2);
     rightEmitter.setVelocity(data->onBeat?ofVec3f(-510,0.0):ofVec3f(-310,0.0));
 
-    particleSystem.addParticles(logoEmitter);
-    particleSystem.addParticles(rightEmitter);
-    
-//    cout << particleSystem.getNumParticles() << endl;
+    particleSystem->addParticles(logoEmitter);
+    particleSystem->addParticles(rightEmitter);
 }
 
 void TitleScene::draw(){
     ofPushStyle();
-    ofBackground(0, 0, 0);
-    ofPushStyle();
-    ofSetLineWidth(3.0);
-    particleSystem.draw();
-    ofPopStyle();
     
     if (loadState == TITLE || loadState == TRANSITION) {
         title.draw(titlePos);
@@ -103,7 +94,6 @@ void TitleScene::draw(){
     }
     
     if (loadState != TITLE || loadState != END) loadingImage.draw(loadingPos);
-    
     
     ofPopStyle();
 }
