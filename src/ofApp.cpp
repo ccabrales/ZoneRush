@@ -35,6 +35,7 @@ void ofApp::setup(){
     titleScene = new TitleScene;
     titleScene->setup();
     gameScene = new GameScene;
+    gameOverScene = new GameOverScene;
     
     game_state = START;
     

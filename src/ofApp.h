@@ -13,6 +13,7 @@
 #include "enemy.h"
 #include "TitleScene.h"
 #include "GameScene.h"
+#include "GameOverScene.h"
 #include "ofxPostProcessing.h"
 #include "AudioLoader.h"
 
@@ -58,6 +59,7 @@ private:
     
     TitleScene * titleScene;
     GameScene * gameScene;
+    GameOverScene * gameOverScene;
     
     ofxPostProcessing post;
     

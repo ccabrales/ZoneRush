@@ -84,6 +84,7 @@
 		C981D4BF1BEC3E4B006CB9BA /* ofxTween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D4B11BEC3E4B006CB9BA /* ofxTween.cpp */; };
 		C99529541BEFF639005415D5 /* enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C99529521BEFF639005415D5 /* enemy.cpp */; };
 		C99529571BF0259F005415D5 /* weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C99529551BF0259F005415D5 /* weapon.cpp */; };
+		C9D9BE301BFBCA3F0032C87E /* GameOverScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D9BE2E1BFBCA3F0032C87E /* GameOverScene.cpp */; };
 		C9F760741BF66DF90045D640 /* TitleButtons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F760721BF66DF90045D640 /* TitleButtons.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
@@ -315,6 +316,8 @@
 		C99529531BEFF639005415D5 /* enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enemy.h; sourceTree = "<group>"; };
 		C99529551BF0259F005415D5 /* weapon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = weapon.cpp; sourceTree = "<group>"; };
 		C99529561BF0259F005415D5 /* weapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = weapon.h; sourceTree = "<group>"; };
+		C9D9BE2E1BFBCA3F0032C87E /* GameOverScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameOverScene.cpp; sourceTree = "<group>"; };
+		C9D9BE2F1BFBCA3F0032C87E /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		C9F760721BF66DF90045D640 /* TitleButtons.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TitleButtons.cpp; sourceTree = "<group>"; };
 		C9F760731BF66DF90045D640 /* TitleButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleButtons.h; sourceTree = "<group>"; };
 		E112B3AEBEA2C091BF2B40AE /* ofxPanel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxPanel.cpp; path = ../../../addons/ofxGui/src/ofxPanel.cpp; sourceTree = SOURCE_ROOT; };
@@ -604,6 +607,8 @@
 				AB0E6D951BF566E400018CD3 /* GameScene.h */,
 				C9F760721BF66DF90045D640 /* TitleButtons.cpp */,
 				C9F760731BF66DF90045D640 /* TitleButtons.h */,
+				C9D9BE2E1BFBCA3F0032C87E /* GameOverScene.cpp */,
+				C9D9BE2F1BFBCA3F0032C87E /* GameOverScene.h */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1014,6 +1019,7 @@
 				F285EB3169F1566CA3D93C20 /* ofxPanel.cpp in Sources */,
 				C981D4BA1BEC3E4B006CB9BA /* ofxEasingLinear.cpp in Sources */,
 				AB916EF61BF74CDF00727BA1 /* FakeSSSPass.cpp in Sources */,
+				C9D9BE301BFBCA3F0032C87E /* GameOverScene.cpp in Sources */,
 				AB916EFE1BF74CDF00727BA1 /* NoiseWarpPass.cpp in Sources */,
 				AB99A9031BF1F9E800D7F38E /* TrackViewUtil.cpp in Sources */,
 				AB916EF21BF74CDF00727BA1 /* ConvolutionPass.cpp in Sources */,
