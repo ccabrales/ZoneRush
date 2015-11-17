@@ -199,23 +199,15 @@ void ofApp::checkLoadUpdate() {
                 titleScene->setLoading(titleScene->TOGAME);
             }
         } else if (titleScene->getCurrentState() == titleScene->END) { //Can move on
-            game_state = GAME;
             titleScene->setLoading(titleScene->TITLE);
             tick = 0;
             globalDecoder.release();
-//            currentTrack.release();
+            currentTrack.release();
             globalDecoder = unique_ptr<ofxAudioDecoder>(audioLoader->tempDecoder.get());
             currentTrack = unique_ptr<Track>(audioLoader->loadedTrack.get());
+            tv.setup(currentTrack.get());
+            game_state = GAME;
         }
-        
-        
-        //clean up thread info?
-        //Check the audioLoader error information to see if should go back to title scene and display error
-        //Set the new music decoder and necessary information
-        //Reset global tick
-        //Do transition from loading screen to game state --> probably if statement?
-        //Change game state to GAME
-        //Make sure music doesn't start playing until the game is totally loaded, and transition is finished
     }
 
 }
