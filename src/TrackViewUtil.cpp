@@ -4,13 +4,15 @@ void TrackView::setup(Track* track){
     this->track = track;
     bands.setup();
     
-    for (int i = 0; i < 40; i++) {
-        bandPlot.addVertex( 0 + i * 2, 240 - 100 * bands.energies[i]);
-    }
-    
-    for(int i = 0; i< 90; i++){
-        pitchPlot.addVertex(0, 90 - i );
-        intensityPlot.addVertex(0, 90-i);
+    if(bandPlot.size() == 0){
+        for (int i = 0; i < 40; i++) {
+            bandPlot.addVertex( 0 + i * 2, 240 - 100 * bands.energies[i]);
+        }
+        
+        for(int i = 0; i< 90; i++){
+            pitchPlot.addVertex(0, 90 - i );
+            intensityPlot.addVertex(0, 90-i);
+        }
     }
 }
 
@@ -54,7 +56,6 @@ void TrackView::draw(int tick){
     }
     
     ofSetColor(ofColor::white);
-    
     ofDrawBitmapString("ONSET\n#3\n#2\n#1", ofPoint(10,36));
     
     ofSetColor(ofColor::blue);
@@ -87,7 +88,7 @@ void TrackView::draw(int tick){
     intensityPlot.draw();
     ofDrawBitmapString("power", ofPoint(intensityPlot[10]));
     
-    ofSetColor(ofColor::black);
+    ofSetColor(ofColor::white);
     ofLine(10, 80, 140, 80);
     
     ofPopStyle();
