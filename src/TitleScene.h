@@ -18,10 +18,6 @@ public:
     void draw();
     
     //event handling implementations.
-//    void willFadeIn();
-//    void willDraw();
-    void willFadeOut();
-    void willExit();
     void windowResized(int w, int h);
     bool isPlaySelected();
     void setLoading(LoadState state);

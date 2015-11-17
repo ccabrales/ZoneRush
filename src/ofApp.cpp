@@ -31,8 +31,6 @@ void ofApp::setup(){
     ofHideCursor();
     
     
-
-    
     //Set up scenes here
     titleScene = new TitleScene;
     titleScene->setup();
@@ -93,6 +91,7 @@ void ofApp::update(){
             checkLoadUpdate();
             break;
         case GAME:
+            gameScene->backgroundUpdate(d, &backgroundParticles);
             player.update();
             break;
         default:
@@ -130,7 +129,7 @@ void ofApp::draw(){
             titleScene->draw();
             break;
         case GAME:
-//            player.draw();
+            player.draw();
 
             gameScene->draw();
 
@@ -230,6 +229,7 @@ void ofApp::checkLoadUpdate() {
             currentTrack = unique_ptr<Track>(audioLoader->loadedTrack.get());
             tv.setup(currentTrack.get());
             game_state = GAME;
+            gameScene->setup();
         }
     }
     audioLoader->unlock();
