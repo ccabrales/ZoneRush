@@ -4,6 +4,8 @@
 
 #include <stdio.h>
 #include "ofMain.h"
+#include "ofxParticles.h"
+#include "track.h"
 
 class GameScene {
 public:
@@ -17,4 +19,8 @@ public:
     void willFadeOut();
     void willExit();
     void windowResized(int w, int h);
+    void backgroundUpdate(const Track::Data* data, ofxParticleSystem* particleSystem);
+    
+private:
+    ofxParticleEmitter rightEmitter;
 };

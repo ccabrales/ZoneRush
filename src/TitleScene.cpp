@@ -98,14 +98,6 @@ void TitleScene::draw(){
     ofPopStyle();
 }
 
-void TitleScene::willFadeOut() {
-    
-}
-
-void TitleScene::willExit(){
-    
-}
-
 void TitleScene::windowResized(int w, int h) {
     resetPosition();
 }
