@@ -206,7 +206,6 @@ void ofApp::checkLoadUpdate() {
 //            currentTrack.release();
             globalDecoder = unique_ptr<ofxAudioDecoder>(audioLoader->tempDecoder.get());
             currentTrack = unique_ptr<Track>(audioLoader->loadedTrack.get());
-            tv.setup(currentTrack);
         }
         
         
