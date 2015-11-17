@@ -38,10 +38,7 @@ void ofApp::setup(){
     gameOverScene = new GameOverScene;
     
     game_state = START;
-    
-    player_image.load("ship.png");
-    player.setup(&player_image);
-    
+        
     globalDecoder = unique_ptr<ofxAudioDecoder>(new ofxAudioDecoder());
     
     globalDecoder->load("music.mp3");
@@ -93,7 +90,6 @@ void ofApp::update(){
             break;
         case GAME:
             gameScene->backgroundUpdate(d, &backgroundParticles);
-            player.update();
             break;
         default:
             break;
@@ -130,8 +126,6 @@ void ofApp::draw(){
             titleScene->draw();
             break;
         case GAME:
-            player.draw();
-
             gameScene->draw();
 
             break;
@@ -177,13 +171,13 @@ void ofApp::keyPressed(int key){
     } else if (game_state == GAME) {
         switch (key) {
             case OF_KEY_LEFT:
-                player.is_left_pressed = true;  break;
+                gameScene->player.is_left_pressed = true;  break;
             case OF_KEY_RIGHT:
-                player.is_right_pressed = true; break;
+                gameScene->player.is_right_pressed = true; break;
             case OF_KEY_UP:
-                player.is_up_pressed = true;    break;
+                gameScene->player.is_up_pressed = true;    break;
             case OF_KEY_DOWN:
-                player.is_down_pressed = true;  break;
+                gameScene->player.is_down_pressed = true;  break;
             default:
                 break;
         }
@@ -196,13 +190,13 @@ void ofApp::keyReleased(int key){
     if (game_state == GAME) {
         switch (key) {
             case OF_KEY_LEFT:
-                player.is_left_pressed = false;     break;
+                gameScene->player.is_left_pressed = false;     break;
             case OF_KEY_RIGHT:
-                player.is_right_pressed = false;    break;
+                gameScene->player.is_right_pressed = false;    break;
             case OF_KEY_UP:
-                player.is_up_pressed = false;       break;
+                gameScene->player.is_up_pressed = false;       break;
             case OF_KEY_DOWN:
-                player.is_down_pressed = false;     break;
+                gameScene->player.is_down_pressed = false;     break;
             default:
                 break;
         }

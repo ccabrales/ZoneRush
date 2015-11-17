@@ -1,5 +1,6 @@
 #pragma once
 #include "ofMain.h"
+#include "ofxParticles.h"
 
 
 ///TODO: this isn't it.
@@ -21,5 +22,7 @@ public:
 //    bool check_can_shoot();
     
     ofImage * img;
-        
+    
+    ofxParticleEmitter emitter;
+    
 };

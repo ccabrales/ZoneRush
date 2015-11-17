@@ -6,6 +6,8 @@
 #include "ofMain.h"
 #include "ofxParticles.h"
 #include "track.h"
+#include "ofxAssets.h"
+#include "player.h"
 
 class GameScene {
 public:
@@ -20,6 +22,8 @@ public:
     void willExit();
     void windowResized(int w, int h);
     void backgroundUpdate(const Track::Data* data, ofxParticleSystem* particleSystem);
+    
+    Player player;
     
 private:
     ofxParticleEmitter rightEmitter;

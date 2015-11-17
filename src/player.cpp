@@ -11,6 +11,17 @@ void Player::setup(ofImage * _img) {
     height = img->getHeight();
     speed = 3;
     lives = 3;
+    
+    
+    emitter.setPosition(pos);
+    emitter.setVelocity(ofVec3f(-310,0.0));
+    emitter.posSpread = ofVec3f(0,-10);
+    emitter.velSpread = ofVec3f(120,20);
+    emitter.life = 0.5;
+    emitter.lifeSpread = 0;
+    emitter.numPars = 3;
+    emitter.color = ofColor(220,210,130);
+    emitter.colorSpread = ofColor(70,70,70);
 }
 
 void Player::update() {
@@ -29,6 +40,7 @@ void Player::update() {
     if (is_down_pressed) {
         pos.y += speed;
     }
+    emitter.setPosition(pos + ofVec2f(0, img->getHeight() / 2.0));
 }
 
 void Player::draw() {

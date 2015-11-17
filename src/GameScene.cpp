@@ -1,6 +1,8 @@
 #include "GameScene.h"
 
-void GameScene::setup(){
+void GameScene::setup(){		
+    player.setup(&ofxAssets::image("player"));
+    
     rightEmitter.setPosition(ofVec3f(ofGetWidth()-1,ofGetHeight()/2.0));
     rightEmitter.setVelocity(ofVec3f(-310,0.0));
     rightEmitter.posSpread = ofVec3f(0,ofGetHeight());
@@ -14,7 +16,7 @@ void GameScene::setup(){
 }
 
 void GameScene::update(){
-    
+    player.update();
 }
 
 void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* particleSystem){
@@ -22,11 +24,14 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
     rightEmitter.setVelocity(data->onBeat?ofVec3f(-510,0.0):ofVec3f(-310,0.0));
     
     particleSystem->addParticles(rightEmitter);
+    particleSystem->addParticles(player.emitter);
+    
+    update();
 }
 
 
 void GameScene::draw(){
-    
+    player.draw();
 }
 
 void GameScene::willFadeOut() {

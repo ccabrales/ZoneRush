@@ -50,11 +50,8 @@ private:
     
     TrackView tv;
     
-    Player player;
     GameState game_state;
     
-    ofImage player_image;
-
     vector<EnemyPtr> enemyList;
     
     TitleScene * titleScene;
