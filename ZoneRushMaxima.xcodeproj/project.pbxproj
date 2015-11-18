@@ -18,7 +18,6 @@
 		9C7B8B4D99CDFC508E76CC3A /* ofxAubioOnset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A90A4B17BBB4CB627CA22C4 /* ofxAubioOnset.cpp */; };
 		AB0E6D8F1BF4B46600018CD3 /* SpawnerLogistics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB0E6D8D1BF4B46600018CD3 /* SpawnerLogistics.cpp */; };
 		AB0E6D961BF566E400018CD3 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB0E6D941BF566E400018CD3 /* GameScene.cpp */; };
-		AB1BDC931BF9D1C800D25CD8 /* ofxAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB1BDC911BF9D1C800D25CD8 /* ofxAssets.cpp */; };
 		AB61120F1BF7FF8F008B0522 /* AudioLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB61120D1BF7FF8F008B0522 /* AudioLoader.cpp */; };
 		AB6951001BED55BC00DB820E /* filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB6950FE1BED55BC00DB820E /* filter.cpp */; };
 		AB916EEF1BF74CDF00727BA1 /* BleachBypassPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB916EBC1BF74CDF00727BA1 /* BleachBypassPass.cpp */; };
@@ -85,6 +84,7 @@
 		C99529541BEFF639005415D5 /* enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C99529521BEFF639005415D5 /* enemy.cpp */; };
 		C99529571BF0259F005415D5 /* weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C99529551BF0259F005415D5 /* weapon.cpp */; };
 		C9D9BE301BFBCA3F0032C87E /* GameOverScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D9BE2E1BFBCA3F0032C87E /* GameOverScene.cpp */; };
+		C9D9BE351BFC89380032C87E /* ofxAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D9BE331BFC89380032C87E /* ofxAssets.cpp */; };
 		C9F760741BF66DF90045D640 /* TitleButtons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F760721BF66DF90045D640 /* TitleButtons.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
@@ -175,8 +175,6 @@
 		AB0E6D941BF566E400018CD3 /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameScene.cpp; sourceTree = "<group>"; };
 		AB0E6D951BF566E400018CD3 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		AB1677181BF6BD330003DD0B /* ofxParticles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxParticles.h; sourceTree = "<group>"; };
-		AB1BDC911BF9D1C800D25CD8 /* ofxAssets.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAssets.cpp; sourceTree = "<group>"; };
-		AB1BDC921BF9D1C800D25CD8 /* ofxAssets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxAssets.h; sourceTree = "<group>"; };
 		AB61120D1BF7FF8F008B0522 /* AudioLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioLoader.cpp; sourceTree = "<group>"; };
 		AB61120E1BF7FF8F008B0522 /* AudioLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioLoader.h; sourceTree = "<group>"; };
 		AB6950E41BECD14400DB820E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -318,6 +316,8 @@
 		C99529561BF0259F005415D5 /* weapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = weapon.h; sourceTree = "<group>"; };
 		C9D9BE2E1BFBCA3F0032C87E /* GameOverScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameOverScene.cpp; sourceTree = "<group>"; };
 		C9D9BE2F1BFBCA3F0032C87E /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
+		C9D9BE331BFC89380032C87E /* ofxAssets.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAssets.cpp; sourceTree = "<group>"; };
+		C9D9BE341BFC89380032C87E /* ofxAssets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxAssets.h; sourceTree = "<group>"; };
 		C9F760721BF66DF90045D640 /* TitleButtons.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TitleButtons.cpp; sourceTree = "<group>"; };
 		C9F760731BF66DF90045D640 /* TitleButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleButtons.h; sourceTree = "<group>"; };
 		E112B3AEBEA2C091BF2B40AE /* ofxPanel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxPanel.cpp; path = ../../../addons/ofxGui/src/ofxPanel.cpp; sourceTree = SOURCE_ROOT; };
@@ -448,24 +448,6 @@
 			);
 			name = src;
 			path = ../../../addons/ofxParticles/src;
-			sourceTree = "<group>";
-		};
-		AB1BDC8F1BF9D1C800D25CD8 /* ofxAssets */ = {
-			isa = PBXGroup;
-			children = (
-				AB1BDC901BF9D1C800D25CD8 /* src */,
-			);
-			name = ofxAssets;
-			sourceTree = "<group>";
-		};
-		AB1BDC901BF9D1C800D25CD8 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				AB1BDC911BF9D1C800D25CD8 /* ofxAssets.cpp */,
-				AB1BDC921BF9D1C800D25CD8 /* ofxAssets.h */,
-			);
-			name = src;
-			path = ../../../addons/ofxAssets/src;
 			sourceTree = "<group>";
 		};
 		AB6950E11BECA0A500DB820E /* utils */ = {
@@ -723,7 +705,7 @@
 				ABED9FAC1BEE238400F11CCC /* ofxMSAInteractiveObject */,
 				AB1677161BF6BD330003DD0B /* ofxParticles */,
 				AB916EBA1BF74CDF00727BA1 /* ofxPostProcessing */,
-				AB1BDC8F1BF9D1C800D25CD8 /* ofxAssets */,
+				C9D9BE311BFC89380032C87E /* ofxAssets */,
 			);
 			name = addons;
 			sourceTree = "<group>";
@@ -849,6 +831,24 @@
 				C981D4B01BEC3E4B006CB9BA /* ofxEasingSine.h */,
 			);
 			path = Easings;
+			sourceTree = "<group>";
+		};
+		C9D9BE311BFC89380032C87E /* ofxAssets */ = {
+			isa = PBXGroup;
+			children = (
+				C9D9BE321BFC89380032C87E /* src */,
+			);
+			name = ofxAssets;
+			sourceTree = "<group>";
+		};
+		C9D9BE321BFC89380032C87E /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C9D9BE331BFC89380032C87E /* ofxAssets.cpp */,
+				C9D9BE341BFC89380032C87E /* ofxAssets.h */,
+			);
+			name = src;
+			path = ../../../addons/ofxAssets/src;
 			sourceTree = "<group>";
 		};
 		E4328144138ABC890047C5CB /* Products */ = {
@@ -1031,7 +1031,6 @@
 				AB916EF51BF74CDF00727BA1 /* EdgePass.cpp in Sources */,
 				837220E80EB56CD44AD27F2A /* ofxSlider.cpp in Sources */,
 				C981D48B1BEC3E34006CB9BA /* ofxGifDecoder.cpp in Sources */,
-				AB1BDC931BF9D1C800D25CD8 /* ofxAssets.cpp in Sources */,
 				C981D4B51BEC3E4B006CB9BA /* ofxEasingBounce.cpp in Sources */,
 				AB916EF81BF74CDF00727BA1 /* GodRaysPass.cpp in Sources */,
 				AB916F011BF74CDF00727BA1 /* RenderPass.cpp in Sources */,
@@ -1055,6 +1054,7 @@
 				C981D4BF1BEC3E4B006CB9BA /* ofxTween.cpp in Sources */,
 				479DCA850DD8BB469A777AD4 /* ofxAubioBeat.cpp in Sources */,
 				AB916EF71BF74CDF00727BA1 /* FxaaPass.cpp in Sources */,
+				C9D9BE351BFC89380032C87E /* ofxAssets.cpp in Sources */,
 				ABED9FB01BEE238400F11CCC /* ofxMSAInteractiveObject.cpp in Sources */,
 				AB0E6D961BF566E400018CD3 /* GameScene.cpp in Sources */,
 				C981D4B31BEC3E4B006CB9BA /* ofxEasing.cpp in Sources */,
