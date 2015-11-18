@@ -29,8 +29,7 @@ void ofApp::setup(){
     ofSetEscapeQuitsApp(false);
 //    ofSetFullscreen(true);
     ofHideCursor();
-    
-    
+        
     //Set up scenes here
     titleScene = new TitleScene;
     titleScene->setup();
@@ -77,7 +76,8 @@ void ofApp::update(){
     Track::Data* d = currentTrack->readData(tick);
     tv.update(d);
     
-    backgroundParticles.update(min(ofGetLastFrameTime(), 1.0/10.0), 1);
+//    backgroundParticles.update(min(ofGetLastFrameTime(), 1.0/10.0), 1);
+    backgroundParticles.update(ofGetLastFrameTime(), 1);
 
     switch (game_state) {
         case START:

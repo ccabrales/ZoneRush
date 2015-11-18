@@ -44,7 +44,7 @@ namespace ofxAssets {
 	void Register::clear() {
 		this->unload();
 		this->addonsRegistered.clear();
-		this->addonsRegistered.insert(""); // add the root namespace
+		this->addonsRegistered.push_back(""); // add the root namespace
 	}
 
 	//---------
@@ -204,12 +204,12 @@ namespace ofxAssets {
 
 	//---------
 	void Register::addAddon(string addonName) {
-		if (this->addonsRegistered.find(addonName) != this->addonsRegistered.end()) {
+        if (std::find(addonsRegistered.begin(), addonsRegistered.end(), addonName) != this->addonsRegistered.end()) {
 			//addon is already registered
 			return;
 		}
 
-		this->addonsRegistered.insert(addonName);
+		this->addonsRegistered.push_back(addonName);
 		this->initialised = false;
 
 		//whilst we're in debug build mode, we'll actually copy over the assets from the addon's folder
@@ -261,7 +261,7 @@ namespace ofxAssets {
 		for (const auto addon : this->addonsRegistered) {
 			ofLogVerbose("ofxAssets") << "ofxAssets : loading addon '" << addon << "'";
 
-			if (this->addonsLoaded.find(addon) != this->addonsLoaded.end()) {
+            if (std::find(this->addonsLoaded.begin(), this->addonsLoaded.end(), addon) != this->addonsLoaded.end()) {
 				//we've already loaded this addon. call refresh() if you want to load it again
 				continue;
 			}
@@ -283,7 +283,7 @@ namespace ofxAssets {
 			this->traverseDirectoryShaders(dataPath / "shaders", outputNamespace);
 			this->traverseDirectoryFonts(dataPath / "fonts", outputNamespace);
 
-			this->addonsLoaded.insert(addon);
+			this->addonsLoaded.push_back(addon);
 		}
 		
 		this->initialised = true;

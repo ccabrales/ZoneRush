@@ -16,6 +16,7 @@
 #include "GameOverScene.h"
 #include "ofxPostProcessing.h"
 #include "AudioLoader.h"
+#include "ofxAssets.h"
 
 class GreedyParticleSystem: public ofxParticleSystem{
 public:

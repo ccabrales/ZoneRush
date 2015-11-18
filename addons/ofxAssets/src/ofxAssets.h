@@ -14,7 +14,8 @@
 #include "ofEvents.h"
 
 #include <map>
-#include <set>
+//#include <set>
+#include "ofMain.h"
 #include <string>
 #include <regex>
 
@@ -66,8 +67,8 @@ namespace ofxAssets {
 		void traverseDirectoryShaders(boost::filesystem::path path, vector<string> targetNamespace);
 		void traverseDirectoryFonts(boost::filesystem::path path, vector<string> targetNamespace);
 
-		set<string> addonsRegistered;
-		set<string> addonsLoaded;
+        vector<string> addonsRegistered;
+        vector<string> addonsLoaded;
 
 		map<string, shared_ptr<ofImage>> images;
 		map<string, shared_ptr<ofShader>> shaders;
