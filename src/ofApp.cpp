@@ -50,16 +50,16 @@ void ofApp::setup(){
     post.init(ofGetWidth(), ofGetHeight());
     post.createPass<BloomPass>();
     
-    cloudEmitter.positionStart = ofVec2f(ofGetWidth()+300, ofGetHeight()/2.0);
-    cloudEmitter.life = 20;
+    cloudEmitter.setPosition(ofVec2f(ofGetWidth()+500, ofGetHeight()/2.0));
+    cloudEmitter.life = 40;
     cloudEmitter.lifeSpread = 3;
     cloudEmitter.posSpread = ofVec2f(100, ofGetHeight());
-    cloudEmitter.velocityStart= ofVec2f(-80, 0);
-    cloudEmitter.velSpread = ofVec2f(30,30);
+    cloudEmitter.velocityStart= ofVec2f(-180, 0);
+    cloudEmitter.velSpread = ofVec2f(60,20);
     cloudEmitter.size = 600;
-    cloudEmitter.rotVel = ofVec3f(0,0,0.03);
-    cloudEmitter.rotVelSpread = ofVec3f(0,0,0.04);
-    cloudEmitter.rotSpread = ofVec3f(0,0,3.58);
+    cloudEmitter.rotVel = ofVec3f(0,0.03);
+    cloudEmitter.rotVelSpread = ofVec3f(0,0.04);
+    cloudEmitter.rotSpread = ofVec3f(0,3.58);
     cloudEmitter.numPars = 1;
 }
 
@@ -143,7 +143,6 @@ void ofApp::draw(){
             break;
         case GAME:
             gameScene->draw();
-
             break;
         case END:
             break;
