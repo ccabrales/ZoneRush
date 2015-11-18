@@ -64,6 +64,9 @@ private:
     unique_ptr<AudioLoader> audioLoader;
     
     GreedyParticleSystem backgroundParticles;
+    
+    ofxParticleEmitter cloudEmitter;
+    GreedyParticleSystem backgroundClouds;
 
     //Events:
 };

@@ -50,6 +50,17 @@ void ofApp::setup(){
     post.init(ofGetWidth(), ofGetHeight());
     post.createPass<BloomPass>();
     
+    cloudEmitter.positionStart = ofVec2f(ofGetWidth()+300, ofGetHeight()/2.0);
+    cloudEmitter.life = 20;
+    cloudEmitter.lifeSpread = 3;
+    cloudEmitter.posSpread = ofVec2f(100, ofGetHeight());
+    cloudEmitter.velocityStart= ofVec2f(-80, 0);
+    cloudEmitter.velSpread = ofVec2f(30,30);
+    cloudEmitter.size = 600;
+    cloudEmitter.rotVel = ofVec3f(0,0,0.03);
+    cloudEmitter.rotVelSpread = ofVec3f(0,0,0.04);
+    cloudEmitter.rotSpread = ofVec3f(0,0,3.58);
+    cloudEmitter.numPars = 1;
 }
 
 void ofApp::exit(){
@@ -78,7 +89,7 @@ void ofApp::update(){
     
 //    backgroundParticles.update(min(ofGetLastFrameTime(), 1.0/10.0), 1);
     backgroundParticles.update(ofGetLastFrameTime(), 1);
-
+    backgroundClouds.update(ofGetLastFrameTime(), 1);
     switch (game_state) {
         case START:
             titleScene->backgroundUpdate(d, &backgroundParticles);
@@ -93,6 +104,10 @@ void ofApp::update(){
             break;
         default:
             break;
+    }
+    
+    if(d->onBeat && backgroundClouds.getNumParticles() < 5){
+        backgroundClouds.addParticles(cloudEmitter);
     }
     //TEMPORARY ENEMY SPAWNER LOL
     //    if(d->onBeat){
@@ -113,8 +128,9 @@ void ofApp::update(){
 void ofApp::draw(){
     // update beat info
     post.begin();
-    ofBackground(10, 10, 42);
+    ofBackground(8, 9, 32);
     ofPushStyle();
+    backgroundClouds.draw(ofxAssets::image("cloud").getTexture());
     ofSetLineWidth(4);
     backgroundParticles.draw();
     ofPopStyle();
