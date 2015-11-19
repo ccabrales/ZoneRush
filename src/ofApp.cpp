@@ -49,6 +49,10 @@ void ofApp::setup(){
     ofSoundStreamSetup(2, 0, this, 44100, 256, 8);
     post.init(ofGetWidth(), ofGetHeight());
     post.createPass<BloomPass>();
+    pass = post.createPass<DofPass>();
+//        pass = post.createPass<GodRaysPass>();
+
+    //    pass->setAttenuationOffset(0.9);
     
     cloudEmitter.setPosition(ofVec2f(ofGetWidth()+500, ofGetHeight()/2.0));
     cloudEmitter.life = 40;
@@ -57,9 +61,10 @@ void ofApp::setup(){
     cloudEmitter.velocityStart= ofVec2f(-180, 0);
     cloudEmitter.velSpread = ofVec2f(60,20);
     cloudEmitter.size = 600;
-    cloudEmitter.rotVel = ofVec3f(0,0.03);
-    cloudEmitter.rotVelSpread = ofVec3f(0,0.04);
-    cloudEmitter.rotSpread = ofVec3f(0,3.58);
+    cloudEmitter.sizeSpread = 140;
+    cloudEmitter.rotVel = ofVec3f(0,0,2.2);
+    cloudEmitter.rotVelSpread = ofVec3f(0,0,4.04);
+    cloudEmitter.rotSpread = ofVec3f(0,0,180.58);
     cloudEmitter.numPars = 1;
 }
 
@@ -87,6 +92,7 @@ void ofApp::update(){
     Track::Data* d = currentTrack->readData(tick);
     tv.update(d);
     
+    
 //    backgroundParticles.update(min(ofGetLastFrameTime(), 1.0/10.0), 1);
     backgroundParticles.update(ofGetLastFrameTime(), 1);
     backgroundClouds.update(ofGetLastFrameTime(), 1);
@@ -112,8 +118,13 @@ void ofApp::update(){
             break;
     }
     
-    if(d->onBeat && backgroundClouds.getNumParticles() < 5){
-        backgroundClouds.addParticles(cloudEmitter);
+    if(d->onsets>0 || d->onBeat){
+        pass->setEnabled(true);
+        if(d->onBeat && backgroundClouds.getNumParticles() < 5){
+            backgroundClouds.addParticles(cloudEmitter);
+        }
+    }else{
+        pass->setEnabled(false);
     }
     //TEMPORARY ENEMY SPAWNER LOL
     //    if(d->onBeat){

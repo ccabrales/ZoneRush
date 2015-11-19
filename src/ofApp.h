@@ -68,5 +68,6 @@ private:
     ofxParticleEmitter cloudEmitter;
     GreedyParticleSystem backgroundClouds;
 
+    shared_ptr<DofPass> pass;
     //Events:
 };
