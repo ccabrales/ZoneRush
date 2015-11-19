@@ -8,6 +8,7 @@
 #include "track.h"
 #include "ofxAssets.h"
 #include "player.h"
+#include "enemy.h"
 
 class GameScene {
 public:
@@ -27,4 +28,8 @@ public:
     
 private:
     ofxParticleEmitter rightEmitter;
+    
+    ofxParticleEmitter enemyEmitter;
+    ofxParticleEmitter playerEmitter;
+    vector<Enemy> enemies;
 };

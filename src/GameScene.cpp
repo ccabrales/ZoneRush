@@ -17,6 +17,7 @@ void GameScene::setup(){
 
 void GameScene::update(){
     player.update();
+//    if (player.pos.x > 150) player.lives = 0; //Test code for game over
 }
 
 void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* particleSystem){

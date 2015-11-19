@@ -101,7 +101,13 @@ void ofApp::update(){
             break;
         case GAME:
             gameScene->backgroundUpdate(d, &backgroundParticles);
+            if (gameScene->player.lives <= 0) {
+                game_state = END;
+                gameOverScene->setup();
+            }
             break;
+        case END:
+            gameOverScene->backgroundUpdate(d, &backgroundParticles);
         default:
             break;
     }
@@ -145,6 +151,7 @@ void ofApp::draw(){
             gameScene->draw();
             break;
         case END:
+            gameOverScene->draw();
             break;
         default:
             break;
@@ -196,6 +203,8 @@ void ofApp::keyPressed(int key){
             default:
                 break;
         }
+    } else if (game_state == END) {
+        
     }
     
 }

@@ -17,8 +17,17 @@ public:
     void willExit();
     void windowResized(int w, int h);
     void backgroundUpdate(const Track::Data* data, ofxParticleSystem* particleSystem);
+    void resetPosition();
     
 private:
     ofxParticleEmitter rightEmitter;
 
+    ofImage gameOverText;
+    ofPoint textPos;
+    
+    ofImage score;
+    ofPoint scorePos;
+    
+    ofImage songPercent;
+    ofPoint songPos;
 };

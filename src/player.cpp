@@ -12,6 +12,10 @@ void Player::setup(ofImage * _img) {
     speed = 3;
     lives = 3;
     
+    is_left_pressed = false;
+    is_right_pressed = false;
+    is_down_pressed = false;
+    is_up_pressed = false;
     
     emitter.setPosition(pos);
     emitter.setVelocity(ofVec3f(-310,0.0));
