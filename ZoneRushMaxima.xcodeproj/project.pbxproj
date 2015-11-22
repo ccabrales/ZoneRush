@@ -56,6 +56,7 @@
 		ABF66CDF1BE9ABF200D5CEE8 /* aubio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF66CDE1BE9ABF200D5CEE8 /* aubio.framework */; };
 		ABF66CF21BE9AE2500D5CEE8 /* audiodecoderbase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF66CF01BE9AE2500D5CEE8 /* audiodecoderbase.cpp */; };
 		ABF66CF31BE9AE2500D5CEE8 /* audiodecodercoreaudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF66CF11BE9AE2500D5CEE8 /* audiodecodercoreaudio.cpp */; };
+		ABF9152F1C0136B900AC618F /* ofxParticles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF9152D1C0136B900AC618F /* ofxParticles.cpp */; settings = {ASSET_TAGS = (); }; };
 		B266578FC55D23BFEBC042E7 /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ECF8674C7975F1063C5E30CA /* ofxGuiGroup.cpp */; };
 		B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 802251BAF1B35B1D67B32FD0 /* ofxSliderGroup.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
@@ -174,7 +175,6 @@
 		AB0E6D8E1BF4B46600018CD3 /* SpawnerLogistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpawnerLogistics.h; sourceTree = "<group>"; };
 		AB0E6D941BF566E400018CD3 /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameScene.cpp; sourceTree = "<group>"; };
 		AB0E6D951BF566E400018CD3 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
-		AB1677181BF6BD330003DD0B /* ofxParticles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxParticles.h; sourceTree = "<group>"; };
 		AB61120D1BF7FF8F008B0522 /* AudioLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioLoader.cpp; sourceTree = "<group>"; };
 		AB61120E1BF7FF8F008B0522 /* AudioLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioLoader.h; sourceTree = "<group>"; };
 		AB6950E41BECD14400DB820E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -263,6 +263,8 @@
 		ABF66CEE1BE9AE2500D5CEE8 /* audiodecodercoreaudio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = audiodecodercoreaudio.h; sourceTree = "<group>"; };
 		ABF66CF01BE9AE2500D5CEE8 /* audiodecoderbase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = audiodecoderbase.cpp; sourceTree = "<group>"; };
 		ABF66CF11BE9AE2500D5CEE8 /* audiodecodercoreaudio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = audiodecodercoreaudio.cpp; sourceTree = "<group>"; };
+		ABF9152D1C0136B900AC618F /* ofxParticles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxParticles.cpp; sourceTree = "<group>"; };
+		ABF9152E1C0136B900AC618F /* ofxParticles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxParticles.h; sourceTree = "<group>"; };
 		B87C60311EC1FE841C1ECD89 /* ofxLabel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxLabel.h; path = ../../../addons/ofxGui/src/ofxLabel.h; sourceTree = SOURCE_ROOT; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		C70D8946940288799E82131E /* ofxSliderGroup.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSliderGroup.h; path = ../../../addons/ofxGui/src/ofxSliderGroup.h; sourceTree = SOURCE_ROOT; };
@@ -433,26 +435,10 @@
 			name = src;
 			sourceTree = "<group>";
 		};
-		AB1677161BF6BD330003DD0B /* ofxParticles */ = {
-			isa = PBXGroup;
-			children = (
-				AB1677171BF6BD330003DD0B /* src */,
-			);
-			name = ofxParticles;
-			sourceTree = "<group>";
-		};
-		AB1677171BF6BD330003DD0B /* src */ = {
-			isa = PBXGroup;
-			children = (
-				AB1677181BF6BD330003DD0B /* ofxParticles.h */,
-			);
-			name = src;
-			path = ../../../addons/ofxParticles/src;
-			sourceTree = "<group>";
-		};
 		AB6950E11BECA0A500DB820E /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				ABF9152C1C01369800AC618F /* ofxParticlesPatch */,
 				ABD838341BF96B2C00EA1E37 /* ImageLibrary.cpp */,
 				ABD838351BF96B2C00EA1E37 /* ImageLibrary.h */,
 				AB61120D1BF7FF8F008B0522 /* AudioLoader.cpp */,
@@ -693,6 +679,15 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		ABF9152C1C01369800AC618F /* ofxParticlesPatch */ = {
+			isa = PBXGroup;
+			children = (
+				ABF9152D1C0136B900AC618F /* ofxParticles.cpp */,
+				ABF9152E1C0136B900AC618F /* ofxParticles.h */,
+			);
+			name = ofxParticlesPatch;
+			sourceTree = "<group>";
+		};
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
@@ -703,7 +698,6 @@
 				C981D4831BEC3E34006CB9BA /* ofxGifDecoder */,
 				C981D4951BEC3E4B006CB9BA /* ofxTween */,
 				ABED9FAC1BEE238400F11CCC /* ofxMSAInteractiveObject */,
-				AB1677161BF6BD330003DD0B /* ofxParticles */,
 				AB916EBA1BF74CDF00727BA1 /* ofxPostProcessing */,
 				C9D9BE311BFC89380032C87E /* ofxAssets */,
 			);
@@ -1065,6 +1059,7 @@
 				C60077973A257D8F44947E2E /* ofxAubioBlock.cpp in Sources */,
 				AB916F001BF74CDF00727BA1 /* PostProcessing.cpp in Sources */,
 				AB916EEF1BF74CDF00727BA1 /* BleachBypassPass.cpp in Sources */,
+				ABF9152F1C0136B900AC618F /* ofxParticles.cpp in Sources */,
 				67383740F5CC47ED5F955A76 /* ofxAubioMelBands.cpp in Sources */,
 				AB916EF01BF74CDF00727BA1 /* BloomPass.cpp in Sources */,
 				9C7B8B4D99CDFC508E76CC3A /* ofxAubioOnset.cpp in Sources */,
