@@ -389,3 +389,20 @@ int ofxParticleSystem::getNumParticles(){
     return numParticles;
 }
 
+int GreedyParticleSystem::update(float timeStep, float drag){
+    int particlesRemoved = 0;
+    for(list<ofxParticle*>::iterator it = particles.begin(); it != particles.end(); it++){
+        if((*it)->isAlive() && ((*it)->position.x > -2)){
+            (*it)->update(timeStep, drag);
+        }
+        else{
+            ofxParticle * p = (*it);
+            it = particles.erase(it);
+            delete p;
+            particlesRemoved++;
+        }
+    }
+    numParticles-=particlesRemoved;
+    return particlesRemoved;
+}
+

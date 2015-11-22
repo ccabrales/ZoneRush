@@ -18,10 +18,6 @@
 #include "AudioLoader.h"
 #include "ofxAssets.h"
 
-class GreedyParticleSystem: public ofxParticleSystem{
-public:
-    int update(float timeStep, float drag);
-};
 
 class ofApp : public ofBaseApp{
     

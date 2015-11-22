@@ -127,8 +127,20 @@ public:
     
     int update(float timeStep, float drag);
     
+    /**
+     Draws the Particles in the system using the current ofLine size. Doesn't draw particle points themselves, but the path of each particle.
+     */
     void draw();
+    /**
+     Draws the particle system where each point is drawn with the texture passed in.
+     @param tex - the ofTexture reference.
+     */
     void draw(ofTexture &tex);
+    /**
+     Draws the particle system where each alternating point is drawn with the texture passed in.
+     @param tex1 - the ofTexture reference for even particle ids.
+     @param tex2 - the ofTexture reference for odd particle ids.
+     */
     void draw(ofTexture &tex, ofTexture &tex2);
     
     int getNumParticles();
@@ -138,3 +150,10 @@ protected:
     int numParticles;
     int totalParticlesEmitted;
 };
+
+
+class GreedyParticleSystem: public ofxParticleSystem{
+public:
+    int update(float timeStep, float drag);
+};
+
