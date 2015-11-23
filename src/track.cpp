@@ -61,7 +61,7 @@ Track::Track(ofxAudioDecoder * decoder) {
         //-----Running average of SFM Complexity:
         float avgIntensity = 0;
         if(i>0)
-            avgIntensity = sfmIntensity * 0.08 + frameData[i-1].intensity*0.92;
+            avgIntensity = sfmIntensity * 0.48 + frameData[i-1].intensity*0.52;
         else
             avgIntensity = sfmIntensity;
         //---------------------------------------
@@ -87,6 +87,7 @@ Track::Track(ofxAudioDecoder * decoder) {
     
     for(int i = 0; i < numFrames; i++){
         f[i] = ((int)(round(frameData[i].pitch)));
+        frameData[i].intensity = pow(10, frameData[i].intensity);
         if(i < numFrames - 3 && frameData[i].onsets > 0){
             frameData[i].onsets = frameData[i].onsets | frameData[i+1].onsets | frameData[i+2].onsets | frameData[i+1].onsets;
             //collapse multiple onsets into the first one.
@@ -96,14 +97,14 @@ Track::Track(ofxAudioDecoder * decoder) {
             //remove onset information if it occurs already.
         }
     }
-    
-    int fOut[frameData.size()];
-    median_filter_impl_1d(frameData.size(), 31, 70, &f[0], &fOut[0]);
-    
-    for(int i = 0; i < frameData.size(); i++){
-        frameData[i].pitch = fOut[i];
-    }
-    
+//    
+//    int fOut[frameData.size()];
+//    median_filter_impl_1d(frameData.size(), 31, 70, &f[0], &fOut[0]);
+//    
+//    for(int i = 0; i < frameData.size(); i++){
+//        frameData[i].pitch = fOut[i];
+//    }
+//    
     //Spawn Point Analysis.
     //???????????
     

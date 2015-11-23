@@ -21,7 +21,7 @@ void GameScene::update(){
 }
 
 void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* particleSystem){
-    rightEmitter.numPars = max((int)(-data->intensity+1) + (data->onBeat?12:0), 2);
+    rightEmitter.numPars = max((int)(data->intensity*20) + (data->onBeat?12:0), 2);
     rightEmitter.setVelocity(data->onBeat?ofVec3f(-510,0.0):ofVec3f(-310,0.0));
     
     particleSystem->addParticles(rightEmitter);

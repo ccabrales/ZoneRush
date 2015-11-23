@@ -142,7 +142,9 @@ public:
      @param tex2 - the ofTexture reference for odd particle ids.
      */
     void draw(ofTexture &tex, ofTexture &tex2);
-    
+    /**
+     Gets the number of particles currently drawn by the system each call
+     */
     int getNumParticles();
     
 protected:
@@ -154,6 +156,9 @@ protected:
 
 class GreedyParticleSystem: public ofxParticleSystem{
 public:
+    void setup(ofRectangle rect);
     int update(float timeStep, float drag);
+protected:
+    ofRectangle checkframe;
 };
 

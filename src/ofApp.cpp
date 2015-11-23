@@ -38,6 +38,11 @@ void ofApp::setup(){
 
     //    pass->setAttenuationOffset(0.9);
     
+    //----------SETUP--------Particle System pass:
+    backgroundClouds.setup(ofRectangle(-200,-200,ofGetWidth()+400, ofGetHeight()+400));
+    backgroundParticles.setup(ofRectangle(-3,-3,ofGetWidth()+6, ofGetHeight()+6));
+    
+    
     cloudEmitter.setPosition(ofVec2f(ofGetWidth()+500, ofGetHeight()/2.0));
     cloudEmitter.life = 40;
     cloudEmitter.lifeSpread = 3;
@@ -158,6 +163,9 @@ void ofApp::draw(){
     }
     
     post.end(true);
+    
+    ofxAssets::font("welbut", 12).drawString("14012", 300, ofGetHeight()-13);
+    
     tv.draw(tick);
 
 }

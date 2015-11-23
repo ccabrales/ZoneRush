@@ -70,7 +70,7 @@ void TrackView::draw(int tick){
         Track::Data& dp = track->frameData[tick+i];
         
         pitchPlot[i].x = -20 + (2 * dp.pitch);
-        intensityPlot[i].x = (30.*(1.0-dp.intensity));
+        intensityPlot[i].x = (30.*(dp.intensity));
         if(dp.onBeat)
             ofLine(intensityPlot[i].x-7, intensityPlot[i].y, intensityPlot[i].x+7, intensityPlot[i].y);
         if(dp.onsets > 0)

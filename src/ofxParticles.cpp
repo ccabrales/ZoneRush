@@ -376,7 +376,10 @@ void ofxParticleSystem::draw(ofTexture &tex){
 
 void ofxParticleSystem::draw(ofTexture &tex, ofTexture &tex2){
     //particles.sort();
-    for(list<ofxParticle*>::iterator it = particles.begin(); it != particles.end(); it++){
+    for(list<ofxParticle*>::iterator it = particles.begin();
+        it != particles.end();
+        it++)
+    {
         int index = (**it).particleID;
         if(index%2==0)
             (**it).draw(tex);
@@ -389,10 +392,14 @@ int ofxParticleSystem::getNumParticles(){
     return numParticles;
 }
 
+void GreedyParticleSystem::setup(ofRectangle rect){
+    this->checkframe = rect;
+}
+
 int GreedyParticleSystem::update(float timeStep, float drag){
     int particlesRemoved = 0;
     for(list<ofxParticle*>::iterator it = particles.begin(); it != particles.end(); it++){
-        if((*it)->isAlive() && ((*it)->position.x > -2)){
+        if((*it)->isAlive() && checkframe.inside((*it)->position)){
             (*it)->update(timeStep, drag);
         }
         else{
