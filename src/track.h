@@ -26,7 +26,8 @@ public:
     Data* readData(int frame);
     
     vector<Data> frameData;
-    
+    float averageIntensity;
+    float varianceIntensity;
 private:
     int lastFrameRead = 0;
     void addData(bool onBeat, float bpm, bool isOnset, float pitch, float pitchConfidence, float onsetNovelty, float onsetThresholdNovelty);

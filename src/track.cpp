@@ -37,6 +37,7 @@ Track::Track(ofxAudioDecoder * decoder) {
     
     //Audio Analysis
     //==============
+    float mean = 0;
     for (int i = 0; (i * BUFFERSIZE * nChannels) < decoder->getNumSamples(); i++) {
         float* sample = &(samples[i * BUFFERSIZE * nChannels]);
         
@@ -66,6 +67,7 @@ Track::Track(ofxAudioDecoder * decoder) {
             avgIntensity = sfmIntensity;
         //---------------------------------------
         
+        mean += (isnan(avgIntensity)?-1:avgIntensity);
         frameData.push_back({
             beat.received(),
             beat.bpm,
@@ -77,6 +79,7 @@ Track::Track(ofxAudioDecoder * decoder) {
             isnan(avgIntensity)?-1:avgIntensity
         });
     }
+    averageIntensity = (mean / (float)frameData.size());
     
     
     //Pitch Smoothing.
@@ -85,6 +88,7 @@ Track::Track(ofxAudioDecoder * decoder) {
     
     int numFrames = frameData.size();
     
+    float variancesum = 0;
     for(int i = 0; i < numFrames; i++){
         f[i] = ((int)(round(frameData[i].pitch)));
         frameData[i].intensity = pow(10, frameData[i].intensity);
@@ -96,19 +100,20 @@ Track::Track(ofxAudioDecoder * decoder) {
             frameData[i].onsets = 0;
             //remove onset information if it occurs already.
         }
+        variancesum += pow(frameData[i].intensity - averageIntensity, 2);
+        cout << toString(frameData[i]) << endl;
     }
-//    
+    varianceIntensity = (variancesum / (float)frameData.size());
+    
 //    int fOut[frameData.size()];
 //    median_filter_impl_1d(frameData.size(), 31, 70, &f[0], &fOut[0]);
 //    
 //    for(int i = 0; i < frameData.size(); i++){
 //        frameData[i].pitch = fOut[i];
 //    }
-//    
+
     //Spawn Point Analysis.
     //???????????
-    
-    
     
 }
 
