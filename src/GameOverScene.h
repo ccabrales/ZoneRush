@@ -3,10 +3,11 @@
 #include <stdio.h>
 #include "ofxParticles.h"
 #include "track.h"
+#include "ScoreRenderer.h"
 
 class GameOverScene {
 public:
-    void setup();
+    void setup(int endScore, int finalPercentage);
     void update();
     void draw();
     
@@ -30,4 +31,14 @@ private:
     
     ofImage songPercent;
     ofPoint songPos;
+    
+    ofImage menu;
+    ofPoint menuPos;
+    
+    ScoreRenderer scoreRender;
+    int finalScore;
+    ofPoint finalScorePos;
+    
+    ofPoint percentPos;
+    string percentage;
 };

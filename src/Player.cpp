@@ -44,6 +44,7 @@ void Player::update() {
     if (is_down_pressed) {
         pos.y += speed;
     }
+    checkBounds();
     emitter.setPosition(pos + ofVec2f(0, img->getHeight() / 2.0));
 }
 
@@ -57,6 +58,13 @@ void Player::shoot() {
 
 void Player::calculate_movement() {
     
+}
+
+void Player::checkBounds() { //make sure player doesn't go out of screen, and reposition if so
+    if (pos.x < 0) pos.x = 0;
+    if (pos.x > ofGetWidth() - img->getWidth()) pos.x = ofGetWidth() - img->getWidth();
+    if (pos.y < 0) pos.y = 0;
+    if (pos.y > ofGetHeight() - img->getHeight()) pos.y = ofGetHeight() - img->getHeight();
 }
 
 //bool Player::check_can_shoot() {

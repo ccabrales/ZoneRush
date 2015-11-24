@@ -49,6 +49,7 @@ void Enemy::draw(){
     ofSetColor(3,3,3,100);
     path.draw(); //TODO REMOVE DEBUG.
     ofSetColor(255,0,0);
+    if (hp <= 0) ofSetColor(255,255,255,100);
     ofCircle(pos, 6);
     ofPopStyle();
 }

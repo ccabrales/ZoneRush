@@ -9,6 +9,7 @@
 #include "ofxAssets.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "ScoreRenderer.h"
 
 class GameScene {
 public:
@@ -25,11 +26,14 @@ public:
     void backgroundUpdate(const Track::Data* data, ofxParticleSystem* particleSystem);
     
     Player player;
+    int score;
     
 private:
     ofxParticleEmitter rightEmitter;
     
     ofxParticleEmitter enemyEmitter;
     ofxParticleEmitter playerEmitter;
-    vector<Enemy> enemies;
+    vector<EnemyPtr> enemyList;
+    
+    ScoreRenderer scoreRender;
 };
