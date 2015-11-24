@@ -17,6 +17,7 @@
 #include "ofxPostProcessing.h"
 #include "AudioLoader.h"
 #include "ofxAssets.h"
+#include "ScoreRenderer.h"
 
 
 class ofApp : public ofBaseApp{
@@ -42,27 +43,33 @@ public:
     void audioIn(float * input, int bufferSize, int nChannels);
     
 private:
+    //State machine
     enum GameState { START, LOAD, GAME, END };
-    
-    TrackView tv;
-    
     GameState game_state;
-    
     vector<EnemyPtr> enemyList;
-    
+
+    //Scenes
     TitleScene * titleScene;
     GameScene * gameScene;
     GameOverScene * gameOverScene;
-    
+
+    //Rendering utility
+    TrackView tv;
     ofxPostProcessing post;
-    
+    shared_ptr<DofPass> pass;
+    ScoreRenderer score;
+
+    //AudioSystem
     unique_ptr<AudioLoader> audioLoader;
-    
-    GreedyParticleSystem backgroundParticles;
+    //puts audio into globalDecoder
+
     
     ofxParticleEmitter cloudEmitter;
+    GreedyParticleSystem backgroundParticles;
     GreedyParticleSystem backgroundClouds;
-
-    shared_ptr<DofPass> pass;
     //Events:
+    
+    //----------UTILITY FUNCS-----------
+    void setupParticleEmitters();
+    void setupPostProcessing();
 };

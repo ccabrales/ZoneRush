@@ -9,3 +9,5 @@ class Track;
 extern unique_ptr<Track> currentTrack;
 class ofxAudioDecoder;
 extern unique_ptr<ofxAudioDecoder> globalDecoder;
+
+int currentScore;

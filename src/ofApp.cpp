@@ -3,7 +3,7 @@
 int tick = 0;
 unique_ptr<Track> currentTrack = NULL;
 unique_ptr<ofxAudioDecoder> globalDecoder = NULL;
-
+int score = 0;
 
 
 //--------------------------------------------------------------
@@ -12,49 +12,31 @@ void ofApp::setup(){
 //    ofSetWindowShape(2560, 1600);
     ofSetEscapeQuitsApp(false);
 //    ofSetFullscreen(true);
+    //TODO: enable fullscreen in next demo.
     ofHideCursor();
-        
-    //Set up scenes here
-    titleScene = new TitleScene;
-    titleScene->setup();
-    gameScene = new GameScene;
-    gameOverScene = new GameOverScene;
     
     game_state = START;
-        
-    globalDecoder = unique_ptr<ofxAudioDecoder>(new ofxAudioDecoder());
     
+    //Scene Setup:
+    gameScene = new GameScene;
+    gameOverScene = new GameOverScene;
+    titleScene = new TitleScene;
+    titleScene->setup();
+    
+    
+    //Audio Setup:
+    globalDecoder = unique_ptr<ofxAudioDecoder>(new ofxAudioDecoder());
     globalDecoder->load("music.mp3");
+    
+    //Audio Parsing...
+    //TODO this section is not really necessary. remove in release build
     currentTrack = unique_ptr<Track>(new Track(globalDecoder.get()));
     tv.setup(currentTrack.get());
     
-    //int sampleRate = 44100; int bufferSize = 256; int nBuffers = 4;
-//    ofSoundStreamSetup(2, 0, this);
     ofSoundStreamSetup(2, 0, this, 44100, 256, 8);
-    post.init(ofGetWidth(), ofGetHeight());
-    post.createPass<BloomPass>();
-    pass = post.createPass<DofPass>();
-//        pass = post.createPass<GodRaysPass>();
 
-    //    pass->setAttenuationOffset(0.9);
-    
-    //----------SETUP--------Particle System pass:
-    backgroundClouds.setup(ofRectangle(-200,-200,ofGetWidth()+400, ofGetHeight()+400));
-    backgroundParticles.setup(ofRectangle(-3,-3,ofGetWidth()+6, ofGetHeight()+6));
-    
-    
-    cloudEmitter.setPosition(ofVec2f(ofGetWidth()+500, ofGetHeight()/2.0));
-    cloudEmitter.life = 40;
-    cloudEmitter.lifeSpread = 3;
-    cloudEmitter.posSpread = ofVec2f(100, ofGetHeight());
-    cloudEmitter.velocityStart= ofVec2f(-180, 0);
-    cloudEmitter.velSpread = ofVec2f(60,20);
-    cloudEmitter.size = 600;
-    cloudEmitter.sizeSpread = 140;
-    cloudEmitter.rotVel = ofVec3f(0,0,2.2);
-    cloudEmitter.rotVelSpread = ofVec3f(0,0,4.04);
-    cloudEmitter.rotSpread = ofVec3f(0,0,180.58);
-    cloudEmitter.numPars = 1;
+    setupPostProcessing();
+    setupParticleEmitters();
 }
 
 void ofApp::exit(){
@@ -64,7 +46,6 @@ void ofApp::exit(){
 
 void ofApp::audioOut(float * input, int bufferSize, int nChannels){
     if(globalDecoder == NULL) return;
-    
     copy(globalDecoder->getRawSamples().begin()+tick*bufferSize*nChannels, globalDecoder->getRawSamples().begin()+tick*bufferSize*nChannels+bufferSize*nChannels, input);
     tick ++;
     if(tick*nChannels*bufferSize > globalDecoder->getNumSamples()){
@@ -73,7 +54,6 @@ void ofApp::audioOut(float * input, int bufferSize, int nChannels){
     tv.updateAudio(input, bufferSize, nChannels);
 }
 
-void ofApp::audioIn(float* input, int bufferSize, int nChannels){}
 
 //--------------------------------------------------------------
 void ofApp::update(){
@@ -82,7 +62,7 @@ void ofApp::update(){
     tv.update(d);
     
     
-//    backgroundParticles.update(min(ofGetLastFrameTime(), 1.0/10.0), 1);
+    //backgroundParticles.update(min(ofGetLastFrameTime(), 1.0/10.0), 1);
     backgroundParticles.update(ofGetLastFrameTime(), 1);
     backgroundClouds.update(ofGetLastFrameTime(), 1);
     switch (game_state) {
@@ -149,6 +129,7 @@ void ofApp::draw(){
             break;
         case GAME:
             gameScene->draw();
+            score.draw(20, ofGetHeight() - 12);
             break;
         case END:
             gameOverScene->draw();
@@ -164,15 +145,18 @@ void ofApp::draw(){
     
     post.end(true);
     
-    ofxAssets::font("welbut", 12).drawString("14012", 300, ofGetHeight()-13);
-    
     tv.draw(tick);
 
+}
+//--------------------------------------------------------------
+void ofApp::windowResized(int w, int h){
+    post.init(w,h);
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    if (game_state == START) { //Check for hitting "play" then change scene
+    if (game_state == START) {
+        //Check for hitting "play" then change scene
         switch (key) {
             case OF_KEY_DOWN:
             case OF_KEY_UP:
@@ -257,38 +241,42 @@ void ofApp::checkLoadUpdate() {
     audioLoader->unlock();
 
 }
-
 //--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y ){
+void ofApp::audioIn(float* input, int bufferSize, int nChannels){}
+void ofApp::mouseMoved(int x, int y ){}
+void ofApp::mouseDragged(int x, int y, int button){}
+void ofApp::mousePressed(int x, int y, int button){}
+void ofApp::mouseReleased(int x, int y, int button){}
+void ofApp::gotMessage(ofMessage msg){}
+void ofApp::dragEvent(ofDragInfo dragInfo){}
+//--------------------------------------------------------------
 
+void ofApp::setupPostProcessing(){
+    post.init(ofGetWidth(), ofGetHeight());
+    post.createPass<BloomPass>();
+    pass = post.createPass<DofPass>();
+    pass->setMaxBlur(0.05);
+    pass->setAperture(0.2);
+    //    pass = post.createPass<GodRaysPass>();
+    //    pass->setAttenuationOffset(0.9);
 }
 
-//--------------------------------------------------------------
-void ofApp::mouseDragged(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mousePressed(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseReleased(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::windowResized(int w, int h){
-    post.init(w,h);
-}
-
-//--------------------------------------------------------------
-void ofApp::gotMessage(ofMessage msg){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){
-
+void ofApp::setupParticleEmitters(){
+    //----------SETUP--------Particle System pass:
+    backgroundClouds.setup(ofRectangle(-200,-200,ofGetWidth()+400, ofGetHeight()+400));
+    backgroundParticles.setup(ofRectangle(-3,-3,ofGetWidth()+6, ofGetHeight()+6));
+    
+    
+    cloudEmitter.setPosition(ofVec2f(ofGetWidth()+500, ofGetHeight()/2.0));
+    cloudEmitter.life = 40;
+    cloudEmitter.lifeSpread = 3;
+    cloudEmitter.posSpread = ofVec2f(100, ofGetHeight());
+    cloudEmitter.velocityStart= ofVec2f(-180, 0);
+    cloudEmitter.velSpread = ofVec2f(60,20);
+    cloudEmitter.size = 600;
+    cloudEmitter.sizeSpread = 140;
+    cloudEmitter.rotVel = ofVec3f(0,0,2.2);
+    cloudEmitter.rotVelSpread = ofVec3f(0,0,4.04);
+    cloudEmitter.rotSpread = ofVec3f(0,0,180.58);
+    cloudEmitter.numPars = 1;
 }
