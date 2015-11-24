@@ -52,16 +52,13 @@ public:
     // void spring(ofPoint p, const float k, const float springDist, const float drag){ spring(p, k, springDist, drag); }
     float springBoth(ofxParticle * p, const float k, const float springDist, const float drag, const float sprintSnap);
     
-    
     void attractTo(ofxParticle p, const float accel, const float minDist, const bool consumeParticle){ attractTo(p.position, accel, minDist, consumeParticle); }
     
     void attractTo(ofPoint p, const float accel, const float minDist, const bool consumeParticle);
     
-    
     void gravitateTo(ofxParticle p, const float gravity, const float minDist, const bool consumeParticle){ gravitateTo(p.position, gravity, p.mass, minDist, consumeParticle); }
     
     void gravitateTo(ofPoint p, const float gravity, const float mass2, const float minDist, const bool consumeParticle);
-    
     
     void gravitateBoth(ofxParticle * p, const float gravity, const float minDist, bool consumeParticle);
     

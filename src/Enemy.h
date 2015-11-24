@@ -6,39 +6,40 @@
 #include "track.h"
 #include "EnemyPath.h"
 #include "globals.h"
-
+#include "ofxParticles.h"
 
 struct EnemyType {
     int minHP;
     int maxHP;
     const BulletType* bulletType;
     float speed;
-    ofImage* img;
+    //movement:
+    bool followPlayer;
+    ofImage* texture;
 };
 
 enum EnemyState {
     HEALTHY, DYING, DEAD
 };
 
-class Enemy {
+class Enemy : public ofxParticle{
 public:
-    int spawnTime;
-    
-    ofPoint pos;
+//    ofPoint pos;
     int hp;
-    int cd;
+    float cd;
+    float difficultyScaling;
     
     EnemyType* type;
     EnemyState state;
-    ofPolyline path;
+//    ofPolyline path;
     
-    void setup();
-    void update();
+    void setup(float diffScaling);
+    void update(const float timeStep, const float drag, ofxParticleSystem* bulletSpace);
     void draw();
     void shoot();
     
     void onsetHandler(const Track::Data& frame);
-    void calculate_movement(const ofPolyline* archetype);
+//    void calculate_movement(const ofPolyline* archetype);
     
 private:
 };
@@ -48,7 +49,7 @@ typedef shared_ptr<Enemy> EnemyPtr;
 class EnemyFactory
 {
 public:
-    static EnemyPtr make(int type);
+    static EnemyPtr make(int typeID);
     
     static vector< EnemyPtr >* makeGroup(int type, int size, float variance);
 private:

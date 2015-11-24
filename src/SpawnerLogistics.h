@@ -7,7 +7,7 @@
 
 struct SpawnCommand{
     int count;
-    EnemyType et;
+    EnemyType et; //describes sprite, firing pattern and targetting pattern
     
 };
 
