@@ -1,4 +1,4 @@
-#include "enemy.h"
+#include "Enemy.h"
 
 EnemyFactory::EnemyFactory(){
     e_types.push_back(EnemyType {

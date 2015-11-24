@@ -5,10 +5,15 @@
 #include "globals.h"
 #include "enemy.h"
 
+struct SpawnCommand{
+    int count;
+    EnemyType et;
+    
+};
+
 class SpawnController
 {
 public:
-    
     static bool shouldSpawn();
     static bool spawnEnemyCluster(vector<EnemyPtr> * currentEnemies);
     

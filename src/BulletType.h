@@ -4,13 +4,20 @@
 #include "ofMain.h"
 #include "ofxParticles.h"
 
-struct BulletType {
-    ofImage* texture;
-};
-
 enum FirePattern{
     STRAIGHT, THREESHOT, TWOSHOT, CLOUD
 };
+
+enum TargetPattern{
+    PLAYER, DOWNLANE
+};
+
+struct BulletType {
+    ofImage* texture;
+    FirePattern firePattern;
+    TargetPattern targetPattern;
+};
+
 
 class BulletLibrary
 {

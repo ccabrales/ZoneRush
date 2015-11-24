@@ -63,7 +63,7 @@
 		C60077973A257D8F44947E2E /* ofxAubioBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 737C0C27DB7B0C9484DCEBAE /* ofxAubioBlock.cpp */; };
 		C93656581BE9CF9D00BCC866 /* track.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C93656571BE9CF9D00BCC866 /* track.cpp */; };
 		C936565C1BE9EBAF00BCC866 /* sox in CopyFiles */ = {isa = PBXBuildFile; fileRef = C93656591BE9EB8700BCC866 /* sox */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		C966CB771BED4F7000856879 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C966CB761BED4F7000856879 /* player.cpp */; };
+		C966CB771BED4F7000856879 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C966CB761BED4F7000856879 /* Player.cpp */; };
 		C981D4811BEC3E22006CB9BA /* ofxFatLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D47D1BEC3E22006CB9BA /* ofxFatLine.cpp */; };
 		C981D4821BEC3E22006CB9BA /* sincosineLut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D47F1BEC3E22006CB9BA /* sincosineLut.cpp */; };
 		C981D48B1BEC3E34006CB9BA /* ofxGifDecoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D4851BEC3E34006CB9BA /* ofxGifDecoder.cpp */; };
@@ -82,8 +82,7 @@
 		C981D4BD1BEC3E4B006CB9BA /* ofxEasingQuint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D4AD1BEC3E4B006CB9BA /* ofxEasingQuint.cpp */; };
 		C981D4BE1BEC3E4B006CB9BA /* ofxEasingSine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D4AF1BEC3E4B006CB9BA /* ofxEasingSine.cpp */; };
 		C981D4BF1BEC3E4B006CB9BA /* ofxTween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D4B11BEC3E4B006CB9BA /* ofxTween.cpp */; };
-		C99529541BEFF639005415D5 /* enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C99529521BEFF639005415D5 /* enemy.cpp */; };
-		C99529571BF0259F005415D5 /* weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C99529551BF0259F005415D5 /* weapon.cpp */; };
+		C99529541BEFF639005415D5 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C99529521BEFF639005415D5 /* Enemy.cpp */; };
 		C9D9BE301BFBCA3F0032C87E /* GameOverScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D9BE2E1BFBCA3F0032C87E /* GameOverScene.cpp */; };
 		C9D9BE351BFC89380032C87E /* ofxAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D9BE331BFC89380032C87E /* ofxAssets.cpp */; };
 		C9F760741BF66DF90045D640 /* TitleButtons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F760721BF66DF90045D640 /* TitleButtons.cpp */; };
@@ -275,8 +274,8 @@
 		C93656561BE9CF9200BCC866 /* track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = track.h; sourceTree = "<group>"; };
 		C93656571BE9CF9D00BCC866 /* track.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = track.cpp; sourceTree = "<group>"; };
 		C93656591BE9EB8700BCC866 /* sox */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = sox; sourceTree = "<group>"; };
-		C966CB751BED4F6200856879 /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = player.h; sourceTree = "<group>"; };
-		C966CB761BED4F7000856879 /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
+		C966CB751BED4F6200856879 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		C966CB761BED4F7000856879 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		C981D47D1BEC3E22006CB9BA /* ofxFatLine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxFatLine.cpp; sourceTree = "<group>"; };
 		C981D47E1BEC3E22006CB9BA /* ofxFatLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxFatLine.h; sourceTree = "<group>"; };
 		C981D47F1BEC3E22006CB9BA /* sincosineLut.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sincosineLut.cpp; sourceTree = "<group>"; };
@@ -314,10 +313,8 @@
 		C981D4B01BEC3E4B006CB9BA /* ofxEasingSine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxEasingSine.h; sourceTree = "<group>"; };
 		C981D4B11BEC3E4B006CB9BA /* ofxTween.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTween.cpp; sourceTree = "<group>"; };
 		C981D4B21BEC3E4B006CB9BA /* ofxTween.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxTween.h; sourceTree = "<group>"; };
-		C99529521BEFF639005415D5 /* enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = enemy.cpp; sourceTree = "<group>"; };
-		C99529531BEFF639005415D5 /* enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enemy.h; sourceTree = "<group>"; };
-		C99529551BF0259F005415D5 /* weapon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = weapon.cpp; sourceTree = "<group>"; };
-		C99529561BF0259F005415D5 /* weapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = weapon.h; sourceTree = "<group>"; };
+		C99529521BEFF639005415D5 /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
+		C99529531BEFF639005415D5 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		C9D9BE2E1BFBCA3F0032C87E /* GameOverScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameOverScene.cpp; sourceTree = "<group>"; };
 		C9D9BE2F1BFBCA3F0032C87E /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		C9D9BE331BFC89380032C87E /* ofxAssets.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAssets.cpp; sourceTree = "<group>"; };
@@ -590,16 +587,14 @@
 				ABFBB7251C034F410005F1E4 /* Unused */,
 				AB99A9071BF20E3500D7F38E /* GameEvent.h */,
 				AB99A9081BF20E3500D7F38E /* GameEvent.cpp */,
-				C966CB751BED4F6200856879 /* player.h */,
-				C966CB761BED4F7000856879 /* player.cpp */,
+				C966CB751BED4F6200856879 /* Player.h */,
+				C966CB761BED4F7000856879 /* Player.cpp */,
 				AB99A8F41BEF75DB00D7F38E /* Bullet.cpp */,
 				AB99A8F51BEF75DB00D7F38E /* Bullet.h */,
 				AB99A8F71BEF761500D7F38E /* BulletType.cpp */,
 				AB99A8F81BEF761500D7F38E /* BulletType.h */,
-				C99529521BEFF639005415D5 /* enemy.cpp */,
-				C99529531BEFF639005415D5 /* enemy.h */,
-				C99529551BF0259F005415D5 /* weapon.cpp */,
-				C99529561BF0259F005415D5 /* weapon.h */,
+				C99529521BEFF639005415D5 /* Enemy.cpp */,
+				C99529531BEFF639005415D5 /* Enemy.h */,
 				AB99A90A1BF28C5500D7F38E /* EnemyPath.cpp */,
 				AB99A90B1BF28C5500D7F38E /* EnemyPath.h */,
 				AB0E6D8D1BF4B46600018CD3 /* SpawnerLogistics.cpp */,
@@ -1023,7 +1018,7 @@
 				AB916EFD1BF74CDF00727BA1 /* LUTPass.cpp in Sources */,
 				AB916EFB1BF74CDF00727BA1 /* KaleidoscopePass.cpp in Sources */,
 				5CBB2AB3A60F65431D7B555D /* ofxButton.cpp in Sources */,
-				C966CB771BED4F7000856879 /* player.cpp in Sources */,
+				C966CB771BED4F7000856879 /* Player.cpp in Sources */,
 				B266578FC55D23BFEBC042E7 /* ofxGuiGroup.cpp in Sources */,
 				C981D4BC1BEC3E4B006CB9BA /* ofxEasingQuart.cpp in Sources */,
 				AB916F071BF74CDF00727BA1 /* ZoomBlurPass.cpp in Sources */,
@@ -1039,7 +1034,6 @@
 				AB916EF21BF74CDF00727BA1 /* ConvolutionPass.cpp in Sources */,
 				AB916F061BF74CDF00727BA1 /* VerticalTiltShifPass.cpp in Sources */,
 				C981D4811BEC3E22006CB9BA /* ofxFatLine.cpp in Sources */,
-				C99529571BF0259F005415D5 /* weapon.cpp in Sources */,
 				ABF66CF31BE9AE2500D5CEE8 /* audiodecodercoreaudio.cpp in Sources */,
 				AB0E6D8F1BF4B46600018CD3 /* SpawnerLogistics.cpp in Sources */,
 				AB916EF51BF74CDF00727BA1 /* EdgePass.cpp in Sources */,
@@ -1054,7 +1048,7 @@
 				AB99A9091BF20E3500D7F38E /* GameEvent.cpp in Sources */,
 				C981D4BD1BEC3E4B006CB9BA /* ofxEasingQuint.cpp in Sources */,
 				ABF66CF21BE9AE2500D5CEE8 /* audiodecoderbase.cpp in Sources */,
-				C99529541BEFF639005415D5 /* enemy.cpp in Sources */,
+				C99529541BEFF639005415D5 /* Enemy.cpp in Sources */,
 				AB916F021BF74CDF00727BA1 /* RGBShiftPass.cpp in Sources */,
 				B56FE57CC35806596D38118C /* ofxSliderGroup.cpp in Sources */,
 				AB916EFF1BF74CDF00727BA1 /* PixelatePass.cpp in Sources */,

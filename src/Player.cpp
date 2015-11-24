@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "player.h"
+#include "Player.h"
 
 void Player::setup(ofImage * _img) {
     pos.x = ofGetWidth() / 10.0;

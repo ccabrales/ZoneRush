@@ -7,8 +7,8 @@
 #include "ofxParticles.h"
 #include "track.h"
 #include "ofxAssets.h"
-#include "player.h"
-#include "enemy.h"
+#include "Player.h"
+#include "Enemy.h"
 
 class GameScene {
 public:
