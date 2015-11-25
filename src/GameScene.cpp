@@ -34,7 +34,7 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
     
     //TODO: remove test spawning code here
     if(data->onBeat){
-        vector<EnemyPtr>* newEnemies = EnemyFactory::makeGroup(1, 2, 0);
+        vector<EnemyPtr>* newEnemies = EnemyFactory::makeGroup(1, 2, 0, 1.0);
         for(int i = 0; i < newEnemies->size(); i++){
             if (i % 2 == 0) (*newEnemies)[i]->hp = 0; //TODO remove test code
             enemyList.push_back((*newEnemies)[i]);

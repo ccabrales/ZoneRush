@@ -23,9 +23,7 @@ class BulletLibrary
 {
 public:
     static const BulletType* getWeaponInfo(int grade);
-    
     vector<BulletType> bullets;
-
 private:
     BulletLibrary();
 };

@@ -33,17 +33,60 @@ void Enemy::setup(float diffScaling){
     cd = 0;
     difficultyScaling = diffScaling;
     state = HEALTHY;
+    
 }
 
 void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bulletSpace){
     ofxParticle::update(timeStep, drag);
     cd -= timeStep;
     if(cd <= 0){
+        fire(bulletSpace);
         //fire
         //TODO
-        cd = 2.3;
     }
     if(hp<=0) ofxParticle::color = ofColor(255,255,255,100);
+}
+
+#define BulletSpeed 5.0
+void Enemy::fire(ofxParticleSystem* bulletSpace){
+    gun.setPosition(this->position);
+    
+    if(type->bulletType->targetPattern==PLAYER){
+        //point towards player.
+        ofVec3f posDir = (position - player.pos).normalize()*difficultyScaling*BulletSpeed;
+        gun.setVelocity(posDir);
+    }else{
+        gun.setVelocity(ofVec3f(-BulletSpeed * difficultyScaling, 0));
+        //down the lane
+    }
+    //further gun setup.
+    switch(type->bulletType->firePattern){
+        case STRAIGHT:
+            gun.numPars = 1;
+            cd += 0.2;
+            break;
+        case CLOUD:
+            gun.numPars = 30;
+            gun.velSpread = ofVec3f(BulletSpeed*2.0*difficultyScaling, BulletSpeed*2.0*difficultyScaling);
+            cd += 1.4;
+            break;
+        case THREESHOT:
+            gun.numPars = 3;
+            gun.velSpread = ofVec3f(0.1, BulletSpeed/5.0);
+            cd += 0.5;
+        case TWOSHOT:
+            gun.numPars = 2;
+            gun.velSpread = ofVec3f(0.1, BulletSpeed/12.0);
+            cd+=0.3;
+        default:
+            gun.numPars = 1;
+            cd+=0.2;
+            break;
+    }
+    
+    cd /= difficultyScaling;
+    
+    bulletSpace->addParticles(gun, &type->bulletType->texture->getTexture());
 }
 
 void Enemy::draw(){

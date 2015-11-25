@@ -32,6 +32,7 @@ public:
     float dt;
     int particleID;
     
+    ofTexture* texture = NULL;
     
     bool operator < (const ofxParticle &b);
     
@@ -113,6 +114,7 @@ public:
     ~ofxParticleSystem(){}
     
     void addParticles(ofxParticleEmitter & src);
+    void addParticles(ofxParticleEmitter & src, ofTexture* texture);
     
     void attractTo(ofPoint p, const float accel, const float minDist, const bool consumeParticle);
     

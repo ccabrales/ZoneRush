@@ -10,6 +10,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "ScoreRenderer.h"
+#include "globals.h"
 
 class GameScene {
 public:
@@ -25,7 +26,6 @@ public:
     void windowResized(int w, int h);
     void backgroundUpdate(const Track::Data* data, ofxParticleSystem* particleSystem);
     
-    Player player;
     int score;
     
 private:

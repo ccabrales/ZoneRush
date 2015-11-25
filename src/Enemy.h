@@ -7,6 +7,7 @@
 #include "EnemyPath.h"
 #include "globals.h"
 #include "ofxParticles.h"
+#include "player.h"
 
 struct EnemyType {
     int minHP;
@@ -32,11 +33,12 @@ public:
     EnemyType* type;
     EnemyState state;
 //    ofPolyline path;
+    ofxParticleEmitter gun;
     
     void setup(float diffScaling);
     void update(const float timeStep, const float drag, ofxParticleSystem* bulletSpace);
+    void fire(ofxParticleSystem* bulletSpace);
     void draw();
-    void shoot();
     
     void onsetHandler(const Track::Data& frame);
 //    void calculate_movement(const ofPolyline* archetype);
