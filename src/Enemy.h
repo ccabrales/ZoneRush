@@ -49,9 +49,9 @@ typedef shared_ptr<Enemy> EnemyPtr;
 class EnemyFactory
 {
 public:
-    static EnemyPtr make(int typeID);
+    static EnemyPtr make(int typeID, float difficultyScaling);
     
-    static vector< EnemyPtr >* makeGroup(int type, int size, float variance);
+    static vector< EnemyPtr >* makeGroup(int type, int size, float variance, float difficultyScaling);
 private:
     vector<EnemyType> e_types;
     EnemyFactory();

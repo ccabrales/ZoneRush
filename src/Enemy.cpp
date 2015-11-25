@@ -10,21 +10,18 @@ EnemyFactory::EnemyFactory(){
 }
 
 
-EnemyPtr EnemyFactory::make(int typeID){
+EnemyPtr EnemyFactory::make(int typeID, float diffScaling=1.0){
     static EnemyFactory inst;
     EnemyPtr e = EnemyPtr(new Enemy);
     e->type = &(inst.e_types[typeID]);
-    e->setup();
+    e->setup(diffScaling);
     return e;
 }
 
-vector<EnemyPtr >* EnemyFactory::makeGroup(int type, int size, float variance){
-    
+vector<EnemyPtr >* EnemyFactory::makeGroup(int type, int size, float variance, float diffScaling = 1){
     vector< EnemyPtr >* output = new vector<EnemyPtr>();
     for(int i = 0; i < size; i++){
-        int pathId = (int)ofRandom(0, PathLibrary::size()); /*randomized*/
-        EnemyPtr newChallenger = make(type);
-//        newChallenger->calculate_movement(PathLibrary::getPath(pathId));
+        EnemyPtr newChallenger = make(type, diffScaling);
         output->push_back(newChallenger);
     }
     return output;
@@ -47,22 +44,7 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
         cd = 2.3;
     }
 }
-//void Enemy::update(){
-//    float dist = ((float)(tick - spawnTime))*type->speed;
-//    pos = path.getPointAtLength(dist);
-//}
 
 void Enemy::draw(){
-//    ofPushStyle();
-//    ofSetColor(3,3,3,100);
-//    ofSetColor(255,0,0);
-//    ofCircle(pos, 6);
-//    ofPopStyle();
+    ofxParticle::draw(type->texture->getTexture());
 }
-
-//void Enemy::calculate_movement(const ofPolyline* archetype){
-//    ofPoint multiplier(ofGetWidth(), ofGetHeight());
-//    for(int i = 0; i < archetype->size(); i++){
-//        path.addVertex((*archetype)[i]*multiplier);
-//    }
-//}
