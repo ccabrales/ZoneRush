@@ -147,7 +147,7 @@ public:
     int getNumParticles();
     
 protected:
-    list<ofxParticle*> particles;
+    list<ofxParticle *> particles;
     int numParticles;
     int totalParticlesEmitted;
 };

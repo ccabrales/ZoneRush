@@ -31,9 +31,12 @@ public:
 private:
     ofxParticleEmitter rightEmitter;
     
-    ofxParticleEmitter enemyEmitter;
-    ofxParticleEmitter playerEmitter;
     vector<EnemyPtr> enemyList;
     
     ScoreRenderer scoreRender;
+    
+    ofxParticleSystem enemyBullets;
+    EnemySystem enemies;
+    ofxParticleSystem playerBullets;
+
 };

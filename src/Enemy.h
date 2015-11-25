@@ -23,6 +23,7 @@ enum EnemyState {
     HEALTHY, DYING, DEAD
 };
 
+
 class Enemy : public ofxParticle{
 public:
 //    ofPoint pos;
@@ -60,6 +61,10 @@ private:
 };
 
 
-
+class EnemySystem : public ofxParticleSystem{
+public:
+    int update(float timeStep, ofxParticleSystem* bulletSystem);
+    
+};
 
 

@@ -138,9 +138,9 @@ void ofApp::draw(){
     }
     ofPopStyle();
     
-    for(int i=0; i < enemyList.size(); i++){
-        enemyList[i]->draw();
-    }
+//    for(int i=0; i < enemyList.size(); i++){
+//        enemyList[i]->draw();
+//    }
     
     post.end(true);
     

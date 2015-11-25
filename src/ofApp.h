@@ -46,7 +46,7 @@ private:
     //State machine
     enum GameState { START, LOAD, GAME, END };
     GameState game_state;
-    vector<EnemyPtr> enemyList;
+//    vector<EnemyPtr> enemyList;
 
     //Scenes
     TitleScene * titleScene;

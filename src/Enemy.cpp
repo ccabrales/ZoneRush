@@ -92,3 +92,21 @@ void Enemy::fire(ofxParticleSystem* bulletSpace){
 void Enemy::draw(){
     ofxParticle::draw(type->texture->getTexture());
 }
+
+int EnemySystem::update(float timeStep, ofxParticleSystem* bulletSystem){
+    int particlesRemoved = 0;
+    for(list<ofxParticle*>::iterator it = particles.begin(); it != particles.end(); it++){
+        if((**it).isAlive()){
+            (*((Enemy*)*it)).update(timeStep, 1.0, bulletSystem);
+        }
+        else{
+            Enemy * p = ((Enemy*)(*it));
+            it = particles.erase(it);
+            delete p;
+            particlesRemoved++;
+        }
+    }
+    numParticles-=particlesRemoved;
+    return particlesRemoved;
+}
+

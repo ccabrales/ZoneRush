@@ -18,11 +18,10 @@ void GameScene::setup(){
 
 void GameScene::update(){
     player.update();
-    
-    
-    //TODO: remove next 2 lines test code
-    for(int i=0; i < enemyList.size(); i++) enemyList[i]->update();
-//    if (player.pos.x > 150) player.lives = 0; //Test code for game over
+    float lastFrameTime = ofGetLastFrameTime();
+    enemies.update(lastFrameTime, &enemyBullets);
+    enemyBullets.update(lastFrameTime, 1);
+    playerBullets.update(lastFrameTime, 1);
 }
 
 void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* particleSystem){
@@ -31,16 +30,6 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
     
     particleSystem->addParticles(rightEmitter);
     particleSystem->addParticles(player.emitter);
-    
-    //TODO: remove test spawning code here
-    if(data->onBeat){
-        vector<EnemyPtr>* newEnemies = EnemyFactory::makeGroup(1, 2, 0, 1.0);
-        for(int i = 0; i < newEnemies->size(); i++){
-            if (i % 2 == 0) (*newEnemies)[i]->hp = 0; //TODO remove test code
-            enemyList.push_back((*newEnemies)[i]);
-        }
-        delete newEnemies;
-    }
     
     update();
 }
