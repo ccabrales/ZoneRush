@@ -145,7 +145,8 @@ void ofApp::draw(){
     post.end(true);
     
     tv.draw(tick);
-
+    
+//    ofxAssets::image("s1").draw(30, 41);
 }
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){

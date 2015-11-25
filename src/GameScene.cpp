@@ -24,7 +24,7 @@ void GameScene::update(){
     playerBullets.update(lastFrameTime, 1);
 }
 
-#define DIFFICULTY 2.0
+#define DIFFICULTY 4.0
 //the higher the easier.
 
 
@@ -41,7 +41,7 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
         Enemy * e = new Enemy();
         e->position = ofVec3f(ofGetWidth()+10, ofWrap(data->pitch * 13, 0, ofGetHeight()));
         e->life = 500;
-        e->velocity = ofVec3f(-1.2, 0);
+        e->velocity = ofVec3f(-80, 0);
         e->type = EnemyFactory::getType(rand()%3);
         e->setup(currentDifficulty);
         e->size = 15;

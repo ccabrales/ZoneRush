@@ -7,24 +7,24 @@ const BulletType* BulletLibrary::getWeaponInfo(int grade){
 
 BulletLibrary::BulletLibrary(){
     bullets.push_back( BulletType {
-        &ofxAssets::image("bullets/b1"), STRAIGHT, PLAYER
+        &ofxAssets::image("b1"), STRAIGHT, PLAYER
     });
     bullets.push_back( BulletType {
-        &ofxAssets::image("bullets/b2"), TWOSHOT, PLAYER
+        &ofxAssets::image("b2"), TWOSHOT, PLAYER
     });
     bullets.push_back( BulletType {
-        &ofxAssets::image("bullets/b3"), THREESHOT, PLAYER
+        &ofxAssets::image("b3"), THREESHOT, PLAYER
     });
     bullets.push_back( BulletType {
-        &ofxAssets::image("bullets/b4"), CLOUD, DOWNLANE
+        &ofxAssets::image("b4"), CLOUD, DOWNLANE
     });
     bullets.push_back( BulletType {
-        &ofxAssets::image("bullets/b2"), STRAIGHT, DOWNLANE
+        &ofxAssets::image("b2"), STRAIGHT, DOWNLANE
     });
     bullets.push_back( BulletType {
-        &ofxAssets::image("bullets/b4"), TWOSHOT, DOWNLANE
+        &ofxAssets::image("b4"), TWOSHOT, DOWNLANE
     });
     bullets.push_back( BulletType {
-        &ofxAssets::image("bullets/b1"), THREESHOT, DOWNLANE
+        &ofxAssets::image("b1"), THREESHOT, DOWNLANE
     });
 };

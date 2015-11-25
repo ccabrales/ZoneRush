@@ -2,13 +2,13 @@
 
 EnemyFactory::EnemyFactory(){
     e_types.push_back(EnemyType {
-        4, 5, BulletLibrary::getWeaponInfo(0), true, &ofxAssets::image("ships/s1")
+        4, 5, BulletLibrary::getWeaponInfo(0), true, &ofxAssets::image("s1")
     });
     e_types.push_back(EnemyType {
-        4, 7, BulletLibrary::getWeaponInfo(2), false, &ofxAssets::image("ships/s2")
+        4, 7, BulletLibrary::getWeaponInfo(2), false, &ofxAssets::image("s2")
     });
     e_types.push_back(EnemyType {
-        3, 8, BulletLibrary::getWeaponInfo(4), false, &ofxAssets::image("ships/s3")
+        3, 8, BulletLibrary::getWeaponInfo(4), false, &ofxAssets::image("s3")
     });
 
 }
@@ -42,6 +42,8 @@ void Enemy::setup(float diffScaling){
     difficultyScaling = diffScaling;
     state = HEALTHY;
     texture = type->texture;
+    
+    gun.size = 10;
 }
 
 void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bulletSpace){
@@ -53,13 +55,14 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
     if(hp<=0) ofxParticle::color = ofColor(255,255,255,100);
 }
 
-#define BulletSpeed 5.0
+#define BulletSpeed 220
 void Enemy::fire(ofxParticleSystem* bulletSpace){
     gun.setPosition(this->position);
+    gun.life = 130;
     
     if(type->bulletType->targetPattern==PLAYER){
         //point towards player.
-        ofVec3f posDir = (position - player.pos).normalize()*difficultyScaling*BulletSpeed;
+        ofVec3f posDir = (player.pos - position).normalize()*difficultyScaling*BulletSpeed;
         gun.setVelocity(posDir);
     }else{
         gun.setVelocity(ofVec3f(-BulletSpeed * difficultyScaling, 0));
@@ -78,7 +81,7 @@ void Enemy::fire(ofxParticleSystem* bulletSpace){
             break;
         case THREESHOT:
             gun.numPars = 3;
-            gun.velSpread = ofVec3f(0.1, BulletSpeed/5.0);
+            gun.velSpread = ofVec3f(0.1, BulletSpeed/15.0);
             cd += 0.5;
         case TWOSHOT:
             gun.numPars = 2;
