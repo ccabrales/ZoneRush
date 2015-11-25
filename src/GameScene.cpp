@@ -22,7 +22,7 @@ void GameScene::update(){
     checkEnemyHits();
     
     //TODO: remove next 2 lines test code
-    for(int i=0; i < enemyList.size(); i++) enemyList[i]->update();
+//    for(int i=0; i < enemyList.size(); i++) enemyList[i]->update();
 //    if (player.pos.x > 150) player.lives = 0; //Test code for game over
     float lastFrameTime = ofGetLastFrameTime();
     enemies.update(lastFrameTime, &enemyBullets);
