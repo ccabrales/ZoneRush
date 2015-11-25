@@ -18,7 +18,8 @@ void GameScene::setup(){
 
 void GameScene::update(){
     player.update();
-    
+    checkPlayerHit();
+    checkEnemyHits();
     
     //TODO: remove next 2 lines test code
     for(int i=0; i < enemyList.size(); i++) enemyList[i]->update();
@@ -52,6 +53,14 @@ void GameScene::draw(){
     for(int i=0; i < enemyList.size(); i++){
         enemyList[i]->draw();
     }
+}
+
+void GameScene::checkPlayerHit() {
+    
+}
+
+void GameScene::checkEnemyHits() {
+    
 }
 
 void GameScene::willFadeOut() {
