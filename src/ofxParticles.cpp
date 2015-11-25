@@ -276,10 +276,12 @@ ofxParticleEmitter & ofxParticleEmitter::setVelocity(ofVec3f velStart, ofVec3f v
     return *this;
 }
 
-
-
-
 void ofxParticleSystem::addParticles(ofxParticleEmitter & src){
+    this->addParticles(src, NULL);
+}
+
+
+void ofxParticleSystem::addParticles(ofxParticleEmitter & src, ofImage* texture){
     for(int i=0;i<src.numPars;i++){
         ofVec3f pos = src.positionStart;
         ofVec3f vel = src.velocityStart;
@@ -294,6 +296,7 @@ void ofxParticleSystem::addParticles(ofxParticleEmitter & src){
         float l = src.life+ofRandomf()*src.lifeSpread;
         ofxParticle * par = new ofxParticle(p,v,s,l);
         par->rotation = src.rotation+ofRandVec3f()*src.rotSpread;
+        par->texture = texture;
         par->rotationalVelocity = src.rotVel+ofRandVec3f()*src.rotVelSpread;
         par->particleID = totalParticlesEmitted+i;
         ofColor pColor = src.color;
@@ -361,8 +364,16 @@ int ofxParticleSystem::update(float timeStep, float drag){
 }
 
 void ofxParticleSystem::draw(){
-    for(list<ofxParticle*>::iterator it = particles.begin(); it != particles.end(); it++){
-        (**it).draw();
+    list<ofxParticle*>::iterator it = particles.begin();
+    if(it == particles.end()) return;
+    if((**it).texture != NULL){
+        for(; it != particles.end(); it++){
+            (**it).draw((**it).texture->getTexture());
+        }
+    }else{
+        for(; it != particles.end(); it++){
+            (**it).draw();
+        }
     }
 }
 

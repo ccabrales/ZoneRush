@@ -101,7 +101,7 @@ Track::Track(ofxAudioDecoder * decoder) {
             //remove onset information if it occurs already.
         }
         variancesum += pow(frameData[i].intensity - averageIntensity, 2);
-        cout << toString(frameData[i]) << endl;
+//        cout << toString(frameData[i]) << endl;
     }
     varianceIntensity = (variancesum / (float)frameData.size());
     

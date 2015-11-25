@@ -4,7 +4,7 @@ int tick = 0;
 unique_ptr<Track> currentTrack = NULL;
 unique_ptr<ofxAudioDecoder> globalDecoder = NULL;
 int score = 0;
-
+Player player;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -76,7 +76,7 @@ void ofApp::update(){
             break;
         case GAME:
             gameScene->backgroundUpdate(d, &backgroundParticles);
-            if (gameScene->player.lives <= 0) {
+            if (player.lives <= 0) {
                 game_state = END;
                 gameOverScene->setup(gameScene->score, 97); //TODO: fix hard code and give actual percentage of song completed
             }
@@ -138,14 +138,15 @@ void ofApp::draw(){
     }
     ofPopStyle();
     
-    for(int i=0; i < enemyList.size(); i++){
-        enemyList[i]->draw();
-    }
+//    for(int i=0; i < enemyList.size(); i++){
+//        enemyList[i]->draw();
+//    }
     
     post.end(true);
     
     tv.draw(tick);
-
+    
+//    ofxAssets::image("s1").draw(30, 41);
 }
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
@@ -179,13 +180,13 @@ void ofApp::keyPressed(int key){
     } else if (game_state == GAME) {
         switch (key) {
             case OF_KEY_LEFT:
-                gameScene->player.is_left_pressed = true;  break;
+                player.is_left_pressed = true;  break;
             case OF_KEY_RIGHT:
-                gameScene->player.is_right_pressed = true; break;
+                player.is_right_pressed = true; break;
             case OF_KEY_UP:
-                gameScene->player.is_up_pressed = true;    break;
+                player.is_up_pressed = true;    break;
             case OF_KEY_DOWN:
-                gameScene->player.is_down_pressed = true;  break;
+                player.is_down_pressed = true;  break;
             default:
                 break;
         }
@@ -206,13 +207,13 @@ void ofApp::keyReleased(int key){
     if (game_state == GAME) {
         switch (key) {
             case OF_KEY_LEFT:
-                gameScene->player.is_left_pressed = false;     break;
+                player.is_left_pressed = false;     break;
             case OF_KEY_RIGHT:
-                gameScene->player.is_right_pressed = false;    break;
+                player.is_right_pressed = false;    break;
             case OF_KEY_UP:
-                gameScene->player.is_up_pressed = false;       break;
+                player.is_up_pressed = false;       break;
             case OF_KEY_DOWN:
-                gameScene->player.is_down_pressed = false;     break;
+                player.is_down_pressed = false;     break;
             default:
                 break;
         }
