@@ -2,6 +2,7 @@
 
 void GameScene::setup(){		
     player.setup(&ofxAssets::image("player"));
+    score = 0;
     
     rightEmitter.setPosition(ofVec3f(ofGetWidth()-1,ofGetHeight()/2.0));
     rightEmitter.setVelocity(ofVec3f(-310,0.0));
@@ -17,6 +18,10 @@ void GameScene::setup(){
 
 void GameScene::update(){
     player.update();
+    
+    
+    //TODO: remove next 2 lines test code
+    for(int i=0; i < enemyList.size(); i++) enemyList[i]->update();
 //    if (player.pos.x > 150) player.lives = 0; //Test code for game over
 }
 
@@ -27,12 +32,26 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
     particleSystem->addParticles(rightEmitter);
     particleSystem->addParticles(player.emitter);
     
+    //TODO: remove test spawning code here
+    if(data->onBeat){
+        vector<EnemyPtr>* newEnemies = EnemyFactory::makeGroup(1, 2, 0);
+        for(int i = 0; i < newEnemies->size(); i++){
+            if (i % 2 == 0) (*newEnemies)[i]->hp = 0; //TODO remove test code
+            enemyList.push_back((*newEnemies)[i]);
+        }
+        delete newEnemies;
+    }
+    
     update();
 }
 
 
 void GameScene::draw(){
     player.draw();
+    scoreRender.draw(20, ofGetHeight() - 12);
+    for(int i=0; i < enemyList.size(); i++){
+        enemyList[i]->draw();
+    }
 }
 
 void GameScene::willFadeOut() {

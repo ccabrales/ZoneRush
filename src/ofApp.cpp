@@ -78,7 +78,7 @@ void ofApp::update(){
             gameScene->backgroundUpdate(d, &backgroundParticles);
             if (gameScene->player.lives <= 0) {
                 game_state = END;
-                gameOverScene->setup();
+                gameOverScene->setup(gameScene->score, 97); //TODO: fix hard code and give actual percentage of song completed
             }
             break;
         case END:
@@ -129,7 +129,6 @@ void ofApp::draw(){
             break;
         case GAME:
             gameScene->draw();
-            score.draw(20, ofGetHeight() - 12);
             break;
         case END:
             gameOverScene->draw();
@@ -191,7 +190,13 @@ void ofApp::keyPressed(int key){
                 break;
         }
     } else if (game_state == END) {
-        
+        switch (key) {
+            case OF_KEY_RETURN:
+                game_state = START;
+                break;
+            default:
+                break;
+        }
     }
     
 }

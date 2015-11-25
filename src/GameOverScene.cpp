@@ -1,11 +1,17 @@
 #include "GameOverScene.h"
 
 
-void GameOverScene::setup(){
+void GameOverScene::setup(int endScore, int finalPercentage){
     gameOverText.load("GameOver.png");
     score.load("Score.png");
-    songPercent.load("SongPercentage.png");
+    songPercent.load("Completion.png");
+    menu.load("MenuSelected.png");
     resetPosition();
+    
+    finalScore = endScore;
+    ostringstream oss;
+    oss << finalPercentage << "%";
+    percentage = oss.str();
     
     rightEmitter.setPosition(ofVec3f(ofGetWidth()-1,ofGetHeight()/2.0));
     rightEmitter.setVelocity(ofVec3f(-310,0.0));
@@ -22,8 +28,14 @@ void GameOverScene::setup(){
 //TODO: get actual distances for how long the score and songPercentage text will be after these images to make exactly center
 void GameOverScene::resetPosition() {
     textPos = ofPoint((ofGetWidth() / 2.0) - (gameOverText.getWidth() / 2.0), ofGetHeight() / 5.0);
-    scorePos = ofPoint((ofGetWidth() / 2.0) - (score.getWidth() / 2.0), 3 * ofGetHeight() / 5.0);
-    songPos = ofPoint((ofGetWidth() / 2.0) - (songPercent.getWidth() / 2.0), scorePos.y+score.getHeight() + 10.0);
+    
+    scorePos = ofPoint((ofGetWidth() / 2.0) - (score.getWidth() / 2.0) - 50.0, 3 * ofGetHeight() / 7.0);
+    finalScorePos = ofPoint((ofGetWidth() / 2.0) + 75.0, 3 * ofGetHeight() / 7.0 + 55.0);
+    
+    songPos = ofPoint((ofGetWidth() / 2.0) - (songPercent.getWidth() / 2.0) - 120.0, scorePos.y+score.getHeight() + 10.0);
+    percentPos = ofPoint((ofGetWidth() / 2.0) + 100.0, scorePos.y+score.getHeight() + 65.0);
+    
+    menuPos = ofPoint((ofGetWidth() / 2.0) - (menu.getWidth() / 2.0), songPos.y+songPercent.getHeight() + 10.0);
 }
 
 void GameOverScene::update(){
@@ -43,6 +55,9 @@ void GameOverScene::draw(){
     gameOverText.draw(textPos);
     score.draw(scorePos);
     songPercent.draw(songPos);
+    menu.draw(menuPos);
+    scoreRender.drawFinal(finalScorePos);
+    scoreRender.drawText(percentage, percentPos);
     ofPopStyle();
 }
 

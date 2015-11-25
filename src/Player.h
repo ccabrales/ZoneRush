@@ -18,6 +18,7 @@ public:
     void shoot();
     
     void calculate_movement();
+    void checkBounds();
     
 //    bool check_can_shoot();
     

@@ -43,6 +43,7 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
         //TODO
         cd = 2.3;
     }
+    if(hp<=0) ofxParticle::color = ofColor(255,255,255,100);
 }
 
 void Enemy::draw(){
