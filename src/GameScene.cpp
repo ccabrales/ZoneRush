@@ -24,13 +24,29 @@ void GameScene::update(){
     playerBullets.update(lastFrameTime, 1);
 }
 
+#define DIFFICULTY 2.0
+//the higher the easier.
+
+
 void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* particleSystem){
     rightEmitter.numPars = max((int)(data->intensity*20) + (data->onBeat?12:0), 2);
     rightEmitter.setVelocity(data->onBeat?ofVec3f(-510,0.0):ofVec3f(-310,0.0));
-    
     particleSystem->addParticles(rightEmitter);
     particleSystem->addParticles(player.emitter);
     
+    //spawn possible enemies
+    float currentDifficulty = ofMap(tick, 0, currentTrack->frameData.size(), 1.0, 3.0);
+    float spawnRate = ((data->intensity)/5.0 + ((float)data->onBeat) / 7.0 + ((float)data->onsets / 32.0))/DIFFICULTY;
+    if(ofRandom(1.0) < spawnRate){
+        Enemy * e = new Enemy();
+        e->position = ofVec3f(ofGetWidth()+10, ofWrap(data->pitch * 13, 0, ofGetHeight()));
+        e->life = 500;
+        e->velocity = ofVec3f(-1.2, 0);
+        e->type = EnemyFactory::getType(rand()%3);
+        e->setup(currentDifficulty);
+        e->size = 15;
+        enemies.particles.push_front(e);
+    }
     update();
 }
 
@@ -38,9 +54,8 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
 void GameScene::draw(){
     player.draw();
     scoreRender.draw(20, ofGetHeight() - 12);
-    for(int i=0; i < enemyList.size(); i++){
-        enemyList[i]->draw();
-    }
+    enemies.draw();
+    enemyBullets.draw();
 }
 
 void GameScene::willFadeOut() {

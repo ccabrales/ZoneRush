@@ -8,12 +8,12 @@
 #include "globals.h"
 #include "ofxParticles.h"
 #include "player.h"
+#include "ofxAssets.h"
 
 struct EnemyType {
     int minHP;
     int maxHP;
     const BulletType* bulletType;
-    float speed;
     //movement:
     bool followPlayer;
     ofImage* texture;
@@ -33,7 +33,6 @@ public:
     
     EnemyType* type;
     EnemyState state;
-//    ofPolyline path;
     ofxParticleEmitter gun;
     
     void setup(float diffScaling);
@@ -53,7 +52,7 @@ class EnemyFactory
 {
 public:
     static EnemyPtr make(int typeID, float difficultyScaling);
-    
+    static EnemyType* getType(int typeID);
     static vector< EnemyPtr >* makeGroup(int type, int size, float variance, float difficultyScaling);
 private:
     vector<EnemyType> e_types;

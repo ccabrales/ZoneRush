@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "ofMain.h"
 #include "ofxParticles.h"
+#include "ofxAssets.h"
 
 enum FirePattern{
     STRAIGHT, THREESHOT, TWOSHOT, CLOUD

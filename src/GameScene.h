@@ -29,6 +29,8 @@ public:
     int score;
     
 private:
+    
+    
     ofxParticleEmitter rightEmitter;
     
     vector<EnemyPtr> enemyList;
@@ -38,5 +40,5 @@ private:
     ofxParticleSystem enemyBullets;
     EnemySystem enemies;
     ofxParticleSystem playerBullets;
-
+    
 };

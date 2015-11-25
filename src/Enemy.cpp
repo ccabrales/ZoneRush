@@ -2,13 +2,21 @@
 
 EnemyFactory::EnemyFactory(){
     e_types.push_back(EnemyType {
-        4, 5, BulletLibrary::getWeaponInfo(0), 0.7, NULL
+        4, 5, BulletLibrary::getWeaponInfo(0), true, &ofxAssets::image("ships/s1")
     });
     e_types.push_back(EnemyType {
-        4, 7, BulletLibrary::getWeaponInfo(0), 0.9, NULL
+        4, 7, BulletLibrary::getWeaponInfo(2), false, &ofxAssets::image("ships/s2")
     });
+    e_types.push_back(EnemyType {
+        3, 8, BulletLibrary::getWeaponInfo(4), false, &ofxAssets::image("ships/s3")
+    });
+
 }
 
+EnemyType* EnemyFactory::getType(int typeID){
+    static EnemyFactory inst;
+    return &(inst.e_types[typeID]);
+}
 
 EnemyPtr EnemyFactory::make(int typeID, float diffScaling=1.0){
     static EnemyFactory inst;
@@ -33,7 +41,7 @@ void Enemy::setup(float diffScaling){
     cd = 0;
     difficultyScaling = diffScaling;
     state = HEALTHY;
-    
+    texture = type->texture;
 }
 
 void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bulletSpace){
@@ -41,8 +49,6 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
     cd -= timeStep;
     if(cd <= 0){
         fire(bulletSpace);
-        //fire
-        //TODO
     }
     if(hp<=0) ofxParticle::color = ofColor(255,255,255,100);
 }
@@ -86,7 +92,7 @@ void Enemy::fire(ofxParticleSystem* bulletSpace){
     
     cd /= difficultyScaling;
     
-    bulletSpace->addParticles(gun, &type->bulletType->texture->getTexture());
+    bulletSpace->addParticles(gun, type->bulletType->texture);
 }
 
 void Enemy::draw(){
@@ -96,7 +102,7 @@ void Enemy::draw(){
 int EnemySystem::update(float timeStep, ofxParticleSystem* bulletSystem){
     int particlesRemoved = 0;
     for(list<ofxParticle*>::iterator it = particles.begin(); it != particles.end(); it++){
-        if((**it).isAlive()){
+        if((**it).isAlive() && (**it).position.x > -13){
             (*((Enemy*)*it)).update(timeStep, 1.0, bulletSystem);
         }
         else{
