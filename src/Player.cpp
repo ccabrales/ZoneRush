@@ -12,6 +12,8 @@ void Player::setup(ofImage * _img) {
     speed = 3;
     lives = 3;
     
+    moveHitbox();
+    
     is_left_pressed = false;
     is_right_pressed = false;
     is_down_pressed = false;
@@ -46,10 +48,12 @@ void Player::update() {
     }
     checkBounds();
     emitter.setPosition(pos + ofVec2f(0, img->getHeight() / 2.0));
+    moveHitbox();
 }
 
 void Player::draw() {
     img->draw(pos);
+//    ofDrawRectangle(hitbox);
 }
 
 void Player::shoot() {
@@ -65,6 +69,10 @@ void Player::checkBounds() { //make sure player doesn't go out of screen, and re
     if (pos.x > ofGetWidth() - img->getWidth()) pos.x = ofGetWidth() - img->getWidth();
     if (pos.y < 0) pos.y = 0;
     if (pos.y > ofGetHeight() - img->getHeight()) pos.y = ofGetHeight() - img->getHeight();
+}
+
+void Player::moveHitbox() {
+    hitbox.set(pos.x + (width/4.0), pos.y + (height/4.0), width / 2.0, height/2.0);
 }
 
 //bool Player::check_can_shoot() {

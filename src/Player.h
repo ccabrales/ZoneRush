@@ -19,11 +19,14 @@ public:
     
     void calculate_movement();
     void checkBounds();
+    void moveHitbox();
     
 //    bool check_can_shoot();
     
     ofImage * img;
     
     ofxParticleEmitter emitter;
+    
+    ofRectangle hitbox;
     
 };
