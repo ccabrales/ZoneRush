@@ -62,6 +62,14 @@ void GameScene::draw(){
     scoreRender.draw(20, ofGetHeight() - 12);
     enemies.draw();
     enemyBullets.draw();
+    ofPushStyle();
+    ofSetColor(255,244,255);
+    ofFill();
+    ofSetLineWidth(2.0);
+    ofLine(0, 5, ofGetWidth(), 5);
+    ofRect(0, 0,
+           ((ofGetWidth()*tick)/currentTrack->frameData.size()), 5);
+    ofPopStyle();
 }
 
 void GameScene::checkPlayerHit() {
