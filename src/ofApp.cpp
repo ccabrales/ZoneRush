@@ -95,19 +95,6 @@ void ofApp::update(){
     }else{
         pass->setEnabled(false);
     }
-    //TEMPORARY ENEMY SPAWNER LOL
-    //    if(d->onBeat){
-    //        vector<EnemyPtr>* newEnemies = EnemyFactory::makeGroup(1, 2, 0);
-    //        for(int i = 0; i < newEnemies->size(); i++){
-    //            enemyList.push_back((*newEnemies)[i]);
-    //        }
-    //        delete newEnemies;
-    //    }
-    //    for(int i=0; i < enemyList.size(); i++){
-    //        enemyList[i]->update();
-    //    }
-    //    
-    //    delete d;
 }
 
 //--------------------------------------------------------------

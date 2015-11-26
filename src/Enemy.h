@@ -4,7 +4,6 @@
 #include "ofMain.h"
 #include "BulletType.h"
 #include "track.h"
-#include "EnemyPath.h"
 #include "globals.h"
 #include "ofxParticles.h"
 #include "player.h"
