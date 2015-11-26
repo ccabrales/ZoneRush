@@ -78,7 +78,7 @@ void ofApp::update(){
             gameScene->backgroundUpdate(d, &backgroundParticles);
             if (player.lives <= 0) {
                 game_state = END;
-                gameOverScene->setup(gameScene->score, 97); //TODO: fix hard code and give actual percentage of song completed
+                gameOverScene->setup(gameScene->score, (float(tick) / currentTrack->frameData.size()) * 100);
             }
             break;
         case END:
@@ -124,10 +124,6 @@ void ofApp::draw(){
             break;
     }
     ofPopStyle();
-    
-//    for(int i=0; i < enemyList.size(); i++){
-//        enemyList[i]->draw();
-//    }
     
     post.end(true);
     
