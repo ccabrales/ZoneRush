@@ -27,16 +27,25 @@ void Enemy::setup(float diffScaling){
     state = HEALTHY;
     texture = type->texture;
     size = max(type->texture->getWidth(), type->texture->getHeight());
+    moveHitbox();
     gun.size = 10;
 }
 
 void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bulletSpace){
     ofxParticle::update(timeStep, drag);
+    moveHitbox();
     cd -= timeStep;
     if(cd <= 0){
         fire(bulletSpace);
     }
     if(hp<=0) ofxParticle::color = ofColor(255,255,255,100);
+}
+
+void Enemy::moveHitbox() {
+//    hitbox.set(pos.x + (width/4.0), pos.y + (height/4.0), width / 2.0, height/2.0);
+    float width = texture->getWidth();
+    float height = texture->getHeight();
+    hitbox.set(this->position.x + (width/2.0), this->position.y, width/2.0, height);
 }
 
 #define BulletSpeed 120
@@ -86,7 +95,9 @@ void Enemy::fire(ofxParticleSystem* bulletSpace){
 }
 
 void Enemy::draw(){
+    cout << "DRAWING" << endl;
     ofxParticle::draw(type->texture->getTexture());
+    ofDrawRectangle(hitbox);
 }
 
 int EnemySystem::update(float timeStep, ofxParticleSystem* bulletSystem){

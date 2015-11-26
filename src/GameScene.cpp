@@ -75,17 +75,49 @@ void GameScene::draw(){
 }
 
 void GameScene::checkPlayerHit() {
-    list<ofxParticle *>::iterator it;
-    for(it=enemyBullets.particles.begin(); it!=enemyBullets.particles.end(); it++) {
-//        (*it)->life = 0;
-        ofVec3f loc = (*it)->position;
-        //compare the location to the player.img hitbox
-            //maybe make a "hitbox" square or something in player to easily compare?
+    //Check enemy bullets on player
+    list<ofxParticle *>::iterator bullets;
+    for(bullets=enemyBullets.particles.begin(); bullets!=enemyBullets.particles.end(); bullets++) {
+        ofxParticle* bullet = (*bullets);
+        ofVec3f loc = bullet->position;
+        if (player.hitbox.inside(loc)) { //player is hit
+            bullet->life = 0;
+            player.lives--;
+            //TODO reset player position
+            //TODO reset enemies on screen
+            //TODO update score (lose points? something?)
+            break;
+        }
     }
 }
 
 void GameScene::checkEnemyHits() {
+    //Check enemy ships on player
     
+    list<ofxParticle *>::iterator ships; //Iterate over the ships
+    for(ships=enemies.particles.begin(); ships!=enemies.particles.end(); ships++) {
+//        ofxParticle* ship = (*ships);
+//        ofVec3f loc = ship->position;
+        Enemy * ship = ((Enemy*)(*ships));
+        if (player.hitbox.intersects(ship->hitbox)) { //player hit enemy ship
+            ship->hp = 0;
+            player.lives--;
+            //TODO reset player position
+            //TODO animate explosions of player and ship
+            //TODO reset enemies on screen
+            //TODO update score (lose points? something?)
+            break;
+        }
+    }
+    
+//    if (player.hitbox.intersects(testRect)) {
+//        
+//    }
+    
+//    list<ofxParticle *>::iterator it;
+//    for(it=playerBullets.particles.begin(); it!=playerBullets.particles.end(); it++) {
+//        
+//    }
 }
 
 void GameScene::willFadeOut() {
