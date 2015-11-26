@@ -11,6 +11,7 @@ void Player::setup(ofImage * _img) {
     height = img->getHeight();
     speed = 3;
     lives = 3;
+    bulletDamage = 1;
     
     moveHitbox();
     

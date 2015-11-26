@@ -2,8 +2,6 @@
 #include "ofMain.h"
 #include "ofxParticles.h"
 
-
-///TODO: this isn't it.
 class Player {
 public:
     ofPoint pos;
@@ -28,5 +26,7 @@ public:
     ofxParticleEmitter emitter;
     
     ofRectangle hitbox;
+    
+    int bulletDamage;
     
 };

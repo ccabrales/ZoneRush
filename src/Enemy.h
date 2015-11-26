@@ -34,12 +34,15 @@ public:
     EnemyState state;
     ofxParticleEmitter gun;
     
+    ofRectangle hitbox;
+    
     void setup(float diffScaling);
     void update(const float timeStep, const float drag, ofxParticleSystem* bulletSpace);
     void fire(ofxParticleSystem* bulletSpace);
     void draw();
     
     void onsetHandler(const Track::Data& frame);
+    void moveHitbox();
 //    void calculate_movement(const ofPolyline* archetype);
     
 private:
