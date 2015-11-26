@@ -14,6 +14,9 @@ void GameScene::setup(){
     rightEmitter.size = 12;
     rightEmitter.color = ofColor(100,100,200);
     rightEmitter.colorSpread = ofColor(70,70,70);
+    
+    enemyBullets.setup(ofRectangle(-3,-3,ofGetWidth()+6, ofGetHeight()+6));
+    playerBullets.setup(ofRectangle(-3,-3,ofGetWidth()+6, ofGetHeight()+6));
 }
 
 void GameScene::update(){
@@ -65,7 +68,13 @@ void GameScene::draw(){
 }
 
 void GameScene::checkPlayerHit() {
-    
+    list<ofxParticle *>::iterator it;
+    for(it=enemyBullets.particles.begin(); it!=enemyBullets.particles.end(); it++) {
+//        (*it)->life = 0;
+        ofVec3f loc = (*it)->position;
+        //compare the location to the player.img hitbox
+            //maybe make a "hitbox" square or something in player to easily compare?
+    }
 }
 
 void GameScene::checkEnemyHits() {

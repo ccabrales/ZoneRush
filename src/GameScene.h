@@ -38,8 +38,8 @@ private:
     
     ScoreRenderer scoreRender;
     
-    ofxParticleSystem enemyBullets;
+    GreedyParticleSystem enemyBullets;
     EnemySystem enemies;
-    ofxParticleSystem playerBullets;
+    GreedyParticleSystem playerBullets;
     
 };
