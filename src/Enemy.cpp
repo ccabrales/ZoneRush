@@ -18,22 +18,6 @@ EnemyType* EnemyFactory::getType(int typeID){
     return &(inst.e_types[typeID]);
 }
 
-EnemyPtr EnemyFactory::make(int typeID, float diffScaling=1.0){
-    static EnemyFactory inst;
-    EnemyPtr e = EnemyPtr(new Enemy);
-    e->type = &(inst.e_types[typeID]);
-    e->setup(diffScaling);
-    return e;
-}
-
-vector<EnemyPtr >* EnemyFactory::makeGroup(int type, int size, float variance, float diffScaling = 1){
-    vector< EnemyPtr >* output = new vector<EnemyPtr>();
-    for(int i = 0; i < size; i++){
-        EnemyPtr newChallenger = make(type, diffScaling);
-        output->push_back(newChallenger);
-    }
-    return output;
-}
 
 
 void Enemy::setup(float diffScaling){
@@ -118,4 +102,23 @@ int EnemySystem::update(float timeStep, ofxParticleSystem* bulletSystem){
     numParticles-=particlesRemoved;
     return particlesRemoved;
 }
+
+//UNUSED
+
+//EnemyPtr EnemyFactory::make(int typeID, float diffScaling=1.0){
+//    static EnemyFactory inst;
+//    EnemyPtr e = EnemyPtr(new Enemy);
+//    e->type = &(inst.e_types[typeID]);
+//    e->setup(diffScaling);
+//    return e;
+//}
+//
+//vector<EnemyPtr >* EnemyFactory::makeGroup(int type, int size, float variance, float diffScaling = 1){
+//    vector< EnemyPtr >* output = new vector<EnemyPtr>();
+//    for(int i = 0; i < size; i++){
+//        EnemyPtr newChallenger = make(type, diffScaling);
+//        output->push_back(newChallenger);
+//    }
+//    return output;
+//}
 
