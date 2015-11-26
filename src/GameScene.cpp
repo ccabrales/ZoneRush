@@ -53,7 +53,6 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
         e->velocity = ofVec3f(-80, 0);
         e->type = EnemyFactory::getType(rand()%3);
         e->setup(currentDifficulty);
-        e->size = 15;
         enemies.particles.push_front(e);
     }
     update();

@@ -26,7 +26,7 @@ void Enemy::setup(float diffScaling){
     difficultyScaling = diffScaling;
     state = HEALTHY;
     texture = type->texture;
-    
+    size = max(type->texture->getWidth(), type->texture->getHeight());
     gun.size = 10;
 }
 
@@ -39,7 +39,7 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
     if(hp<=0) ofxParticle::color = ofColor(255,255,255,100);
 }
 
-#define BulletSpeed 220
+#define BulletSpeed 120
 void Enemy::fire(ofxParticleSystem* bulletSpace){
     gun.setPosition(this->position);
     gun.life = 130;
@@ -56,7 +56,7 @@ void Enemy::fire(ofxParticleSystem* bulletSpace){
     switch(type->bulletType->firePattern){
         case STRAIGHT:
             gun.numPars = 1;
-            cd += 0.2;
+            cd += 0.6;
             break;
         case CLOUD:
             gun.numPars = 30;
@@ -66,18 +66,21 @@ void Enemy::fire(ofxParticleSystem* bulletSpace){
         case THREESHOT:
             gun.numPars = 3;
             gun.velSpread = ofVec3f(0.1, BulletSpeed/15.0);
-            cd += 0.5;
+            cd += 0.8;
+            break;
         case TWOSHOT:
             gun.numPars = 2;
             gun.velSpread = ofVec3f(0.1, BulletSpeed/12.0);
-            cd+=0.3;
+            cd+=0.6;
+            break;
         default:
             gun.numPars = 1;
             cd+=0.2;
             break;
     }
     
-    cd /= difficultyScaling;
+    cd /= difficultyScaling / 4.0;
+    
     
     bulletSpace->addParticles(gun, type->bulletType->texture);
 }
