@@ -26,7 +26,7 @@ void Enemy::setup(float diffScaling){
     difficultyScaling = diffScaling;
     state = HEALTHY;
     texture = type->texture;
-    
+    size = max(type->texture->getWidth(), type->texture->getHeight());
     gun.size = 10;
 }
 
