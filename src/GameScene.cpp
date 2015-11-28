@@ -24,9 +24,6 @@ void GameScene::update(){
     checkPlayerHit();
     checkEnemyHits();
     
-    //TODO: remove next 2 lines test code
-//    for(int i=0; i < enemyList.size(); i++) enemyList[i]->update();
-//    if (player.pos.x > 150) player.lives = 0; //Test code for game over
     float lastFrameTime = ofGetLastFrameTime();
     enemies.update(lastFrameTime, &enemyBullets);
     enemyBullets.update(lastFrameTime, 1);
@@ -96,11 +93,10 @@ void GameScene::checkEnemyHits() {
     
     list<ofxParticle *>::iterator ships; //Iterate over the ships
     for(ships=enemies.particles.begin(); ships!=enemies.particles.end(); ships++) {
-//        ofxParticle* ship = (*ships);
-//        ofVec3f loc = ship->position;
         Enemy * ship = ((Enemy*)(*ships));
         if (player.hitbox.intersects(ship->hitbox)) { //player hit enemy ship
             ship->hp = 0;
+            (*ships)->life = 0;
             player.lives--;
             //TODO reset player position
             //TODO animate explosions of player and ship
@@ -108,16 +104,25 @@ void GameScene::checkEnemyHits() {
             //TODO update score (lose points? something?)
             break;
         }
+        
+        list<ofxParticle *>::iterator bullets;
+        for(bullets=playerBullets.particles.begin(); bullets!=playerBullets.particles.end(); bullets++) {
+            ofxParticle* bullet = (*bullets);
+            ofVec3f loc = bullet->position;
+            if (ship->hitbox.inside(loc)) {
+                ship->hp -= player.bulletDamage;
+                bullet->life = 0;
+                //TODO the same stuff as above
+                break;
+            }
+        }
     }
     
 //    if (player.hitbox.intersects(testRect)) {
 //        
 //    }
     
-//    list<ofxParticle *>::iterator it;
-//    for(it=playerBullets.particles.begin(); it!=playerBullets.particles.end(); it++) {
-//        
-//    }
+    
 }
 
 void GameScene::willFadeOut() {

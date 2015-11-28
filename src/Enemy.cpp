@@ -45,7 +45,8 @@ void Enemy::moveHitbox() {
 //    hitbox.set(pos.x + (width/4.0), pos.y + (height/4.0), width / 2.0, height/2.0);
     float width = texture->getWidth();
     float height = texture->getHeight();
-    hitbox.set(this->position.x + (width/2.0), this->position.y, width/2.0, height);
+//    hitbox.set(this->position.x + (width/2.0), this->position.y, width/2.0, height);
+    hitbox.set(this->position.x + (width/4.0), this->position.y + (width/4.0), width/2.0, height/2.0);
 }
 
 #define BulletSpeed 120
@@ -97,7 +98,10 @@ void Enemy::fire(ofxParticleSystem* bulletSpace){
 void Enemy::draw(){
     cout << "DRAWING" << endl;
     ofxParticle::draw(type->texture->getTexture());
+    ofPushStyle();
+    ofSetColor(255, 0, 0);
     ofDrawRectangle(hitbox);
+    ofPopStyle();
 }
 
 int EnemySystem::update(float timeStep, ofxParticleSystem* bulletSystem){
