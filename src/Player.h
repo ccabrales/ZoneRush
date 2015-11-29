@@ -15,7 +15,6 @@ public:
     void draw();
     void shoot();
     
-    void calculate_movement();
     void checkBounds();
     void moveHitbox();
     

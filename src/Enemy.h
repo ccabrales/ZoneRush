@@ -39,6 +39,7 @@ public:
     void setup(float diffScaling);
     void update(const float timeStep, const float drag, ofxParticleSystem* bulletSpace);
     void fire(ofxParticleSystem* bulletSpace);
+    //Deprecated Draw. uses ofxParticleSystem::draw(tex) instead.
     void draw();
     
     void onsetHandler(const Track::Data& frame);

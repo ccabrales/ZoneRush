@@ -54,14 +54,10 @@ void Player::update() {
 
 void Player::draw() {
     img->draw(pos);
-//    ofDrawRectangle(hitbox);
+    //ofDrawRectangle(hitbox);
 }
 
 void Player::shoot() {
-    
-}
-
-void Player::calculate_movement() {
     
 }
 
