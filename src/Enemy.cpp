@@ -42,11 +42,9 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
 }
 
 void Enemy::moveHitbox() {
-//    hitbox.set(pos.x + (width/4.0), pos.y + (height/4.0), width / 2.0, height/2.0);
     float width = texture->getWidth();
     float height = texture->getHeight();
-//    hitbox.set(this->position.x + (width/2.0), this->position.y, width/2.0, height);
-    hitbox.set(this->position.x + (width/4.0), this->position.y + (width/4.0), width/2.0, height/2.0);
+    hitbox.set(this->position.x - (width/2.0), this->position.y - (height/2.0), width, height);
 }
 
 #define BulletSpeed 120
@@ -95,8 +93,7 @@ void Enemy::fire(ofxParticleSystem* bulletSpace){
     bulletSpace->addParticles(gun, type->bulletType->texture);
 }
 
-void Enemy::draw(){
-    cout << "DRAWING" << endl;
+void Enemy::draw(){ //Never called
     ofxParticle::draw(type->texture->getTexture());
     ofPushStyle();
     ofSetColor(255, 0, 0);
@@ -107,7 +104,7 @@ void Enemy::draw(){
 int EnemySystem::update(float timeStep, ofxParticleSystem* bulletSystem){
     int particlesRemoved = 0;
     for(list<ofxParticle*>::iterator it = particles.begin(); it != particles.end(); it++){
-        if((**it).isAlive() && (**it).position.x > -13){
+        if((**it).isAlive() && (**it).position.x > -13 && (*((Enemy*)*it)).hp > 0){
             (*((Enemy*)*it)).update(timeStep, 1.0, bulletSystem);
         }
         else{
@@ -120,6 +117,25 @@ int EnemySystem::update(float timeStep, ofxParticleSystem* bulletSystem){
     numParticles-=particlesRemoved;
     return particlesRemoved;
 }
+
+//void EnemySystem::draw() {
+//    for(list<ofxParticle*>::iterator it = particles.begin(); it != particles.end(); it++){
+//        if((**it).isAlive() && (**it).position.x > -13){
+//            Enemy e = (*((Enemy*)*it));
+//            e.draw();
+//            ofPushStyle();
+//            ofSetColor(255, 0, 0);
+//            ofDrawRectangle(e.hitbox);
+//            ofPopStyle();
+//        }
+//        else{
+//            Enemy * p = ((Enemy*)(*it));
+//            it = particles.erase(it);
+//            delete p;
+//        }
+//    }
+//
+//}
 
 //UNUSED
 

@@ -80,6 +80,10 @@
 		C981D4BE1BEC3E4B006CB9BA /* ofxEasingSine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D4AF1BEC3E4B006CB9BA /* ofxEasingSine.cpp */; };
 		C981D4BF1BEC3E4B006CB9BA /* ofxTween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C981D4B11BEC3E4B006CB9BA /* ofxTween.cpp */; };
 		C99529541BEFF639005415D5 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C99529521BEFF639005415D5 /* Enemy.cpp */; };
+		C99688121C0BB5D500E87854 /* ofxBasicSoundPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C99688031C0BB5D500E87854 /* ofxBasicSoundPlayer.cpp */; };
+		C99688131C0BB5D500E87854 /* ofxSoundFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C99688051C0BB5D500E87854 /* ofxSoundFile.cpp */; };
+		C99688141C0BB5D500E87854 /* ofxSoundMixer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C99688071C0BB5D500E87854 /* ofxSoundMixer.cpp */; };
+		C99688151C0BB5D500E87854 /* ofxSoundObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C99688091C0BB5D500E87854 /* ofxSoundObject.cpp */; };
 		C9D9BE301BFBCA3F0032C87E /* GameOverScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D9BE2E1BFBCA3F0032C87E /* GameOverScene.cpp */; };
 		C9D9BE351BFC89380032C87E /* ofxAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D9BE331BFC89380032C87E /* ofxAssets.cpp */; };
 		C9F760741BF66DF90045D640 /* TitleButtons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F760721BF66DF90045D640 /* TitleButtons.cpp */; };
@@ -306,6 +310,20 @@
 		C981D4B21BEC3E4B006CB9BA /* ofxTween.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxTween.h; sourceTree = "<group>"; };
 		C99529521BEFF639005415D5 /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
 		C99529531BEFF639005415D5 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
+		C99688031C0BB5D500E87854 /* ofxBasicSoundPlayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxBasicSoundPlayer.cpp; sourceTree = "<group>"; };
+		C99688041C0BB5D500E87854 /* ofxBasicSoundPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxBasicSoundPlayer.h; sourceTree = "<group>"; };
+		C99688051C0BB5D500E87854 /* ofxSoundFile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxSoundFile.cpp; sourceTree = "<group>"; };
+		C99688061C0BB5D500E87854 /* ofxSoundFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxSoundFile.h; sourceTree = "<group>"; };
+		C99688071C0BB5D500E87854 /* ofxSoundMixer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxSoundMixer.cpp; sourceTree = "<group>"; };
+		C99688081C0BB5D500E87854 /* ofxSoundMixer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxSoundMixer.h; sourceTree = "<group>"; };
+		C99688091C0BB5D500E87854 /* ofxSoundObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxSoundObject.cpp; sourceTree = "<group>"; };
+		C996880A1C0BB5D500E87854 /* ofxSoundObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxSoundObject.h; sourceTree = "<group>"; };
+		C996880B1C0BB5D500E87854 /* ofxSoundObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxSoundObjects.h; sourceTree = "<group>"; };
+		C996880D1C0BB5D500E87854 /* DigitalDelay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DigitalDelay.h; sourceTree = "<group>"; };
+		C996880E1C0BB5D500E87854 /* LowPassFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LowPassFilter.h; sourceTree = "<group>"; };
+		C996880F1C0BB5D500E87854 /* NoiseGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoiseGenerator.h; sourceTree = "<group>"; };
+		C99688101C0BB5D500E87854 /* SineWaveGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SineWaveGenerator.h; sourceTree = "<group>"; };
+		C99688111C0BB5D500E87854 /* waveformDraw.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = waveformDraw.h; sourceTree = "<group>"; };
 		C9D9BE2E1BFBCA3F0032C87E /* GameOverScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameOverScene.cpp; sourceTree = "<group>"; };
 		C9D9BE2F1BFBCA3F0032C87E /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		C9D9BE331BFC89380032C87E /* ofxAssets.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAssets.cpp; sourceTree = "<group>"; };
@@ -700,6 +718,7 @@
 				ABED9FAC1BEE238400F11CCC /* ofxMSAInteractiveObject */,
 				AB916EBA1BF74CDF00727BA1 /* ofxPostProcessing */,
 				C9D9BE311BFC89380032C87E /* ofxAssets */,
+				C99688011C0BB5D500E87854 /* ofxSoundObjects */,
 			);
 			name = addons;
 			sourceTree = "<group>";
@@ -825,6 +844,44 @@
 				C981D4B01BEC3E4B006CB9BA /* ofxEasingSine.h */,
 			);
 			path = Easings;
+			sourceTree = "<group>";
+		};
+		C99688011C0BB5D500E87854 /* ofxSoundObjects */ = {
+			isa = PBXGroup;
+			children = (
+				C99688021C0BB5D500E87854 /* src */,
+			);
+			name = ofxSoundObjects;
+			sourceTree = "<group>";
+		};
+		C99688021C0BB5D500E87854 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C99688031C0BB5D500E87854 /* ofxBasicSoundPlayer.cpp */,
+				C99688041C0BB5D500E87854 /* ofxBasicSoundPlayer.h */,
+				C99688051C0BB5D500E87854 /* ofxSoundFile.cpp */,
+				C99688061C0BB5D500E87854 /* ofxSoundFile.h */,
+				C99688071C0BB5D500E87854 /* ofxSoundMixer.cpp */,
+				C99688081C0BB5D500E87854 /* ofxSoundMixer.h */,
+				C99688091C0BB5D500E87854 /* ofxSoundObject.cpp */,
+				C996880A1C0BB5D500E87854 /* ofxSoundObject.h */,
+				C996880B1C0BB5D500E87854 /* ofxSoundObjects.h */,
+				C996880C1C0BB5D500E87854 /* SoundObjects */,
+			);
+			name = src;
+			path = ../../../addons/ofxSoundObjects/src;
+			sourceTree = "<group>";
+		};
+		C996880C1C0BB5D500E87854 /* SoundObjects */ = {
+			isa = PBXGroup;
+			children = (
+				C996880D1C0BB5D500E87854 /* DigitalDelay.h */,
+				C996880E1C0BB5D500E87854 /* LowPassFilter.h */,
+				C996880F1C0BB5D500E87854 /* NoiseGenerator.h */,
+				C99688101C0BB5D500E87854 /* SineWaveGenerator.h */,
+				C99688111C0BB5D500E87854 /* waveformDraw.h */,
+			);
+			path = SoundObjects;
 			sourceTree = "<group>";
 		};
 		C9D9BE311BFC89380032C87E /* ofxAssets */ = {
@@ -996,6 +1053,7 @@
 				AB916EF11BF74CDF00727BA1 /* ContrastPass.cpp in Sources */,
 				C981D4B91BEC3E4B006CB9BA /* ofxEasingExpo.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
+				C99688141C0BB5D500E87854 /* ofxSoundMixer.cpp in Sources */,
 				AB916EF91BF74CDF00727BA1 /* HorizontalTiltShifPass.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				856AA354D08AB4B323081444 /* ofxBaseGui.cpp in Sources */,
@@ -1005,6 +1063,7 @@
 				C966CB771BED4F7000856879 /* Player.cpp in Sources */,
 				B266578FC55D23BFEBC042E7 /* ofxGuiGroup.cpp in Sources */,
 				C981D4BC1BEC3E4B006CB9BA /* ofxEasingQuart.cpp in Sources */,
+				C99688151C0BB5D500E87854 /* ofxSoundObject.cpp in Sources */,
 				AB916F071BF74CDF00727BA1 /* ZoomBlurPass.cpp in Sources */,
 				AB916EF41BF74CDF00727BA1 /* DofPass.cpp in Sources */,
 				C981D4B61BEC3E4B006CB9BA /* ofxEasingCirc.cpp in Sources */,
@@ -1040,8 +1099,10 @@
 				1CD33E884D9E3358252E82A1 /* ofxToggle.cpp in Sources */,
 				AB916F031BF74CDF00727BA1 /* RimHighlightingPass.cpp in Sources */,
 				C981D4B71BEC3E4B006CB9BA /* ofxEasingCubic.cpp in Sources */,
+				C99688121C0BB5D500E87854 /* ofxBasicSoundPlayer.cpp in Sources */,
 				C981D4B81BEC3E4B006CB9BA /* ofxEasingElastic.cpp in Sources */,
 				C981D4BF1BEC3E4B006CB9BA /* ofxTween.cpp in Sources */,
+				C99688131C0BB5D500E87854 /* ofxSoundFile.cpp in Sources */,
 				479DCA850DD8BB469A777AD4 /* ofxAubioBeat.cpp in Sources */,
 				AB916EF71BF74CDF00727BA1 /* FxaaPass.cpp in Sources */,
 				C9D9BE351BFC89380032C87E /* ofxAssets.cpp in Sources */,
