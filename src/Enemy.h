@@ -67,6 +67,8 @@ class EnemySystem : public ofxParticleSystem{
 public:
     int update(float timeStep, ofxParticleSystem* bulletSystem);
     
+    
+//    void draw();
 };
 
 
