@@ -19,12 +19,13 @@ public:
         float pitchConfidence;
         float intensity;
     };
+    Track(){};
     
     Track(ofxAudioDecoder * decoder);
     static string toString(const Track::Data& d);
-    
+
     Data* readData(int frame);
-    
+
     vector<Data> frameData;
     float averageIntensity;
     float varianceIntensity;
