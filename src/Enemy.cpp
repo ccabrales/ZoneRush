@@ -47,11 +47,10 @@ void Enemy::moveHitbox() {
     hitbox.set(this->position.x - (width/2.0), this->position.y - (height/2.0), width, height);
 }
 
-#define BulletSpeed 120
 void Enemy::fire(ofxParticleSystem* bulletSpace){
     gun.setPosition(this->position);
     gun.life = 130;
-    
+
     if(type->bulletType->targetPattern==PLAYER){
         //point towards player.
         ofVec3f posDir = (player.pos - position).normalize()*difficultyScaling*BulletSpeed;
@@ -64,32 +63,28 @@ void Enemy::fire(ofxParticleSystem* bulletSpace){
     switch(type->bulletType->firePattern){
         case STRAIGHT:
             gun.numPars = 1;
-            cd += 0.6;
             break;
         case CLOUD:
             gun.numPars = 30;
             gun.velSpread = ofVec3f(BulletSpeed*2.0*difficultyScaling, BulletSpeed*2.0*difficultyScaling);
-            cd += 1.4;
             break;
         case THREESHOT:
             gun.numPars = 3;
             gun.velSpread = ofVec3f(0.1, BulletSpeed/15.0);
-            cd += 0.8;
             break;
         case TWOSHOT:
             gun.numPars = 2;
             gun.velSpread = ofVec3f(0.1, BulletSpeed/12.0);
-            cd+=0.6;
             break;
         default:
             gun.numPars = 1;
-            cd+=0.2;
             break;
     }
-    
+    cd += type->bulletType->cd;
+
     cd /= difficultyScaling / 4.0;
-    
-    
+
+
     bulletSpace->addParticles(gun, type->bulletType->texture);
 }
 

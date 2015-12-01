@@ -14,6 +14,7 @@ enum TargetPattern{
 };
 
 struct BulletType {
+    float cd;
     ofImage* texture;
     FirePattern firePattern;
     TargetPattern targetPattern;
