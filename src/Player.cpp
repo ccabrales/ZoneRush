@@ -4,7 +4,7 @@
 void Player::setup(ofImage * _img) {
     pos.x = ofGetWidth() / 10.0;
     pos.y = ofGetHeight() / 2.0;
-
+    
     img = _img;
 
     width = img->getWidth();
@@ -12,6 +12,9 @@ void Player::setup(ofImage * _img) {
     speed = 130;
     lives = 3;
     bulletDamage = 1;
+    
+    gunPos.x = pos.x + width/2.0;
+    gunPos.y = pos.y + height/2.0;
 
     bulletCd = 0;
     moveHitbox();
@@ -63,18 +66,22 @@ void Player::upgradeGun(int grade){
 void Player::update(float frameTime) {
     if (is_left_pressed) {
         pos.x -= speed*frameTime;
+        gunPos.x -= speed*frameTime;
     }
 
     if (is_right_pressed) {
         pos.x += speed*frameTime;
+        gunPos.x += speed*frameTime;;
     }
 
     if (is_up_pressed) {
         pos.y -= speed*frameTime;
+        gunPos.y -= speed*frameTime;
     }
 
     if (is_down_pressed) {
         pos.y += speed*frameTime;
+        gunPos.y += speed*frameTime;
     }
     checkBounds();
     emitter.setPosition(pos + ofVec2f(0, img->getHeight() / 2.0));
@@ -90,7 +97,7 @@ void Player::draw() {
 
 void Player::shoot(GreedyParticleSystem* playerBullet) {
     if(bulletCd < 0){
-        gunEmitter.setPosition(pos);
+        gunEmitter.setPosition(gunPos);
         gunEmitter.setVelocity(ofVec3f(BulletSpeed*1.2, 0));
 
         bulletCd = currentGun->cd / 12.0;
@@ -99,10 +106,22 @@ void Player::shoot(GreedyParticleSystem* playerBullet) {
 }
 
 void Player::checkBounds() { //make sure player doesn't go out of screen, and reposition if so
-    if (pos.x < 0) pos.x = 0;
-    if (pos.x > ofGetWidth() - img->getWidth()) pos.x = ofGetWidth() - img->getWidth();
-    if (pos.y < 0) pos.y = 0;
-    if (pos.y > ofGetHeight() - img->getHeight()) pos.y = ofGetHeight() - img->getHeight();
+    if (pos.x < 0) {
+        pos.x = 0;
+        gunPos.x = pos.x + width/2.0;
+    }
+    if (pos.x > ofGetWidth() - img->getWidth()) {
+        pos.x = ofGetWidth() - img->getWidth();
+        gunPos.x = pos.x + width/2.0;
+    }
+    if (pos.y < 0) {
+        pos.y = 0;
+        gunPos.y = pos.y + height/2.0;
+    }
+    if (pos.y > ofGetHeight() - img->getHeight()) {
+        pos.y = ofGetHeight() - img->getHeight();
+        gunPos.y = pos.y + height/2.0;
+    }
 }
 
 void Player::moveHitbox() {

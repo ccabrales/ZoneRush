@@ -7,6 +7,7 @@
 class Player {
 public:
     ofPoint pos;
+    ofPoint gunPos;
     float width, height, speed;
     int lives;
 

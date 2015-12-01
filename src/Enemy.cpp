@@ -52,6 +52,7 @@ void Enemy::moveHitbox() {
 }
 
 void Enemy::fire(ofxParticleSystem* bulletSpace){
+    if (hp <= 0) return;
     gun.setPosition(this->position);
     gun.life = 130;
 
