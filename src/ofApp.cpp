@@ -14,16 +14,16 @@ void ofApp::setup(){
 //    ofSetFullscreen(true);
     //TODO: enable fullscreen in next demo.
     ofHideCursor();
-    
+
     game_state = START;
-    
+
     //Scene Setup:
     gameScene = new GameScene;
     gameOverScene = new GameOverScene;
     titleScene = new TitleScene;
     titleScene->setup();
-    
-    
+
+
     //Audio Setup:
     introDecoder.load("music.mp3");
     globalDecoder = unique_ptr<ofxAudioDecoder>(&introDecoder);
@@ -34,7 +34,7 @@ void ofApp::setup(){
     currentTrack = unique_ptr<Track>(&introTrack);
 
     tv.setup(currentTrack.get());
-    
+
     ofSoundStreamSetup(2, 0, this, 44100, 256, 8);
 
     setupPostProcessing();
@@ -62,11 +62,11 @@ void ofApp::audioOut(float * input, int bufferSize, int nChannels){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    
+
     Track::Data* d = currentTrack->readData(tick);
     tv.update(d);
-    
-    
+
+
     //backgroundParticles.update(min(ofGetLastFrameTime(), 1.0/10.0), 1);
     backgroundParticles.update(ofGetLastFrameTime(), 1);
     backgroundClouds.update(ofGetLastFrameTime(), 1);
@@ -91,7 +91,7 @@ void ofApp::update(){
         default:
             break;
     }
-    
+
     if(d->onsets>0 || d->onBeat){
         pass->setEnabled(true);
         if(d->onBeat && backgroundClouds.getNumParticles() < 5){
@@ -112,7 +112,7 @@ void ofApp::draw(){
     ofSetLineWidth(4);
     backgroundParticles.draw();
     ofPopStyle();
-    
+
     ofPushStyle();
     switch (game_state) {
         case START:
@@ -129,11 +129,11 @@ void ofApp::draw(){
             break;
     }
     ofPopStyle();
-    
+
     post.end(true);
-    
+
     tv.draw(tick);
-    
+
 //    ofxAssets::image("s1").draw(30, 41);
 }
 //--------------------------------------------------------------
@@ -185,6 +185,7 @@ void ofApp::keyPressed(int key){
                 currentTrack.release();
                 globalDecoder = unique_ptr<ofxAudioDecoder>(&introDecoder);
                 currentTrack = unique_ptr<Track>(&introTrack);
+                tv.setup(currentTrack.get());
                 tick = 0;
                 game_state = START;
                 break;
@@ -192,7 +193,7 @@ void ofApp::keyPressed(int key){
                 break;
         }
     }
-    
+
 }
 
 //--------------------------------------------------------------
@@ -264,8 +265,8 @@ void ofApp::setupParticleEmitters(){
     //----------SETUP--------Particle System pass:
     backgroundClouds.setup(ofRectangle(-200,-200,ofGetWidth()+400, ofGetHeight()+400));
     backgroundParticles.setup(ofRectangle(-3,-3,ofGetWidth()+6, ofGetHeight()+6));
-    
-    
+
+
     cloudEmitter.setPosition(ofVec2f(ofGetWidth()+500, ofGetHeight()/2.0));
     cloudEmitter.life = 40;
     cloudEmitter.lifeSpread = 3;
