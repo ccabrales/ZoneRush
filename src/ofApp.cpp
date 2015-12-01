@@ -25,12 +25,14 @@ void ofApp::setup(){
     
     
     //Audio Setup:
-    globalDecoder = unique_ptr<ofxAudioDecoder>(new ofxAudioDecoder());
-    globalDecoder->load("music.mp3");
-    
+    introDecoder.load("music.mp3");
+    globalDecoder = unique_ptr<ofxAudioDecoder>(&introDecoder);
+
     //Audio Parsing...
     //TODO this section is not really necessary. remove in release build
-    currentTrack = unique_ptr<Track>(new Track(globalDecoder.get()));
+    introTrack = Track(&introDecoder);
+    currentTrack = unique_ptr<Track>(&introTrack);
+
     tv.setup(currentTrack.get());
     
     ofSoundStreamSetup(2, 0, this, 44100, 256, 8);
@@ -179,6 +181,11 @@ void ofApp::keyPressed(int key){
     } else if (game_state == END) {
         switch (key) {
             case OF_KEY_RETURN:
+                globalDecoder.release();
+                currentTrack.release();
+                globalDecoder = unique_ptr<ofxAudioDecoder>(&introDecoder);
+                currentTrack = unique_ptr<Track>(&introTrack);
+                tick = 0;
                 game_state = START;
                 break;
             default:
