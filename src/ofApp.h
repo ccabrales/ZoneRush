@@ -24,10 +24,10 @@ class ofApp : public ofBaseApp{
 public:
     void setup();
     void exit();
-    
+
     void update();
     void draw();
-    
+
     void keyPressed(int key);
     void keyReleased(int key);
     void mouseMoved(int x, int y );
@@ -38,10 +38,10 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     void checkLoadUpdate();
-    
+
     void audioOut(float * input, int bufferSize, int nChannels);
     void audioIn(float * input, int bufferSize, int nChannels);
-    
+
 private:
     //State machine
     enum GameState { START, LOAD, GAME, END };
@@ -61,14 +61,17 @@ private:
 
     //AudioSystem
     unique_ptr<AudioLoader> audioLoader;
+    Track introTrack;
+    ofxAudioDecoder introDecoder;
+    
     //puts audio into globalDecoder
 
-    
+
     ofxParticleEmitter cloudEmitter;
     GreedyParticleSystem backgroundParticles;
     GreedyParticleSystem backgroundClouds;
     //Events:
-    
+
     //----------UTILITY FUNCS-----------
     void setupParticleEmitters();
     void setupPostProcessing();
