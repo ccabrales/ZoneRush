@@ -108,7 +108,7 @@ void GameScene::checkEnemyHits() {
             //TODO animate explosions of player and ship
             //TODO reset enemies on screen
             //TODO update score (lose points? something?)
-            break;
+            continue;
         }
 
         list<ofxParticle *>::iterator bullets;
