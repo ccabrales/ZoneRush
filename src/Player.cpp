@@ -100,7 +100,7 @@ void Player::shoot(GreedyParticleSystem* playerBullet) {
         gunEmitter.setPosition(gunPos);
         gunEmitter.setVelocity(ofVec3f(BulletSpeed*1.2, 0));
 
-        bulletCd = currentGun->cd / 12.0;
+        bulletCd = currentGun->cd / 8.0;
         playerBullet->addParticles(gunEmitter, currentGun->texture);
     }
 }

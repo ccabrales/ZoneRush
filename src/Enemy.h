@@ -9,7 +9,7 @@
 #include "player.h"
 #include "ofxAssets.h"
 
-#define BulletSpeed 120
+#define BulletSpeed 150
 
 
 struct EnemyType {
