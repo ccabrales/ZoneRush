@@ -18,6 +18,7 @@
 		9C7B8B4D99CDFC508E76CC3A /* ofxAubioOnset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A90A4B17BBB4CB627CA22C4 /* ofxAubioOnset.cpp */; };
 		AB0E6D961BF566E400018CD3 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB0E6D941BF566E400018CD3 /* GameScene.cpp */; };
 		AB61120F1BF7FF8F008B0522 /* AudioLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB61120D1BF7FF8F008B0522 /* AudioLoader.cpp */; };
+		AB6707A31C0E5BD00008972A /* SoundLibrary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB6707A11C0E5BD00008972A /* SoundLibrary.cpp */; };
 		AB6951001BED55BC00DB820E /* filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB6950FE1BED55BC00DB820E /* filter.cpp */; };
 		AB916EEF1BF74CDF00727BA1 /* BleachBypassPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB916EBC1BF74CDF00727BA1 /* BleachBypassPass.cpp */; };
 		AB916EF01BF74CDF00727BA1 /* BloomPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB916EBE1BF74CDF00727BA1 /* BloomPass.cpp */; };
@@ -175,6 +176,8 @@
 		AB0E6D951BF566E400018CD3 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		AB61120D1BF7FF8F008B0522 /* AudioLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioLoader.cpp; sourceTree = "<group>"; };
 		AB61120E1BF7FF8F008B0522 /* AudioLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioLoader.h; sourceTree = "<group>"; };
+		AB6707A11C0E5BD00008972A /* SoundLibrary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundLibrary.cpp; sourceTree = "<group>"; };
+		AB6707A21C0E5BD00008972A /* SoundLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundLibrary.h; sourceTree = "<group>"; };
 		AB6950E41BECD14400DB820E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		AB6950E51BECD14400DB820E /* addons.make */ = {isa = PBXFileReference; lastKnownFileType = text; path = addons.make; sourceTree = "<group>"; };
 		AB6950E81BECD14400DB820E /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
@@ -602,6 +605,8 @@
 				AB99A8F71BEF761500D7F38E /* BulletType.cpp */,
 				C99529531BEFF639005415D5 /* Enemy.h */,
 				C99529521BEFF639005415D5 /* Enemy.cpp */,
+				AB6707A11C0E5BD00008972A /* SoundLibrary.cpp */,
+				AB6707A21C0E5BD00008972A /* SoundLibrary.h */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -1117,6 +1122,7 @@
 				AB916F001BF74CDF00727BA1 /* PostProcessing.cpp in Sources */,
 				AB916EEF1BF74CDF00727BA1 /* BleachBypassPass.cpp in Sources */,
 				ABF9152F1C0136B900AC618F /* ofxParticles.cpp in Sources */,
+				AB6707A31C0E5BD00008972A /* SoundLibrary.cpp in Sources */,
 				67383740F5CC47ED5F955A76 /* ofxAubioMelBands.cpp in Sources */,
 				AB916EF01BF74CDF00727BA1 /* BloomPass.cpp in Sources */,
 				9C7B8B4D99CDFC508E76CC3A /* ofxAubioOnset.cpp in Sources */,
