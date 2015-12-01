@@ -37,6 +37,9 @@ void ofApp::setup(){
 
     setupPostProcessing();
     setupParticleEmitters();
+
+    ofFmodSetBuffersize(256);
+
 }
 
 void ofApp::exit(){
