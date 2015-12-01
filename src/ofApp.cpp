@@ -18,8 +18,6 @@ void ofApp::setup(){
     game_state = START;
 
     //Scene Setup:
-    gameScene = new GameScene;
-    gameOverScene = new GameOverScene;
     titleScene = new TitleScene;
     titleScene->setup();
 
@@ -83,6 +81,7 @@ void ofApp::update(){
             gameScene->backgroundUpdate(d, &backgroundParticles);
             if (player.lives <= 0) {
                 game_state = END;
+                gameOverScene = new GameOverScene;
                 gameOverScene->setup(gameScene->score, (float(tick) / currentTrack->frameData.size()) * 100);
             }
             break;
@@ -235,6 +234,7 @@ void ofApp::checkLoadUpdate() {
             currentTrack = unique_ptr<Track>(audioLoader->loadedTrack.get());
             tv.setup(currentTrack.get());
             game_state = GAME;
+            gameScene = new GameScene;
             gameScene->setup();
         }
     }
