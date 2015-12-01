@@ -2,15 +2,15 @@
 #include "ofMain.h"
 
 
-enum SoundLibrary{
-    ACCELERATOR_WINDUP, ALIENHIT, POWERDOWN, EXPLODE_L, HEARTBEAT, 
+enum SoundItem{
+    ACCELERATOR_WINDUP, ALIENHIT, POWERDOWN, EXPLODE_L, HEARTBEAT,
 };
 
-class BulletLibrary
+class SoundLibrary
 {
 public:
-    static const BulletType* getWeaponInfo(int grade);
-    vector<BulletType> bullets;
+    static void playSound(SoundItem item);
+    vector<ofSoundPlayer> tracks;
 private:
-    BulletLibrary();
+    SoundLibrary();
 };
