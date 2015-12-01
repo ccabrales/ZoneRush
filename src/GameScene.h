@@ -42,4 +42,6 @@ private:
     EnemySystem enemies;
     GreedyParticleSystem playerBullets;
     
+    ofxParticleSystem explosions;
+    
 };

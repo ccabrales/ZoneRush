@@ -19,16 +19,7 @@ void GameScene::setup(){
     playerBullets.setup(ofRectangle(-3,-3,ofGetWidth()+6, ofGetHeight()+6));
 }
 
-void GameScene::update(){
-    checkPlayerHit();
-    checkEnemyHits();
-
-    float lastFrameTime = ofGetLastFrameTime();
-    player.update(lastFrameTime);
-    player.shoot(&playerBullets);
-    enemies.update(lastFrameTime, &enemyBullets);
-    enemyBullets.update(lastFrameTime, 1);
-    playerBullets.update(lastFrameTime, 1);
+void GameScene::update(){ //unused
 }
 
 #define DIFFICULTY 4.0
@@ -53,7 +44,17 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
         e->setup(currentDifficulty);
         enemies.particles.push_front(e);
     }
-    update();
+    
+    checkPlayerHit();
+    checkEnemyHits();
+    
+    float lastFrameTime = ofGetLastFrameTime();
+    player.update(lastFrameTime);
+    player.shoot(&playerBullets);
+    enemies.update(lastFrameTime, &enemyBullets, &explosions, data);
+    enemyBullets.update(lastFrameTime, 1);
+    playerBullets.update(lastFrameTime, 1);
+    explosions.update(lastFrameTime, 0.8);
 }
 
 
@@ -63,6 +64,12 @@ void GameScene::draw(){
     enemies.draw();
     enemyBullets.draw();
     playerBullets.draw();
+    
+    ofPushStyle();
+    ofSetLineWidth(4.0);
+    explosions.draw();
+    ofPopStyle();
+    
     ofPushStyle();
     ofSetColor(255,244,255);
     ofFill();
@@ -117,10 +124,6 @@ void GameScene::checkEnemyHits() {
             }
         }
     }
-
-//    if (player.hitbox.intersects(testRect)) {
-//
-//    }
 
 
 }

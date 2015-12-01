@@ -29,9 +29,10 @@ void Enemy::setup(float diffScaling){
     size = max(type->texture->getWidth(), type->texture->getHeight());
     moveHitbox();
     gun.size = 10;
+//    explosion.size = 5;
 }
 
-void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bulletSpace){
+void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bulletSpace, ofxParticleSystem* explosionSystem, bool onBeat){
     ofxParticle::update(timeStep, drag);
     moveHitbox();
     cd -= timeStep;
@@ -39,6 +40,20 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
         fire(bulletSpace);
     }
     if(hp<=0) ofxParticle::color = ofColor(255,255,255,100);
+    if (onBeat && hp <= 0) { //Explosion
+//        ofVec3f pos = ofVec3f(this->position.x + this->size, this->position.y + this->size);
+        ofxParticleEmitter ex;
+        ex.setPosition(ofxParticle::position);
+        ex.setVelocity(ofxParticle::velocity);
+        ex.life = 15;
+        ex.lifeSpread = 2;
+        ex.color = ofColor(255, 150, 150);
+        ex.colorSpread = ofColor(0, 100, 100);
+        ex.velSpread = ofVec3f(50, 50);
+        ex.numPars = 80;
+        explosionSystem->addParticles(ex);
+        this->life = 0;
+    }
 }
 
 void Enemy::moveHitbox() {
@@ -95,17 +110,13 @@ void Enemy::fire(ofxParticleSystem* bulletSpace){
 
 void Enemy::draw(){ //Never called
     ofxParticle::draw(type->texture->getTexture());
-    ofPushStyle();
-    ofSetColor(255, 0, 0);
-    ofDrawRectangle(hitbox);
-    ofPopStyle();
 }
 
-int EnemySystem::update(float timeStep, ofxParticleSystem* bulletSystem){
+int EnemySystem::update(float timeStep, ofxParticleSystem* bulletSystem, ofxParticleSystem* explosionSystem, const Track::Data *data){
     int particlesRemoved = 0;
     for(list<ofxParticle*>::iterator it = particles.begin(); it != particles.end(); it++){
         if((**it).isAlive() && (**it).position.x > -13 /*&& (*((Enemy*)*it)).hp > 0*/){
-            (*((Enemy*)*it)).update(timeStep, 1.0, bulletSystem);
+            (*((Enemy*)*it)).update(timeStep, 1.0, bulletSystem, explosionSystem, data->onBeat);
         }
         else{
             Enemy * p = ((Enemy*)(*it));
@@ -118,24 +129,6 @@ int EnemySystem::update(float timeStep, ofxParticleSystem* bulletSystem){
     return particlesRemoved;
 }
 
-//void EnemySystem::draw() {
-//    for(list<ofxParticle*>::iterator it = particles.begin(); it != particles.end(); it++){
-//        if((**it).isAlive() && (**it).position.x > -13){
-//            Enemy e = (*((Enemy*)*it));
-//            e.draw();
-//            ofPushStyle();
-//            ofSetColor(255, 0, 0);
-//            ofDrawRectangle(e.hitbox);
-//            ofPopStyle();
-//        }
-//        else{
-//            Enemy * p = ((Enemy*)(*it));
-//            it = particles.erase(it);
-//            delete p;
-//        }
-//    }
-//
-//}
 
 //UNUSED
 
