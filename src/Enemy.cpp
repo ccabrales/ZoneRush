@@ -41,7 +41,6 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
     }
     if(hp<=0) ofxParticle::color = ofColor(255,255,255,100);
     if (onBeat && hp <= 0) { //Explosion
-//        ofVec3f pos = ofVec3f(this->position.x + this->size, this->position.y + this->size);
         ofxParticleEmitter ex;
         ex.setPosition(ofxParticle::position);
         ex.setVelocity(ofxParticle::velocity);
@@ -52,6 +51,7 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
         ex.velSpread = ofVec3f(50, 50);
         ex.numPars = 80;
         explosionSystem->addParticles(ex);
+        SoundLibrary::playSound(SoundItem::EXPLODE_LOUD);
         this->life = 0;
     }
 }

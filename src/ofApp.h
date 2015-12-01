@@ -18,6 +18,7 @@
 #include "AudioLoader.h"
 #include "ofxAssets.h"
 #include "ScoreRenderer.h"
+#include "SoundLibrary.h"
 
 
 class ofApp : public ofBaseApp{

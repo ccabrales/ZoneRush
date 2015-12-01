@@ -8,6 +8,7 @@
 #include "ofxParticles.h"
 #include "player.h"
 #include "ofxAssets.h"
+#include "SoundLibrary.h"
 
 #define BulletSpeed 150
 
