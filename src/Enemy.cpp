@@ -44,7 +44,11 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
 void Enemy::moveHitbox() {
     float width = texture->getWidth();
     float height = texture->getHeight();
-    hitbox.set(this->position.x - (width/2.0), this->position.y - (height/2.0), width, height);
+    if (hp > 0) {
+        hitbox.set(this->position.x - (width/2.0), this->position.y - (height/2.0), width, height);
+    } else {
+        hitbox.set(-10, -10, 1, 1);
+    }
 }
 
 #define BulletSpeed 120
@@ -104,7 +108,7 @@ void Enemy::draw(){ //Never called
 int EnemySystem::update(float timeStep, ofxParticleSystem* bulletSystem){
     int particlesRemoved = 0;
     for(list<ofxParticle*>::iterator it = particles.begin(); it != particles.end(); it++){
-        if((**it).isAlive() && (**it).position.x > -13 && (*((Enemy*)*it)).hp > 0){
+        if((**it).isAlive() && (**it).position.x > -13 /*&& (*((Enemy*)*it)).hp > 0*/){
             (*((Enemy*)*it)).update(timeStep, 1.0, bulletSystem);
         }
         else{
