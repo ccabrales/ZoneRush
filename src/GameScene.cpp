@@ -1,9 +1,9 @@
 #include "GameScene.h"
 
-void GameScene::setup(){		
+void GameScene::setup(){
     player.setup(&ofxAssets::image("player"));
     score = 0;
-    
+
     rightEmitter.setPosition(ofVec3f(ofGetWidth()-1,ofGetHeight()/2.0));
     rightEmitter.setVelocity(ofVec3f(-310,0.0));
     rightEmitter.posSpread = ofVec3f(0,ofGetHeight());
@@ -14,17 +14,18 @@ void GameScene::setup(){
     rightEmitter.size = 12;
     rightEmitter.color = ofColor(100,100,200);
     rightEmitter.colorSpread = ofColor(70,70,70);
-    
+
     enemyBullets.setup(ofRectangle(-3,-3,ofGetWidth()+6, ofGetHeight()+6));
     playerBullets.setup(ofRectangle(-3,-3,ofGetWidth()+6, ofGetHeight()+6));
 }
 
 void GameScene::update(){
-    player.update();
     checkPlayerHit();
     checkEnemyHits();
-    
+
     float lastFrameTime = ofGetLastFrameTime();
+    player.update(lastFrameTime);
+    player.shoot(&playerBullets);
     enemies.update(lastFrameTime, &enemyBullets);
     enemyBullets.update(lastFrameTime, 1);
     playerBullets.update(lastFrameTime, 1);
@@ -39,7 +40,7 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
     rightEmitter.setVelocity(data->onBeat?ofVec3f(-510,0.0):ofVec3f(-310,0.0));
     particleSystem->addParticles(rightEmitter);
     particleSystem->addParticles(player.emitter);
-    
+
     //spawn possible enemies
     float currentDifficulty = ofMap(tick, 0, currentTrack->frameData.size(), 1.0, 3.0);
     float spawnRate = ((data->intensity)/5.0 + ((float)data->onBeat) / 7.0 + ((float)data->onsets / 32.0))/DIFFICULTY;
@@ -61,6 +62,7 @@ void GameScene::draw(){
     scoreRender.draw(20, ofGetHeight() - 12);
     enemies.draw();
     enemyBullets.draw();
+    playerBullets.draw();
     ofPushStyle();
     ofSetColor(255,244,255);
     ofFill();
@@ -101,7 +103,7 @@ void GameScene::checkEnemyHits() {
             //TODO update score (lose points? something?)
             break;
         }
-        
+
         list<ofxParticle *>::iterator bullets;
         for(bullets=playerBullets.particles.begin(); bullets!=playerBullets.particles.end(); bullets++) {
             ofxParticle* bullet = (*bullets);
@@ -115,22 +117,22 @@ void GameScene::checkEnemyHits() {
             }
         }
     }
-    
+
 //    if (player.hitbox.intersects(testRect)) {
-//        
+//
 //    }
-    
-    
+
+
 }
 
 void GameScene::willFadeOut() {
-    
+
 }
 
 void GameScene::willExit(){
-    
+
 }
 
 void GameScene::windowResized(int w, int h) {
-    
+
 }
