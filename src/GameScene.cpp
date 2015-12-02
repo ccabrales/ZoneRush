@@ -3,6 +3,9 @@
 void GameScene::setup(){
     player.setup(&ofxAssets::image("player"));
     score = 0;
+    
+    livesImg = ofxAssets::image("3Life");
+    livesPos = ofPoint(0, ofGetHeight() - 95);
 
     rightEmitter.setPosition(ofVec3f(ofGetWidth()-1,ofGetHeight()/2.0));
     rightEmitter.setVelocity(ofVec3f(-310,0.0));
@@ -45,8 +48,7 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
         enemies.particles.push_front(e);
     }
     
-    bool playerExplode = checkPlayerHit();
-    playerExplode = playerExplode | checkEnemyHits();
+    bool playerExplode = checkPlayerHit() | checkEnemyHits();
     
     float lastFrameTime = ofGetLastFrameTime();
     player.update(lastFrameTime, &explosions, playerExplode);
@@ -66,6 +68,8 @@ void GameScene::draw(){
     enemies.draw();
     enemyBullets.draw();
     playerBullets.draw();
+    
+    livesImg.draw(livesPos, 134, 40);
     
     ofPushStyle();
     ofSetLineWidth(4.0);
@@ -91,10 +95,12 @@ bool GameScene::checkPlayerHit() {
         if (player.hitbox.inside(loc)) { //player is hit
             bullet->life = 0;
             player.lives--;
+            livesImg = ofxAssets::image(to_string(player.lives) + "Life");
             score -= 100; //died
             return true;
         }
     }
+    return false;
 }
 
 bool GameScene::checkEnemyHits() {
@@ -105,6 +111,7 @@ bool GameScene::checkEnemyHits() {
         if (player.hitbox.intersects(ship->hitbox)) { //player hit enemy ship
             ship->hp = 0;
             player.lives--;
+            livesImg = ofxAssets::image(to_string(player.lives) + "Life");
             score -= 100;
             playerHit = true;
             continue;
@@ -123,17 +130,5 @@ bool GameScene::checkEnemyHits() {
     }
     
     return playerHit;
-
-}
-
-void GameScene::willFadeOut() {
-
-}
-
-void GameScene::willExit(){
-
-}
-
-void GameScene::windowResized(int w, int h) {
 
 }

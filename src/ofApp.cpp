@@ -11,7 +11,7 @@ void ofApp::setup(){
     // set the size of the window
 //    ofSetWindowShape(2560, 1600);
     ofSetEscapeQuitsApp(false);
-//    ofSetFullscreen(true);
+    ofSetFullscreen(true);
     //TODO: enable fullscreen in next demo.
     ofHideCursor();
 
