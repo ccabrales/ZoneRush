@@ -16,6 +16,7 @@
 struct EnemyType {
     int minHP;
     int maxHP;
+    int score;
     const BulletType* bulletType;
     //movement:
     bool followPlayer;
@@ -41,7 +42,7 @@ public:
     ofRectangle hitbox;
 
     void setup(float diffScaling);
-    void update(const float timeStep, const float drag, ofxParticleSystem* bulletSpace, ofxParticleSystem* explosionSystem, bool onBeat);
+    void update(const float timeStep, const float drag, ofxParticleSystem* bulletSpace, ofxParticleSystem* explosionSystem, bool onBeat, int* score);
     void fire(ofxParticleSystem* bulletSpace);
     //Deprecated Draw. uses ofxParticleSystem::draw(tex) instead.
     void draw();
@@ -69,7 +70,7 @@ private:
 
 class EnemySystem : public ofxParticleSystem{
 public:
-    int update(float timeStep, ofxParticleSystem* bulletSystem, ofxParticleSystem * explosionSystem, const Track::Data * data);
+    int update(float timeStep, ofxParticleSystem* bulletSystem, ofxParticleSystem * explosionSystem, const Track::Data * data, int* score);
 
 
 //    void draw();

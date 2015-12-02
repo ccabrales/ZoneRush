@@ -2,13 +2,13 @@
 
 EnemyFactory::EnemyFactory(){
     e_types.push_back(EnemyType {
-        4, 5, BulletLibrary::getWeaponInfo(0), true, &ofxAssets::image("s1")
+        4, 5, 100, BulletLibrary::getWeaponInfo(0), true, &ofxAssets::image("s1")
     });
     e_types.push_back(EnemyType {
-        4, 7, BulletLibrary::getWeaponInfo(2), false, &ofxAssets::image("s2")
+        4, 7, 250, BulletLibrary::getWeaponInfo(2), false, &ofxAssets::image("s2")
     });
     e_types.push_back(EnemyType {
-        3, 8, BulletLibrary::getWeaponInfo(4), false, &ofxAssets::image("s3")
+        3, 8, 500, BulletLibrary::getWeaponInfo(4), false, &ofxAssets::image("s3")
     });
 
 }
@@ -32,7 +32,7 @@ void Enemy::setup(float diffScaling){
 //    explosion.size = 5;
 }
 
-void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bulletSpace, ofxParticleSystem* explosionSystem, bool onBeat){
+void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bulletSpace, ofxParticleSystem* explosionSystem, bool onBeat, int* score){
     ofxParticle::update(timeStep, drag);
     moveHitbox();
     cd -= timeStep;
@@ -52,6 +52,8 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
         ex.numPars = 80;
         explosionSystem->addParticles(ex);
         SoundLibrary::playSound(SoundItem::EXPLODE_LOUD);
+        *score += type->score;
+        cout << "ADDED SCORE" << endl;
         this->life = 0;
     }
 }
@@ -112,11 +114,11 @@ void Enemy::draw(){ //Never called
     ofxParticle::draw(type->texture->getTexture());
 }
 
-int EnemySystem::update(float timeStep, ofxParticleSystem* bulletSystem, ofxParticleSystem* explosionSystem, const Track::Data *data){
+int EnemySystem::update(float timeStep, ofxParticleSystem* bulletSystem, ofxParticleSystem* explosionSystem, const Track::Data *data, int* score){
     int particlesRemoved = 0;
     for(list<ofxParticle*>::iterator it = particles.begin(); it != particles.end(); it++){
         if((**it).isAlive() && (**it).position.x > -13 /*&& (*((Enemy*)*it)).hp > 0*/){
-            (*((Enemy*)*it)).update(timeStep, 1.0, bulletSystem, explosionSystem, data->onBeat);
+            (*((Enemy*)*it)).update(timeStep, 1.0, bulletSystem, explosionSystem, data->onBeat, score);
         }
         else{
             Enemy * p = ((Enemy*)(*it));

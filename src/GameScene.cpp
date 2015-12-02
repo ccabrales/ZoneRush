@@ -48,10 +48,12 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
     checkPlayerHit();
     checkEnemyHits();
     
+    scoreRender.update(score);
+    
     float lastFrameTime = ofGetLastFrameTime();
     player.update(lastFrameTime);
     player.shoot(&playerBullets);
-    enemies.update(lastFrameTime, &enemyBullets, &explosions, data);
+    enemies.update(lastFrameTime, &enemyBullets, &explosions, data, &score);
     enemyBullets.update(lastFrameTime, 1);
     playerBullets.update(lastFrameTime, 1);
     explosions.update(lastFrameTime, 0.8);
@@ -89,6 +91,7 @@ void GameScene::checkPlayerHit() {
         if (player.hitbox.inside(loc)) { //player is hit
             bullet->life = 0;
             player.lives--;
+            score -= 100; //died
             //TODO reset player position
             //TODO reset enemies on screen
             //TODO update score (lose points? something?)
@@ -104,6 +107,8 @@ void GameScene::checkEnemyHits() {
         if (player.hitbox.intersects(ship->hitbox)) { //player hit enemy ship
             ship->hp = 0;
             player.lives--;
+            score -= 100;
+//            score += ship->type->score - 100; //subtract 100 because died
             //TODO reset player position
             //TODO animate explosions of player and ship
             //TODO reset enemies on screen
@@ -118,6 +123,7 @@ void GameScene::checkEnemyHits() {
             if (ship->hitbox.inside(loc)) {
                 ship->hp -= player.bulletDamage;
                 bullet->life = 0;
+//                score += ship->type->score;
                 //TODO the same stuff as above
                 //TODO also increment score
                 break;

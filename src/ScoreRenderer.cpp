@@ -1,7 +1,8 @@
 #include "ScoreRenderer.h"
 
 void ScoreRenderer::update(int currentScore){
-    curr += (((float)(currentScore - curr))*0.6);
+//    curr += (((float)(currentScore - curr))*0.6);
+    curr = currentScore;
 }
 
 void ScoreRenderer::draw(float x, float y){
