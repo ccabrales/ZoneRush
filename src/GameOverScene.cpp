@@ -8,6 +8,8 @@ void GameOverScene::setup(int endScore, int finalPercentage){
     menu.load("MenuSelected.png");
     resetPosition();
     
+    scoreRender.update(endScore);
+    
     finalScore = endScore;
     ostringstream oss;
     oss << finalPercentage << "%";

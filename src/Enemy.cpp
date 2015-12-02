@@ -53,7 +53,6 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
         explosionSystem->addParticles(ex);
         SoundLibrary::playSound(SoundItem::EXPLODE_LOUD);
         *score += type->score;
-        cout << "ADDED SCORE" << endl;
         this->life = 0;
     }
 }

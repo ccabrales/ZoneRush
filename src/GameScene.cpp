@@ -45,18 +45,18 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
         enemies.particles.push_front(e);
     }
     
-    checkPlayerHit();
-    checkEnemyHits();
-    
-    scoreRender.update(score);
+    bool playerExplode = checkPlayerHit();
+    playerExplode = playerExplode | checkEnemyHits();
     
     float lastFrameTime = ofGetLastFrameTime();
-    player.update(lastFrameTime);
+    player.update(lastFrameTime, &explosions, playerExplode);
     player.shoot(&playerBullets);
     enemies.update(lastFrameTime, &enemyBullets, &explosions, data, &score);
     enemyBullets.update(lastFrameTime, 1);
     playerBullets.update(lastFrameTime, 1);
     explosions.update(lastFrameTime, 0.8);
+    
+    scoreRender.update(score);
 }
 
 
@@ -82,7 +82,7 @@ void GameScene::draw(){
     ofPopStyle();
 }
 
-void GameScene::checkPlayerHit() {
+bool GameScene::checkPlayerHit() {
     //Check enemy bullets on player
     list<ofxParticle *>::iterator bullets;
     for(bullets=enemyBullets.particles.begin(); bullets!=enemyBullets.particles.end(); bullets++) {
@@ -92,27 +92,21 @@ void GameScene::checkPlayerHit() {
             bullet->life = 0;
             player.lives--;
             score -= 100; //died
-            //TODO reset player position
-            //TODO reset enemies on screen
-            //TODO update score (lose points? something?)
-            break;
+            return true;
         }
     }
 }
 
-void GameScene::checkEnemyHits() {
+bool GameScene::checkEnemyHits() {
     list<ofxParticle *>::iterator ships; //Iterate over the ships
+    bool playerHit = false;
     for(ships=enemies.particles.begin(); ships!=enemies.particles.end(); ships++) {
         Enemy * ship = ((Enemy*)(*ships));
         if (player.hitbox.intersects(ship->hitbox)) { //player hit enemy ship
             ship->hp = 0;
             player.lives--;
             score -= 100;
-//            score += ship->type->score - 100; //subtract 100 because died
-            //TODO reset player position
-            //TODO animate explosions of player and ship
-            //TODO reset enemies on screen
-            //TODO update score (lose points? something?)
+            playerHit = true;
             continue;
         }
 
@@ -123,14 +117,12 @@ void GameScene::checkEnemyHits() {
             if (ship->hitbox.inside(loc)) {
                 ship->hp -= player.bulletDamage;
                 bullet->life = 0;
-//                score += ship->type->score;
-                //TODO the same stuff as above
-                //TODO also increment score
                 break;
             }
         }
     }
-
+    
+    return playerHit;
 
 }
 

@@ -63,7 +63,22 @@ void Player::upgradeGun(int grade){
     }
 }
 
-void Player::update(float frameTime) {
+void Player::update(float frameTime, ofxParticleSystem* explosions, bool explode) {
+    if (explode) {
+        ofxParticleEmitter ex;
+        ex.setPosition(pos);
+        ex.setVelocity(ofVec3f(50, 50, 0));
+        ex.life = 15;
+        ex.lifeSpread = 2;
+        ex.color = ofColor(255, 50, 50);
+        ex.colorSpread = ofColor(0, 50, 50);
+        ex.velSpread = ofVec3f(50, 50);
+        ex.numPars = 80;
+        explosions->addParticles(ex);
+        SoundLibrary::playSound(SoundItem::EXPLODE_LONG);
+        resetPosition();
+        return;
+    }
     if (is_left_pressed) {
         pos.x -= speed*frameTime;
         gunPos.x -= speed*frameTime;
@@ -126,6 +141,13 @@ void Player::checkBounds() { //make sure player doesn't go out of screen, and re
 
 void Player::moveHitbox() {
     hitbox.set(pos.x + (width/4.0), pos.y + (height/4.0), width / 2.0, height/2.0);
+}
+
+void Player::resetPosition() {
+    pos.x = ofGetWidth() / 10.0;
+    pos.y = ofGetHeight() / 2.0;
+    gunPos.x = pos.x + width/2.0;
+    gunPos.y = pos.y + height/2.0;
 }
 
 //bool Player::check_can_shoot() {

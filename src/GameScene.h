@@ -29,8 +29,8 @@ public:
     int score;
     
 private:
-    void checkPlayerHit();
-    void checkEnemyHits();
+    bool checkPlayerHit();
+    bool checkEnemyHits();
 
     ofxParticleEmitter rightEmitter;
     

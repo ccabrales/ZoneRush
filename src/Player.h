@@ -14,13 +14,15 @@ public:
     bool is_left_pressed, is_right_pressed, is_down_pressed, is_up_pressed;
 
     void setup(ofImage * _img);
-    void update(float frameTime);
+    void update(float frameTime, ofxParticleSystem* explosions, bool explode);
     void upgradeGun(int grade);
     void draw();
     void shoot(GreedyParticleSystem* playerBullet);
 
     void checkBounds();
     void moveHitbox();
+    
+    void resetPosition();
 
     ofImage * img;
 
