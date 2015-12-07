@@ -42,12 +42,15 @@ public:
 
     void audioOut(float * input, int bufferSize, int nChannels);
     void audioIn(float * input, int bufferSize, int nChannels);
-
+    
+    
 private:
     //State machine
     enum GameState { START, LOAD, GAME, END };
     GameState game_state;
 //    vector<EnemyPtr> enemyList;
+    
+    bool isPaused;
 
     //Scenes
     TitleScene * titleScene;
