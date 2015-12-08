@@ -19,11 +19,6 @@ public:
     void draw();
     
     //event handling implementations.
-    //    void willFadeIn();
-    //    void willDraw();
-    void willFadeOut();
-    void willExit();
-    void windowResized(int w, int h);
     void backgroundUpdate(const Track::Data* data, ofxParticleSystem* particleSystem);
     
     int score;
@@ -43,5 +38,8 @@ private:
     GreedyParticleSystem playerBullets;
     
     ofxParticleSystem explosions;
+    
+    ofImage livesImg;
+    ofPoint livesPos;
     
 };

@@ -11,11 +11,12 @@ void ofApp::setup(){
     // set the size of the window
 //    ofSetWindowShape(2560, 1600);
     ofSetEscapeQuitsApp(false);
-//    ofSetFullscreen(true);
+    ofSetFullscreen(true);
     //TODO: enable fullscreen in next demo.
     ofHideCursor();
 
     game_state = START;
+    isPaused = false;
 
     //Scene Setup:
     titleScene = new TitleScene;
@@ -45,10 +46,12 @@ void ofApp::setup(){
 void ofApp::exit(){
     ofSoundStreamStop();
     ofSoundStreamClose();
+    currentTrack.release();
+    globalDecoder.release();
 }
 
 void ofApp::audioOut(float * input, int bufferSize, int nChannels){
-    if(globalDecoder == NULL) return;
+    if(globalDecoder == NULL || isPaused) return;
     copy(globalDecoder->getRawSamples().begin()+tick*bufferSize*nChannels, globalDecoder->getRawSamples().begin()+tick*bufferSize*nChannels+bufferSize*nChannels, input);
     tick ++;
     if(tick*nChannels*bufferSize > globalDecoder->getNumSamples()){
@@ -60,6 +63,7 @@ void ofApp::audioOut(float * input, int bufferSize, int nChannels){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    if (isPaused) return;
 
     Track::Data* d = currentTrack->readData(tick);
     tv.update(d);
@@ -103,6 +107,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    
     // update beat info
     post.begin();
     ofBackground(8, 9, 32);
@@ -120,6 +125,10 @@ void ofApp::draw(){
             break;
         case GAME:
             gameScene->draw();
+            if (isPaused) {
+                ofxAssets::font("welbut", 32).drawString("Paused", (ofGetWidth() / 2.0) - 75, (ofGetHeight() / 2.0) - 75);
+                ofxAssets::font("welbut", 18).drawString("Click Enter to Quit", (ofGetWidth() / 2.0) - 115, (ofGetHeight() / 2.0));
+            }
             break;
         case END:
             gameOverScene->draw();
@@ -159,6 +168,7 @@ void ofApp::keyPressed(int key){
                         titleScene->setLoading(titleScene->TRANSITION);
                     }
                 } else {
+                    exit();
                     std::exit(0);
                 }
             default:
@@ -167,13 +177,25 @@ void ofApp::keyPressed(int key){
     } else if (game_state == GAME) {
         switch (key) {
             case OF_KEY_LEFT:
+                if (isPaused) break;
                 player.is_left_pressed = true;  break;
             case OF_KEY_RIGHT:
+                if (isPaused) break;
                 player.is_right_pressed = true; break;
             case OF_KEY_UP:
+                if (isPaused) break;
                 player.is_up_pressed = true;    break;
             case OF_KEY_DOWN:
+                if (isPaused) break;
                 player.is_down_pressed = true;  break;
+            case OF_KEY_ESC:
+                isPaused = !isPaused;           break;
+            case OF_KEY_RETURN:
+                if (isPaused) {
+                    exit();
+                    std::exit(0);
+                }
+                break;
             default:
                 break;
         }
