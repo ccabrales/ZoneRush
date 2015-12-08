@@ -27,7 +27,11 @@ void GameScene::update(){ //unused
 
 #define DIFFICULTY 4.0
 //the higher the easier.
-
+inline float modBPM(const Track::Data* data){
+    if(data->bpm > 200) return .5*data->bpm;
+    if(data->bpm < 100) return 2.0*data->bpm;
+    return data->bpm;
+}
 
 void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* particleSystem){
     rightEmitter.numPars = max((int)(data->intensity*20) + (data->onBeat?12:0), 2);
@@ -42,7 +46,12 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
         Enemy * e = new Enemy();
         e->position = ofVec3f(ofGetWidth()+10, ofWrap(data->pitch * 13, 0, ofGetHeight()));
         e->life = 500;
-        e->velocity = ofVec3f(-80, 0);
+        e->velocity = ofVec3f(ofGetWidth() * (modBPM(data)/60.0) / ((int)ofRandom(7, 10)), 0);
+        //pixels per second.
+        //BPM / 60 (bps)
+        //R_N number of beats.
+        //Width pixels
+        //width / R_N  * (beats / second)
         e->type = EnemyFactory::getType(rand()%3);
         e->setup(currentDifficulty);
         enemies.particles.push_front(e);
@@ -57,7 +66,7 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
     enemyBullets.update(lastFrameTime, 1);
     playerBullets.update(lastFrameTime, 1);
     explosions.update(lastFrameTime, 0.8);
-    
+
     scoreRender.update(score);
 }
 
@@ -75,7 +84,7 @@ void GameScene::draw(){
     ofSetLineWidth(4.0);
     explosions.draw();
     ofPopStyle();
-    
+
     ofPushStyle();
     ofSetColor(255,244,255);
     ofFill();
@@ -128,7 +137,7 @@ bool GameScene::checkEnemyHits() {
             }
         }
     }
-    
+
     return playerHit;
 
 }
