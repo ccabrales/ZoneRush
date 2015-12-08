@@ -31,7 +31,10 @@ void AudioLoader::threadedFunction(){
         != acceptableFileExts.end()) {
         musicDecoder->load(filePath);
         if (musicDecoder->getChannels() != 2 || musicDecoder->getSampleRate() != 44100) {
-            if(!convertFile(filePath)){
+            ofBuffer buffer = ofBufferFromFile(filePath);
+            filePath = "../../../data/temp1.wav";
+            bool fileWritten = ofBufferToFile("temp1.wav", buffer);
+            if(!convertFile(filePath) || !fileWritten){
                 createError("Attempted to convert music but failed. :( Try again with a different file?");
                 return;
             }
