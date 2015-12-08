@@ -46,12 +46,7 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
         Enemy * e = new Enemy();
         e->position = ofVec3f(ofGetWidth()+10, ofWrap(data->pitch * 13, 0, ofGetHeight()));
         e->life = 500;
-        e->velocity = ofVec3f(ofGetWidth() * (modBPM(data)/60.0) / ((int)ofRandom(7, 10)), 0);
-        //pixels per second.
-        //BPM / 60 (bps)
-        //R_N number of beats.
-        //Width pixels
-        //width / R_N  * (beats / second)
+        e->velocity = ofVec3f(min(-ofGetWidth() * (modBPM(data)/60.0) / ((int)ofRandom(14,18)), -80.0), 0);
         e->type = EnemyFactory::getType(rand()%3);
         e->setup(currentDifficulty);
         enemies.particles.push_front(e);
