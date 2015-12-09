@@ -96,7 +96,7 @@ void ofApp::update(){
     }
 
     if(d->onsets>0 || d->onBeat){
-        pass->setEnabled(true);
+//        pass->setEnabled(true);
         if(d->onBeat && backgroundClouds.getNumParticles() < 5){
             backgroundClouds.addParticles(cloudEmitter);
         }
@@ -107,7 +107,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    
+
     // update beat info
     post.begin();
     ofBackground(8, 9, 32);
@@ -149,6 +149,54 @@ void ofApp::windowResized(int w, int h){
     post.init(w,h);
 }
 
+#ifdef TARGET_OSX
+ofFileDialogResult selectFileDialog()
+{
+    ofFileDialogResult result;
+    
+    @autoreleasepool
+    {
+        NSOpenGLContext *context = [NSOpenGLContext currentContext];
+        NSDictionary *error = nil;
+        
+        NSAppleScript* openFile = [[NSAppleScript alloc] initWithSource:
+                                   @"tell app \"SystemUIServer\"\n"
+                                   @"    choose file default location \"/\" \n"
+                                   @"    set result to (the POSIX path of result)\n"
+                                   @"end tell"];
+        
+        NSString *absoluteFilePath = [[openFile executeAndReturnError: &error] stringValue];
+        
+        if(absoluteFilePath != NULL)
+        {
+            result.filePath = *new std::string([absoluteFilePath UTF8String]);
+            NSLog(@"User selected %@\n",absoluteFilePath);
+        }
+        else
+        {
+            NSLog(@"User hit cancel\n");
+            result.bSuccess = false;
+        }
+        
+        //restore app window focus
+        NSWindow * appWindow = (NSWindow *)ofGetCocoaWindow();
+        if(appWindow) {
+            [appWindow makeKeyAndOrderFront:nil];
+        }
+        
+        [context makeCurrentContext];
+    }
+    
+    if( result.filePath.length() > 0 )
+    {
+        result.bSuccess = true;
+        result.fileName = ofFilePath::getFileName(result.filePath);
+    }
+
+    return result;
+}
+#endif
+
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     if (game_state == START) {
@@ -160,7 +208,11 @@ void ofApp::keyPressed(int key){
                 break;
             case OF_KEY_RETURN:
                 if (titleScene->isPlaySelected()) {
+#ifdef TARGET_OSX
+                    ofFileDialogResult res = selectFileDialog();
+#else
                     ofFileDialogResult res = ofSystemLoadDialog();
+#endif
                     if (res.bSuccess) {
                         audioLoader = unique_ptr<AudioLoader>(new AudioLoader());
                         audioLoader->start(res);
@@ -256,6 +308,7 @@ void ofApp::checkLoadUpdate() {
             currentTrack = unique_ptr<Track>(audioLoader->loadedTrack.get());
             tv.setup(currentTrack.get());
             game_state = GAME;
+            if(gameScene != NULL) delete gameScene;
             gameScene = new GameScene;
             gameScene->setup();
         }
