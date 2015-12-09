@@ -159,11 +159,12 @@ ofFileDialogResult selectFileDialog()
         NSOpenGLContext *context = [NSOpenGLContext currentContext];
         NSDictionary *error = nil;
         
-        NSAppleScript* openFile = [[NSAppleScript alloc] initWithSource:
-                                   @"tell app \"SystemUIServer\"\n"
-                                   @"    choose file default location \"/\" \n"
-                                   @"    set result to (the POSIX path of result)\n"
-                                   @"end tell"];
+        NSString * applescript =[NSString stringWithFormat:@"tell app \"SystemUIServer\"\n"
+                                 @"    choose file of type {\"public.mp3\", \"public.m4a\", \"public.wav\", \"public.flac\", \"public.ogg\", \"public.aif\", \"public.aiff\"} invisibles false default location \"%s\" \n"
+                                 @"    set result to (the POSIX path of result)\n"
+                                 @"end tell", ofFilePath::getAbsolutePath(ofToDataPath(".")).c_str()];
+        
+        NSAppleScript* openFile = [[NSAppleScript alloc] initWithSource:applescript];
         
         NSString *absoluteFilePath = [[openFile executeAndReturnError: &error] stringValue];
         
