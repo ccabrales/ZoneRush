@@ -156,6 +156,7 @@ ofFileDialogResult selectFileDialog()
     
     @autoreleasepool
     {
+        ofShowCursor();
         NSOpenGLContext *context = [NSOpenGLContext currentContext];
         NSDictionary *error = nil;
         
@@ -193,7 +194,7 @@ ofFileDialogResult selectFileDialog()
         result.bSuccess = true;
         result.fileName = ofFilePath::getFileName(result.filePath);
     }
-
+    ofHideCursor();
     return result;
 }
 #endif

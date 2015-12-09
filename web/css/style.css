@@ -371,8 +371,14 @@ width:100%;
 .img-top.part-one {
     width: 58% !important;
 }
+
+.img-top.part-one img {
+    width: 70% !important;
+}
+
 .img-top.part-three {
     width: 27.6% !important;
+    margin-top: 50px;
 }
 .img-top.part-four{
     width: 44% !important;
