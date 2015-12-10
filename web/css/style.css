@@ -182,6 +182,12 @@ nav a:focus, ul.navig a:hover, ul.navig a:focus {
 	color:#fff;
 	margin:0em 0 0.5em 0;
 }
+
+#small-dialog5 {
+    max-width: 80vw !important;
+    max-height: 80vh !important;
+    
+}
 /*-- MIXTUP PART --*/
 /*	Strip
 /*-----------------------------------------------------------------------------------*/
