@@ -21,6 +21,8 @@ void GameScene::setup(){
 
     enemyBullets.setup(ofRectangle(-3,-3,ofGetWidth()+6, ofGetHeight()+6));
     playerBullets.setup(ofRectangle(-3,-3,ofGetWidth()+6, ofGetHeight()+6));
+    
+    boss.setup();
 }
 
 void GameScene::update(){ //unused
@@ -53,12 +55,17 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
         enemies.particles.push_front(e);
     }
     
+    if(((float)tick)/(float)currentTrack->frameData.size() > 0.2) bossSpawned = true;
+    
     bool playerExplode = checkPlayerHit() | checkEnemyHits();
     if (playerExplode) invincibility = 1.5;
     
     float lastFrameTime = ofGetLastFrameTime();
     player.update(lastFrameTime, &explosions, playerExplode);
     player.shoot(&playerBullets);
+    if(bossSpawned)
+        boss.update(lastFrameTime, &enemyBullets, &explosions, &enemies, data, &score);
+    
     enemies.update(lastFrameTime, &enemyBullets, &explosions, data, &score);
     enemyBullets.update(lastFrameTime, 1);
     playerBullets.update(lastFrameTime, 1);
@@ -80,6 +87,7 @@ void GameScene::draw(){
     
     scoreRender.draw(20, ofGetHeight() - 12);
     enemies.draw();
+    boss.draw();
     enemyBullets.draw();
     playerBullets.draw();
     

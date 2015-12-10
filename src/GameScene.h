@@ -43,4 +43,6 @@ private:
     ofImage livesImg;
     ofPoint livesPos;
     
+    Boss boss;
+    bool bossSpawned = false;
 };
