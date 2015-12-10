@@ -312,6 +312,10 @@ void ofApp::checkLoadUpdate() {
                 titleScene->setLoading(titleScene->TOGAME);
             }
         } else if (titleScene->getCurrentState() == titleScene->END) { //Can move on
+            if(gameScene != NULL) delete gameScene;
+            gameScene = new GameScene;
+            gameScene->setup();
+
             titleScene->setLoading(titleScene->TITLE);
             tick = 0;
             globalDecoder.release();
@@ -320,9 +324,6 @@ void ofApp::checkLoadUpdate() {
             currentTrack = unique_ptr<Track>(audioLoader->loadedTrack.get());
             tv.setup(currentTrack.get());
             game_state = GAME;
-            if(gameScene != NULL) delete gameScene;
-            gameScene = new GameScene;
-            gameScene->setup();
         }
     }
     audioLoader->unlock();

@@ -238,23 +238,74 @@ void EnemySystem::draw(){
     }
 }
 
+void Boss::setup(){
+    firemode = BChill;
+    state=BossEntering;
+    decoder.decode("space_transparent_ship.gif");
+    bossGif = decoder.getFile();
+}
 
-//UNUSED
+//Todo: check other systems to not spawn while boss is here...
 
-//EnemyPtr EnemyFactory::make(int typeID, float diffScaling=1.0){
-//    static EnemyFactory inst;
-//    EnemyPtr e = EnemyPtr(new Enemy);
-//    e->type = &(inst.e_types[typeID]);
-//    e->setup(diffScaling);
-//    return e;
-//}
-//
-//vector<EnemyPtr >* EnemyFactory::makeGroup(int type, int size, float variance, float diffScaling = 1){
-//    vector< EnemyPtr >* output = new vector<EnemyPtr>();
-//    for(int i = 0; i < size; i++){
-//        EnemyPtr newChallenger = make(type, diffScaling);
-//        output->push_back(newChallenger);
-//    }
-//    return output;
-//}
+inline float modBPM(const Track::Data* data){
+    if(data->bpm > 200) return .5*data->bpm;
+    if(data->bpm < 100) return 2.0*data->bpm;
+    return data->bpm;
+}
+
+
+void Boss::update(const float timeStep, ofxParticleSystem* bulletSpace, ofxParticleSystem* explosionSystem,EnemySystem* globalEnemies, const Track::Data* data, int* score){
+    switch(state){
+        case BossEntering:
+            enteringDone += timeStep;
+            if(enteringDone > enterDuration && data->onBeat){
+                state = BossFight;
+                enteringDone = 0;
+            }
+            break;
+        case BossFight:
+            enteringDone += timeStep; //add time.
+            if(enteringDone >= 8.0/modBPM(data)/60.0 && data->onBeat){
+                newFiringState();
+            }
+            break;
+        case BossDestroyed:
+            break;
+    }
+}
+
+void Boss::newFiringState(){
+    int newState;
+    do{
+        newState = rand()%4;
+    }while(newState==(int)firemode);
+    
+    firemode = (BossFiringState) newState;
+    
+    switch(firemode){
+        case BEverythingGoes:
+            //spawns both laser and bullet enemies indiscrimantly and also shoots big laser.
+        case BLasers:
+            //spawns laser dudes and shoots big laser.
+        case BBullets:
+            //spawn bullet dudes.
+        case BChill:
+            //spawns bullet dudes at reduced rate.
+            break;
+    }
+}
+
+void Boss::draw(){
+    switch(state){
+        case BossEntering:
+            bossGif.drawFrame(0, ofGetWidth()-(400*(enteringDone/enterDuration)), ofGetHeight()/2.0 - bossGif.getHeight()/2.0);
+            break;
+        case BossFight:
+            break;
+        case BossDestroyed:
+            break;
+    }
+}
+
+
 

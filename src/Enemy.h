@@ -10,6 +10,7 @@
 #include "ofxAssets.h"
 #include "SoundLibrary.h"
 #include "ofxFatLine.h"
+#include "ofxGifDecoder.h"
 
 #define BulletSpeed 150
 
@@ -86,6 +87,43 @@ public:
     int update(float timeStep, ofxParticleSystem* bulletSystem, ofxParticleSystem * explosionSystem, const Track::Data * data, int* score);
     void draw();
 //    void draw();
+};
+
+
+enum BossState{
+    BossEntering, BossFight, BossDestroyed
+};
+
+enum BossFiringState{
+    BEverythingGoes, BChill, BLasers, BBullets
+};
+
+
+class Boss : public Enemy{
+public:
+    
+    BossState state;
+    BossFiringState firemode;
+    
+    ofxGifDecoder decoder;
+    ofxGifFile bossGif;
+
+    
+    float enteringDone=0;
+    float enterDuration=2.0;
+    
+    
+    float laserTick;
+    float countDown;
+    
+    EnemySystem* internalEnemies;
+    
+    void setup();
+    void update(const float timeStep, ofxParticleSystem* bulletSpace, ofxParticleSystem* explosionSystem, EnemySystem* globalEnemies, const Track::Data* data, int* score);
+    void draw();
+    
+private:
+    void newFiringState();
 };
 
 
