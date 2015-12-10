@@ -31,10 +31,28 @@ void AudioLoader::threadedFunction(){
         != acceptableFileExts.end()) {
         musicDecoder->load(filePath);
         if (musicDecoder->getChannels() != 2 || musicDecoder->getSampleRate() != 44100) {
-            ofBuffer buffer = ofBufferFromFile(filePath);
+            
+            AudioStreamBasicDescription outputFormat = {0};
+            outputFormat.mSampleRate = musicDecoder->getSampleRate();
+            outputFormat.mFormatID = kAudioFormatLinearPCM;
+            outputFormat.mBitsPerChannel = 32;
+            outputFormat.mFormatFlags = kAudioFormatFlagIsFloat | kAudioFormatFlagIsPacked;
+            outputFormat.mFramesPerPacket = 1;
+            outputFormat.mChannelsPerFrame = 2;
+            outputFormat.mBytesPerFrame = 4;
+            outputFormat.mBytesPerPacket = 4;
+
             filePath = "../../../data/temp1.wav";
-            bool fileWritten = ofBufferToFile("temp1.wav", buffer);
-            if(!convertFile(filePath) || !fileWritten){
+            AudioFileID outputFile;
+            CFStringRef urlStr = CFStringCreateWithCString(kCFAllocatorDefault, filePath.c_str(), kCFStringEncodingUTF8);
+            CFURLRef ref = CFURLCreateWithFileSystemPath(NULL, urlStr, kCFURLPOSIXPathStyle, false);
+            AudioFileCreateWithURL(ref, kAudioFileWAVEType, &outputFormat, (kAudioFileFlags_EraseFile), &outputFile);
+            CFRelease(outputFile);
+            CFRelease(urlStr);
+            UInt32 sizeOfBuffer = (UInt32)(musicDecoder->getNumSamples());
+            AudioFileWriteBytes(outputFile, FALSE, 0, &sizeOfBuffer, &(musicDecoder->getRawSamples()[0]));
+            AudioFileClose(outputFile);
+            if(!convertFile(filePath)){
                 createError("Attempted to convert music but failed. :( Try again with a different file?");
                 return;
             }
