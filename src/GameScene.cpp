@@ -7,7 +7,7 @@ void GameScene::setup(){
     
     livesImg = ofxAssets::image("3Life");
     livesPos = ofPoint(0, ofGetHeight() - 95);
-
+    
     rightEmitter.setPosition(ofVec3f(ofGetWidth()-1,ofGetHeight()/2.0));
     rightEmitter.setVelocity(ofVec3f(-310,0.0));
     rightEmitter.posSpread = ofVec3f(0,ofGetHeight());
@@ -18,7 +18,7 @@ void GameScene::setup(){
     rightEmitter.size = 12;
     rightEmitter.color = ofColor(100,100,200);
     rightEmitter.colorSpread = ofColor(70,70,70);
-
+    
     enemyBullets.setup(ofRectangle(-3,-3,ofGetWidth()+6, ofGetHeight()+6));
     playerBullets.setup(ofRectangle(-3,-3,ofGetWidth()+6, ofGetHeight()+6));
     
@@ -41,7 +41,7 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
     rightEmitter.setVelocity(data->onBeat?ofVec3f(-510,0.0):ofVec3f(-310,0.0));
     particleSystem->addParticles(rightEmitter);
     particleSystem->addParticles(player.emitter);
-
+    
     //spawn possible enemies
     float currentDifficulty = ofMap(tick, 0, currentTrack->frameData.size(), 1.0, 3.0);
     float spawnRate = ((data->intensity)/5.0 + ((float)data->onBeat) / 7.0 + ((float)data->onsets / 32.0))/DIFFICULTY;
@@ -73,7 +73,7 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
     explosions.gravitateTo(player.pos, 10 ,32, 12, true);
     
     explosions.update(lastFrameTime, 0.25);
-
+    
     scoreRender.update(score);
     invincibility -= lastFrameTime;
 }
@@ -99,7 +99,7 @@ void GameScene::draw(){
     ofSetLineWidth(4.0);
     explosions.draw();
     ofPopStyle();
-
+    
     ofPushStyle();
     ofSetColor(255,244,255);
     ofFill();
@@ -130,6 +130,8 @@ bool GameScene::checkPlayerHit() {
 bool GameScene::checkEnemyHits() {
     list<ofxParticle *>::iterator ships; //Iterate over the ships
     bool playerHit = false;
+    list<ofxParticle *>::iterator bullets;
+    
     for(ships=enemies.particles.begin(); ships!=enemies.particles.end(); ships++) {
         Enemy * ship = ((Enemy*)(*ships));
         if (invincibility <= 0 && player.hitbox.intersects(ship->hitbox)) { //player hit enemy ship
@@ -140,8 +142,7 @@ bool GameScene::checkEnemyHits() {
             playerHit = true;
             continue;
         }
-
-        list<ofxParticle *>::iterator bullets;
+        
         for(bullets=playerBullets.particles.begin(); bullets!=playerBullets.particles.end(); bullets++) {
             ofxParticle* bullet = (*bullets);
             ofVec3f loc = bullet->position;
@@ -170,9 +171,26 @@ bool GameScene::checkEnemyHits() {
                 
             }
         }
-
+        
     }
-
+    
+    if(bossSpawned){
+        for(bullets=playerBullets.particles.begin(); bullets!=playerBullets.particles.end(); bullets++) {
+            ofxParticle* bullet = (*bullets);
+            ofVec3f loc = bullet->position;
+            if (boss.hitbox.inside(loc)) {
+                boss.hp -= player.bulletDamage;
+                if(boss.hp == 0){
+                    player.exp += 100;
+                    livesImg = ofxAssets::image(to_string(player.lives) + "Life");
+                }
+                bullet->life = 0;
+                continue;
+            }
+        }
+        
+    }
+    
     return playerHit;
-
+    
 }

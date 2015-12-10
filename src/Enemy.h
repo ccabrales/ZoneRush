@@ -11,6 +11,7 @@
 #include "SoundLibrary.h"
 #include "ofxFatLine.h"
 #include "ofxGifDecoder.h"
+#include "ofxTween.h"
 
 #define BulletSpeed 150
 
@@ -102,11 +103,16 @@ enum BossFiringState{
 class Boss : public Enemy{
 public:
     
+    ~Boss();
+    
     BossState state;
     BossFiringState firemode;
     
     ofxGifDecoder decoder;
     ofxGifFile bossGif;
+    float animationProgress = 0;
+    int animationFrame = 0;
+    ofxEasingCubic cubic;
 
     int hp;
     float enteringDone=0;
@@ -123,7 +129,7 @@ public:
     void draw();
     
 private:
-    void newFiringState();
+    void newFiringState(const Track::Data* data);
 };
 
 
