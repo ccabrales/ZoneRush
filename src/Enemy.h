@@ -40,19 +40,28 @@ public:
     ofxParticleEmitter gun;
 
     ofRectangle hitbox;
+    
+    float laserChargeTimer;
+    float laserWidth = 20;
+    ofPoint laserTargetPoint;
+    bool laserCharging = false;
+    bool laserFiring = false;
 
     void setup(float diffScaling);
     void update(const float timeStep, const float drag, ofxParticleSystem* bulletSpace, ofxParticleSystem* explosionSystem, bool onBeat, int* score);
     void fire(ofxParticleSystem* bulletSpace);
     //Deprecated Draw. uses ofxParticleSystem::draw(tex) instead.
     void draw();
+    void draw(ofTexture &tex);
 
     void onsetHandler(const Track::Data& frame);
     void moveHitbox();
 //    void calculate_movement(const ofPolyline* archetype);
 
 private:
+    void fireLaser();
 };
+
 
 typedef shared_ptr<Enemy> EnemyPtr;
 
@@ -61,6 +70,7 @@ class EnemyFactory
 public:
     static EnemyPtr make(int typeID, float difficultyScaling);
     static EnemyType* getType(int typeID);
+    static EnemyType* getTypeRandom();
     static vector< EnemyPtr >* makeGroup(int type, int size, float variance, float difficultyScaling);
 private:
     vector<EnemyType> e_types;

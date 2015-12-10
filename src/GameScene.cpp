@@ -47,7 +47,7 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
         e->position = ofVec3f(ofGetWidth()+10, ofWrap(data->pitch * 13, 0, ofGetHeight()));
         e->life = 500;
         e->velocity = ofVec3f(min(-ofGetWidth() * (modBPM(data)/60.0) / ((int)ofRandom(14,18)), -80.0), 0);
-        e->type = EnemyFactory::getType(rand()%3);
+        e->type = EnemyFactory::getTypeRandom();
         e->setup(currentDifficulty);
         enemies.particles.push_front(e);
     }
@@ -138,6 +138,22 @@ bool GameScene::checkEnemyHits() {
                 continue;
             }
         }
+        
+        //check if ship's lasers are colliding into player.
+        if(ship->laserFiring){
+            ofVec3f dir = ship->laserTargetPoint-ship->position;
+            ofVec3f posPlayer = player.hitbox.getCenter() - ship->position;
+            
+            float dist = posPlayer.cross(dir).length() / dir.length();
+            if(dist < ship->laserWidth /2.0){
+                player.lives --;
+                livesImg = ofxAssets::image(to_string(player.lives) + "Life");
+                score -= 100;
+                playerHit = true;
+                
+            }
+        }
+
     }
 
     return playerHit;

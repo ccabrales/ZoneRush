@@ -1,14 +1,30 @@
 #include "Enemy.h"
 
 EnemyFactory::EnemyFactory(){
+    
     e_types.push_back(EnemyType {
         4, 5, 100, BulletLibrary::getWeaponInfo(0, false), true, &ofxAssets::image("s1")
     });
     e_types.push_back(EnemyType {
-        4, 7, 250, BulletLibrary::getWeaponInfo(2, false), false, &ofxAssets::image("s2")
+        2, 3, 110, BulletLibrary::getWeaponInfo(1, false), false, &ofxAssets::image("s2")
     });
     e_types.push_back(EnemyType {
-        3, 8, 500, BulletLibrary::getWeaponInfo(4, false), false, &ofxAssets::image("s3")
+        3, 8, 230, BulletLibrary::getWeaponInfo(2, false), false, &ofxAssets::image("s3")
+    });
+    e_types.push_back(EnemyType {
+        3, 8, 420, BulletLibrary::getWeaponInfo(3, false), false, &ofxAssets::image("s4")
+    });
+    e_types.push_back(EnemyType {
+        3, 8, 500, BulletLibrary::getWeaponInfo(4, false), false, &ofxAssets::image("s5")
+    });
+    e_types.push_back(EnemyType {
+        3, 8, 540, BulletLibrary::getWeaponInfo(5, false), false, &ofxAssets::image("s6")
+    });
+    e_types.push_back(EnemyType {
+        3, 8, 300, BulletLibrary::getWeaponInfo(6, false), false, &ofxAssets::image("s3")
+    });
+    e_types.push_back(EnemyType {
+        3, 8, 1300, BulletLibrary::getWeaponInfo(7, false), false, &ofxAssets::image("s7")
     });
 
 }
@@ -16,6 +32,11 @@ EnemyFactory::EnemyFactory(){
 EnemyType* EnemyFactory::getType(int typeID){
     static EnemyFactory inst;
     return &(inst.e_types[typeID]);
+}
+
+EnemyType* EnemyFactory::getTypeRandom(){
+    static EnemyFactory inst;
+    return &(inst.e_types[rand()%inst.e_types.size()]);
 }
 
 
@@ -37,8 +58,23 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
     moveHitbox();
     cd -= timeStep;
     if(cd <= 0){
-        fire(bulletSpace);
+        if(type->bulletType->firePattern==LASERSHOT) fireLaser();
+        else                fire(bulletSpace);
     }
+    if(laserCharging || laserFiring){
+        laserChargeTimer -= timeStep;
+        if(laserCharging && laserChargeTimer <= 0 ){
+            laserChargeTimer = 1.3;
+            laserFiring = true;
+            //draw the polygon:
+            laserCharging = false;
+        }else if(laserFiring && laserChargeTimer <= 0){
+            laserFiring = false;
+        }
+    }
+    
+    
+    
     if(hp<=0) ofxParticle::color = ofColor(255,255,255,100);
     if (onBeat && hp <= 0) { //Explosion
         ofxParticleEmitter ex;
@@ -57,6 +93,16 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
     }
 }
 
+
+
+void Enemy::fireLaser(){
+    laserTargetPoint = (player.hitbox.getCenter() - ofxParticle::position).normalize()*3500+ofxParticle::position;
+    laserChargeTimer = 2.3;
+    laserCharging = true;
+    cd = 5;
+}
+
+
 void Enemy::moveHitbox() {
     float width = texture->getWidth();
     float height = texture->getHeight();
@@ -68,13 +114,15 @@ void Enemy::moveHitbox() {
 }
 
 void Enemy::fire(ofxParticleSystem* bulletSpace){
+    
+    
     if (hp <= 0) return;
     gun.setPosition(this->position);
     gun.life = 130;
 
     if(type->bulletType->targetPattern==PLAYER){
         //point towards player.
-        ofVec3f posDir = (player.pos - position).normalize()*difficultyScaling*BulletSpeed;
+        ofVec3f posDir = (player.hitbox.getCenter() - position).normalize()*difficultyScaling*BulletSpeed;
         gun.setVelocity(posDir);
     }else{
         gun.setVelocity(ofVec3f(-BulletSpeed * difficultyScaling, 0));
@@ -112,6 +160,36 @@ void Enemy::fire(ofxParticleSystem* bulletSpace){
 void Enemy::draw(){ //Never called
     ofxParticle::draw(type->texture->getTexture());
 }
+
+void Enemy::draw(ofTexture &tex){
+    float w = tex.getWidth();
+    float h = tex.getHeight();
+    if(w > h){
+        h = h/w*size;
+        w = size;
+    }
+    else{
+        w = w/h*size;
+        h = size;
+    }
+    ofSetColor(color);
+    ofPushMatrix();
+    ofTranslate(position);
+    ofRotateX(rotation.x);
+    ofRotateY(rotation.y);
+    ofRotateZ(rotation.z);
+    tex.draw(w*-0.5,h*-0.5,w,h);
+    ofPopMatrix();
+    
+    if(laserFiring || laserCharging){
+        ofPushStyle();
+        ofSetColor(ofColor::whiteSmoke);
+        ofSetLineWidth(laserFiring?laserWidth:2.0);
+        ofLine(position, laserTargetPoint);
+        ofPopStyle();
+    }
+}
+
 
 int EnemySystem::update(float timeStep, ofxParticleSystem* bulletSystem, ofxParticleSystem* explosionSystem, const Track::Data *data, int* score){
     int particlesRemoved = 0;

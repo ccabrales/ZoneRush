@@ -31,8 +31,10 @@ BulletLibrary::BulletLibrary(){
     bullets.push_back( BulletType { 2.5, 0,
         &ofxAssets::image("b1"), THREESHOT, DOWNLANE
     });
-    
-    
+    bullets.push_back( BulletType { 4, 0,
+        NULL, LASERSHOT, PLAYER
+    });
+
     playerBullets.push_back( BulletType { 1.0, 1,
         &ofxAssets::image("b1"), STRAIGHT, DOWNLANE
     });

@@ -6,7 +6,7 @@
 #include "ofxAssets.h"
 
 enum FirePattern{
-    STRAIGHT, THREESHOT, TWOSHOT, CLOUD
+    STRAIGHT, THREESHOT, TWOSHOT, CLOUD, LASERSHOT
 };
 
 enum TargetPattern{
