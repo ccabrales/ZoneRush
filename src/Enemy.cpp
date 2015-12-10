@@ -64,7 +64,7 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
     if(laserCharging || laserFiring){
         laserChargeTimer -= timeStep;
         if(laserCharging && laserChargeTimer <= 0 && onBeat){
-            laserChargeTimer = 1.5;
+            laserChargeTimer = 0.8;
             laserFiring = true;
             //draw the polygon:
             laserCharging = false;
@@ -243,6 +243,7 @@ void Boss::setup(){
     state=BossEntering;
     decoder.decode("space_transparent_ship.gif");
     bossGif = decoder.getFile();
+    internalEnemies = new EnemySystem();
 }
 
 //Todo: check other systems to not spawn while boss is here...
@@ -272,6 +273,8 @@ void Boss::update(const float timeStep, ofxParticleSystem* bulletSpace, ofxParti
         case BossDestroyed:
             break;
     }
+    
+    internalEnemies->update(timeStep, bulletSpace, explosionSystem, data, score);
 }
 
 void Boss::newFiringState(){
@@ -282,29 +285,118 @@ void Boss::newFiringState(){
     
     firemode = (BossFiringState) newState;
     
+    internalEnemies->ofxParticleSystem::update(4000, 1);
+    internalEnemies->ofxParticleSystem::update(4000, 1);
+    
+    ofVec2f bossPos = ofVec2f(ofGetWidth()-(400), ofGetHeight()/2.0 - bossGif.getHeight()/2.0);
+    
     switch(firemode){
         case BEverythingGoes:
+            for(int i = 0; i < 32; i++){
+                int enemynum = i%4;
+                Enemy* e = new Enemy();
+                switch(enemynum){
+                    case 0:
+                        e->position = bossPos +ofVec2f(20, bossGif.getHeight()/2); break;
+                    case 1:
+                        e->position = bossPos + ofVec2f(bossGif.getWidth()/4, bossGif.getHeight()/2+50); break;
+                    case 2:
+                        e->position = bossPos + ofVec2f(bossGif.getWidth()/4, bossGif.getHeight()/2-50); break;
+                    case 3:
+                        e->position = bossPos + ofVec2f(bossGif.getWidth()*2.0/5.0, bossGif.getHeight()/2); break;
+                }
+                e->velocity = ofVec2f(0,0);
+                e->state = EnemyState::HEALTHY;
+                e->type = EnemyFactory::getTypeRandom();
+                
+                e->setup(6.0);
+                internalEnemies->particles.push_front(e);
+            }
             //spawns both laser and bullet enemies indiscrimantly and also shoots big laser.
+            break;
         case BLasers:
+            for(int i = 0; i < 16; i++){
+                int enemynum = i%4;
+                Enemy* e = new Enemy();
+                switch(enemynum){
+                    case 0:
+                        e->position = bossPos +ofVec2f(20, bossGif.getHeight()/2); break;
+                    case 1:
+                        e->position = bossPos + ofVec2f(bossGif.getWidth()/4, bossGif.getHeight()/2+50); break;
+                    case 2:
+                        e->position = bossPos + ofVec2f(bossGif.getWidth()/4, bossGif.getHeight()/2-50); break;
+                    case 3:
+                        e->position = bossPos + ofVec2f(bossGif.getWidth()*2.0/5.0, bossGif.getHeight()/2); break;
+                }
+                e->velocity = ofVec2f(0,0);
+                e->state = EnemyState::HEALTHY;
+                e->type = EnemyFactory::getType(7);
+                e->setup(6.0);
+                internalEnemies->particles.push_front(e);
+            }
+
             //spawns laser dudes and shoots big laser.
         case BBullets:
+            for(int i = 0; i < 24; i++){
+                int enemynum = i%4;
+                Enemy* e = new Enemy();
+                switch(enemynum){
+                    case 0:
+                        e->position = bossPos +ofVec2f(20, bossGif.getHeight()/2); break;
+                    case 1:
+                        e->position = bossPos + ofVec2f(bossGif.getWidth()/4, bossGif.getHeight()/2+50); break;
+                    case 2:
+                        e->position = bossPos + ofVec2f(bossGif.getWidth()/4, bossGif.getHeight()/2-50); break;
+                    case 3:
+                        e->position = bossPos + ofVec2f(bossGif.getWidth()*2.0/5.0, bossGif.getHeight()/2); break;
+                }
+                e->velocity = ofVec2f(0,0);
+                e->state = EnemyState::HEALTHY;
+                e->type = EnemyFactory::getType(rand()%7);
+                e->setup(6.0);
+                internalEnemies->particles.push_front(e);
+            }
+
             //spawn bullet dudes.
         case BChill:
+            for(int i = 0; i < 12; i++){
+                int enemynum = i%4;
+                Enemy* e = new Enemy();
+                switch(enemynum){
+                    case 0:
+                        e->position = bossPos +ofVec2f(20, bossGif.getHeight()/2); break;
+                    case 1:
+                        e->position = bossPos + ofVec2f(bossGif.getWidth()/4, bossGif.getHeight()/2+50); break;
+                    case 2:
+                        e->position = bossPos + ofVec2f(bossGif.getWidth()/4, bossGif.getHeight()/2-50); break;
+                    case 3:
+                        e->position = bossPos + ofVec2f(bossGif.getWidth()*2.0/5.0, bossGif.getHeight()/2); break;
+                }
+                e->velocity = ofVec2f(0,0);
+                e->state = EnemyState::HEALTHY;
+                e->type = EnemyFactory::getTypeRandom();
+                e->setup(1.0);
+                internalEnemies->particles.push_front(e);
+            }
+
             //spawns bullet dudes at reduced rate.
             break;
     }
 }
 
 void Boss::draw(){
+    ofPushStyle();
     switch(state){
         case BossEntering:
-            bossGif.drawFrame(0, ofGetWidth()-(400*(enteringDone/enterDuration)), ofGetHeight()/2.0 - bossGif.getHeight()/2.0);
+            bossGif.drawFrame(0, ofGetWidth()-min(400.0*(enteringDone/enterDuration), 400.0), ofGetHeight()/2.0 - bossGif.getHeight()/2.0);
             break;
         case BossFight:
+            bossGif.drawFrame(0, ofGetWidth()-(400), ofGetHeight()/2.0 - bossGif.getHeight()/2.0);
             break;
         case BossDestroyed:
             break;
     }
+    ofPopStyle();
 }
 
 

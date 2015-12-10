@@ -55,7 +55,7 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
         enemies.particles.push_front(e);
     }
     
-    if(((float)tick)/(float)currentTrack->frameData.size() > 0.2) bossSpawned = true;
+    if(((float)tick)/(float)currentTrack->frameData.size() > 0.03) bossSpawned = true;
     
     bool playerExplode = checkPlayerHit() | checkEnemyHits();
     if (playerExplode) invincibility = 1.5;
@@ -86,7 +86,9 @@ void GameScene::draw(){
     ofPopStyle();
     
     scoreRender.draw(20, ofGetHeight() - 12);
+    ofPushStyle();
     enemies.draw();
+    ofPopStyle();
     boss.draw();
     enemyBullets.draw();
     playerBullets.draw();
