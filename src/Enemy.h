@@ -9,6 +9,7 @@
 #include "player.h"
 #include "ofxAssets.h"
 #include "SoundLibrary.h"
+#include "ofxFatLine.h"
 
 #define BulletSpeed 150
 
@@ -42,10 +43,12 @@ public:
     ofRectangle hitbox;
     
     float laserChargeTimer;
-    float laserWidth = 80;
+    float laserWidth = 40;
     ofPoint laserTargetPoint;
+    ofxFatLine laser;
     bool laserCharging = false;
     bool laserFiring = false;
+    ofVec3f oldVel;
 
     void setup(float diffScaling);
     void update(const float timeStep, const float drag, ofxParticleSystem* bulletSpace, ofxParticleSystem* explosionSystem, bool onBeat, int* score);

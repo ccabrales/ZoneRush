@@ -64,14 +64,27 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
     if(laserCharging || laserFiring){
         laserChargeTimer -= timeStep;
         if(laserCharging && laserChargeTimer <= 0 ){
-            laserChargeTimer = 1.3;
+            laserChargeTimer = 1.5;
             laserFiring = true;
             //draw the polygon:
             laserCharging = false;
-            SoundLibrary::playSound(SoundItem::LASER);
+            
+            ofFloatColor c = ofColor(255,180,180);
+            ofFloatColor e = ofColor(255,255,255);
+
+            laser.updateColor(0, c);
+            laser.updateColor(1, e);
+
         }else if(laserFiring && laserChargeTimer <= 0){
             laserFiring = false;
+            velocity = oldVel;
         }
+        if(laserFiring){
+            SoundLibrary::playSound(SoundItem::LASER);
+            laser.updateWeight(0,laserWidth*1.4*laserChargeTimer/1.5);
+            laser.updateWeight(1,laserWidth*laserChargeTimer/1.5);
+        }
+        laser.update();
     }
     
     
@@ -98,7 +111,12 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
 
 void Enemy::fireLaser(){
     laserTargetPoint = (player.hitbox.getCenter() - ofxParticle::position).normalize()*3500+ofxParticle::position;
-    laserChargeTimer = 2.3;
+    laser = ofxFatLine();
+    laser.add(position, ofFloatColor::whiteSmoke, 2);
+    laser.add(laserTargetPoint, ofFloatColor::cyan, 2);
+    laserChargeTimer = 1.2;
+    oldVel = velocity;
+    velocity = ofVec3f(0,0,0);
     laserCharging = true;
     cd = 5;
 }
@@ -183,14 +201,7 @@ void Enemy::draw(ofTexture &tex){
     ofPopMatrix();
     
     if(laserFiring || laserCharging){
-        ofPushStyle();
-        ofSetColor(ofColor::whiteSmoke);
-        ofSetLineWidth(laserFiring?laserWidth:2.0);
-        if (laserFiring && !laserCharging) { //Play sound
-            
-        }
-        ofLine(position, laserTargetPoint);
-        ofPopStyle();
+        laser.draw();
     }
 }
 
