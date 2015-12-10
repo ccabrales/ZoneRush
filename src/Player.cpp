@@ -41,28 +41,13 @@ void Player::setup(ofImage * _img) {
 }
 
 void Player::upgradeGun(int grade){
-    currentGun = BulletLibrary::getWeaponInfo(grade);
+    currentGun = BulletLibrary::getWeaponInfo(grade, true);
     gunEmitter.life = 400;
     gunEmitter.size = 10;
-    switch(currentGun->firePattern){
-        case STRAIGHT:
-            gunEmitter.numPars = 1;
-            break;
-        case CLOUD:
-            gunEmitter.numPars = 30;
-            gunEmitter.velSpread = ofVec3f(BulletSpeed*2.0, BulletSpeed*2.0);
-            break;
-        case THREESHOT:
-            gunEmitter.numPars = 3;
-            gunEmitter.velSpread = ofVec3f(0.1, BulletSpeed/5.0);
-            break;
-        case TWOSHOT:
-            gunEmitter.numPars = 2;
-            gunEmitter.velSpread = ofVec3f(0.1, BulletSpeed/8.0);
-            break;
-        default:
-            gunEmitter.numPars = 1;
-            break;
+    bulletDamage = currentGun->damage;
+    if (currentGun->firePattern == CLOUD) {
+        gunEmitter.numPars = 10;
+        gunEmitter.velSpread = ofVec3f(BulletSpeed*2.0, BulletSpeed*2.0);
     }
 }
 
@@ -121,11 +106,43 @@ void Player::draw() {
 
 void Player::shoot(GreedyParticleSystem* playerBullet) {
     if(bulletCd < 0){
-        gunEmitter.setPosition(gunPos);
-        gunEmitter.setVelocity(ofVec3f(BulletSpeed*1.2, 0));
-
+        ofVec3f vel = ofVec3f(BulletSpeed*1.2, 0);
         bulletCd = currentGun->cd / 8.0;
-        playerBullet->addParticles(gunEmitter, currentGun->texture);
+        
+        switch (currentGun->firePattern){
+            case STRAIGHT:
+                gunEmitter.setPosition(gunPos);
+                gunEmitter.setVelocity(vel);
+                
+                playerBullet->addParticles(gunEmitter, currentGun->texture);
+                break;
+            case TWOSHOT:
+                gunEmitter.setPosition(gunPos - ofVec2f(0, 5));
+                gunEmitter.setVelocity(vel);
+                playerBullet->addParticles(gunEmitter, currentGun->texture);
+                
+                gunEmitter.setPosition(gunPos + ofVec2f(0, 5));
+                playerBullet->addParticles(gunEmitter, currentGun->texture);
+                break;
+            case THREESHOT:
+                gunEmitter.setPosition(gunPos);
+                gunEmitter.setVelocity(vel);
+                
+                playerBullet->addParticles(gunEmitter, currentGun->texture);
+                gunEmitter.setVelocity(vel.rotate(30, ofVec3f(0,0,1)));
+                playerBullet->addParticles(gunEmitter, currentGun->texture);
+                gunEmitter.setVelocity(vel.rotate(-60, ofVec3f(0,0,1)));
+                playerBullet->addParticles(gunEmitter, currentGun->texture);
+                break;
+            case CLOUD:
+                gunEmitter.setPosition(gunPos);
+                gunEmitter.setVelocity(vel);
+                
+                playerBullet->addParticles(gunEmitter, currentGun->texture);
+                break;
+            default:
+                break;
+        }
     }
 }
 

@@ -15,6 +15,7 @@ enum TargetPattern{
 
 struct BulletType {
     float cd;
+    int damage;
     ofImage* texture;
     FirePattern firePattern;
     TargetPattern targetPattern;
@@ -24,8 +25,9 @@ struct BulletType {
 class BulletLibrary
 {
 public:
-    static const BulletType* getWeaponInfo(int grade);
+    static const BulletType* getWeaponInfo(int grade, bool player);
     vector<BulletType> bullets;
+    vector<BulletType> playerBullets;
 private:
     BulletLibrary();
 };

@@ -2,13 +2,13 @@
 
 EnemyFactory::EnemyFactory(){
     e_types.push_back(EnemyType {
-        4, 5, 100, BulletLibrary::getWeaponInfo(0), true, &ofxAssets::image("s1")
+        4, 5, 100, BulletLibrary::getWeaponInfo(0, false), true, &ofxAssets::image("s1")
     });
     e_types.push_back(EnemyType {
-        4, 7, 250, BulletLibrary::getWeaponInfo(2), false, &ofxAssets::image("s2")
+        4, 7, 250, BulletLibrary::getWeaponInfo(2, false), false, &ofxAssets::image("s2")
     });
     e_types.push_back(EnemyType {
-        3, 8, 500, BulletLibrary::getWeaponInfo(4), false, &ofxAssets::image("s3")
+        3, 8, 500, BulletLibrary::getWeaponInfo(4, false), false, &ofxAssets::image("s3")
     });
 
 }
