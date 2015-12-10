@@ -97,7 +97,7 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
         ex.lifeSpread = 2;
         ex.color = ofColor(255, 150, 150);
         ex.colorSpread = ofColor(0, 100, 100);
-        ex.velSpread = ofVec3f(50, 50);
+        ex.velSpread = ofVec3f(250, 250);
         ex.numPars = 80;
         explosionSystem->addParticles(ex);
         SoundLibrary::playSound(SoundItem::EXPLODE_LOUD);
@@ -245,7 +245,8 @@ void Boss::setup(){
     decoder.decode("space_transparent_ship.gif");
     bossGif = decoder.getFile();
     internalEnemies = new EnemySystem();
-    hp = 500;
+    maxHP = 500;
+    hp = maxHP;
     animationProgress = 0;
 }
 
@@ -260,6 +261,36 @@ inline float modBPM(const Track::Data* data){
 
 void Boss::update(const float timeStep, ofxParticleSystem* bulletSpace, ofxParticleSystem* explosionSystem,EnemySystem* globalEnemies, const Track::Data* data, int* score){
     
+    if(hp < 0 && state!=BossDead){
+        
+        ofxParticleEmitter ex;
+        ex.setPosition(ofVec2f(ofGetWidth()-300, ofGetHeight()/2.0));
+        ex.posSpread = ofVec3f(400, bossGif.getHeight()/2.0);
+        ex.setVelocity(ofVec3f(0,0));
+        ex.velSpread = ofVec3f(800,500);
+        ex.life = 13;
+        ex.lifeSpread = 2;
+        ex.color = ofColor(255, 150, 150);
+        ex.colorSpread = ofColor(0, 100, 100);
+        ex.numPars = 80;
+        explosionSystem->addParticles(ex);
+        SoundLibrary::playSound(SoundItem::SEISMIC_CHARGE);
+        
+        *score += 30;
+        
+        this->life = 0;
+
+        hitbox.set(-2,-2,1,1);
+        state = BossDestroyed;
+        internalEnemies->ofxParticleSystem::update(4000, 1.0);
+        animationProgress += timeStep+enterDuration*enterDuration/13.0;
+        enterDuration+=0.1;
+        if(enterDuration > 10){
+            state = BossDead;
+        }
+        return;
+    }
+    
     hitbox.set(ofGetWidth()-(400), ofGetHeight()/2.0 - bossGif.getHeight()/2.0, bossGif.getWidth(), bossGif.getHeight());
     
     animationProgress += timeStep;
@@ -272,6 +303,7 @@ void Boss::update(const float timeStep, ofxParticleSystem* bulletSpace, ofxParti
             if(enteringDone > enterDuration && data->onBeat){
                 state = BossFight;
                 enteringDone = 0;
+                newFiringState(data);
             }
             break;
         case BossFight:
@@ -282,6 +314,7 @@ void Boss::update(const float timeStep, ofxParticleSystem* bulletSpace, ofxParti
             }
             break;
         case BossDestroyed:
+        case BossDead:
             break;
     }
     
@@ -410,8 +443,22 @@ void Boss::draw(){
         case BossFight:
             internalEnemies->draw();
             bossGif.drawFrame(animationFrame, ofGetWidth()-(400), ofGetHeight()/2.0 - bossGif.getHeight()/2.0);
+            
+            //draw healthbar
+            ofPushStyle();
+            ofSetColor(255,200,200);
+            ofLine(ofGetWidth()/2-maxHP, ofGetHeight()-12, ofGetWidth()/2+maxHP, ofGetHeight()-12);
+            ofSetColor(200,0,0);
+            ofFill();
+            ofDrawRectangle(ofRectangle(ofGetWidth()/2-maxHP, ofGetHeight()-12, hp*2, 12));
+            
+
+            ofPopStyle();
             break;
         case BossDestroyed:
+            bossGif.drawFrame(animationFrame, ofGetWidth()-(400), ofGetHeight()/2.0 - bossGif.getHeight()/2.0);
+            break;
+        case BossDead:
             break;
     }
     ofPopStyle();

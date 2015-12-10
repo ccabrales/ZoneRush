@@ -92,7 +92,7 @@ public:
 
 
 enum BossState{
-    BossEntering, BossFight, BossDestroyed
+    BossEntering, BossFight, BossDestroyed, BossDead
 };
 
 enum BossFiringState{
@@ -115,6 +115,7 @@ public:
     ofxEasingCubic cubic;
 
     int hp;
+    int maxHP;
     float enteringDone=0;
     float enterDuration=2.0;
     
