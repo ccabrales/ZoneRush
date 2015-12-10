@@ -3,6 +3,7 @@
 const BulletType* BulletLibrary::getWeaponInfo(int grade, bool player){
     static BulletLibrary inst;
     if (player) {
+        if(grade > 3) return &(inst.playerBullets[3]);
         return &(inst.playerBullets[grade]);
     } else {
         return &(inst.bullets[grade]);

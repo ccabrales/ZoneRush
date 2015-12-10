@@ -40,7 +40,8 @@ void ofApp::setup(){
     setupParticleEmitters();
 
     ofFmodSetBuffersize(256);
-
+    
+    ofxAssets::image("s1");
 }
 
 void ofApp::exit(){

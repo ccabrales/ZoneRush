@@ -11,7 +11,7 @@ public:
     float width, height, speed;
     int lives;
     float exp;
-    float level;
+    int level;
 
     bool is_left_pressed, is_right_pressed, is_down_pressed, is_up_pressed;
 

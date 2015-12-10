@@ -1,4 +1,5 @@
 #include "ofApp.h"
+#include "ofxAssets.h"
 
 void ofApp::setup(){
 	ofSetVerticalSync(false);

@@ -51,11 +51,15 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
         e->life = 500;
         e->velocity = ofVec3f(min(-ofGetWidth() * (modBPM(data)/60.0) / ((int)ofRandom(14,18)), -80.0), 0);
         e->type = EnemyFactory::getTypeRandom();
-        e->setup(currentDifficulty);
-        enemies.particles.push_front(e);
+        if(e->type->bulletType->firePattern == LASERSHOT && bossSpawned && boss.state != BossDead){
+            delete e;
+        }else{
+            e->setup(currentDifficulty);
+            enemies.particles.push_front(e);
+        }
     }
     
-    if(((float)tick)/(float)currentTrack->frameData.size() > 0.03) bossSpawned = true;
+    if(((float)tick)/(float)currentTrack->frameData.size() > 0.6) bossSpawned = true;
     
     bool playerExplode = checkPlayerHit() | checkEnemyHits();
     if (playerExplode) invincibility = 1.5;
@@ -63,7 +67,7 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
     float lastFrameTime = ofGetLastFrameTime();
     player.update(lastFrameTime, &explosions, playerExplode);
     player.shoot(&playerBullets);
-    if(bossSpawned)
+    if(bossSpawned && boss.state != BossDead)
         boss.update(lastFrameTime, &enemyBullets, &explosions, &enemies, data, &score);
     
     enemies.update(lastFrameTime, &enemyBullets, &explosions, data, &score);
@@ -96,7 +100,7 @@ void GameScene::draw(){
     livesImg.draw(livesPos, 134, 40);
     
     ofPushStyle();
-    ofSetLineWidth(4.0);
+    ofSetLineWidth(7.0);
     explosions.draw();
     ofPopStyle();
     
@@ -173,19 +177,19 @@ bool GameScene::checkEnemyHits() {
         
     }
     
-    if(bossSpawned && !playerHit){
-        for(ships=enemies.particles.begin(); ships!=enemies.particles.end(); ships++) {
+    if(bossSpawned && boss.state != BossDead && !playerHit){
+        for(ships=boss.internalEnemies->particles.begin(); ships!=boss.internalEnemies->particles.end(); ships++) {
             Enemy * ship = ((Enemy*)(*ships));
-            if(ship->laserFiring){
+            if(ship->laserFiring && ship->laserChargeTimer>0.1){
                 ofVec3f dir = ship->laserTargetPoint-ship->position;
                 ofVec3f posPlayer = player.hitbox.getCenter() - ship->position;
-                
                 float dist = posPlayer.cross(dir).length() / dir.length();
                 if(invincibility <= 0 && dist < ship->laserWidth /2.0){
                     player.lives --;
                     livesImg = ofxAssets::image(to_string(player.lives) + "Life");
                     score -= 100;
                     playerHit = true;
+                    break;
                 }
             }
         }
