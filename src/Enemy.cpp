@@ -44,7 +44,7 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
         ofxParticleEmitter ex;
         ex.setPosition(ofxParticle::position);
         ex.setVelocity(ofxParticle::velocity);
-        ex.life = 15;
+        ex.life = 13;
         ex.lifeSpread = 2;
         ex.color = ofColor(255, 150, 150);
         ex.colorSpread = ofColor(0, 100, 100);

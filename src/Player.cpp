@@ -10,6 +10,9 @@ void Player::setup(ofImage * _img) {
     width = img->getWidth();
     height = img->getHeight();
     speed = 130;
+    exp = 0;
+    level = 0;
+    
     lives = 3;
     bulletDamage = 1;
     
@@ -64,6 +67,12 @@ void Player::upgradeGun(int grade){
 }
 
 void Player::update(float frameTime, ofxParticleSystem* explosions, bool explode) {
+    if(exp >= level*level*5 + 5){
+        exp -= level*level*5 + 5;
+        level ++;
+        upgradeGun(level);
+    }
+    
     if (explode) {
         ofxParticleEmitter ex;
         ex.setPosition(pos);

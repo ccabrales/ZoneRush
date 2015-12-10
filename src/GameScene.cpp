@@ -60,7 +60,10 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
     enemies.update(lastFrameTime, &enemyBullets, &explosions, data, &score);
     enemyBullets.update(lastFrameTime, 1);
     playerBullets.update(lastFrameTime, 1);
-    explosions.update(lastFrameTime, 0.8);
+    
+    explosions.gravitateTo(player.pos, 10 ,32, 12, true);
+    
+    explosions.update(lastFrameTime, 0.25);
 
     scoreRender.update(score);
 }
@@ -127,8 +130,11 @@ bool GameScene::checkEnemyHits() {
             ofVec3f loc = bullet->position;
             if (ship->hitbox.inside(loc)) {
                 ship->hp -= player.bulletDamage;
+                if(ship->hp == 0){
+                    player.exp += 1;
+                }
                 bullet->life = 0;
-                break;
+                continue;
             }
         }
     }

@@ -47,8 +47,6 @@ void AudioLoader::threadedFunction(){
             CFStringRef urlStr = CFStringCreateWithCString(kCFAllocatorDefault, filePath.c_str(), kCFStringEncodingUTF8);
             CFURLRef ref = CFURLCreateWithFileSystemPath(NULL, urlStr, kCFURLPOSIXPathStyle, false);
             AudioFileCreateWithURL(ref, kAudioFileWAVEType, &outputFormat, (kAudioFileFlags_EraseFile), &outputFile);
-            CFRelease(outputFile);
-            CFRelease(urlStr);
             UInt32 sizeOfBuffer = (UInt32)(musicDecoder->getNumSamples());
             AudioFileWriteBytes(outputFile, FALSE, 0, &sizeOfBuffer, &(musicDecoder->getRawSamples()[0]));
             AudioFileClose(outputFile);
