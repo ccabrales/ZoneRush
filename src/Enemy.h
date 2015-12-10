@@ -108,7 +108,7 @@ public:
     ofxGifDecoder decoder;
     ofxGifFile bossGif;
 
-    
+    int hp;
     float enteringDone=0;
     float enterDuration=2.0;
     

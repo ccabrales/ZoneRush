@@ -57,14 +57,14 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
     ofxParticle::update(timeStep, drag);
     moveHitbox();
     cd -= timeStep;
-    if(cd <= 0){
+    if(cd <= 0 && !laserCharging && !laserFiring){
         if(type->bulletType->firePattern==LASERSHOT) fireLaser();
         else                fire(bulletSpace);
     }
     if(laserCharging || laserFiring){
         laserChargeTimer -= timeStep;
         if(laserCharging && laserChargeTimer <= 0 && onBeat){
-            laserChargeTimer = 0.8;
+            laserChargeTimer = 0.3 + 1.0/(difficultyScaling);
             laserFiring = true;
             //draw the polygon:
             laserCharging = false;
@@ -80,8 +80,8 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
             velocity = oldVel;
         }
         if(laserFiring){
-            laser.updateWeight(0,laserWidth*1.4*laserChargeTimer/1.5);
-            laser.updateWeight(1,laserWidth*laserChargeTimer/1.5);
+            laser.updateWeight(0,laserWidth*1.4*laserChargeTimer/(0.3 + 1.0/(difficultyScaling)));
+            laser.updateWeight(1,laserWidth*laserChargeTimer/(0.3 + 1.0/(difficultyScaling)));
         }
         laser.update();
     }
@@ -154,8 +154,9 @@ void Enemy::fire(ofxParticleSystem* bulletSpace){
             gun.numPars = 1;
             break;
         case CLOUD:
-            gun.numPars = 30;
-            gun.velSpread = ofVec3f(BulletSpeed*2.0*difficultyScaling, BulletSpeed*2.0*difficultyScaling);
+            gun.numPars = 10;
+            gun.setVelocity(ofVec2f(0,0));
+            gun.velSpread = ofVec3f(BulletSpeed*2.0, BulletSpeed*2.0);
             break;
         case THREESHOT:
             gun.numPars = 3;
@@ -244,6 +245,7 @@ void Boss::setup(){
     decoder.decode("space_transparent_ship.gif");
     bossGif = decoder.getFile();
     internalEnemies = new EnemySystem();
+    hp = 500;
 }
 
 //Todo: check other systems to not spawn while boss is here...
@@ -266,8 +268,9 @@ void Boss::update(const float timeStep, ofxParticleSystem* bulletSpace, ofxParti
             break;
         case BossFight:
             enteringDone += timeStep; //add time.
-            if(enteringDone >= 8.0/modBPM(data)/60.0 && data->onBeat){
+            if(enteringDone >= 8.0*(modBPM(data)/60.0) && data->onBeat){
                 newFiringState();
+                enteringDone = 0;
             }
             break;
         case BossDestroyed:
@@ -292,12 +295,12 @@ void Boss::newFiringState(){
     
     switch(firemode){
         case BEverythingGoes:
-            for(int i = 0; i < 32; i++){
+            for(int i = 0; i < 20; i++){
                 int enemynum = i%4;
                 Enemy* e = new Enemy();
                 switch(enemynum){
                     case 0:
-                        e->position = bossPos +ofVec2f(20, bossGif.getHeight()/2); break;
+                        e->position = bossPos +ofVec2f(130, bossGif.getHeight()/2); break;
                     case 1:
                         e->position = bossPos + ofVec2f(bossGif.getWidth()/4, bossGif.getHeight()/2+50); break;
                     case 2:
@@ -308,63 +311,21 @@ void Boss::newFiringState(){
                 e->velocity = ofVec2f(0,0);
                 e->state = EnemyState::HEALTHY;
                 e->type = EnemyFactory::getTypeRandom();
-                
-                e->setup(6.0);
+                e->life = 40;
+                e->setup(3.0);
+                e->cd = ((float)(rand()%50))/32.0;
+
                 internalEnemies->particles.push_front(e);
             }
             //spawns both laser and bullet enemies indiscrimantly and also shoots big laser.
             break;
         case BLasers:
-            for(int i = 0; i < 16; i++){
-                int enemynum = i%4;
-                Enemy* e = new Enemy();
-                switch(enemynum){
-                    case 0:
-                        e->position = bossPos +ofVec2f(20, bossGif.getHeight()/2); break;
-                    case 1:
-                        e->position = bossPos + ofVec2f(bossGif.getWidth()/4, bossGif.getHeight()/2+50); break;
-                    case 2:
-                        e->position = bossPos + ofVec2f(bossGif.getWidth()/4, bossGif.getHeight()/2-50); break;
-                    case 3:
-                        e->position = bossPos + ofVec2f(bossGif.getWidth()*2.0/5.0, bossGif.getHeight()/2); break;
-                }
-                e->velocity = ofVec2f(0,0);
-                e->state = EnemyState::HEALTHY;
-                e->type = EnemyFactory::getType(7);
-                e->setup(6.0);
-                internalEnemies->particles.push_front(e);
-            }
-
-            //spawns laser dudes and shoots big laser.
-        case BBullets:
-            for(int i = 0; i < 24; i++){
-                int enemynum = i%4;
-                Enemy* e = new Enemy();
-                switch(enemynum){
-                    case 0:
-                        e->position = bossPos +ofVec2f(20, bossGif.getHeight()/2); break;
-                    case 1:
-                        e->position = bossPos + ofVec2f(bossGif.getWidth()/4, bossGif.getHeight()/2+50); break;
-                    case 2:
-                        e->position = bossPos + ofVec2f(bossGif.getWidth()/4, bossGif.getHeight()/2-50); break;
-                    case 3:
-                        e->position = bossPos + ofVec2f(bossGif.getWidth()*2.0/5.0, bossGif.getHeight()/2); break;
-                }
-                e->velocity = ofVec2f(0,0);
-                e->state = EnemyState::HEALTHY;
-                e->type = EnemyFactory::getType(rand()%7);
-                e->setup(6.0);
-                internalEnemies->particles.push_front(e);
-            }
-
-            //spawn bullet dudes.
-        case BChill:
             for(int i = 0; i < 12; i++){
                 int enemynum = i%4;
                 Enemy* e = new Enemy();
                 switch(enemynum){
                     case 0:
-                        e->position = bossPos +ofVec2f(20, bossGif.getHeight()/2); break;
+                        e->position = bossPos +ofVec2f(130, bossGif.getHeight()/2); break;
                     case 1:
                         e->position = bossPos + ofVec2f(bossGif.getWidth()/4, bossGif.getHeight()/2+50); break;
                     case 2:
@@ -373,9 +334,57 @@ void Boss::newFiringState(){
                         e->position = bossPos + ofVec2f(bossGif.getWidth()*2.0/5.0, bossGif.getHeight()/2); break;
                 }
                 e->velocity = ofVec2f(0,0);
-                e->state = EnemyState::HEALTHY;
+                e->type = EnemyFactory::getType(7);
+                e->setup(4.0);
+                e->cd = ((float)(rand()%50))/32.0;
+                e->life = 40;
+                internalEnemies->particles.push_front(e);
+            }
+
+            //spawns laser dudes and shoots big laser.
+        case BBullets:
+            for(int i = 0; i < 12; i++){
+                int enemynum = i%4;
+                Enemy* e = new Enemy();
+                switch(enemynum){
+                    case 0:
+                        e->position = bossPos +ofVec2f(130, bossGif.getHeight()/2); break;
+                    case 1:
+                        e->position = bossPos + ofVec2f(bossGif.getWidth()/4, bossGif.getHeight()/2+50); break;
+                    case 2:
+                        e->position = bossPos + ofVec2f(bossGif.getWidth()/4, bossGif.getHeight()/2-50); break;
+                    case 3:
+                        e->position = bossPos + ofVec2f(bossGif.getWidth()*2.0/5.0, bossGif.getHeight()/2); break;
+                }
+                e->velocity = ofVec2f(0,0);
+                e->type = EnemyFactory::getType(rand()%7);
+                e->setup(3.0);
+                e->life = 40;
+                e->cd = ((float)(rand()%50))/32.0;
+                internalEnemies->particles.push_front(e);
+            }
+
+            //spawn bullet dudes.
+        case BChill:
+            for(int i = 0; i < 4; i++){
+                int enemynum = i%4;
+                Enemy* e = new Enemy();
+                switch(enemynum){
+                    case 0:
+                        e->position = bossPos +ofVec2f(130, bossGif.getHeight()/2); break;
+                    case 1:
+                        e->position = bossPos + ofVec2f(bossGif.getWidth()/4, bossGif.getHeight()/2+50); break;
+                    case 2:
+                        e->position = bossPos + ofVec2f(bossGif.getWidth()/4, bossGif.getHeight()/2-50); break;
+                    case 3:
+                        e->position = bossPos + ofVec2f(bossGif.getWidth()*2.0/5.0, bossGif.getHeight()/2); break;
+                }
+                e->velocity = ofVec2f(0,0);
                 e->type = EnemyFactory::getTypeRandom();
-                e->setup(1.0);
+                e->setup(2.0);
+                e->life = 40;
+                e->cd = ((float)(rand()%50))/32.0;
+
                 internalEnemies->particles.push_front(e);
             }
 
@@ -391,6 +400,7 @@ void Boss::draw(){
             bossGif.drawFrame(0, ofGetWidth()-min(400.0*(enteringDone/enterDuration), 400.0), ofGetHeight()/2.0 - bossGif.getHeight()/2.0);
             break;
         case BossFight:
+            internalEnemies->draw();
             bossGif.drawFrame(0, ofGetWidth()-(400), ofGetHeight()/2.0 - bossGif.getHeight()/2.0);
             break;
         case BossDestroyed:
