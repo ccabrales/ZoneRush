@@ -45,7 +45,7 @@ public:
     ofRectangle hitbox;
     
     float laserChargeTimer;
-    float laserWidth = 40;
+    float laserWidth = 30;
     ofPoint laserTargetPoint;
     ofxFatLine laser;
     bool laserCharging = false;

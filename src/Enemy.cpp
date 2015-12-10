@@ -80,8 +80,8 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
             velocity = oldVel;
         }
         if(laserFiring){
-            laser.updateWeight(0,laserWidth*1.4*laserChargeTimer/(0.3 + 1.0/(difficultyScaling)));
-            laser.updateWeight(1,laserWidth*laserChargeTimer/(0.3 + 1.0/(difficultyScaling)));
+            laser.updateWeight(0,laserWidth*1.4/2.0*laserChargeTimer/(0.3 + 1.0/(difficultyScaling)));
+            laser.updateWeight(1,laserWidth/2.0*laserChargeTimer/(0.3 + 1.0/(difficultyScaling)));
         }
         laser.update();
     }

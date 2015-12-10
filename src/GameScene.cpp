@@ -134,7 +134,7 @@ bool GameScene::checkEnemyHits() {
     
     for(ships=enemies.particles.begin(); ships!=enemies.particles.end(); ships++) {
         Enemy * ship = ((Enemy*)(*ships));
-        if (invincibility <= 0 && player.hitbox.intersects(ship->hitbox)) { //player hit enemy ship
+        if (invincibility <= 0 && player.hitbox.intersects(ship->hitbox) && !playerHit) { //player hit enemy ship
             ship->hp = 0;
             player.lives--;
             livesImg = ofxAssets::image(to_string(player.lives) + "Life");
@@ -158,7 +158,7 @@ bool GameScene::checkEnemyHits() {
         }
         
         //check if ship's lasers are colliding into player.
-        if(ship->laserFiring){
+        if(ship->laserFiring && !playerHit){
             ofVec3f dir = ship->laserTargetPoint-ship->position;
             ofVec3f posPlayer = player.hitbox.getCenter() - ship->position;
             
@@ -168,13 +168,27 @@ bool GameScene::checkEnemyHits() {
                 livesImg = ofxAssets::image(to_string(player.lives) + "Life");
                 score -= 100;
                 playerHit = true;
-                
             }
         }
         
     }
     
-    if(bossSpawned){
+    if(bossSpawned && !playerHit){
+        for(ships=enemies.particles.begin(); ships!=enemies.particles.end(); ships++) {
+            Enemy * ship = ((Enemy*)(*ships));
+            if(ship->laserFiring){
+                ofVec3f dir = ship->laserTargetPoint-ship->position;
+                ofVec3f posPlayer = player.hitbox.getCenter() - ship->position;
+                
+                float dist = posPlayer.cross(dir).length() / dir.length();
+                if(invincibility <= 0 && dist < ship->laserWidth /2.0){
+                    player.lives --;
+                    livesImg = ofxAssets::image(to_string(player.lives) + "Life");
+                    score -= 100;
+                    playerHit = true;
+                }
+            }
+        }
         for(bullets=playerBullets.particles.begin(); bullets!=playerBullets.particles.end(); bullets++) {
             ofxParticle* bullet = (*bullets);
             ofVec3f loc = bullet->position;
