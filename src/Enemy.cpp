@@ -63,12 +63,12 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
     }
     if(laserCharging || laserFiring){
         laserChargeTimer -= timeStep;
-        if(laserCharging && laserChargeTimer <= 0 ){
+        if(laserCharging && laserChargeTimer <= 0 && onBeat){
             laserChargeTimer = 1.5;
             laserFiring = true;
             //draw the polygon:
             laserCharging = false;
-            
+            SoundLibrary::playSound(SoundItem::LASER);
             ofFloatColor c = ofColor(255,180,180);
             ofFloatColor e = ofColor(255,255,255);
 
@@ -80,7 +80,6 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
             velocity = oldVel;
         }
         if(laserFiring){
-            SoundLibrary::playSound(SoundItem::LASER);
             laser.updateWeight(0,laserWidth*1.4*laserChargeTimer/1.5);
             laser.updateWeight(1,laserWidth*laserChargeTimer/1.5);
         }
@@ -110,6 +109,8 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
 
 
 void Enemy::fireLaser(){
+    SoundLibrary::playSound(SoundItem::POWERUP);
+
     laserTargetPoint = (player.hitbox.getCenter() - ofxParticle::position).normalize()*3500+ofxParticle::position;
     laser = ofxFatLine();
     laser.add(position, ofFloatColor::whiteSmoke, 2);
