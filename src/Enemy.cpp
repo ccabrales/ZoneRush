@@ -320,8 +320,9 @@ void Boss::newFiringState(const Track::Data* data){
                 e->state = EnemyState::HEALTHY;
                 e->type = EnemyFactory::getTypeRandom();
                 e->life = 40;
-                e->cd = ((float)i)*0.25*(modBPM(data)/60.0);
-                e->cd = ((float)(rand()%50))/32.0;
+                e->setup(2.0);
+                e->cd = ((float)i)*0.5*(modBPM(data)/60.0);
+                
 
                 internalEnemies->particles.push_front(e);
             }
@@ -343,7 +344,7 @@ void Boss::newFiringState(const Track::Data* data){
                 }
                 e->velocity = ofVec2f(0,0);
                 e->type = EnemyFactory::getType(7);
-                e->setup(4.0);
+                e->setup(2.0);
                 e->cd = ((float)i)*0.25*(modBPM(data)/60.0);
                 e->life = 40;
                 internalEnemies->particles.push_front(e);
@@ -366,7 +367,7 @@ void Boss::newFiringState(const Track::Data* data){
                 }
                 e->velocity = ofVec2f(0,0);
                 e->type = EnemyFactory::getType(rand()%7);
-                e->setup(3.0);
+                e->setup(2.0);
                 e->life = 40;
                 e->cd = ((float)i)*0.25*(modBPM(data)/60.0);
                 internalEnemies->particles.push_front(e);
