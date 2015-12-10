@@ -36,16 +36,16 @@ BulletLibrary::BulletLibrary(){
     });
 
     playerBullets.push_back( BulletType { 1.0, 1,
-        &ofxAssets::image("b1"), STRAIGHT, DOWNLANE
+        &ofxAssets::image("b5"), STRAIGHT, DOWNLANE
     });
     playerBullets.push_back( BulletType { 2.0, 2,
-        &ofxAssets::image("b2"), TWOSHOT, DOWNLANE
+        &ofxAssets::image("b5"), TWOSHOT, DOWNLANE
     });
     playerBullets.push_back( BulletType { 3.0, 3,
-        &ofxAssets::image("b3"), THREESHOT, DOWNLANE
+        &ofxAssets::image("b5"), THREESHOT, DOWNLANE
     });
     playerBullets.push_back( BulletType { 5.0, 5,
-        &ofxAssets::image("b4"), CLOUD, DOWNLANE
+        &ofxAssets::image("b5"), CLOUD, DOWNLANE
     });
 };
 
