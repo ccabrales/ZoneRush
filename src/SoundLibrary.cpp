@@ -5,8 +5,8 @@ void SoundLibrary::playSound(SoundItem item){
     inst.tracks[item].play();
 };
 SoundLibrary::SoundLibrary(){
-    vector<string> filenames = {"accelerator-wind.aif", "alienhit.wav", "big-powerdown.aif", "explode2.wav", "heartbeat-superverb.aif", "laser-minihits.aif", "lexplode.wav", "lowblup.aif", "pickup.wav", "seismic_charge.wav", "zuperzap.aif"};
-    vector<float> volumes = {1, 1, 1, 1, 1, 1, 0.7, 1, 1, 1, 1};
+    vector<string> filenames = {"accelerator-wind.aif", "alienhit.wav", "big-powerdown.aif", "explode2.wav", "heartbeat-superverb.aif", "laser-blast.wav", "lexplode.wav", "lowblup.aif", "pickup.wav", "seismic_charge.wav", "zuperzap.aif", "power-up-ray.wav"};
+    vector<float> volumes = {1, 1, 1, 1, 1, 0.7, 0.7, 1, 1, 1, 1, 1};
     if(filenames.size() != SoundItem::__COUNT){
         cout << "Unexpected Sound Library setup. Failing..." << endl;
         assert(false);
@@ -18,4 +18,5 @@ SoundLibrary::SoundLibrary(){
         tracks.back().setMultiPlay(true);
         tracks.back().stop();
     }
+    
 };

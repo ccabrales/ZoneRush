@@ -53,6 +53,9 @@ void ofApp::exit(){
 void ofApp::audioOut(float * input, int bufferSize, int nChannels){
     if(globalDecoder == NULL || isPaused) return;
     copy(globalDecoder->getRawSamples().begin()+tick*bufferSize*nChannels, globalDecoder->getRawSamples().begin()+tick*bufferSize*nChannels+bufferSize*nChannels, input);
+    for (int i = 0; i < bufferSize * nChannels; i++) {
+        input[i] /= 2.5;
+    }
     tick ++;
     if(tick*nChannels*bufferSize > globalDecoder->getNumSamples()){ //end of game
         tick = 0;
