@@ -208,6 +208,20 @@ int EnemySystem::update(float timeStep, ofxParticleSystem* bulletSystem, ofxPart
     return particlesRemoved;
 }
 
+void EnemySystem::draw(){
+    list<ofxParticle*>::iterator it = particles.begin();
+    if(it == particles.end()) return;
+    if((**it).texture != NULL){
+        for(; it != particles.end(); it++){
+            (*(Enemy*)(*it)).draw((**it).texture->getTexture());
+        }
+    }else{
+        for(; it != particles.end(); it++){
+            (*(Enemy*)(*it)).draw();
+        }
+    }
+}
+
 
 //UNUSED
 

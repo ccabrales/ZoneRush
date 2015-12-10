@@ -42,7 +42,7 @@ public:
     ofRectangle hitbox;
     
     float laserChargeTimer;
-    float laserWidth = 20;
+    float laserWidth = 80;
     ofPoint laserTargetPoint;
     bool laserCharging = false;
     bool laserFiring = false;
@@ -81,8 +81,7 @@ private:
 class EnemySystem : public ofxParticleSystem{
 public:
     int update(float timeStep, ofxParticleSystem* bulletSystem, ofxParticleSystem * explosionSystem, const Track::Data * data, int* score);
-
-
+    void draw();
 //    void draw();
 };
 
