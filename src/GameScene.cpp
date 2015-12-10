@@ -3,6 +3,7 @@
 void GameScene::setup(){
     player.setup(&ofxAssets::image("player"));
     score = 0;
+    invincibility = 0.0;
     
     livesImg = ofxAssets::image("3Life");
     livesPos = ofPoint(0, ofGetHeight() - 95);
@@ -53,6 +54,7 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
     }
     
     bool playerExplode = checkPlayerHit() | checkEnemyHits();
+    if (playerExplode) invincibility = 1.5;
     
     float lastFrameTime = ofGetLastFrameTime();
     player.update(lastFrameTime, &explosions, playerExplode);
@@ -66,11 +68,16 @@ void GameScene::backgroundUpdate(const Track::Data* data, ofxParticleSystem* par
     explosions.update(lastFrameTime, 0.25);
 
     scoreRender.update(score);
+    invincibility -= lastFrameTime;
 }
 
 
 void GameScene::draw(){
+    ofPushStyle();
+    if (invincibility > 0) ofSetColor(255,255,255,100);
     player.draw();
+    ofPopStyle();
+    
     scoreRender.draw(20, ofGetHeight() - 12);
     enemies.draw();
     enemyBullets.draw();
@@ -99,7 +106,7 @@ bool GameScene::checkPlayerHit() {
     for(bullets=enemyBullets.particles.begin(); bullets!=enemyBullets.particles.end(); bullets++) {
         ofxParticle* bullet = (*bullets);
         ofVec3f loc = bullet->position;
-        if (player.hitbox.inside(loc)) { //player is hit
+        if (invincibility <= 0 && player.hitbox.inside(loc)) { //player is hit
             bullet->life = 0;
             player.lives--;
             livesImg = ofxAssets::image(to_string(player.lives) + "Life");
@@ -115,7 +122,7 @@ bool GameScene::checkEnemyHits() {
     bool playerHit = false;
     for(ships=enemies.particles.begin(); ships!=enemies.particles.end(); ships++) {
         Enemy * ship = ((Enemy*)(*ships));
-        if (player.hitbox.intersects(ship->hitbox)) { //player hit enemy ship
+        if (invincibility <= 0 && player.hitbox.intersects(ship->hitbox)) { //player hit enemy ship
             ship->hp = 0;
             player.lives--;
             livesImg = ofxAssets::image(to_string(player.lives) + "Life");
@@ -145,7 +152,7 @@ bool GameScene::checkEnemyHits() {
             ofVec3f posPlayer = player.hitbox.getCenter() - ship->position;
             
             float dist = posPlayer.cross(dir).length() / dir.length();
-            if(dist < ship->laserWidth /2.0){
+            if(invincibility <= 0 && dist < ship->laserWidth /2.0){
                 player.lives --;
                 livesImg = ofxAssets::image(to_string(player.lives) + "Life");
                 score -= 100;

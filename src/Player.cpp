@@ -46,7 +46,7 @@ void Player::upgradeGun(int grade){
     gunEmitter.size = 10;
     bulletDamage = currentGun->damage;
     if (currentGun->firePattern == CLOUD) {
-        gunEmitter.numPars = 10;
+        gunEmitter.numPars = 5;
         gunEmitter.velSpread = ofVec3f(BulletSpeed*2.0, BulletSpeed*2.0);
     }
 }
@@ -131,9 +131,9 @@ void Player::shoot(GreedyParticleSystem* playerBullet) {
                 gunEmitter.setVelocity(vel);
                 
                 playerBullet->addParticles(gunEmitter, currentGun->texture);
-                gunEmitter.setVelocity(vel.rotate(30, ofVec3f(0,0,1)));
+                gunEmitter.setVelocity(vel.rotate(15, ofVec3f(0,0,1)));
                 playerBullet->addParticles(gunEmitter, currentGun->texture);
-                gunEmitter.setVelocity(vel.rotate(-60, ofVec3f(0,0,1)));
+                gunEmitter.setVelocity(vel.rotate(-30, ofVec3f(0,0,1)));
                 playerBullet->addParticles(gunEmitter, currentGun->texture);
                 break;
             case CLOUD:

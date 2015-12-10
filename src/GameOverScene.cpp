@@ -2,10 +2,14 @@
 
 
 void GameOverScene::setup(int endScore, int finalPercentage){
-    gameOverText.load("GameOver.png");
-    score.load("Score.png");
-    songPercent.load("Completion.png");
-    menu.load("MenuSelected.png");
+    if (finalPercentage == 100) {
+        gameOverText = ofxAssets::image("Complete");
+    } else {
+        gameOverText = ofxAssets::image("GameOver");
+    }
+    score = ofxAssets::image("Score");
+    songPercent = ofxAssets::image("Completion");
+    menu = ofxAssets::image("MenuSelected");
     resetPosition();
     
     scoreRender.update(endScore);

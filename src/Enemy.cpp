@@ -68,6 +68,7 @@ void Enemy::update(const float timeStep, const float drag, ofxParticleSystem* bu
             laserFiring = true;
             //draw the polygon:
             laserCharging = false;
+            SoundLibrary::playSound(SoundItem::LASER);
         }else if(laserFiring && laserChargeTimer <= 0){
             laserFiring = false;
         }
@@ -185,6 +186,9 @@ void Enemy::draw(ofTexture &tex){
         ofPushStyle();
         ofSetColor(ofColor::whiteSmoke);
         ofSetLineWidth(laserFiring?laserWidth:2.0);
+        if (laserFiring && !laserCharging) { //Play sound
+            
+        }
         ofLine(position, laserTargetPoint);
         ofPopStyle();
     }

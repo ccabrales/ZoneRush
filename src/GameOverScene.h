@@ -4,6 +4,7 @@
 #include "ofxParticles.h"
 #include "track.h"
 #include "ScoreRenderer.h"
+#include "ofxAssets.h"
 
 class GameOverScene {
 public:

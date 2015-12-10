@@ -383,6 +383,12 @@ width:100%;
 .img-top.part-four{
     width: 44% !important;
 }
+.img-top.part-end{
+    width: 100%;
+}
+.img-top.part-end img{
+    width: 50%;
+}
 .img-top.part-two{
     width: 41.5% !important;
 	}

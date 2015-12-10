@@ -54,8 +54,9 @@ void ofApp::audioOut(float * input, int bufferSize, int nChannels){
     if(globalDecoder == NULL || isPaused) return;
     copy(globalDecoder->getRawSamples().begin()+tick*bufferSize*nChannels, globalDecoder->getRawSamples().begin()+tick*bufferSize*nChannels+bufferSize*nChannels, input);
     tick ++;
-    if(tick*nChannels*bufferSize > globalDecoder->getNumSamples()){
+    if(tick*nChannels*bufferSize > globalDecoder->getNumSamples()){ //end of game
         tick = 0;
+        game_state = WON;
     }
     tv.updateAudio(input, bufferSize, nChannels);
 }
@@ -88,6 +89,11 @@ void ofApp::update(){
                 gameOverScene = new GameOverScene;
                 gameOverScene->setup(gameScene->score, (float(tick) / currentTrack->frameData.size()) * 100);
             }
+            break;
+        case WON:
+            game_state = END;
+            gameOverScene = new GameOverScene;
+            gameOverScene->setup(gameScene->score, 100);
             break;
         case END:
             gameOverScene->backgroundUpdate(d, &backgroundParticles);
@@ -124,6 +130,7 @@ void ofApp::draw(){
             titleScene->draw();
             break;
         case GAME:
+        case WON:
             gameScene->draw();
             if (isPaused) {
                 ofxAssets::font("welbut", 32).drawString("Paused", (ofGetWidth() / 2.0) - 75, (ofGetHeight() / 2.0) - 75);
@@ -228,7 +235,7 @@ void ofApp::keyPressed(int key){
             default:
                 break;
         }
-    } else if (game_state == GAME) {
+    } else if (game_state == GAME || game_state == WON) {
         switch (key) {
             case OF_KEY_LEFT:
                 if (isPaused) break;

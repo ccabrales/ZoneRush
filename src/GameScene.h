@@ -26,7 +26,8 @@ public:
 private:
     bool checkPlayerHit();
     bool checkEnemyHits();
-
+    
+    float invincibility;
     ofxParticleEmitter rightEmitter;
     
     vector<EnemyPtr> enemyList;
