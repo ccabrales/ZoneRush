@@ -9,7 +9,7 @@ void Player::setup(ofImage * _img) {
 
     width = img->getWidth();
     height = img->getHeight();
-    speed = 130;
+    speed = 160;
     exp = 0;
     level = 0;
     
@@ -56,6 +56,8 @@ void Player::update(float frameTime, ofxParticleSystem* explosions, bool explode
         exp -= level*level*5 + 5;
         level ++;
         upgradeGun(level);
+        lives = min(lives+1, 3);
+        speed += 20;
     }
     
     if (explode) {

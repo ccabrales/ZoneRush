@@ -132,6 +132,7 @@ bool GameScene::checkEnemyHits() {
                 ship->hp -= player.bulletDamage;
                 if(ship->hp == 0){
                     player.exp += 1;
+                    livesImg = ofxAssets::image(to_string(player.lives) + "Life");
                 }
                 bullet->life = 0;
                 continue;
